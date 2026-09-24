@@ -30,9 +30,16 @@ them in a presentation: an empty cell is honest, a wrong number is a claim.
 
 Known limits on the sourced rows:
 
-- **Monthly budget** assumes living alone. Most exchange students share, which cuts the rent
-  component substantially, so read it as an upper bound.
-- **Transit fares** exclude student discounts, which are large.
+- **Monthly budget** is Numbeo living costs excluding rent, plus a room in a shared flat. The
+  room is derived from a three-bedroom flat outside the centre divided by three, because no
+  source publishes room prices for all six cities on the same basis. Cross-checked against
+  HousingAnywhere room prices for Spain, where it comes out 4 percent low for Bilbao and 14
+  percent low for Barcelona, so it is conservative rather than inflated. It still runs above
+  the 800 to 1,200 euro range student guides quote for Spain, because Numbeo prices a general
+  adult basket including restaurants and leisure, not a frugal student.
+- **Transit fares** exclude student discounts, which are large. The pass is shown as its own
+  row and is **not** added to the monthly budget, because Numbeo already includes it in the
+  living-costs basket.
 - **Safety rating** is Numbeo's perception index, built from what site visitors report, not
   from police statistics. City level only, never individual districts.
 - **Part-time work** is orientation, not legal advice. It follows your passport, and your
