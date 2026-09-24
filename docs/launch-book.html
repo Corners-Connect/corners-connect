@@ -1,0 +1,495 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Corners Launch Book</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --paper: #F3F1EC; --paper-2: #EAE5DD; --ink: #3B2A1E; --ink-2: #6B5D51; --mute: #A2978D; --rule: #D5CCC1;
+    --band: #5B4332; --band-ink: #EFE8DF; --band-ink-2: #CDBFB2; --blue: #AEDDF6; --accent-ink: #2E6A8C;
+    --keep: #2F7A55; --change: #9A6A12; --drop: #A0452F;
+    --serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+    --sans: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #231913; --paper-2: #2E231B; --ink: #EFE7DD; --ink-2: #BFB0A2; --mute: #86776A; --rule: #47382D;
+      --band: #4F3A2B; --accent-ink: #AEDDF6; --keep: #7FCFA3; --change: #E0B45C; --drop: #EE8F77;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #231913; --paper-2: #2E231B; --ink: #EFE7DD; --ink-2: #BFB0A2; --mute: #86776A; --rule: #47382D;
+    --band: #4F3A2B; --accent-ink: #AEDDF6; --keep: #7FCFA3; --change: #E0B45C; --drop: #EE8F77;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 400 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+  a { color: var(--accent-ink); }
+  :focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; }
+
+  .cover { background: var(--band); color: var(--band-ink); padding-inline: clamp(16px, 5vw, 72px); padding-block: clamp(48px, 7vw, 88px) clamp(40px, 5vw, 56px); }
+  .cover__in { max-width: 1160px; margin: 0 auto; }
+  .eyebrow { margin: 0 0 14px; font: 500 12px/1.3 var(--sans); letter-spacing: .22em; text-transform: uppercase; color: var(--ink-2); }
+  .cover .eyebrow { color: var(--blue); }
+  .cover h1 { margin: 0; font: 400 clamp(52px, 8vw, 104px)/.92 var(--serif); letter-spacing: -.015em; color: var(--blue); text-wrap: balance; }
+  .cover p.sub { margin: 24px 0 0; max-width: 62ch; font-size: clamp(17px, 1.6vw, 19px); color: var(--band-ink-2); }
+  .answers { display: flex; flex-wrap: wrap; gap: 8px; margin: 32px 0 0; padding: 0; list-style: none; }
+  .answers li { padding: 6px 12px; border: 1px solid #7D6757; border-radius: 3px; font: 500 12px var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--band-ink-2); }
+  .answers li:last-child { background: var(--blue); border-color: var(--blue); color: var(--ink); }
+  .cover .note { margin: 14px 0 0; font-size: 13px; color: var(--band-ink-2); }
+
+  .layout { max-width: 1160px; margin: 0 auto; padding-inline: clamp(16px, 5vw, 72px); padding-block: 56px 96px; display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 64px; }
+  .toc { position: sticky; top: 24px; align-self: start; font-size: 14px; }
+  .toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; counter-reset: t; }
+  .toc li { counter-increment: t; }
+  .toc a { display: block; padding: 5px 0; color: var(--ink-2); text-decoration: none; }
+  .toc a::before { content: counter(t); display: inline-block; width: 22px; font-variant-numeric: tabular-nums; color: var(--mute); }
+  .toc a:hover { color: var(--ink); }
+  @media (max-width: 880px) { .layout { grid-template-columns: 1fr; gap: 32px; } .toc { position: static; } .toc ol { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+  main { min-width: 0; }
+  section { padding-bottom: 56px; margin-bottom: 56px; border-bottom: 1px solid var(--rule); }
+  section:last-child { border-bottom: 0; }
+  h2 { margin: 0 0 8px; font: 400 clamp(34px, 4vw, 48px)/1.02 var(--serif); text-wrap: balance; }
+  h2 .then, h3 .then { color: var(--mute); }
+  h3 { margin: 40px 0 12px; font: 400 26px/1.1 var(--serif); }
+  p, li { max-width: 68ch; }
+  .lead { font-size: 18px; color: var(--ink-2); margin: 16px 0 0; }
+  strong { font-weight: 600; }
+  .muted { color: var(--ink-2); }
+
+  .table-wrap { overflow-x: auto; margin: 20px 0 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 620px; }
+  th { text-align: left; font: 500 11.5px var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--ink-2); padding: 10px 14px 10px 0; border-bottom: 1px solid var(--ink); }
+  td { vertical-align: top; padding: 14px 14px 14px 0; border-bottom: 1px solid var(--rule); }
+  td:first-child { font-weight: 500; }
+  td p { margin: 0; }
+
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 3px; font: 600 11px var(--sans); letter-spacing: .12em; text-transform: uppercase; border: 1px solid currentColor; white-space: nowrap; }
+  .tag--keep { color: var(--keep); } .tag--change { color: var(--change); } .tag--drop { color: var(--drop); }
+
+  .statement { margin: 28px 0 0; padding: 24px 28px; background: var(--paper-2); border-radius: 3px; font: 400 clamp(22px, 2.4vw, 28px)/1.25 var(--serif); max-width: none; }
+  .statement em { font-style: normal; color: var(--accent-ink); }
+
+  .personas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 20px; }
+  .persona { padding: 20px 20px 22px; border: 1px solid var(--rule); border-radius: 3px; }
+  .persona h4 { margin: 0; font: 400 24px/1.1 var(--serif); }
+  .persona .meta { margin: 4px 0 14px; font-size: 13px; color: var(--ink-2); }
+  .persona dl { margin: 0; display: grid; gap: 10px; font-size: 14.5px; }
+  .persona dt { font: 500 11px var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--mute); }
+  .persona dd { margin: 2px 0 0; }
+  @media (max-width: 900px) { .personas { grid-template-columns: 1fr; } }
+
+  .ring { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin-top: 20px; border-top: 1px solid var(--ink); }
+  .ring > div { padding: 16px 16px 4px 0; }
+  .ring > div + div { padding-left: 16px; border-left: 1px solid var(--rule); }
+  .ring .k { font: 500 11px var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--accent-ink); }
+  .ring h4 { margin: 8px 0 6px; font: 400 22px/1.1 var(--serif); }
+  .ring p { margin: 0; font-size: 14.5px; color: var(--ink-2); }
+  @media (max-width: 760px) { .ring { grid-template-columns: 1fr 1fr; } .ring > div:nth-child(3) { padding-left: 0; border-left: 0; } }
+
+  .figs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; margin-top: 20px; }
+  .fig { padding: 18px 0; border-top: 1px solid var(--rule); }
+  .fig b { display: block; font: 400 44px/1 var(--serif); font-variant-numeric: tabular-nums; }
+  .fig span { display: block; margin-top: 6px; font-size: 14.5px; color: var(--ink-2); }
+  .fig cite { display: block; margin-top: 6px; font-style: normal; font-size: 12.5px; color: var(--mute); }
+  @media (max-width: 640px) { .figs { grid-template-columns: 1fr; } }
+
+  .timeline { list-style: none; margin: 24px 0 0; padding: 0; }
+  .timeline > li { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 24px; padding: 18px 0; border-top: 1px solid var(--rule); max-width: none; }
+  .timeline .when { font: 500 13px var(--sans); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+  .timeline .when b { display: block; font: 500 11px var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 4px; }
+  .timeline h4 { margin: 0 0 6px; font: 400 23px/1.15 var(--serif); }
+  .timeline ul { margin: 0; padding-left: 18px; color: var(--ink-2); font-size: 15px; }
+  .timeline .due { display: inline-block; margin-top: 10px; font: 500 12px var(--sans); letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; background: var(--band); color: var(--band-ink); border-radius: 3px; }
+  @media (max-width: 600px) { .timeline > li { grid-template-columns: 1fr; gap: 6px; } }
+
+  .tree { margin-top: 24px; }
+  .tree__top { padding: 18px 22px; background: var(--band); color: var(--band-ink); border-radius: 3px; }
+  .tree__top .k { font: 500 11px var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--blue); }
+  .tree__top p { margin: 6px 0 0; font: 400 24px/1.2 var(--serif); max-width: none; }
+  .tree__branches { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
+  .branch { padding: 16px 18px; border: 1px solid var(--rule); border-radius: 3px; }
+  .branch h4 { margin: 0 0 10px; font: 500 13px var(--sans); letter-spacing: .14em; text-transform: uppercase; }
+  .branch .k { margin: 10px 0 2px; font: 500 11px var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--mute); }
+  .branch p { margin: 0; font-size: 14.5px; }
+  @media (max-width: 760px) { .tree__branches { grid-template-columns: 1fr; } }
+
+  .votes { list-style: none; margin: 20px 0 0; padding: 0; counter-reset: v; }
+  .votes > li { counter-increment: v; position: relative; padding: 20px 0 20px 44px; border-top: 1px solid var(--rule); max-width: none; }
+  .votes > li::before { content: counter(v); position: absolute; left: 0; top: 14px; font: 400 34px/1 var(--serif); color: var(--accent-ink); }
+  .votes h4 { margin: 0 0 6px; font: 400 23px/1.15 var(--serif); }
+  .votes p { margin: 6px 0 0; color: var(--ink-2); font-size: 15px; }
+  .votes .rec { color: var(--ink); }
+  .votes .rec b { font: 600 11px var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--accent-ink); margin-right: 6px; }
+
+  .pending { padding: 14px 18px; border: 1px dashed var(--mute); border-radius: 3px; color: var(--ink-2); font-size: 14.5px; }
+</style>
+
+<header class="cover">
+  <div class="cover__in">
+    <p class="eyebrow">Pitch eight · after session 02 · 15 September 2026</p>
+    <h1>Corners Launch Book</h1>
+    <p class="sub">Corners stops being a journal for the twelve of us and becomes the social app for everyone who just arrived somewhere: Erasmus, study abroad and first-years. Here is who it's for, how we reach them, and what we keep from session 02.</p>
+    <ul class="answers" aria-label="The five answers">
+      <li>Approve</li><li>Amend</li><li>Park</li><li>Reject</li><li>Counter-pitch</li>
+    </ul>
+    <p class="note">Every section is a pitch under the decision system. The only binding part is the System Prompt, and nothing here touches it.</p>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="Contents">
+    <ol>
+      <li><a href="#change">What changes</a></li>
+      <li><a href="#audience">Audience</a></li>
+      <li><a href="#size">How many</a></li>
+      <li><a href="#alternatives">Alternatives</a></li>
+      <li><a href="#position">Positioning</a></li>
+      <li><a href="#channels">Channels</a></li>
+      <li><a href="#calendar">Calendar</a></li>
+      <li><a href="#measure">Measures</a></li>
+      <li><a href="#risks">Risks</a></li>
+      <li><a href="#vote">To vote</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <section id="change">
+      <p class="eyebrow">What changes</p>
+      <h2>Same company, same twelve. <span class="then">A bigger room.</span></h2>
+      <p class="lead">Session 02 said our advantage is that none of us is local, and that it expires in six weeks. The pivot turns that advantage into the product: every newcomer in a city has it too, for the same six weeks.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>From session 02</th><th></th><th>In the new direction</th></tr></thead>
+          <tbody>
+            <tr><td>Pitch 1 · Decision system</td><td><span class="tag tag--keep">Keep</span></td><td><p>Unchanged. This book is voted the same way, and the voting app is still the first build.</p></td></tr>
+            <tr><td>Pitch 2 · Objectives</td><td><span class="tag tag--keep">Keep</span></td><td><p>All 21 competences, all 12 of us, by 3 December. The product becomes the thing we practise them on.</p></td></tr>
+            <tr><td>Pitch 3 · Three teams</td><td><span class="tag tag--keep">Keep</span></td><td><p>Product builds the app. Audience runs the campaign and the partner pitches. Operations runs the pilot corners by hand.</p></td></tr>
+            <tr><td>Pitch 4 · "Not one of you is local"</td><td><span class="tag tag--change">Change</span></td><td><p>From our own content to the <strong>product thesis</strong>. The tagline is now "Nobody here is local."</p></td></tr>
+            <tr><td>Pitch 4 · Private journal, nobody can reply</td><td><span class="tag tag--change">Change</span></td><td><p>From a solo journal to <strong>groups of eleven who meet</strong>. The weekly reading survives as the Monday prompt, and you only see others' after you post.</p></td></tr>
+            <tr><td>Pitch 4 · No likes, no follower count</td><td><span class="tag tag--keep">Keep</span></td><td><p>This becomes our main difference from every other social app. We add: no public comments, no endless feed, no live location.</p></td></tr>
+            <tr><td>Pitch 4 · 70 / 25 / 5 split</td><td><span class="tag tag--keep">Keep</span></td><td><p>Still the content rule. 70 the corners, 25 the idea, 5 the twelve of us.</p></td></tr>
+            <tr><td>Pitch 5 · Brand direction A, the wreath</td><td><span class="tag tag--keep">Keep</span></td><td><p>Chocolate and baby blue. Every leaf is an eye. The eleven hues belong to people in the app.</p></td></tr>
+            <tr><td>Pitch 5 · Direction B, the eleven squares</td><td><span class="tag tag--drop">Drop</span></td><td><p>It dies in one ink, and we'll print stickers, cups and welcome cards.</p></td></tr>
+            <tr><td>Pitch 6 · KPI tree</td><td><span class="tag tag--change">Change</span></td><td><p>Same shape, new numbers. The top becomes a user outcome as well as a course outcome. See <a href="#measure">Measures</a>.</p></td></tr>
+            <tr><td>Pitch 7 · Teams + one GitHub repo</td><td><span class="tag tag--keep">Keep</span></td><td><p>The site, this book and the app all live in the repo.</p></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="audience">
+      <p class="eyebrow">Audience</p>
+      <h2>People in their first six weeks somewhere. <span class="then">Not "students".</span></h2>
+      <p class="lead">"Students" is a group we can't reach. "Arrived in Bilbao in September" is a date, a place and an inbox. We target arrival, not age.</p>
+
+      <div class="ring">
+        <div><p class="k">Core · now</p><h4>Incoming exchange</h4><p>Erasmus+ and US study abroad in Spain, 19–24, one semester or a year. They arrive on a known date, in waves, through an institution.</p></div>
+        <div><p class="k">Next · spring</p><h4>First-years who moved</h4><p>Spanish students at university in a new city, 18–19. They arrive once, in September, and are harder to reach before they come.</p></div>
+        <div><p class="k">Later</p><h4>New in town</h4><p>Language assistants, interns, first jobs. Same problem, no institution to reach them through.</p></div>
+        <div><p class="k">Buyers, not users</p><h4>Who pays</h4><p>International offices, study abroad providers, ESN sections, student residences.</p></div>
+      </div>
+
+      <h3>Why incoming exchange students first</h3>
+      <ul>
+        <li><strong>The date is known.</strong> Every exchange student has an arrival week, often months in advance. That means we can reach them before they land.</li>
+        <li><strong>They cluster.</strong> They come in two waves (September and January–February), live in the same few cities and go to the same few universities. A corner needs eleven people arriving in the same fortnight, and only this group guarantees that.</li>
+        <li><strong>Institutions already email them.</strong> International offices and providers have an inbox for every arrival. One partner is a whole cohort.</li>
+        <li><strong>We are them.</strong> Twelve of us arrived this month. We are the pilot cohort and the first content.</li>
+      </ul>
+
+      <h3>Three people to design for</h3>
+      <div class="personas">
+        <article class="persona">
+          <h4>Chiara</h4>
+          <p class="meta">21 · Erasmus from Bologna · one semester at UPV/EHU</p>
+          <dl>
+            <div><dt>Already uses</dt><dd>Instagram, the 400-person "Erasmus Bilbao" WhatsApp group, ESN welcome events</dd></div>
+            <div><dt>Afraid of</dt><dd>Only ever speaking Italian with other Italians</dd></div>
+            <div><dt>Would download because</dt><dd>Her corner is guaranteed to be mixed nationalities, and it's small enough to remember names</dd></div>
+            <div><dt>Reach her</dt><dd>The ESN section, her university's welcome email, the Erasmus group chats before she flies</dd></div>
+          </dl>
+        </article>
+        <article class="persona">
+          <h4>Aiyana</h4>
+          <p class="meta">20 · US study abroad · autumn term through a programme</p>
+          <dl>
+            <div><dt>Already uses</dt><dd>TikTok, a programme group chat with the other Americans, the provider's own excursions</dd></div>
+            <div><dt>Afraid of</dt><dd>Going home having only met her own cohort</dd></div>
+            <div><dt>Would download because</dt><dd>Her programme coordinator sent a cohort code, and it gets her out of the American bubble</dd></div>
+            <div><dt>Reach her</dt><dd>The provider's pre-departure packet, orientation, TikTok study abroad content</dd></div>
+          </dl>
+        </article>
+        <article class="persona">
+          <h4>Marta</h4>
+          <p class="meta">18 · first-year from Valladolid · moved to Bilbao for Deusto</p>
+          <dl>
+            <div><dt>Already uses</dt><dd>Instagram, BeReal, her residence's group chat</dd></div>
+            <div><dt>Afraid of</dt><dd>That everyone local already has their school friends</dd></div>
+            <div><dt>Would download because</dt><dd>Nobody in her corner is local either</dd></div>
+            <div><dt>Reach her</dt><dd>The residence, first-week welcome events, Instagram</dd></div>
+          </dl>
+        </article>
+      </div>
+
+      <h3>Who it isn't for</h3>
+      <p class="muted">Tourists, people looking to date, and locals looking for a language exchange. The last one is a real demand we're parking, not rejecting. See vote 1.</p>
+    </section>
+
+    <section id="size">
+      <p class="eyebrow">How many</p>
+      <h2>How big the first six weeks are.</h2>
+      <p class="lead">Sourced figures only. Every number has its source next to it, so anyone arguing against this book can check it.</p>
+      <h3>Spain, the market</h3>
+      <div class="figs">
+        <div class="fig"><b>59,271</b><span>Erasmus+ higher-education students who came to Spain in 2024. <strong>The most of any country</strong>: Italy was next with 43,065.</span><cite>Erasmus+ Annual Report 2024, statistical annex, p.29–30 · <a href="http://sepie.es/doc/comunicacion/publicaciones/2025/statistical_erasmus_annual_report_2024en.pdf">SEPIE</a></cite></div>
+        <div class="fig"><b>36,826</b><span>US students who studied abroad for credit in Spain in 2023/24. That's 12.4% of all US students abroad, <strong>the second-most popular destination</strong> after Italy, and Spain's highest ever.</span><cite>IIE Open Doors 2025 · <a href="https://opendoorsdata.org/data/us-study-abroad/leading-destinations/">opendoorsdata.org</a></cite></div>
+        <div class="fig"><b>159,002</b><span>International students physically at Spanish universities in 2023-24: 63,624 on exchange and 95,378 doing a full degree.</span><cite>Ministerio de Ciencia, Innovación y Universidades, SIIU · <a href="https://www.ciencia.gob.es/dam/jcr:4d72063c-c0b7-41a7-bbe5-998ba9e7fdc8/PrincipalesResultados_Internacionalizacion2024.pdf">ciencia.gob.es</a></cite></div>
+        <div class="fig"><b>403,878</b><span>Erasmus+ higher-education student mobilities across all countries that started in 2024. This is the ceiling if Corners leaves Spain.</span><cite>Erasmus+ Annual Report 2024, statistical annex · <a href="https://op.europa.eu/en/publication-detail/-/publication/513afdc9-c05c-11f0-a612-01aa75ed71a1/language-en">op.europa.eu</a></cite></div>
+      </div>
+
+      <h3>Bilbao, the pilot</h3>
+      <div class="figs">
+        <div class="fig"><b>669</b><span>Exchange students who arrived at UPV/EHU's Bizkaia campus in the first semester of 2024-25, out of 1,054 across the university. <strong>That's about 60 corners of eleven from one campus in one wave.</strong></span><cite>EHU Campusa, 10 Sep 2024 · <a href="https://www.ehu.eus/es/web/campusa/-/upv/ehu-acoge-mas-de-2000-estudiantes-internacionales-nuevo-curso">ehu.eus</a></cite></div>
+        <div class="fig"><b>600+</b><span>International students welcomed by the University of Deusto in autumn 2025. The split between its Bilbao and San Sebastián campuses isn't verified.</span><cite>Deia, 4 Sep 2025 · <a href="https://www.deia.eus/actualidad/sociedad/2025/09/04/universidad-deusto-da-bienvenida-600-estudiantes-10046168.html">deia.eus</a></cite></div>
+      </div>
+      <p class="muted">Arrival waves at UPV/EHU: autumn classes started 8 September 2025, and spring classes 26 January 2026 (Faculty of Science and Technology calendar; other faculties vary by about a week). So the two windows to market in are <strong>late August to September</strong> and <strong>mid-to-late January</strong>. ESN Bilbao is the only ESN section listed for the Basque Country, and it's based at UPV/EHU.</p>
+
+      <h3>The problem, measured</h3>
+      <div class="figs">
+        <div class="fig"><b>54.67%</b><span>Exchange students who took part in no local activity during their stay: no club, association or volunteering. 17.16% said they weren't integrated into the local community.</span><cite>ESNsurvey XIV, about 11,100 responses, 2021 data collected during COVID · <a href="https://www.eaie.org/resource/understanding-international-student-needs.html">EAIE</a></cite></div>
+        <div class="fig"><b>2 in 3</b><span>International students in an Australian study who had experienced loneliness or isolation, especially in their first months.</span><cite>Sawir et al., 2008, n=200 · <a href="https://journals.sagepub.com/doi/10.1177/1028315307299699">Journal of Studies in International Education</a></cite></div>
+        <div class="fig"><b>76%</b><span>People aged 15–24 in the EU who use Instagram, against 55% for TikTok (2023). This is where the campaign runs.</span><cite>European Parliament Research Service briefing, Dec 2025 · <a href="https://www.europarl.europa.eu/RegData/etudes/BRIE/2025/779235/EPRS_BRI(2025)779235_EN.pdf">europarl.europa.eu</a></cite></div>
+      </div>
+      <p class="muted">Two cautions before anyone quotes these. First, the loneliness studies are old and small. We haven't found a large Spain-specific one, so the pilot should measure it ourselves. Second, Spain's own count of US exchange students (8,698) is far below Open Doors' figure. A likely reason is that US-run programmes aren't recorded in Spanish university data. That's unverified, but it would mean providers like USAC are a separate channel from universities.</p>
+    </section>
+
+    <section id="alternatives">
+      <p class="eyebrow">Alternatives</p>
+      <h2>What people use today. <span class="then">Our real competitor is the group chat.</span></h2>
+      <div class="table-wrap" data-alternatives>
+        <table>
+          <thead><tr><th>Alternative</th><th>What it gets right</th><th>Where it leaves a gap</th></tr></thead>
+          <tbody>
+            <tr><td>The WhatsApp cohort group</td><td><p>Everyone is already in it, and it's free</p></td><td><p>Hundreds of people and no way to get down to ten. By week three it's only announcements</p></td></tr>
+            <tr><td>Unera <span class="tag tag--drop">Closest</span></td><td><p>An app for finding Erasmus students and plans nearby. It already has a Bilbao page</p></td><td><p>Built around discovering people and plans, not a fixed group. Someone should install it before Tuesday and write down exactly how it differs from Corners</p></td></tr>
+            <tr><td>ESN Bilbao events and ESN apps</td><td><p>Big, cheap, trusted, and on every week. The apps add buddy and language-tandem matching</p></td><td><p>A party of 200 is great for meeting people and bad for keeping them. ESN is a partner before it's a competitor</p></td></tr>
+            <tr><td>Erasmus+ App · Erasmusu</td><td><p>The paperwork, housing and city forums</p></td><td><p>Information, not people. Nobody leaves with a Tuesday plan</p></td></tr>
+            <tr><td>Programme and university orientation</td><td><p>Trusted, and everyone goes</p></td><td><p>It ends in a week, and it groups you with your own programme</p></td></tr>
+            <tr><td>Bumble For Friends</td><td><p>Friend matching, rebuilt around interest groups in September 2025</p></td><td><p>Profiles and matching, and not tied to when you arrived</p></td></tr>
+            <tr><td>Timeleft</td><td><p>Six strangers at a dinner table, every Wednesday</p></td><td><p>A different table every time, you pay per dinner, and <strong>it isn't in Bilbao</strong> (it runs in Barcelona, Madrid, Málaga and Valencia)</p></td></tr>
+            <tr><td>Meetup · Couchsurfing Hangouts</td><td><p>A place and a time. Bilbao has active language-exchange groups</p></td><td><p>Sorted by hobby, full of regulars and travellers passing through, not people who just arrived</p></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="position">
+      <p class="eyebrow">Positioning</p>
+      <h2>One sentence, <span class="then">so twelve people say the same thing.</span></h2>
+      <p class="statement">For people in their <em>first six weeks</em> in a new city, Corners is the app that puts you with <em>eleven people who arrived when you did</em> and one place to meet them each week. Unlike the group chat, you end up with names, not a member count.</p>
+
+      <h3>What we say, by who's listening</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>To</th><th>Headline</th><th>Proof</th></tr></thead>
+          <tbody>
+            <tr><td>Erasmus</td><td><p>Nobody here is local.</p></td><td><p>Every corner has as many nationalities as we can fit</p></td></tr>
+            <tr><td>Study abroad</td><td><p>Meet the city, not just your programme.</p></td><td><p>Your corner is never people from your own programme</p></td></tr>
+            <tr><td>First-years</td><td><p>Everyone else is new too.</p></td><td><p>Zero locals in a corner</p></td></tr>
+            <tr><td>Universities</td><td><p>Your orientation lasts five days. Corners lasts six weeks.</p></td><td><p>One number back each fortnight: how many of your arrivals met at least three people</p></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Voice</h3>
+      <p class="muted">Pitch 5's rule still applies: short sentences, full stops. We never write "community", "vibes" or "connect with like-minded people". We describe the thing: eleven people, a place, Tuesday.</p>
+    </section>
+
+    <section id="channels">
+      <p class="eyebrow">Channels</p>
+      <h2>Market the arrival, <span class="then">not the brand.</span></h2>
+      <p class="lead">Each channel is judged on one thing: does it reach someone between two weeks before they land and two weeks after. Cost is in hours, because this course has no money.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Channel</th><th>Tactic</th><th>Owner team</th><th>Cost</th><th>First test</th></tr></thead>
+          <tbody>
+            <tr><td>Institutions</td><td><p>A cohort code in the welcome email of one ESN section and one study abroad provider. One partner brings a whole cohort.</p></td><td>Audience</td><td>High</td><td>Pitch 2 partners by 22 Oct</td></tr>
+            <tr><td>Instagram + TikTok</td><td><p>"One fact, eleven readings": one Bilbao image, eleven signed sentences. Our own format from pitch 4, and nobody bigger can copy it.</p></td><td>Audience</td><td>Medium</td><td>Account live 17 Sep</td></tr>
+            <tr><td>Arrival group chats</td><td><p>Show up honestly in the "Erasmus Bilbao 2026" style groups and the r/Erasmus threads. Post a real corner, not an ad.</p></td><td>Audience</td><td>Low</td><td>This week</td></tr>
+            <tr><td>Partner cafés</td><td><p>The week's corner is a real place. A card in the window reads "This is a corner." It costs the café nothing and brings in eleven customers.</p></td><td>Operations</td><td>Low</td><td>First pilot week</td></tr>
+            <tr><td>Residences</td><td><p>A welcome card with a QR code on the desk of each new room, in September and January.</p></td><td>Operations</td><td>Medium</td><td>January wave</td></tr>
+            <tr><td>Invites</td><td><p>Invite someone from your programme and you both move up your city's list. They're placed in a different corner on purpose.</p></td><td>Product</td><td>Low</td><td>With the MVP</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>The content rule, carried over from pitch 4</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Share</th><th>Pillar</th><th>What it looks like now</th></tr></thead>
+          <tbody>
+            <tr><td>70%</td><td>The corners</td><td><p>This week's place, the prompt, and readings (with permission). The product showing itself.</p></td></tr>
+            <tr><td>25%</td><td>The idea</td><td><p>Why two newcomers see the same bar differently. The posts people share who will never use the app.</p></td></tr>
+            <tr><td>5%</td><td>The twelve</td><td><p>Who is making this. Never a confession, never a founder story.</p></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted">Nothing gets made without knowing which of the three it is. The drills from session 02 still apply: three lines tonight, one image with eleven signed readings, and never two of us on the same tool in the same week.</p>
+    </section>
+
+    <section id="calendar">
+      <p class="eyebrow">Calendar</p>
+      <h2>Launch on the course's dates. <span class="then">Then launch for real in January.</span></h2>
+      <p class="lead">The four course blocks are fixed. The plan fits their dates instead of fighting them, and each graded deliverable is a real step for the company.</p>
+      <ol class="timeline">
+        <li>
+          <p class="when"><b>Block 1</b>Now – 22 Sep</p>
+          <div>
+            <h4>Decide it</h4>
+            <ul>
+              <li>Vote this book. Name one owner per section</li>
+              <li>Instagram account live 17 September, as the session 02 date already says</li>
+              <li>Waitlist site on a real domain, with a form that actually stores entries</li>
+            </ul>
+            <span class="due">Prompt lab · 22 Sep</span>
+          </div>
+        </li>
+        <li>
+          <p class="when"><b>Block 2</b>24 Sep – 22 Oct</p>
+          <div>
+            <h4>Run corners by hand</h4>
+            <ul>
+              <li>Pilot: three corners of eleven people in Bilbao, grouped by Operations with a spreadsheet and a WhatsApp group each. No app yet</li>
+              <li>The Monday prompt is sent by hand. Readings are collected with a form</li>
+              <li>The campaign runs alongside: "one fact, eleven readings" every week</li>
+              <li>Pitch two partners: one ESN section, one study abroad provider</li>
+            </ul>
+            <span class="due">Mini-project one · 20% · 22 Oct: the campaign and pilot results</span>
+          </div>
+        </li>
+        <li>
+          <p class="when"><b>Block 3</b>27 Oct – 10 Nov</p>
+          <div>
+            <h4>Build what the pilot proved</h4>
+            <ul>
+              <li>Build only what the pilot shows people need: sign in with student email, grouping by arrival week, the Monday prompt, reveal after posting</li>
+              <li>Automate the grouping and the Monday send (Make or n8n, data in Supabase)</li>
+            </ul>
+            <span class="due">Mini-project two · 20% · 10 Nov: a working app</span>
+          </div>
+        </li>
+        <li>
+          <p class="when"><b>Block 4</b>17 Nov – 3 Dec</p>
+          <div>
+            <h4>Make it pay for itself</h4>
+            <ul>
+              <li>Business model: free for students, institutions pay per cohort. Hours per corner become cost per student</li>
+              <li>Sign one institution for the January wave</li>
+            </ul>
+            <span class="due">Final project · 20% · 3 Dec</span>
+          </div>
+        </li>
+        <li>
+          <p class="when"><b>After the course</b>Jan – Feb 2027</p>
+          <div>
+            <h4>The spring arrival wave</h4>
+            <ul>
+              <li>The first launch that isn't a pilot: Bilbao's spring cohort through a signed partner</li>
+              <li>A second city only if Bilbao's week-six numbers hold</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="measure">
+      <p class="eyebrow">Measures</p>
+      <h2>Pitch six's tree, <span class="then">with the product's numbers on it.</span></h2>
+      <p class="lead">Same rule as before: one owner per box, read in the last five minutes of each session, and none of these ever touches anyone's grade.</p>
+      <div class="tree">
+        <div class="tree__top">
+          <p class="k">The company</p>
+          <p>Newcomers who met at least three people in their first six weeks, and all 21 competences for all 12 of us by 3 December.</p>
+        </div>
+        <div class="tree__branches">
+          <div class="branch">
+            <h4>Product</h4>
+            <p class="k">Leading · delivery</p><p>Corners that met this week</p>
+            <p class="k">Lagging · quality</p><p>Share of corners still meeting in week six</p>
+          </div>
+          <div class="branch">
+            <h4>Audience</h4>
+            <p class="k">Leading · growth</p><p>Sign-ups this week, by city and arrival month</p>
+            <p class="k">Lagging · growth</p><p>Share of a partner's cohort that joined in its first two weeks</p>
+          </div>
+          <div class="branch">
+            <h4>Operations</h4>
+            <p class="k">Leading · cost</p><p>Hours to set up one corner</p>
+            <p class="k">Lagging · cost</p><p>Hours per active newcomer</p>
+          </div>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:20px">Motivation and the mastery matrix still belong to nobody, on purpose. The pilot adds one check: after the first corner, ask each of us one question. <strong>Would you go again?</strong></p>
+    </section>
+
+    <section id="risks">
+      <p class="eyebrow">Risks</p>
+      <h2>What breaks it, <span class="then">written down before it does.</span></h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Risk</th><th>What we do about it</th></tr></thead>
+          <tbody>
+            <tr><td>Strangers meeting strangers</td><td><p>Verified student emails, public places only, 18+, and one person reads every report within a day. This is written up before anyone meets.</p></td></tr>
+            <tr><td>Someone is already in Bilbao</td><td><p>Unera targets the same students in the same city. Our difference has to be visible in one sentence: a fixed group of eleven, dated to your arrival, meeting in person. If we can't say that in one sentence, we don't have a difference.</p></td></tr>
+            <tr><td>Not enough people</td><td><p>A corner needs eleven arrivals in the same fortnight. Launch one city, grow through institutions, and merge fortnights if a city is short.</p></td></tr>
+            <tr><td>Half the group doesn't show</td><td><p>Expect it. Eleven is chosen so that five or six still make a table. Measure turnout from week one.</p></td></tr>
+            <tr><td>Dead months</td><td><p>Arrivals come in two waves. Between them, we sell to institutions and build.</p></td></tr>
+            <tr><td>Personal data</td><td><p>Student emails are personal data under GDPR. Store the minimum, in the EU, and keep anything with a name out of the repo, as pitch 7 already says.</p></td></tr>
+            <tr><td>Speaking for an institution</td><td><p>Corners speaks in its own name. We never use USAC's or a university's name without written permission.</p></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="vote">
+      <p class="eyebrow">To vote · Tuesday</p>
+      <h2>Six questions this book doesn't answer for you.</h2>
+      <ol class="votes">
+        <li>
+          <h4>Does a corner include one local?</h4>
+          <p>"Zero locals" is the thesis. But meeting locals is also the thing exchange students most want and least get. An eleventh seat for a local would change who the product is for.</p>
+          <p class="rec"><b>Recommendation</b>Park until the pilot. Run one of the three pilot corners with a local and compare.</p>
+        </li>
+        <li>
+          <h4>Eleven per corner, or six?</h4>
+          <p>Eleven carries the brand's meaning. Six is easier to book a table for and harder to hide in.</p>
+          <p class="rec"><b>Recommendation</b>Eleven invited, expecting five or six at the table. Change it if turnout is above 80%.</p>
+        </li>
+        <li>
+          <h4>Students only, or anyone new in town?</h4>
+          <p>A student email is the cheapest safety check there is. Opening to everyone multiplies the market and the risk.</p>
+          <p class="rec"><b>Recommendation</b>Students only until January.</p>
+        </li>
+        <li>
+          <h4>Who pays?</h4>
+          <p>Students won't pay for their first six weeks. Institutions already pay for orientation.</p>
+          <p class="rec"><b>Recommendation</b>Free for students, institutions pay per cohort. Build the model in block 4.</p>
+        </li>
+        <li>
+          <h4>What is the handle and the domain?</h4>
+          <p>"Corners" alone is almost certainly taken on Instagram and as a .com.</p>
+          <p class="rec"><b>Recommendation</b>Operations checks availability before Tuesday and brings three options.</p>
+        </li>
+        <li>
+          <h4>App, or WhatsApp and a spreadsheet, for the pilot?</h4>
+          <p>Building first feels like progress. Running it by hand first tells us what to build.</p>
+          <p class="rec"><b>Recommendation</b>By hand until 22 October. It's zero build work, and it's what mini-project one is graded on.</p>
+        </li>
+      </ol>
+    </section>
+  </main>
+</div>

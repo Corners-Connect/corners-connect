@@ -1,0 +1,361 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Corners App</title>
+<meta name="description" content="Corners: choose the city you're going to, compare cost, safety, climate and student life, then everything you need once you arrive.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="app.css">
+
+<svg class="sprite" aria-hidden="true">
+  <symbol id="i-match" viewBox="0 0 24 24"><path d="M12 20.4s-7.4-4.3-7.4-9.6a4.2 4.2 0 0 1 7.4-2.7 4.2 4.2 0 0 1 7.4 2.7c0 5.3-7.4 9.6-7.4 9.6Z"/></symbol>
+  <symbol id="i-cities" viewBox="0 0 24 24"><path d="M3.6 20.4h16.8"/><path d="M5.6 20.4V9.2l5-3.6v14.8"/><path d="M10.6 11.2h6.2v9.2"/><path d="M13.4 14.2h1.2M13.4 17.2h1.2M7.8 12.6H9M7.8 15.6H9"/></symbol>
+  <symbol id="i-compare" viewBox="0 0 24 24"><path d="M4.4 6.6h6M4.4 12h9M4.4 17.4h4"/><path d="M19.6 6.6v10.8M17 9.2l2.6-2.6 2.6 2.6" transform="translate(-1.6)"/></symbol>
+  <symbol id="i-prep" viewBox="0 0 24 24"><path d="M5.4 4.6h13.2v15.8H5.4z"/><path d="m8.6 11.4 2 2 4.6-4.6"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3.6 10.4 12 3.6l8.4 6.8"/><path d="M5.8 9.6V20h12.4V9.6"/><path d="M9.8 20v-5.4h4.4V20"/></symbol>
+  <symbol id="i-near" viewBox="0 0 24 24"><path d="M20 13.2c0 3-3.1 5.4-7 5.4a8.8 8.8 0 0 1-2.2-.3L5.5 20.4l1-3.3A5.4 5.4 0 0 1 4 13.2c0-3 3.1-5.4 7-5.4s9 2.4 9 5.4Z"/><path d="M9.2 12.8h.01M12.6 12.8h.01"/></symbol>
+  <symbol id="i-recs" viewBox="0 0 24 24"><path d="m12 3.8 2.5 5.3 5.6.8-4 4 1 5.7-5.1-2.8-5.1 2.8 1-5.7-4-4 5.6-.8Z"/></symbol>
+  <symbol id="i-trips" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="m15.2 8.8-1.9 4.6-4.5 1.8 1.9-4.6Z"/></symbol>
+  <symbol id="i-me" viewBox="0 0 24 24"><circle cx="12" cy="9" r="3.6"/><path d="M5.4 19.6a6.9 6.9 0 0 1 13.2 0"/></symbol>
+  <symbol id="i-groups" viewBox="0 0 24 24"><circle cx="9" cy="9.5" r="3.2"/><path d="M3.6 19.4a5.6 5.6 0 0 1 10.8 0"/><path d="M15.8 7.2a3 3 0 0 1 0 5.8M16.8 14.6a5.4 5.4 0 0 1 3.6 4.8"/></symbol>
+  <symbol id="i-guides" viewBox="0 0 24 24"><path d="M4 5.6A2 2 0 0 1 6 4h4.4a2 2 0 0 1 2 2v13a1.6 1.6 0 0 0-1.6-1.6H4Z"/><path d="M20 5.6A2 2 0 0 0 18 4h-4.4a2 2 0 0 0-2 2v13a1.6 1.6 0 0 1 1.6-1.6H20Z"/></symbol>
+  <symbol id="i-prog" viewBox="0 0 24 24"><path d="M6 3.6h12a1 1 0 0 1 1 1v15.8l-7-3.2-7 3.2V4.6a1 1 0 0 1 1-1Z"/><path d="M9 8.4h6M9 11.8h4"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5.4v13.2M5.4 12h13.2"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M14.6 5.4 8 12l6.6 6.6"/></symbol>
+  <symbol id="i-save" viewBox="0 0 24 24"><path d="M6.6 4.4h10.8v15.2L12 15.8l-5.4 3.8Z"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M19.4 12a7.4 7.4 0 1 1-2.2-5.2"/><path d="M19.6 4.4v4.4h-4.4"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s6.4-5.6 6.4-10.4A6.4 6.4 0 0 0 5.6 10.6C5.6 15.4 12 21 12 21Z"/><circle cx="12" cy="10.4" r="2.4"/></symbol>
+</svg>
+
+<div class="glow" aria-hidden="true"></div>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="app">
+
+  <div class="main">
+    <header class="top">
+      <div class="top__row">
+        <button class="top__back" data-back hidden aria-label="Back"><svg><use href="#i-back"/></svg></button>
+        <a class="brand" href="#start" data-go="start">corners<span class="wordmark-dot">.</span></a>
+        <div class="mode" role="tablist" aria-label="Stage">
+          <span class="mode__blob" aria-hidden="true"></span>
+          <button class="mode__b is-on" role="tab" aria-selected="true" data-mode="before">Before you leave</button>
+          <button class="mode__b" role="tab" aria-selected="false" data-mode="there" data-mode-there>In Bilbao</button>
+        </div>
+        <div class="top__title">
+          <p class="top__eyebrow" data-top-eyebrow>Autumn 2026</p>
+          <h1 class="top__h" data-top-title>Find your corner</h1>
+        </div>
+        <button class="top__avatar" data-go="me" aria-label="Your profile"><span data-avatar>C</span></button>
+      </div>
+      <nav class="pills" data-pills aria-label="Sections"></nav>
+    </header>
+
+    <main id="main" class="views">
+
+      <!-- ============ BEFORE YOU LEAVE ============ -->
+
+      <section class="view" id="v-start" data-view="start" data-mode-view="before" hidden>
+        <div class="landing" data-landing></div>
+      </section>
+
+      <section class="view" id="v-match" data-view="match" data-mode-view="before" hidden>
+        <header class="lead">
+          <h2 class="lead__h">Find your <em>corner.</em></h2>
+          <p class="lead__p">Six questions and we rank the cities on what you actually need. Optional — skip it and compare any cities you already have in mind.</p>
+          <div class="lead__cta"><button class="btn btn--ghost" type="button" data-skip-survey>Skip, let me compare myself</button></div>
+        </header>
+
+        <form class="quiz" data-quiz onsubmit="return false">
+          <fieldset class="q">
+            <legend class="q__n"><b>01</b> Language &amp; academic environment</legend>
+            <p class="q__hint">What you need for class, and for buying bread.</p>
+            <div class="picks picks--stack" data-one="lang">
+              <button type="button" class="pick" data-v="englishOnly"><b>English-only environment</b><span>A native English-speaking destination</span></button>
+              <button type="button" class="pick is-on" data-v="englishCourses"><b>English courses in a foreign city</b><span>Classes in English, local language for daily life</span></button>
+              <button type="button" class="pick" data-v="immersion"><b>Full immersion</b><span>Classes and daily life in the local language</span></button>
+            </div>
+          </fieldset>
+
+          <fieldset class="q">
+            <legend class="q__n"><b>02</b> Monthly living budget</legend>
+            <p class="q__hint">Rent, food, transport and a social life. Chosen in dollars, compared in euros.</p>
+            <div class="picks picks--stack" data-one="budget">
+              <button type="button" class="pick" data-v="b1"><b>Under $800</b><span>Budget-friendly destinations</span></button>
+              <button type="button" class="pick is-on" data-v="b2"><b>$800 – $1,400</b><span>Moderate cost of living</span></button>
+              <button type="button" class="pick" data-v="b3"><b>$1,400 – $2,200</b><span>Mid-to-high cost of living</span></button>
+              <button type="button" class="pick" data-v="b4"><b>$2,200+</b><span>Major capitals and high-cost hubs</span></button>
+            </div>
+          </fieldset>
+
+          <fieldset class="q">
+            <legend class="q__n"><b>03</b> City environment &amp; setting</legend>
+            <div class="picks picks--stack" data-one="setting">
+              <button type="button" class="pick" data-v="metro"><b>Global metropolis</b><span>Massive, fast-paced, endless activity</span></button>
+              <button type="button" class="pick is-on" data-v="historic"><b>Cultural &amp; historic hub</b><span>Mid-sized, walkable, rich in heritage</span></button>
+              <button type="button" class="pick" data-v="coastal"><b>Coastal or beach city</b><span>Laid-back, water and the outdoors</span></button>
+              <button type="button" class="pick" data-v="college"><b>Classic college town</b><span>University-centric, student life everywhere</span></button>
+            </div>
+          </fieldset>
+
+          <fieldset class="q">
+            <legend class="q__n"><b>04</b> Social atmosphere &amp; vibe</legend>
+            <div class="picks picks--stack" data-one="vibe">
+              <button type="button" class="pick" data-v="fast"><b>Vibrant &amp; fast-paced</b><span>High-energy scene, big nightlife</span></button>
+              <button type="button" class="pick is-on" data-v="balanced"><b>Laid-back &amp; balanced</b><span>Café culture, relaxed social options</span></button>
+              <button type="button" class="pick" data-v="cozy"><b>Cozy &amp; community-driven</b><span>Close-knit student network</span></button>
+            </div>
+          </fieldset>
+
+          <fieldset class="q">
+            <legend class="q__n"><b>05</b> Climate &amp; weather</legend>
+            <div class="picks picks--stack" data-one="weather">
+              <button type="button" class="pick is-on" data-v="warm"><b>Warm &amp; sunny</b><span>Mediterranean, mild winters, sunshine</span></button>
+              <button type="button" class="pick" data-v="seasons"><b>Four seasons</b><span>Real winters, autumn, snow within reach</span></button>
+              <button type="button" class="pick" data-v="flexible"><b>Flexible</b><span>Weather doesn't decide it for me</span></button>
+            </div>
+          </fieldset>
+
+          <fieldset class="q">
+            <legend class="q__n"><b>06</b> Non-negotiables</legend>
+            <p class="q__hint">Pick two. They break the tie when cities score alike.</p>
+            <div class="picks" data-multi="priorities" data-max="2">
+              <button type="button" class="pick" data-v="safety">Safety &amp; peace of mind</button>
+              <button type="button" class="pick" data-v="nightlife">Nightlife &amp; social options</button>
+              <button type="button" class="pick" data-v="afford">Affordability &amp; rent</button>
+              <button type="button" class="pick" data-v="food">Food &amp; culinary scene</button>
+              <button type="button" class="pick" data-v="intl">Lots of international students</button>
+              <button type="button" class="pick" data-v="outdoors">Outdoor &amp; nature access</button>
+            </div>
+          </fieldset>
+
+          <button class="btn btn--wide btn--lg" data-run-match>Rank the cities for me</button>
+        </form>
+      </section>
+
+      <section class="view" id="v-cities" data-view="cities" data-mode-view="before" hidden>
+        <div class="toolbar">
+          <div class="chips chips--scroll" role="group" aria-label="Sort cities" data-city-sort>
+            <button class="chip is-on" data-csort="match">Best match</button>
+            <button class="chip" data-csort="cost">Cheapest</button>
+            <button class="chip" data-csort="safety">Safest</button>
+            <button class="chip" data-csort="warm">Warmest</button>
+          </div>
+        </div>
+        <p class="hint" data-city-hint></p>
+        <ol class="list list--cities" data-cities></ol>
+        <p class="note">Ten cities. Rents from idealista, meals and safety from Numbeo, transport from the operators, climate from AEMET and IPMA. Gathered September 2026 — check anything you'd act on.</p>
+      </section>
+
+      <section class="view" id="v-compare" data-view="compare" data-mode-view="before" hidden>
+        <header class="lead">
+          <h2 class="lead__h">Side by side.</h2>
+          <p class="lead__p">Pick up to three cities and see where each one wins.</p>
+        </header>
+        <div class="picks picks--wrap" data-compare-picks></div>
+        <div class="table-wrap"><table class="ctable" data-compare-table></table></div>
+        <p class="note">Same estimates as the city pages. Bars are relative to the ten cities in the demo.</p>
+      </section>
+
+      <section class="view" id="v-city" data-view="city" data-mode-view="before" hidden></section>
+
+      <section class="view" id="v-prep" data-view="prep" data-mode-view="before" hidden>
+        <article class="card card--hero" data-prep-hero></article>
+        <div class="phases" data-prep></div>
+        <p class="note">A general checklist for a semester in Spain or Portugal. Your programme's own list wins over this one.</p>
+      </section>
+
+      <!-- ============ WHEN YOU'RE THERE ============ -->
+
+      <section class="view" id="v-home" data-view="home" data-mode-view="there" hidden>
+        <div data-city-gate hidden></div>
+        <div data-city-content>
+          <div class="bento">
+            <div class="greet">
+              <p class="hello" data-hello>Good evening.</p>
+              <p class="hello__sub">Here's what's worth knowing in Bilbao right now.</p>
+            </div>
+
+            <article class="card card--next b-4" data-open="group:language">
+              <div class="card__row">
+                <span class="ico ico--violet" aria-hidden="true"><svg><use href="#i-groups"/></svg></span>
+                <span class="pill pill--live"><i class="dot"></i>In 2 h</span>
+              </div>
+              <p class="micro">Tonight · 20:00</p>
+              <h2 class="card__title">Language exchange</h2>
+              <p class="card__meta">Café Iruña · 12 going · you're in this group</p>
+              <div class="card__foot">
+                <button class="btn btn--sm" data-going="language">I'm going</button>
+                <span class="faces" aria-hidden="true"><i style="--c:var(--h1)">M</i><i style="--c:var(--h5)">T</i><i style="--c:var(--h8)">J</i><i class="more">+9</i></span>
+              </div>
+            </article>
+
+            <article class="card b-2 quick-card">
+              <div class="card__head"><span class="ico ico--sky" aria-hidden="true"><svg><use href="#i-plus"/></svg></span><p class="micro">Quick</p></div>
+              <div class="quick quick--stack">
+                <button class="quick__btn" data-compose><svg><use href="#i-plus"/></svg>Post nearby</button>
+                <button class="quick__btn" data-go="recs"><svg><use href="#i-recs"/></svg>Find food</button>
+                <button class="quick__btn" data-go="trips"><svg><use href="#i-trips"/></svg>Plan a trip</button>
+              </div>
+            </article>
+
+            <section class="card b-3">
+              <div class="block__head">
+                <div class="card__head"><span class="ico" aria-hidden="true"><svg><use href="#i-near"/></svg></span><h2 class="block__h">Hot nearby</h2></div>
+                <button class="link" data-go="near">See all</button>
+              </div>
+              <ol class="list" data-home-feed></ol>
+            </section>
+
+            <article class="card b-3" data-open="trip:San Sebastián">
+              <div class="card__head"><span class="ico ico--green" aria-hidden="true"><svg><use href="#i-trips"/></svg></span><p class="micro">This weekend</p></div>
+              <h2 class="card__title">San Sebastián</h2>
+              <p class="card__meta">Day trip · bus 1 h 20</p>
+              <p class="card__big" data-home-trip>€36</p>
+              <p class="card__meta">fits your €100 budget</p>
+            </article>
+
+            <article class="card b-2" data-go="prog">
+              <div class="card__head"><span class="ico ico--amber" aria-hidden="true"><svg><use href="#i-prog"/></svg></span><p class="micro">Your programme</p></div>
+              <h2 class="card__title">First week</h2>
+              <div class="ring" data-home-ring style="--p:33%"><span data-home-ring-label>2/6</span></div>
+              <p class="card__meta" data-home-next>Next: get your Barik card</p>
+            </article>
+
+            <div class="b-4" data-home-photo></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="v-near" data-view="near" data-mode-view="there" hidden>
+        <div class="toolbar">
+          <div class="chips" role="group" aria-label="Sort">
+            <button class="chip is-on" data-sort="hot">Hot</button>
+            <button class="chip" data-sort="new">New</button>
+            <button class="chip" data-sort="near">Nearest</button>
+          </div>
+          <button class="icon-btn" data-refresh aria-label="Refresh"><svg><use href="#i-refresh"/></svg></button>
+        </div>
+        <button class="composer-stub" data-compose>
+          <span data-avatar-sm>C</span>
+          <span class="composer-stub__text">Say something to Bilbao…</span>
+          <span class="pill">Anonymous</span>
+        </button>
+        <ol class="list" data-feed></ol>
+        <p class="note">Anonymous to other students, never to moderators. Example posts.</p>
+      </section>
+
+      <section class="view" id="v-recs" data-view="recs" data-mode-view="there" hidden>
+        <div class="chips chips--scroll" role="group" aria-label="Categories" data-rec-cats>
+          <button class="chip is-on" data-cat="food">Food</button>
+          <button class="chip" data-cat="gym">Gym &amp; sport</button>
+          <button class="chip" data-cat="events">Events</button>
+          <button class="chip" data-cat="todo">Things to do</button>
+          <button class="chip" data-cat="saved">Saved</button>
+        </div>
+        <ol class="list list--recs" data-recs></ol>
+      </section>
+
+      <section class="view" id="v-groups" data-view="groups" data-mode-view="there" hidden>
+        <section class="block" data-joined-block hidden>
+          <div class="block__head"><h2 class="block__h">Your groups</h2></div>
+          <ol class="list list--groups" data-joined></ol>
+        </section>
+        <section class="block">
+          <div class="block__head"><h2 class="block__h">Discover</h2></div>
+          <ol class="list list--groups" data-groups></ol>
+        </section>
+      </section>
+
+      <section class="view" id="v-guides" data-view="guides" data-mode-view="there" hidden>
+        <p class="note note--top">Guided experiences run by local operators. Example listings, illustrative prices.</p>
+        <ol class="grid" data-guides></ol>
+      </section>
+
+      <section class="view" id="v-trips" data-view="trips" data-mode-view="there" hidden>
+        <form class="planner" data-planner onsubmit="return false">
+          <div class="planner__row">
+            <div>
+              <p class="label">Budget</p>
+              <output class="planner__out" data-budget-out2>€100</output>
+            </div>
+            <div class="seg" role="group" aria-label="Length">
+              <button type="button" class="seg__b" data-nights="0">Day</button>
+              <button type="button" class="seg__b is-on" data-nights="1">1 night</button>
+              <button type="button" class="seg__b" data-nights="2">2 nights</button>
+            </div>
+          </div>
+          <label class="sr-only" for="budget">Weekend budget in euros</label>
+          <input type="range" id="budget" min="30" max="250" step="10" value="100">
+          <p class="planner__count" data-trip-count></p>
+        </form>
+        <ol class="list list--trips" data-trips></ol>
+        <p class="note">Rough per-person estimates from Bilbao: return travel, a hostel bed, cheap food.</p>
+      </section>
+
+      <section class="view" id="v-prog" data-view="prog" data-mode-view="there" hidden>
+        <article class="card card--check">
+          <div class="card__row">
+            <h2 class="block__h">First-week checklist</h2>
+            <div class="ring ring--lg" data-ring style="--p:33%"><span data-ring-label>2/6</span></div>
+          </div>
+          <ul class="checks" data-checklist></ul>
+        </article>
+        <section class="block">
+          <div class="block__head"><h2 class="block__h">Key dates</h2></div>
+          <ol class="dates" data-dates></ol>
+        </section>
+        <section class="block block--two">
+          <article class="card"><p class="micro">Who to ask</p><ul class="mini" data-contacts></ul></article>
+          <article class="card"><p class="micro">Asked most this week</p><ul class="mini mini--q" data-asked></ul></article>
+        </section>
+      </section>
+
+      <!-- ============ ME ============ -->
+      <section class="view" id="v-me" data-view="me" hidden>
+        <article class="card card--me">
+          <div class="me__top">
+            <span class="me__avatar" data-avatar-lg>C</span>
+            <div>
+              <h2 class="card__title" data-me-name>Chiara</h2>
+              <p class="card__meta" data-me-sub>Erasmus · autumn 2026</p>
+            </div>
+            <button class="btn btn--sm btn--ghost" data-edit-profile>Edit</button>
+          </div>
+          <div class="me__dest" data-me-dest></div>
+          <dl class="me__stats">
+            <div><dt>Shortlist</dt><dd data-stat-short>0</dd></div>
+            <div><dt>Saved</dt><dd data-stat-saved>0</dd></div>
+            <div><dt>Groups</dt><dd data-stat-groups>0</dd></div>
+          </dl>
+        </article>
+
+        <section class="block">
+          <div class="block__head"><h2 class="block__h">Your shortlist</h2><button class="link" data-go="cities">Add more</button></div>
+          <ol class="list" data-short-list></ol>
+        </section>
+
+        <section class="block">
+          <div class="block__head"><h2 class="block__h">Saved in Bilbao</h2></div>
+          <ol class="list" data-saved-list></ol>
+        </section>
+
+        <p class="note">This is a demo. Everything you do is stored in this browser, on this device, and never sent anywhere.</p>
+        <button class="btn btn--ghost btn--wide" data-reset>Reset demo data</button>
+      </section>
+    </main>
+
+    <nav class="tabs" aria-label="Sections" data-tabs></nav>
+  </div>
+</div>
+
+<div class="scrim" data-scrim hidden></div>
+<div class="sheet" data-sheet hidden role="dialog" aria-modal="true">
+  <button class="sheet__grab" data-sheet-close aria-label="Close"></button>
+  <div class="sheet__body" data-sheet-body></div>
+</div>
+<div class="toast" data-toast hidden></div>
+
+<script src="photos.js"></script>
+<script src="app.js"></script>

@@ -1,0 +1,304 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Corners Onboarding</title>
+<meta name="description" content="Tell Corners where you're going and who you are, and get your city match and your first week sorted.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="onboarding.css">
+
+<header class="bar">
+  <div class="bar__in">
+    <a class="brand" href="#top">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M2 16Q16 2.5 30 16Q16 29.5 2 16Z" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <circle cx="16" cy="16" r="5.2" fill="currentColor"/>
+      </svg>
+      corners<span style="color:var(--blue)">.</span>
+    </a>
+    <nav class="seg" aria-label="Sections">
+      <span class="seg__pill" aria-hidden="true"></span>
+      <a class="seg__a is-on" href="#s1" data-jump="s1">Where</a>
+      <a class="seg__a" href="#s2" data-jump="s2">You</a>
+      <a class="seg__a" href="#s3" data-jump="s3">Match</a>
+      <a class="seg__a" href="#s4" data-jump="s4">Dashboard</a>
+    </nav>
+    <p class="bar__count"><b data-done>0</b> of <span data-total>16</span></p>
+  </div>
+  <div class="bar__progress" aria-hidden="true"><i data-progress></i></div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <p class="kicker">Onboarding</p>
+    <h1>Let's find out<br><span class="grad">where you belong.</span></h1>
+    <p class="sub">Sixteen questions, about four minutes. We use them to rank ten cities for you, then to set up your first week once you land. Nothing is sent anywhere — it stays in this browser.</p>
+    <a class="btn btn--lg" href="#s1" data-jump="s1">Start <span aria-hidden="true">→</span></a>
+  </section>
+
+  <!-- ================= SECTION 1 ================= -->
+  <section class="sec" id="s1">
+    <header class="sec__head">
+      <p class="sec__n">Section 1</p>
+      <h2>Where you're going</h2>
+      <p class="sec__p">What you want out of a semester. This is what ranks the cities.</p>
+    </header>
+
+    <div class="q" data-q="acts">
+      <div class="q__head"><h3>What do you want to be doing?</h3><p>Pick as many as you like.</p></div>
+      <div class="opts opts--grid" data-multi="acts">
+        <button class="opt" type="button" data-v="surf">Surfing</button>
+        <button class="opt" type="button" data-v="hike">Hiking and mountains</button>
+        <button class="opt" type="button" data-v="beach">Beach life</button>
+        <button class="opt" type="button" data-v="night">Nightlife</button>
+        <button class="opt" type="button" data-v="art">Museums and art</button>
+        <button class="opt" type="button" data-v="food">Food</button>
+        <button class="opt" type="button" data-v="football">Football</button>
+        <button class="opt" type="button" data-v="ski">Skiing</button>
+        <button class="opt" type="button" data-v="immersion">Language immersion</button>
+        <button class="opt" type="button" data-v="buzz">Big-city buzz</button>
+      </div>
+    </div>
+
+    <div class="q" data-q="budget">
+      <div class="q__head"><h3>What can you spend a month?</h3><p>Rent, food, transport and a normal social life.</p></div>
+      <div class="slider">
+        <output class="slider__out" data-out="budget">€900</output>
+        <label class="sr-only" for="budget">Monthly budget in euros</label>
+        <input type="range" id="budget" min="500" max="1600" step="50" value="900" data-range="budget">
+        <div class="slider__scale"><span>€500</span><span>€1,600</span></div>
+      </div>
+    </div>
+
+    <div class="q" data-q="size">
+      <div class="q__head"><h3>How big a city?</h3></div>
+      <div class="opts" data-one="size">
+        <button class="opt" type="button" data-v="small">Small and walkable</button>
+        <button class="opt is-on" type="button" data-v="mid">Mid-size</button>
+        <button class="opt" type="button" data-v="big">Big city</button>
+      </div>
+    </div>
+
+    <div class="q" data-q="climate">
+      <div class="q__head"><h3>What weather suits you?</h3></div>
+      <div class="opts" data-one="climate">
+        <button class="opt" type="button" data-v="mild">Mild and green</button>
+        <button class="opt is-on" type="button" data-v="warm">Warm most of the year</button>
+        <button class="opt" type="button" data-v="hot">Hot summers, I'll cope</button>
+      </div>
+    </div>
+
+    <div class="q" data-q="lang">
+      <div class="q__head"><h3>Language, honestly.</h3></div>
+      <div class="opts" data-one="lang">
+        <button class="opt is-on" type="button" data-v="spanish">I want Spanish immersion</button>
+        <button class="opt" type="button" data-v="portuguese">Portuguese interests me</button>
+        <button class="opt" type="button" data-v="english">English needs to be enough</button>
+      </div>
+    </div>
+
+    <div class="q" data-q="home">
+      <div class="q__head"><h3>Where are you flying from?</h3></div>
+      <div class="opts" data-one="home">
+        <button class="opt is-on" type="button" data-v="us">United States</button>
+        <button class="opt" type="button" data-v="latam">Latin America</button>
+        <button class="opt" type="button" data-v="eu">Europe</button>
+        <button class="opt" type="button" data-v="asia">Asia or Oceania</button>
+      </div>
+    </div>
+
+    <div class="sec__next"><a class="btn" href="#s2" data-jump="s2">Next: about you <span aria-hidden="true">→</span></a></div>
+  </section>
+
+  <!-- ================= SECTION 2 ================= -->
+  <section class="sec sec--alt" id="s2">
+    <header class="sec__head">
+      <p class="sec__n">Section 2</p>
+      <h2>About you</h2>
+      <p class="sec__p">Who's arriving, and what you'll need in your first week. This is what sets up your groups, your checklist and your programme page.</p>
+    </header>
+
+    <div class="q" data-q="name">
+      <div class="q__head"><h3>What should people call you?</h3><p>Only your first name is ever shown, and never on anonymous posts.</p></div>
+      <div class="fields">
+        <label class="field">
+          <span>First name</span>
+          <input type="text" autocomplete="given-name" placeholder="Chiara" data-text="name" maxlength="24">
+        </label>
+        <label class="field">
+          <span>Student email</span>
+          <input type="email" autocomplete="email" placeholder="you@university.edu" data-text="email">
+        </label>
+      </div>
+      <p class="field__note" data-email-note hidden>We check the domain to confirm you're a student. Nothing else.</p>
+    </div>
+
+    <div class="q" data-q="uni">
+      <div class="q__head"><h3>Where do you study now?</h3></div>
+      <div class="fields">
+        <label class="field">
+          <span>Home university</span>
+          <input type="text" placeholder="University of Bologna" data-text="uni" list="unis">
+          <datalist id="unis">
+            <option>Arizona State University</option><option>Boston University</option><option>Michigan State University</option>
+            <option>New York University</option><option>University of Bologna</option><option>Ludwig-Maximilians-Universität München</option>
+            <option>Sciences Po</option><option>University of Amsterdam</option><option>Tecnológico de Monterrey</option><option>University of Melbourne</option>
+            <option>Universidad del País Vasco (UPV/EHU)</option><option>Universidad de Deusto</option><option>USAC programme</option>
+          </datalist>
+        </label>
+        <label class="field">
+          <span>Field of study</span>
+          <input type="text" placeholder="Business, engineering, design…" data-text="field">
+        </label>
+      </div>
+    </div>
+
+    <div class="q" data-q="hostuni">
+      <div class="q__head"><h3>Which university will you go to?</h3><p data-hostuni-hint>These are the universities in your top-matched city. Change your city in Section 3 and this changes with it.</p></div>
+      <div class="opts" data-hostuni></div>
+    </div>
+
+    <div class="q" data-q="programme">
+      <div class="q__head"><h3>What kind of exchange is it?</h3></div>
+      <div class="opts" data-one="programme">
+        <button class="opt" type="button" data-v="erasmus">Erasmus+</button>
+        <button class="opt" type="button" data-v="provider">A study abroad provider</button>
+        <button class="opt" type="button" data-v="direct">Direct exchange</button>
+        <button class="opt" type="button" data-v="degree">Full degree abroad</button>
+        <button class="opt" type="button" data-v="first">First-year, new city</button>
+      </div>
+    </div>
+
+    <div class="q" data-q="term">
+      <div class="q__head"><h3>When do you arrive?</h3></div>
+      <div class="opts" data-one="term">
+        <button class="opt is-on" type="button" data-v="aut26">Autumn 2026</button>
+        <button class="opt" type="button" data-v="spr27">Spring 2027</button>
+        <button class="opt" type="button" data-v="year">Full year</button>
+        <button class="opt" type="button" data-v="already">I'm already there</button>
+      </div>
+    </div>
+
+    <div class="q" data-q="level">
+      <div class="q__head"><h3>How's your Spanish or Portuguese?</h3><p>No wrong answer. It changes which classes and groups we show you.</p></div>
+      <div class="opts" data-one="level">
+        <button class="opt" type="button" data-v="none">None at all</button>
+        <button class="opt is-on" type="button" data-v="basic">Enough to order a coffee</button>
+        <button class="opt" type="button" data-v="mid">I can hold a conversation</button>
+        <button class="opt" type="button" data-v="fluent">Fluent</button>
+      </div>
+    </div>
+
+    <div class="q" data-q="housing">
+      <div class="q__head"><h3>Where are you living?</h3></div>
+      <div class="opts" data-one="housing">
+        <button class="opt" type="button" data-v="sorted">Sorted already</button>
+        <button class="opt is-on" type="button" data-v="looking">Still looking</button>
+        <button class="opt" type="button" data-v="res">University residence</button>
+        <button class="opt" type="button" data-v="family">With a host family</button>
+      </div>
+    </div>
+
+    <div class="q" data-q="worries">
+      <div class="q__head"><h3>What are you actually worried about?</h3><p>Pick as many as are true. This one decides what we put in front of you in week one.</p></div>
+      <div class="opts opts--grid" data-multi="worries">
+        <button class="opt" type="button" data-v="friends">Making friends</button>
+        <button class="opt" type="button" data-v="money">Running out of money</button>
+        <button class="opt" type="button" data-v="language">Not speaking the language</button>
+        <button class="opt" type="button" data-v="classes">Classes and credits</button>
+        <button class="opt" type="button" data-v="home">Missing home</button>
+        <button class="opt" type="button" data-v="paperwork">Visas and paperwork</button>
+        <button class="opt" type="button" data-v="safety">Being somewhere new alone</button>
+        <button class="opt" type="button" data-v="health">Health and insurance</button>
+      </div>
+    </div>
+
+    <div class="q" data-q="social">
+      <div class="q__head"><h3>How do you like to meet people?</h3></div>
+      <div class="opts" data-one="social">
+        <button class="opt is-on" type="button" data-v="small">Small groups, same faces</button>
+        <button class="opt" type="button" data-v="big">Big events, lots of names</button>
+        <button class="opt" type="button" data-v="one">One person at a time</button>
+        <button class="opt" type="button" data-v="online">Online first, then in person</button>
+      </div>
+    </div>
+
+    <div class="q" data-q="spend">
+      <div class="q__head"><h3>And for weekends away?</h3><p>Per trip, all in. We use it to filter the weekend planner.</p></div>
+      <div class="slider">
+        <output class="slider__out" data-out="spend">€100</output>
+        <label class="sr-only" for="spend">Weekend budget in euros</label>
+        <input type="range" id="spend" min="30" max="300" step="10" value="100" data-range="spend">
+        <div class="slider__scale"><span>€30</span><span>€300</span></div>
+      </div>
+    </div>
+
+    <div class="q" data-q="needs">
+      <div class="q__head"><h3>Anything we should know?</h3><p>Dietary needs, accessibility, anything that would make a plan not work for you. Optional.</p></div>
+      <label class="field field--wide">
+        <span class="sr-only">Anything we should know</span>
+        <textarea rows="3" placeholder="Vegetarian, step-free access, I don't drink…" data-text="needs" maxlength="280"></textarea>
+      </label>
+    </div>
+
+    <div class="sec__next"><a class="btn" href="#s3" data-jump="s3">See my match <span aria-hidden="true">→</span></a></div>
+  </section>
+
+  <!-- ================= SECTION 3 ================= -->
+  <section class="sec" id="s3">
+    <header class="sec__head">
+      <p class="sec__n">Section 3</p>
+      <h2>Your match</h2>
+      <p class="sec__p">Ten cities, ranked on your answers. Real figures: rents from idealista, safety and meals from Numbeo, climate from AEMET and IPMA, English from the EF index, Erasmus numbers from the European Commission.</p>
+    </header>
+
+    <ol class="results" data-results></ol>
+
+    <div class="card card--summary">
+      <h3>What we'll do with this</h3>
+      <ul class="summary" data-summary></ul>
+      <div class="sec__next sec__next--left">
+        <button class="btn" type="button" data-finish>Finish setup <span aria-hidden="true">→</span></button>
+        <button class="btn btn--plain" type="button" data-reset>Start again</button>
+      </div>
+      <p class="field__note">A demo. Your answers stay in this browser and are never sent anywhere.</p>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 4 · DASHBOARD ================= -->
+  <section class="sec sec--alt" id="s4">
+    <header class="sec__head">
+      <p class="sec__n">Section 4</p>
+      <h2 data-dash-title>Your dashboard</h2>
+      <p class="sec__p" data-dash-sub>Finish setup and this becomes your home screen: the countdown, what's left to do, and who to meet when you land.</p>
+    </header>
+
+    <div class="dash" data-dash hidden>
+      <article class="card tile tile--wide tile--hero" data-tile-hero></article>
+      <article class="card tile" data-tile-check></article>
+      <article class="card tile" data-tile-city></article>
+      <article class="card tile" data-tile-groups></article>
+      <article class="card tile" data-tile-trips></article>
+      <article class="card tile tile--wide" data-tile-next></article>
+    </div>
+
+    <div class="locked" data-locked>
+      <div class="locked__in">
+        <p class="locked__k">Not set up yet</p>
+        <h3>Answer the questions above, then press Finish setup.</h3>
+        <p>You'll get a countdown to your arrival, a checklist built from what you said worries you, groups that match what you want to do, and weekends inside your budget.</p>
+        <a class="btn" href="#s1" data-jump="s1">Go to the questions</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>Corners · a student company, autumn 2026 · Bilbao</p>
+</footer>
+
+<div class="toast" data-toast hidden></div>
+
+<script src="onboarding.js"></script>
