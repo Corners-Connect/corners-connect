@@ -1,0 +1,1272 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Corners Audience Field Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --paper: #F3F1EC; --paper-2: #EAE5DD; --ink: #3B2A1E; --ink-2: #6B5D51; --mute: #A2978D; --rule: #D5CCC1;
+    --band: #5B4332; --band-ink: #EFE8DF; --band-ink-2: #CDBFB2; --blue: #AEDDF6; --blue-soft: #D9EEF9; --accent-ink: #2E6A8C;
+    --keep: #2F7A55; --change: #9A6A12; --drop: #A0452F;
+    --serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+    --sans: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #231913; --paper-2: #2E231B; --ink: #EFE7DD; --ink-2: #BFB0A2; --mute: #86776A; --rule: #47382D;
+      --band: #4F3A2B; --blue-soft: #2B3B44; --accent-ink: #AEDDF6; --keep: #7FCFA3; --change: #E0B45C; --drop: #EE8F77;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #231913; --paper-2: #2E231B; --ink: #EFE7DD; --ink-2: #BFB0A2; --mute: #86776A; --rule: #47382D;
+    --band: #4F3A2B; --blue-soft: #2B3B44; --accent-ink: #AEDDF6; --keep: #7FCFA3; --change: #E0B45C; --drop: #EE8F77;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 400 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+  a { color: var(--accent-ink); }
+  :focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; }
+
+  .cover { background: var(--band); color: var(--band-ink); padding-inline: clamp(16px, 5vw, 72px); padding-block: clamp(48px, 7vw, 88px) clamp(40px, 5vw, 56px); }
+  .cover__in { max-width: 1160px; margin: 0 auto; }
+  .eyebrow { margin: 0 0 14px; font: 500 12px/1.3 var(--sans); letter-spacing: .22em; text-transform: uppercase; color: var(--ink-2); }
+  .cover .eyebrow { color: var(--blue); }
+  .cover h1 { margin: 0; font: 400 clamp(48px, 7.4vw, 96px)/.94 var(--serif); letter-spacing: -.015em; color: var(--blue); text-wrap: balance; }
+  .cover p.sub { margin: 24px 0 0; max-width: 64ch; font-size: clamp(17px, 1.6vw, 19px); color: var(--band-ink-2); }
+  .glance { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 36px 0 0; border-top: 1px solid #7D6757; max-width: 860px; }
+  .glance > div { padding: 14px 16px 0 0; }
+  .glance > div + div { padding-left: 16px; border-left: 1px solid #7D6757; }
+  .glance dt { font: 500 11px var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--band-ink-2); }
+  .glance dd { margin: 4px 0 0; font: 400 40px/1 var(--serif); color: var(--band-ink); font-variant-numeric: tabular-nums; }
+  @media (max-width: 640px) { .glance { grid-template-columns: 1fr 1fr; } .glance > div:nth-child(3) { padding-left: 0; border-left: 0; } .glance > div { padding-bottom: 14px; } }
+  .cover .note { margin: 22px 0 0; font-size: 13.5px; color: var(--band-ink-2); max-width: 70ch; }
+
+  .layout { max-width: 1160px; margin: 0 auto; padding-inline: clamp(16px, 5vw, 72px); padding-block: 56px 96px; display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 64px; }
+  .toc { position: sticky; top: 24px; align-self: start; font-size: 14px; }
+  .toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; counter-reset: t; }
+  .toc li { counter-increment: t; }
+  .toc a { display: block; padding: 5px 0; color: var(--ink-2); text-decoration: none; }
+  .toc a::before { content: counter(t); display: inline-block; width: 22px; font-variant-numeric: tabular-nums; color: var(--mute); }
+  .toc a:hover { color: var(--ink); }
+  @media (max-width: 880px) { .layout { grid-template-columns: 1fr; gap: 32px; } .toc { position: static; } .toc ol { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+  main { min-width: 0; }
+  section { padding-bottom: 56px; margin-bottom: 56px; border-bottom: 1px solid var(--rule); }
+  section:last-child { border-bottom: 0; }
+  h2 { margin: 0 0 8px; font: 400 clamp(34px, 4vw, 48px)/1.02 var(--serif); text-wrap: balance; }
+  h2 .then, h3 .then { color: var(--mute); }
+  h3 { margin: 40px 0 12px; font: 400 26px/1.1 var(--serif); text-wrap: balance; }
+  p, li { max-width: 68ch; }
+  .lead { font-size: 18px; color: var(--ink-2); margin: 16px 0 0; }
+  strong { font-weight: 600; }
+  .muted { color: var(--ink-2); }
+  .small { font-size: 14.5px; }
+
+  .table-wrap { overflow-x: auto; margin: 20px 0 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 640px; }
+  th { text-align: left; font: 500 11.5px var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--ink-2); padding: 10px 14px 10px 0; border-bottom: 1px solid var(--ink); }
+  td { vertical-align: top; padding: 14px 14px 14px 0; border-bottom: 1px solid var(--rule); }
+  td:first-child { font-weight: 500; }
+  td p { margin: 0; }
+  td .code, .code { font: 600 12px var(--sans); letter-spacing: .06em; color: var(--accent-ink); font-variant-numeric: tabular-nums; }
+  .num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 3px; font: 600 11px var(--sans); letter-spacing: .1em; text-transform: uppercase; border: 1px solid currentColor; white-space: nowrap; }
+  .tag--keep { color: var(--keep); } .tag--change { color: var(--change); } .tag--drop { color: var(--drop); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .m { display: inline-block; padding: 1px 7px; border-radius: 3px; background: var(--paper-2); font: 500 12px var(--sans); color: var(--ink-2); white-space: nowrap; }
+
+  /* the six-week window */
+  .window-wrap { overflow-x: auto; margin-top: 24px; }
+  .window { min-width: 640px; display: grid; grid-template-columns: 96px repeat(7, minmax(0, 1fr)); font-size: 13px; }
+  .window .hd { padding: 8px 8px 8px 0; border-bottom: 1px solid var(--ink); font: 500 11px var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+  .window .wk { padding: 8px 8px; border-bottom: 1px solid var(--ink); border-left: 1px solid var(--rule); }
+  .window .wk b { display: block; font: 400 20px/1 var(--serif); color: var(--ink); }
+  .window .wk span { color: var(--mute); font-variant-numeric: tabular-nums; }
+  .window .wk.now { background: var(--blue-soft); }
+  .window .wk.closed b { color: var(--mute); }
+  .window .row-l { padding: 10px 8px 10px 0; font: 500 11px var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); border-bottom: 1px solid var(--rule); align-self: stretch; }
+  .window .bar { margin: 8px 3px; padding: 6px 10px; border-radius: 3px; font: 500 12.5px/1.25 var(--sans); background: var(--band); color: var(--band-ink); }
+  .window .bar--soft { background: var(--paper-2); color: var(--ink); }
+  .window .span { border-bottom: 1px solid var(--rule); display: flex; align-items: center; }
+
+  .statement { margin: 28px 0 0; padding: 22px 26px; background: var(--paper-2); border-radius: 3px; font: 400 clamp(21px, 2.2vw, 26px)/1.28 var(--serif); max-width: none; }
+  .statement em { font-style: normal; color: var(--accent-ink); }
+
+  .cols3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 20px; }
+  .box { padding: 20px 20px 22px; border: 1px solid var(--rule); border-radius: 3px; }
+  .box h4 { margin: 0; font: 400 24px/1.1 var(--serif); }
+  .box .meta { margin: 4px 0 14px; font-size: 13px; color: var(--ink-2); }
+  .box ul { margin: 0; padding-left: 18px; font-size: 14.5px; display: grid; gap: 6px; }
+  @media (max-width: 900px) { .cols3 { grid-template-columns: 1fr; } }
+
+  .qs { margin-top: 12px; }
+  .qgroup { margin-top: 32px; }
+  .qgroup > h3 { margin: 0 0 4px; }
+  .qgroup > p { margin: 0 0 8px; }
+  .q { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 4px 12px; padding: 14px 0; border-top: 1px solid var(--rule); }
+  .q .code { padding-top: 3px; }
+  .q p { margin: 0; }
+  .q .ask { font-weight: 500; }
+  .q .opts { margin-top: 4px; font-size: 14.5px; color: var(--ink-2); }
+  .q .foot { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .q .foot .feeds { font-size: 12.5px; color: var(--mute); }
+  .q--key { background: linear-gradient(to right, var(--blue-soft), transparent 70%); }
+  .q--key .ask::after { content: "Headline number"; margin-left: 8px; font: 600 10.5px var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--accent-ink); vertical-align: 2px; }
+  .concept { margin: 10px 0 4px; padding: 16px 20px; border-left: 3px solid var(--blue); background: var(--paper-2); font-size: 15px; }
+
+  .guide { list-style: none; margin: 16px 0 0; padding: 0; counter-reset: g; }
+  .guide > li { counter-increment: g; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-top: 1px solid var(--rule); max-width: none; }
+  .guide > li::before { content: counter(g); font: 400 26px/1 var(--serif); color: var(--accent-ink); }
+  .guide p { margin: 0; }
+  .guide .why { font-size: 14px; color: var(--ink-2); margin-top: 2px; }
+
+  .script { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
+  .script blockquote { margin: 0; padding: 18px 20px; background: var(--paper-2); border-radius: 3px; font: 400 20px/1.35 var(--serif); }
+  .script blockquote span { display: block; margin-bottom: 8px; font: 500 11px var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--accent-ink); }
+  @media (max-width: 700px) { .script { grid-template-columns: 1fr; } }
+
+  .timeline { list-style: none; margin: 24px 0 0; padding: 0; }
+  .timeline > li { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 24px; padding: 18px 0; border-top: 1px solid var(--rule); max-width: none; }
+  .timeline .when { margin: 0; font: 500 13px var(--sans); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+  .timeline .when b { display: block; font: 500 11px var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 4px; }
+  .timeline h4 { margin: 0 0 6px; font: 400 23px/1.15 var(--serif); }
+  .timeline ul { margin: 0; padding-left: 18px; color: var(--ink-2); font-size: 15px; display: grid; gap: 3px; }
+  .timeline ul b { color: var(--ink); font-weight: 500; }
+  .timeline .due { display: inline-block; margin-top: 10px; font: 500 12px var(--sans); letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; background: var(--band); color: var(--band-ink); border-radius: 3px; }
+  @media (max-width: 600px) { .timeline > li { grid-template-columns: 1fr; gap: 6px; } }
+
+  .rules { list-style: none; margin: 16px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; }
+  .rules li { padding: 14px 0; border-top: 1px solid var(--rule); font-size: 15px; }
+  .rules li strong { display: block; margin-bottom: 2px; }
+  @media (max-width: 700px) { .rules { grid-template-columns: 1fr; } }
+
+  .quad { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; margin-top: 12px; background: var(--rule); border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; }
+  .quad > div { background: var(--paper); padding: 16px 18px 18px; }
+  .quad > .hot { background: var(--blue-soft); }
+  .quad .k { margin: 0; font: 500 11px var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2); }
+  .quad h4 { margin: 4px 0 8px; font: 400 23px/1.1 var(--serif); }
+  .quad ul { margin: 0; padding-left: 18px; font-size: 14.5px; display: grid; gap: 3px; }
+  .quad .none { margin: 0; font-size: 14.5px; color: var(--mute); }
+  @media (max-width: 560px) { .quad { grid-template-columns: 1fr; } }
+
+  .scores { list-style: none; margin: 24px 0 0; padding: 0; counter-reset: s; }
+  .score { counter-increment: s; display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; padding: 22px 0; border-top: 1px solid var(--rule); max-width: none; }
+  .score::before { content: counter(s); font: 400 34px/1 var(--serif); color: var(--accent-ink); }
+  .score__body { display: grid; gap: 12px; min-width: 0; }
+  .score h4 { margin: 0; font: 400 25px/1.1 var(--serif); }
+  .score__who { margin: 2px 0 0; font-size: 14px; color: var(--ink-2); }
+  .score__stats { margin: 0; display: flex; flex-wrap: wrap; gap: 10px 28px; }
+  .score__stats dt { font: 500 10.5px var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--mute); }
+  .score__stats dd { margin: 3px 0 0; display: flex; align-items: center; gap: 8px; font-size: 14.5px; font-variant-numeric: tabular-nums; }
+  .score__stats dd small { font-size: 12.5px; color: var(--ink-2); }
+  .score__use { margin: 0; font-size: 15px; color: var(--ink-2); }
+  .pips { display: inline-flex; gap: 3px; }
+  .pips i { width: 11px; height: 11px; border-radius: 2px; background: var(--rule); }
+  .pips--effort i.on { background: var(--ink); }
+  .pips--impact i.on { background: var(--accent-ink); }
+
+  .principles { list-style: none; margin: 20px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0 28px; }
+  .principles li { padding: 12px 0; border-top: 1px solid var(--ink); font-size: 14.5px; color: var(--ink-2); }
+  .principles li strong { display: block; margin-bottom: 2px; font: 400 21px/1.15 var(--serif); color: var(--ink); }
+
+  .chan { padding: 24px 0 26px; border-top: 1px solid var(--rule); }
+  .chan__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+  .chan h4 { margin: 0; font: 400 26px/1.1 var(--serif); }
+  .chan__cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px 36px; margin-top: 14px; }
+  .chan h5 { margin: 0 0 8px; font: 500 11px var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--accent-ink); }
+  .ql { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .ql li { font: 400 19px/1.3 var(--serif); color: var(--ink); }
+  .ql li small { display: block; margin-top: 3px; font: 400 12.5px/1.4 var(--sans); color: var(--mute); }
+  .chan__note { margin: 12px 0 0; font-size: 14px; color: var(--ink-2); }
+
+  .math { margin-top: 16px; padding: 16px 20px; border: 1px dashed var(--mute); border-radius: 3px; font-size: 14.5px; color: var(--ink-2); }
+  .math p { margin: 0; max-width: none; }
+  .math p + p { margin-top: 6px; }
+</style>
+
+<header class="cover">
+  <div class="cover__in">
+    <p class="eyebrow">Audience team · plan for the three of us · 15 September 2026</p>
+    <h1>Corners Audience Field Plan</h1>
+    <p class="sub">The launch book says who Corners is for. This plan tests that before we build on it. In five weeks we find out who has the hardest first six weeks in Bilbao, what they want to do, and where we can reach them. We learn it by listening, interviewing, surveying and watching what people actually do.</p>
+    <dl class="glance" aria-label="The plan at a glance">
+      <div><dt>Interviews</dt><dd>15 + 3</dd></div>
+      <div><dt>Survey completes</dt><dd>200</dd></div>
+      <div><dt>Behaviour tests</dt><dd>4</dd></div>
+      <div><dt>Findings due</dt><dd>22 Oct</dd></div>
+    </dl>
+    <p class="note">This is a pitch under the decision system, like everything else. The targets, thresholds and dates are proposals the three of us can amend before Tuesday's vote.</p>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="Contents">
+    <ol>
+      <li><a href="#now">Why now</a></li>
+      <li><a href="#questions">What we need to know</a></li>
+      <li><a href="#hypotheses">What would change our minds</a></li>
+      <li><a href="#who">Who we ask</a></li>
+      <li><a href="#listen">Listen</a></li>
+      <li><a href="#interviews">Interviews</a></li>
+      <li><a href="#survey">The survey</a></li>
+      <li><a href="#tests">Behaviour tests</a></li>
+      <li><a href="#scorecard">Channel scorecard</a></li>
+      <li><a href="#asks">Questions by channel</a></li>
+      <li><a href="#field">Fieldwork</a></li>
+      <li><a href="#team">The three of us</a></li>
+      <li><a href="#calendar">Calendar</a></li>
+      <li><a href="#outputs">What we hand in</a></li>
+      <li><a href="#rules">Rules</a></li>
+      <li><a href="#risks">Risks</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <section id="now">
+      <p class="eyebrow">Why now</p>
+      <h2>The people we need to study <span class="then">are in week two right now.</span></h2>
+      <p class="lead">Our whole thesis is about the first six weeks, and for the autumn cohort those six weeks are happening now. If we ask them in November, they'll tell us what they remember. If we ask them this month, they'll tell us what's happening to them. All fieldwork is done by 11 October, before the window closes.</p>
+
+      <div class="window-wrap">
+        <div class="window" role="table" aria-label="Autumn cohort weeks against research phases">
+          <div class="hd" role="columnheader">Cohort</div>
+          <div class="wk closed" role="columnheader"><b>Wk 1</b><span>7 Sep</span></div>
+          <div class="wk now" role="columnheader"><b>Wk 2</b><span>14 Sep · today</span></div>
+          <div class="wk" role="columnheader"><b>Wk 3</b><span>21 Sep</span></div>
+          <div class="wk" role="columnheader"><b>Wk 4</b><span>28 Sep</span></div>
+          <div class="wk" role="columnheader"><b>Wk 5</b><span>5 Oct</span></div>
+          <div class="wk" role="columnheader"><b>Wk 6</b><span>12 Oct</span></div>
+          <div class="wk closed" role="columnheader"><b>After</b><span>19 Oct</span></div>
+
+          <div class="row-l" role="rowheader">Listen</div>
+          <div class="span" style="grid-column: 2 / span 1"></div>
+          <div class="span" style="grid-column: 3 / span 1"><div class="bar bar--soft" style="flex:1">Listening and teardown</div></div>
+          <div class="span" style="grid-column: 4 / span 5"></div>
+
+          <div class="row-l" role="rowheader">Talk</div>
+          <div class="span" style="grid-column: 2 / span 2"></div>
+          <div class="span" style="grid-column: 4 / span 1"><div class="bar" style="flex:1">15 interviews</div></div>
+          <div class="span" style="grid-column: 5 / span 4"></div>
+
+          <div class="row-l" role="rowheader">Survey</div>
+          <div class="span" style="grid-column: 2 / span 3"></div>
+          <div class="span" style="grid-column: 5 / span 2"><div class="bar" style="flex:1">Survey in the field · 200 completes</div></div>
+          <div class="span" style="grid-column: 7 / span 2"></div>
+
+          <div class="row-l" role="rowheader">Test</div>
+          <div class="span" style="grid-column: 2 / span 1"></div>
+          <div class="span" style="grid-column: 3 / span 5"><div class="bar bar--soft" style="flex:1">Instagram, waitlist sources, group chat posts, pilot baseline</div></div>
+          <div class="span" style="grid-column: 8 / span 1"></div>
+
+          <div class="row-l" role="rowheader">Decide</div>
+          <div class="span" style="grid-column: 2 / span 5"></div>
+          <div class="span" style="grid-column: 7 / span 2"><div class="bar" style="flex:1">Analyse · hand in 22 Oct</div></div>
+        </div>
+      </div>
+      <p class="muted small">Cohort weeks start on Monday 7 September, on the assumption that UPV/EHU's 2026 autumn term starts close to 2025's (8 September). Check this against the 2026 faculty calendars this week. First-years at Deusto may have started on a different date.</p>
+    </section>
+
+    <section id="questions">
+      <p class="eyebrow">What we need to know</p>
+      <h2>Seven questions, <span class="then">each tied to a decision.</span></h2>
+      <p class="lead">"What are people interested in?" only helps if the answer changes something we do. So each question below names the decision it feeds and the methods that answer it. If a question doesn't change a decision, we don't ask it.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>ID</th><th>What we need to know</th><th>The decision it changes</th><th>Answered by</th></tr></thead>
+          <tbody>
+            <tr><td><span class="code">RQ1</span></td><td><p><strong>Who has the hardest first six weeks?</strong> Erasmus, study abroad or first-years, and in which week it gets hard.</p></td><td><p>Our segment order in the launch book: exchange first, first-years in spring</p></td><td><div class="tags"><span class="m">Interview</span><span class="m">Survey</span></div></td></tr>
+            <tr><td><span class="code">RQ2</span></td><td><p><strong>What do they want to do?</strong> Activities, times, budget and group size.</p></td><td><p>Which places Operations picks for corners, the Monday prompts, and vote 2 (eleven or six)</p></td><td><div class="tags"><span class="m">Listen</span><span class="m">Survey</span><span class="m">Pilot sign-up</span></div></td></tr>
+            <tr><td><span class="code">RQ3</span></td><td><p><strong>Where does their attention go?</strong> Apps opened daily, and where they heard about the last thing they went to.</p></td><td><p>Where the campaign spends its hours: Instagram, TikTok, group chats or institutions</p></td><td><div class="tags"><span class="m">Survey</span><span class="m">Test</span></div></td></tr>
+            <tr><td><span class="code">RQ4</span></td><td><p><strong>What do they use today, and what's missing?</strong> Group chats, ESN, Unera, orientation.</p></td><td><p>The "Unlike the group chat" line in our positioning, and how we describe our difference from Unera</p></td><td><div class="tags"><span class="m">Listen</span><span class="m">Interview</span><span class="m">Survey</span></div></td></tr>
+            <tr><td><span class="code">RQ5</span></td><td><p><strong>Does the concept land?</strong> A fixed group dated to arrival, a weekly place, no locals.</p></td><td><p>Vote 1 (one local seat?) and what the MVP has to include</p></td><td><div class="tags"><span class="m">Interview</span><span class="m">Survey</span></div></td></tr>
+            <tr><td><span class="code">RQ6</span></td><td><p><strong>Whose recommendation do they trust?</strong> A friend, the university, ESN or their programme.</p></td><td><p>How much weight partner pitches get compared with social media</p></td><td><div class="tags"><span class="m">Interview</span></div></td></tr>
+            <tr><td><span class="code">RQ7</span></td><td><p><strong>What will institutions actually share?</strong> ESN, international offices, residences, providers.</p></td><td><p>The partner pitch and the business model in block 4</p></td><td><div class="tags"><span class="m">Buyer interviews</span></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="hypotheses">
+      <p class="eyebrow">What would change our minds</p>
+      <h2>Write the pass mark <span class="then">before the data comes in.</span></h2>
+      <p class="lead">Each claim from the launch book gets a threshold now, so we can't move it later to fit what we'd like to find. The survey codes (B1, D2…) point to the questions in <a href="#survey">the survey</a>. Every number counts only the people we reached, not all students in Bilbao.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Claim</th><th>We keep it if</th><th>If not</th><th>Data</th></tr></thead>
+          <tbody>
+            <tr><td><span class="code">H1</span> The first six weeks are hard</td><td><p>At least <span class="num">40%</span> of exchange respondents in weeks 2–6 have fewer than three people they could message tonight</p></td><td><p><span class="tag tag--change">Change</span> Under 20% means the problem is smaller than our headline says. Shift the pitch from "lonely" to "more than your own programme"</p></td><td><span class="code">B1</span></td></tr>
+            <tr><td><span class="code">H2</span> Exchange first, first-years later</td><td><p>Exchange respondents score worse than first-years on B1 and B3</p></td><td><p><span class="tag tag--change">Change</span> If first-years score as badly or worse, bring them forward from spring. They're all here now</p></td><td><span class="code">B1 B3 A2</span></td></tr>
+            <tr><td><span class="code">H3</span> The group chat is the real competitor</td><td><p>At least <span class="num">60%</span> are in a Bilbao arrivals group chat, and under <span class="num">25%</span> say it led to someone they still talk to</p></td><td><p><span class="tag tag--change">Change</span> If it works for people, our competitor is whatever it's working through. Compare ourselves to that instead</p></td><td><span class="code">B5 B6</span></td></tr>
+            <tr><td><span class="code">H4</span> Instagram is the campaign channel</td><td><p>At least <span class="num">70%</span> open Instagram daily, and it's in the top two sources for the last event people went to</p></td><td><p><span class="tag tag--change">Change</span> If TikTok leads for US study abroad, split the content plan by segment</p></td><td><span class="code">D1 D2</span></td></tr>
+            <tr><td><span class="code">H5</span> Institutions reach people before they land</td><td><p>At least <span class="num">50%</span> read something from their host university, ESN or programme before arriving</p></td><td><p><span class="tag tag--drop">Drop</span> Cohort codes in welcome emails lose priority. Put the hours into group chats and residences</p></td><td><span class="code">D3</span></td></tr>
+            <tr><td><span class="code">H6</span> People want it</td><td><p>At least <span class="num">35%</span> say "definitely" or "probably" would join, and at least <span class="num">15%</span> of all respondents leave an email</p></td><td><p><span class="tag tag--change">Change</span> Read E2 and the interviews before changing anything. The reason people say no matters more than how many say it</p></td><td><span class="code">E1 E5</span></td></tr>
+            <tr><td><span class="code">H7</span> Zero locals (vote 1)</td><td><p>Fewer than half of exchange respondents pick "locals" as who they most want to meet</p></td><td><p><span class="tag tag--change">Change</span> Recommend that one pilot corner gets a local seat, as the launch book already suggests</p></td><td><span class="code">C2 E4</span></td></tr>
+            <tr><td><span class="code">H8</span> Eleven per corner (vote 2)</td><td><p>Most respondents pick 9–12 or "doesn't matter"</p></td><td><p><span class="tag tag--change">Change</span> If most pick 3–8, recommend six at the table from eleven invited</p></td><td><span class="code">C5</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="who">
+      <p class="eyebrow">Who we ask</p>
+      <h2>Quotas by arrival, <span class="then">not by who's easiest to find.</span></h2>
+      <p class="lead">The people who most need Corners are the least likely to be at an ESN party with a free hand to scan a QR code. If we only survey at events, we'll find that everyone is doing fine. So every segment has a quota, and at least half of each segment's surveys must come from somewhere that isn't a social event.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Segment</th><th>Survey target</th><th>Interviews</th><th>Where they are, besides events</th></tr></thead>
+          <tbody>
+            <tr><td>Incoming exchange (Erasmus+ and other agreements)</td><td class="num">100</td><td class="num">6</td><td><p>Spanish courses for internationals, faculty libraries, residences, international office queues</p></td></tr>
+            <tr><td>US and other study abroad programmes</td><td class="num">40</td><td class="num">4</td><td><p>Programme orientation and classes. Ask the coordinators, never speaking in their name</p></td></tr>
+            <tr><td>First-years who moved to Bilbao</td><td class="num">60</td><td class="num">4</td><td><p>Residences, first-year welcome events, the eleven of us's classmates. <strong>Survey in Spanish</strong></p></td></tr>
+            <tr><td>Signed up for January, not here yet</td><td class="num">from 12 Oct</td><td class="num">3</td><td><p>Their home study abroad advisors, January arrival groups, the eleven of us's friends back home. They get the pre-arrival survey</p></td></tr>
+            <tr><td>Locals (only the short branch)</td><td class="num">no quota</td><td class="num">1</td><td><p>Whoever we meet. The survey gives them one question for vote 1</p></td></tr>
+            <tr><td>Buyers: ESN Bilbao, an international office, a residence or programme</td><td class="num">n/a</td><td class="num">3</td><td><p>Their offices, booked by email. Separate guide, see RQ7</p></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="math">
+        <p><strong>Why 100 exchange students.</strong> UPV/EHU received 1,054 exchange students in autumn 2024 and Deusto welcomed 600+ internationals in 2025, so the autumn exchange group is roughly 1,650. For a random sample at ±10 points and 95% confidence, that population needs about 91 responses: 96 × 1 / (1 + 95/1650). We round up to 100.</p>
+        <p><strong>Honest caveat.</strong> Ours is a convenience sample, not a random one, so ±10 is a best case and not a promise. We never compare two groups with fewer than 30 responses each. Below that, we report the answers as quotes and not as percentages.</p>
+      </div>
+    </section>
+
+    <section id="listen">
+      <p class="eyebrow">Method 1 · Listen · 15–20 Sep</p>
+      <h2>Read what they already say, <span class="then">before we ask anything.</span></h2>
+      <p class="lead">Listening costs nothing, and it gives us their words to use as the survey's answer options. People answer questions better when the options sound like something they'd say.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Where</th><th>What to look for</th><th>Target</th></tr></thead>
+          <tbody>
+            <tr><td>Bilbao arrivals group chats the eleven of us are already in</td><td><p>What people ask for ("anyone want to…"), what gets no reply, and when the chat goes quiet. Observe only: paraphrase, never screenshot names</p></td><td class="num">30 entries</td></tr>
+            <tr><td>Instagram: ESN Bilbao, the universities' international accounts, #erasmusbilbao</td><td><p>Which events get comments and saves, and what people ask in the comments</p></td><td class="num">25 entries</td></tr>
+            <tr><td>TikTok: "erasmus bilbao", "study abroad bilbao", "first week erasmus"</td><td><p>What goes viral about arriving: what people joke about and what they complain about</p></td><td class="num">25 entries</td></tr>
+            <tr><td>Reddit: r/Erasmus, r/StudyAbroad, r/bilbao</td><td><p>Long posts about loneliness and "how do I make friends" threads. The replies show what worked</p></td><td class="num">20 entries</td></tr>
+            <tr><td>Competitor teardown: Unera, ESN app, Bumble For Friends, Meetup Bilbao</td><td><p>Install each one and sign up as a new arrival. Write down what happens in the first ten minutes, and exactly where each differs from a fixed corner of eleven</p></td><td class="num">1 page each</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted small">Log every entry in one shared sheet with these columns: <strong>date · source · paraphrase (no names) · theme · segment if known · engagement</strong>. By Sunday 20 September, pick the top ten themes and the exact phrases people use. Both go into the interview guide and the survey options.</p>
+    </section>
+
+    <section id="interviews">
+      <p class="eyebrow">Method 2 · Interviews · 21–25 Sep</p>
+      <h2>Ask for stories, <span class="then">not opinions about the future.</span></h2>
+      <p class="lead">Fifteen interviews of 20–25 minutes, in person or by video. Two of us attend each one: one asks, one takes notes. Nobody is recorded without saying yes on the recording. Notes use codes (P01, P02…), never names.</p>
+
+      <h3>The guide</h3>
+      <ol class="guide">
+        <li><div><p>How did you end up in Bilbao, and when did you land?</p><p class="why">Warm-up. Note the arrival week and segment.</p></div></li>
+        <li><div><p>Walk me through your first day here.</p><p class="why">A concrete story, not a summary.</p></div></li>
+        <li><div><p>Think of the first person you met here who you'd still message. How did that happen?</p><p class="why">Shows what actually works (RQ4).</p></div></li>
+        <li><div><p>The last time you went out with people here, how did the plan come together? Who suggested it, and where did you hear about it?</p><p class="why">Channels, from behaviour rather than claims (RQ3).</p></div></li>
+        <li><div><p>Was there a moment you felt stuck, or left out? What did you do next?</p><p class="why">The problem in their words (RQ1). Let silence do the work.</p></div></li>
+        <li><div><p>Which group chats are you in about Bilbao? How busy are they this week compared with your first week?</p><p class="why">Tests the "week three goes quiet" claim. Never read the messages.</p></div></li>
+        <li><div><p>What did you do last Tuesday evening? What would you have liked to do?</p><p class="why">Interests grounded in a real week (RQ2).</p></div></li>
+        <li><div><p>If you could redo your first two weeks, what would you do differently?</p><p class="why">Often the best quote in the interview.</p></div></li>
+        <li><div><p><strong>Only now:</strong> read the one-sentence positioning from the launch book. What's your first reaction? Who would you send it to? What would stop you going?</p><p class="why">Concept last, so it doesn't colour the stories (RQ5, RQ6).</p></div></li>
+        <li><div><p>Who else should we talk to, especially someone who's had a harder time than you?</p><p class="why">Snowball toward the people events miss.</p></div></li>
+      </ol>
+
+      <h3>Three buyer interviews <span class="then">for RQ7</span></h3>
+      <p class="muted">ESN Bilbao, one international office or residence, and one study abroad programme coordinator. Ask: what do you already do after orientation week? How do you know if it worked? What would you put in a welcome email, and who approves it? What would you need to see to try a pilot in January? These double as Audience's partner-pitch groundwork, which is due by 22 October.</p>
+    </section>
+
+    <section id="survey">
+      <p class="eyebrow">Method 3 · The survey · live 28 Sep – 11 Oct</p>
+      <h2>Five minutes, <span class="then">in English and Spanish.</span></h2>
+      <p class="lead">This is a draft. Rewrite the answer options on 25 September using what people said in interviews, then test it on five people outside the company and time it. It has 21 questions, and only E2 needs typing. If the test takes over five minutes, cut the questions marked optional first. The concept is only described in section E, so it can't bias the earlier answers.</p>
+
+      <div class="qs">
+        <div class="qgroup">
+          <h3>A · About you</h3>
+          <p class="muted small">Opens with a consent line: who we are, that answers are anonymous, and when they're deleted. See <a href="#rules">Rules</a>.</p>
+          <div class="q"><span class="code">A1</span><div><p class="ask">Are you 18 or older?</p><p class="opts">Yes · No → thank them and end</p></div></div>
+          <div class="q"><span class="code">A2</span><div><p class="ask">Which best describes you?</p><p class="opts">Erasmus+ · Other exchange agreement · Study abroad programme (e.g. from the US) · First-year who moved here from another city · Full-degree international student · I'm from the Bilbao area → local branch (E4 only)</p><div class="foot"><span class="m">Single choice</span><span class="feeds">Segment for every cross-tab</span></div></div></div>
+          <div class="q"><span class="code">A3</span><div><p class="ask">Where do you study?</p><p class="opts">UPV/EHU Leioa · UPV/EHU, a Bilbao centre · Deusto · Mondragon Unibertsitatea · Other</p></div></div>
+          <div class="q"><span class="code">A4</span><div><p class="ask">When did you arrive in Bilbao?</p><p class="opts">Before August · August · 1–6 Sep · 7–13 Sep · 14–20 Sep · 21–30 Sep · October · I don't live in Bilbao → thank them and end</p><div class="foot"><span class="m">Single choice</span><span class="feeds">Converts to cohort week, RQ1</span></div></div></div>
+          <div class="q"><span class="code">A6</span><div><p class="ask">Where are you from?</p><p class="opts">Country list</p></div></div>
+          <div class="q"><span class="code">A7</span><div><p class="ask">Where do you live?</p><p class="opts">Student residence · Shared flat with students · Host family · Alone · With family</p><div class="foot"><span class="feeds">Tells us whether residences are a channel</span></div></div></div>
+        </div>
+
+        <div class="qgroup">
+          <h3>B · Your first weeks</h3>
+          <div class="q q--key"><span class="code">B1</span><div><p class="ask">Right now, how many people in Bilbao could you message to get a coffee today?</p><p class="opts">0 · 1–2 · 3–5 · 6–10 · More than 10</p><div class="foot"><span class="m">Single choice</span><span class="feeds">H1, and the pilot baseline: "met at least three people" is the company's top KPI</span></div></div></div>
+          <div class="q"><span class="code">B3</span><div><p class="ask">How often do you feel lonely?</p><p class="opts">Often or always · Some of the time · Occasionally · Hardly ever · Never · Prefer not to say</p><div class="foot"><span class="m">Optional</span><span class="feeds">H2. This is the wording the UK's Office for National Statistics uses. Show the university's student support contact directly below it</span></div></div></div>
+          <div class="q"><span class="code">B4</span><div><p class="ask">What has made meeting people here hardest? Pick up to two.</p><p class="opts">Language · Everyone already has a group · Events are too big · I don't know where to go · No time with classes · Cost · Starting the conversation · Nothing, it's been easy · Other</p><div class="foot"><span class="feeds">RQ1. Rewrite the options from interviews</span></div></div></div>
+          <div class="q"><span class="code">B5</span><div><p class="ask">Which of these have you done since you arrived?</p><p class="opts">ESN event · University orientation · Programme excursion · Joined a Bilbao group chat · Language exchange or Meetup · Sports club · Unera · Bumble For Friends · None</p><div class="foot"><span class="m">Multi choice</span><span class="feeds">H3, RQ4</span></div></div></div>
+          <div class="q"><span class="code">B6</span><div><p class="ask">Which one led to someone you still talk to?</p><p class="opts">Only the answers they picked in B5 · None of them</p><div class="foot"><span class="feeds">H3. What works, not just what's used</span></div></div></div>
+        </div>
+
+        <div class="qgroup">
+          <h3>C · What you're into</h3>
+          <div class="q"><span class="code">C1</span><div><p class="ask">Pick up to three things you'd most like to do in your first weeks here.</p><p class="opts">Pintxos and food · Nights out · Coast, hiking and day trips · An Athletic match · Playing sport · Museums and art · Live music · Language exchange · Cooking together · Studying together · Volunteering · Gaming · Other</p><div class="foot"><span class="m">Up to 3</span><span class="feeds">RQ2 → corner places and Monday prompts</span></div></div></div>
+          <div class="q"><span class="code">C2</span><div><p class="ask">Who do you most want to meet here?</p><p class="opts">Locals · Other internationals · People from my own country · A mix, no preference</p><div class="foot"><span class="feeds">H7 → vote 1</span></div></div></div>
+          <div class="q"><span class="code">C5</span><div><p class="ask">What size of group would you feel comfortable walking into?</p><p class="opts">3–5 · 6–8 · 9–12 · 13 or more · Doesn't matter</p><div class="foot"><span class="feeds">H8 → vote 2</span></div></div></div>
+        </div>
+
+        <div class="qgroup">
+          <h3>D · Where you hear about things</h3>
+          <div class="q"><span class="code">D1</span><div><p class="ask">Which apps do you open every day?</p><p class="opts">Instagram · TikTok · WhatsApp · Snapchat · BeReal · YouTube · Reddit · Telegram · Discord · X · Other</p><div class="foot"><span class="m">Multi choice</span><span class="feeds">H4</span></div></div></div>
+          <div class="q"><span class="code">D2</span><div><p class="ask">Where did you hear about the last event or plan you actually went to?</p><p class="opts">A friend · A group chat · Instagram · TikTok · ESN · University email · Programme coordinator · Residence · Poster · Other</p><div class="foot"><span class="feeds">H4. Asks about behaviour, not preference</span></div></div></div>
+          <div class="q"><span class="code">D3</span><div><p class="ask">Before you arrived, who sent you something you actually read?</p><p class="opts">Home university · Host university international office · ESN · Programme provider · Residence · WhatsApp or Facebook groups · Nobody</p><div class="foot"><span class="feeds">H5 → cohort codes in welcome emails</span></div></div></div>
+        </div>
+
+        <div class="qgroup">
+          <h3>E · One idea</h3>
+          <p class="muted small">Show this description, and only this. Don't include the brand, the wreath or a link.</p>
+          <p class="concept">A free app that puts you in a group of eleven people who arrived in Bilbao the same fortnight as you, from different countries. Every Monday you get one place in the city and a short prompt. Your group meets there once that week. No likes, no followers, no feed.</p>
+          <div class="q"><span class="code">E1</span><div><p class="ask">How likely would you be to join?</p><p class="opts">Definitely · Probably · Not sure · Probably not · Definitely not</p><div class="foot"><span class="feeds">H6</span></div></div></div>
+          <div class="q"><span class="code">E2</span><div><p class="ask">Why did you pick that answer?</p><p class="opts">Short text</p></div></div>
+          <div class="q"><span class="code">E4</span><div><p class="ask">If one person in the group were from Bilbao, would that make it better, worse or no different?</p><p class="opts">Better · Worse · No difference. Locals see instead: "Would you join a group of newcomers as the one local?"</p><div class="foot"><span class="feeds">H7 → vote 1</span></div></div></div>
+          <div class="q"><span class="code">E5</span><div><p class="ask">Want a place in a pilot corner, or the results? Leave your email.</p><p class="opts">Link to a <strong>separate form</strong>, so the email is never stored with the answers</p><div class="foot"><span class="m">Optional</span><span class="feeds">H6, and people for Operations' pilot</span></div></div></div>
+        </div>
+
+        <div class="qgroup">
+          <h3>Cut to keep it to five minutes</h3>
+          <p class="muted small">The codes don't change, so the gaps above are these seven questions. Each one is still asked, just somewhere cheaper. Renumber when you build the form.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Cut</th><th>Now asked</th></tr></thead>
+              <tbody>
+                <tr><td><span class="code">A5</span> How long are you staying?</td><td><p>Dropped. No hypothesis needs it</p></td></tr>
+                <tr><td><span class="code">B2</span> How many are from your own country?</td><td><p>Interviews: question 3, "the first person you'd still message"</p></td></tr>
+                <tr><td><span class="code">C3</span> When would you go to a meetup?</td><td><p>Operations' pilot sign-up form, where the answer decides a real time</p></td></tr>
+                <tr><td><span class="code">C4</span> How much would you spend?</td><td><p>Operations' pilot sign-up form, where it decides a real place</p></td></tr>
+                <tr><td><span class="code">C6</span> What do you wish you'd been told?</td><td><p>The Instagram question sticker</p></td></tr>
+                <tr><td><span class="code">D4</span> Whose recommendation would you trust?</td><td><p>Interviews: the concept question, "who would you send it to?"</p></td></tr>
+                <tr><td><span class="code">E3</span> What would stop you going?</td><td><p>Interviews: the concept question, "what would stop you going?"</p></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="qgroup">
+          <h3>Pre-arrival version <span class="then">· from 12 Oct</span></h3>
+          <p class="muted small">For students who've signed up but haven't left. It takes about four minutes. Keep A1–A3 and A6, and all of sections C, D and E. Replace A4 and section B with these three questions.</p>
+          <div class="q"><span class="code">P1</span><div><p class="ask">When do you arrive?</p><p class="opts">January 2027 · February 2027 · Later in 2027 · Not sure yet</p><div class="foot"><span class="feeds">The January wave's size and timing</span></div></div></div>
+          <div class="q"><span class="code">P2</span><div><p class="ask">Do you know anyone in the city you're going to yet?</p><p class="opts">Nobody · 1–2 people · 3 or more</p><div class="foot"><span class="feeds">The pre-arrival B1. Compare with current students</span></div></div></div>
+          <div class="q"><span class="code">P3</span><div><p class="ask">What are you most worried about for your first weeks there?</p><p class="opts">Short text</p><div class="foot"><span class="feeds">Put next to B4: what they fear against what's actually hard</span></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tests">
+      <p class="eyebrow">Method 4 · Behaviour tests · from 17 Sep</p>
+      <h2>What people say, <span class="then">checked against what they do.</span></h2>
+      <p class="lead">A survey tells us what people say they'd do. These four tests show what they actually do. None needs a line of new code except the source tag on the waitlist form.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Test</th><th>How</th><th>What we read</th><th>Needs</th></tr></thead>
+          <tbody>
+            <tr><td>Where sign-ups come from</td><td><p>Each channel gets its own link: <code>?src=ig</code>, <code>?src=esn</code>, <code>?src=chat</code>, <code>?src=residence</code>, <code>?src=survey</code></p></td><td><p>Sign-ups by source, role and arrival month. This is Audience's leading KPI in the launch book</p></td><td><p>Product: the waitlist form stores entries and the <code>src</code> value (Block 1 task)</p></td></tr>
+            <tr><td>Two headlines</td><td><p>Same image, same format, posted a few days apart: "Nobody here is local." and "Meet the city, not just your programme." Then a story poll asking "Which one is you?"</p></td><td><p>Saves, shares, profile visits and link taps. This is a weak signal at small numbers, so treat it as a hint and not a result</p></td><td><p>The Instagram account, live 17 Sep</p></td></tr>
+            <tr><td>An honest post in group chats</td><td><p>One message in each Bilbao arrivals chat, posted with the admin's OK. It links to the survey, and later to the waitlist</p></td><td><p>Completes and sign-ups per 100 members, compared across chats</p></td><td><p>Admin permission, and the template in <a href="#field">Fieldwork</a></p></td></tr>
+            <tr><td>Pilot baseline</td><td><p>Ask B1 to everyone in Operations' three pilot corners on day one, then again in week six</p></td><td><p>The company's top number, measured for real: how many people went from under three contacts to three or more</p></td><td><p>Operations: two minutes at the first meetup</p></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="scorecard">
+      <p class="eyebrow">Channel scorecard</p>
+      <h2>Fifteen ways to reach people, <span class="then">ranked by what they return.</span></h2>
+      <p class="lead"><strong>Effort</strong> is team-hours, plus how much we depend on someone else saying yes. <strong>Impact</strong> is how much a channel helps answer the seven questions with the right people: in Bilbao, in quota, including the people events miss. It also counts what the channel leaves behind, like partners, pilot sign-ups and followers. <strong>ROI</strong> is impact for the effort, adjusted for the odds it pays off before fieldwork closes on 11 October.</p>
+      <p class="muted small">Eleven channels come from the team's list. The four marked <span class="m">Added idea</span> are extra suggestions to vote on.</p>
+
+      <h3>Effort against impact</h3>
+      <p class="muted small">Left column: less effort (1–2 of 5). Right column: more effort (3–5). Top row: more impact (4–5 of 5).</p>
+      <div class="quad">
+        <div class="hot">
+          <p class="k">Less effort · more impact</p>
+          <h4>Do first</h4>
+          <ul><li>Teachers</li><li>Arrival group chats</li><li>Study abroad advisors</li><li>Emails to gatekeepers</li><li>Buddy programmes</li></ul>
+        </div>
+        <div>
+          <p class="k">More effort · more impact</p>
+          <h4>Worth the hours</h4>
+          <ul><li>People to people</li><li>Research interviews</li><li>Students who haven't left yet</li><li>Outreach to universities, if they say yes</li></ul>
+        </div>
+        <div>
+          <p class="k">Less effort · less impact</p>
+          <h4>Only because it's cheap</h4>
+          <ul><li>Language exchange nights</li><li>Paid promotion, which costs money instead of hours</li><li>Subreddits, for listening</li><li>QR posters</li></ul>
+        </div>
+        <div>
+          <p class="k">More effort · less impact</p>
+          <h4>Watch the hours</h4>
+          <ul><li>Homestays</li><li>Instagram, as a survey channel this month</li></ul>
+        </div>
+      </div>
+
+      <h3>Ranked by ROI</h3>
+      <ol class="scores">
+        <li class="score">
+          <div class="score__body">
+            <div><h4>Talking to teachers</h4><p class="score__who">Spanish-course teachers for internationals, and lecturers who teach English-taught courses full of exchange students</p></div>
+            <dl class="score__stats">
+              <div><dt>Effort</dt><dd><span class="pips pips--effort" role="img" aria-label="2 of 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span>2</dd></div>
+              <div><dt>Impact</dt><dd><span class="pips pips--impact" role="img" aria-label="5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>5</dd></div>
+              <div><dt>Odds by 11 Oct</dt><dd>Medium–high</dd></div>
+              <div><dt>Team-hours</dt><dd>~8</dd></div>
+              <div><dt>ROI</dt><dd><span class="tag tag--keep">High</span></dd></div>
+            </dl>
+            <p class="score__use">Five minutes at the end of a class puts the survey in front of a whole room at once. That includes the students who never come to events. A teacher can often say yes without going through the international office, so the answer comes faster, but check whether the faculty needs its own permission. Ask our own lecturers to introduce us to colleagues who teach exchange students. Teachers also make good interviewees, because they watch a new group arrive every semester.</p>
+          </div>
+        </li>
+        <li class="score">
+          <div class="score__body">
+            <div><h4>Arrival group chats <span class="m">Added idea</span></h4><p class="score__who">Bilbao arrivals groups on WhatsApp and Telegram, the ones the eleven of us are already in</p></div>
+            <dl class="score__stats">
+              <div><dt>Effort</dt><dd><span class="pips pips--effort" role="img" aria-label="1 of 5"><i class="on"></i><i></i><i></i><i></i><i></i></span>1</dd></div>
+              <div><dt>Impact</dt><dd><span class="pips pips--impact" role="img" aria-label="4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>4</dd></div>
+              <div><dt>Odds by 11 Oct</dt><dd>High</dd></div>
+              <div><dt>Team-hours</dt><dd>~4</dd></div>
+              <div><dt>ROI</dt><dd><span class="tag tag--keep">High</span></dd></div>
+            </dl>
+            <p class="score__use">A lot of the right people, one message away. Ask the admin first, then post the honest message from <a href="#field">Fieldwork</a>, and come back with the results. It's also where the problem happens, so the post is listening research at the same time. Don't post twice in the same chat.</p>
+          </div>
+        </li>
+        <li class="score">
+          <div class="score__body">
+            <div><h4>Advisors of students studying abroad</h4><p class="score__who">Study abroad and outgoing Erasmus advisors at the home universities that send students to Bilbao</p></div>
+            <dl class="score__stats">
+              <div><dt>Effort</dt><dd><span class="pips pips--effort" role="img" aria-label="2 of 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span>2</dd></div>
+              <div><dt>Impact</dt><dd><span class="pips pips--impact" role="img" aria-label="4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>4</dd></div>
+              <div><dt>Odds by 11 Oct</dt><dd>Medium</dd></div>
+              <div><dt>Team-hours</dt><dd>~6</dd></div>
+              <div><dt>ROI</dt><dd><span class="tag tag--keep">High</span></dd></div>
+            </dl>
+            <p class="score__use">One advisor can reach their students who are in Bilbao now <em>and</em> the ones who leave in January, all from one email. Anyone in the eleven who came through a home university's study abroad office should start with their own advisor, who already knows them, and ask to be introduced to colleagues. Advisors are also future buyers: a home university wants to know its students are settling in. As always, we write as Corners and never in the advisor's name.</p>
+          </div>
+        </li>
+        <li class="score">
+          <div class="score__body">
+            <div><h4>Emails to gatekeepers</h4><p class="score__who">ESN Bilbao, residence managers, programme coordinators</p></div>
+            <dl class="score__stats">
+              <div><dt>Effort</dt><dd><span class="pips pips--effort" role="img" aria-label="1 of 5"><i class="on"></i><i></i><i></i><i></i><i></i></span>1</dd></div>
+              <div><dt>Impact</dt><dd><span class="pips pips--impact" role="img" aria-label="4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>4</dd></div>
+              <div><dt>Odds by 11 Oct</dt><dd>Medium</dd></div>
+              <div><dt>Team-hours</dt><dd>~5</dd></div>
+              <div><dt>ROI</dt><dd><span class="tag tag--keep">High</span></dd></div>
+            </dl>
+            <p class="score__use">Send them all on Wednesday 16 September. One yes gets us a whole residence or cohort, and the residence, ESN and homestay channels all start with one of these emails. Keep each one short and personal, and offer the results in return. This does not mean emailing students: we have no list, and collecting addresses without consent breaks GDPR.</p>
+          </div>
+        </li>
+        <li class="score">
+          <div class="score__body">
+            <div><h4>People to people</h4><p class="score__who">The eleven of us asking classmates, plus intercepts at residences and on campus</p></div>
+            <dl class="score__stats">
+              <div><dt>Effort</dt><dd><span class="pips pips--effort" role="img" aria-label="3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span>3</dd></div>
+              <div><dt>Impact</dt><dd><span class="pips pips--impact" role="img" aria-label="5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>5</dd></div>
+              <div><dt>Odds by 11 Oct</dt><dd>High</dd></div>
+              <div><dt>Team-hours</dt><dd>~28</dd></div>
+              <div><dt>ROI</dt><dd><span class="tag tag--keep">High</span></dd></div>
+            </dl>
+            <p class="score__use">The most dependable way to reach the right people, and the only one that reliably reaches first-years in Spanish. It needs nobody's permission, which is why its odds are high. Start with the eleven of us asking our classmates, about an hour each. Intercept shifts start on 28 September. This is also where the pilot corners find their people.</p>
+          </div>
+        </li>
+        <li class="score">
+          <div class="score__body">
+            <div><h4>Buddy programmes <span class="m">Added idea</span></h4><p class="score__who">Local students who volunteer as buddies or mentors for new arrivals, through ESN or a university</p></div>
+            <dl class="score__stats">
+              <div><dt>Effort</dt><dd><span class="pips pips--effort" role="img" aria-label="2 of 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span>2</dd></div>
+              <div><dt>Impact</dt><dd><span class="pips pips--impact" role="img" aria-label="4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>4</dd></div>
+              <div><dt>Odds by 11 Oct</dt><dd>Medium</dd></div>
+              <div><dt>Team-hours</dt><dd>~4</dd></div>
+              <div><dt>ROI</dt><dd><span class="tag tag--keep">High</span></dd></div>
+            </dl>
+            <p class="score__use">Every buddy is already in touch with at least one new arrival. So one message to the buddy coordinator reaches newcomers through someone they already trust, and that includes the ones who don't come to events. Buddies are also locals who have chosen to spend time with internationals, which makes them exactly the people to ask the vote 1 question (E4).</p>
+          </div>
+        </li>
+        <li class="score">
+          <div class="score__body">
+            <div><h4>Asking people research questions</h4><p class="score__who">15 student interviews and 3 buyer interviews</p></div>
+            <dl class="score__stats">
+              <div><dt>Effort</dt><dd><span class="pips pips--effort" role="img" aria-label="4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>4</dd></div>
+              <div><dt>Impact</dt><dd><span class="pips pips--impact" role="img" aria-label="5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>5</dd></div>
+              <div><dt>Odds by 11 Oct</dt><dd>High</dd></div>
+              <div><dt>Team-hours</dt><dd>~40</dd></div>
+              <div><dt>ROI</dt><dd><span class="tag tag--keep">High</span></dd></div>
+            </dl>
+            <p class="score__use">The most hours per person, and the only method that tells us <em>why</em>. Without it we can't rewrite the personas, and the survey's answer options would be our guesses instead of their words. If hours run short, cut to 12 student interviews and keep all three buyer interviews, because the partner pitch needs those.</p>
+          </div>
+        </li>
+        <li class="score">
+          <div class="score__body">
+            <div><h4>Students who haven't left yet</h4><p class="score__who">People signed up for Bilbao or elsewhere in Spain from January, or still planning to go</p></div>
+            <dl class="score__stats">
+              <div><dt>Effort</dt><dd><span class="pips pips--effort" role="img" aria-label="3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span>3</dd></div>
+              <div><dt>Impact</dt><dd><span class="pips pips--impact" role="img" aria-label="4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>4</dd></div>
+              <div><dt>Odds</dt><dd>Runs 12 Oct – 20 Nov</dd></div>
+              <div><dt>Team-hours</dt><dd>~10</dd></div>
+              <div><dt>ROI</dt><dd><span class="tag tag--keep">High</span> <small>for January</small></dd></div>
+            </dl>
+            <p class="score__use">They can't tell us what the first weeks are like yet. They can tell us what they're worried about, what they've already been sent, and whether they'd join before they land. That tests H5, and these are the people the January launch is actually for. Reach them through advisors, the January arrival groups that open before departure, and the eleven's friends back home. Give them the shorter <a href="#survey">pre-arrival survey</a>. It starts once the autumn fieldwork closes, so it doesn't take hours from this month. Putting what they're worried about next to what current students say is hard makes one of the strongest findings we can hand in.</p>
+          </div>
+        </li>
+        <li class="score">
+          <div class="score__body">
+            <div><h4>Talking to homestays</h4><p class="score__who">Host families, reached through programme coordinators or the agencies that place students with them</p></div>
+            <dl class="score__stats">
+              <div><dt>Effort</dt><dd><span class="pips pips--effort" role="img" aria-label="3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span>3</dd></div>
+              <div><dt>Impact</dt><dd><span class="pips pips--impact" role="img" aria-label="3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span>3</dd></div>
+              <div><dt>Odds by 11 Oct</dt><dd>Low–medium</dd></div>
+              <div><dt>Team-hours</dt><dd>~8</dd></div>
+              <div><dt>ROI</dt><dd><span class="tag tag--change">Medium</span></dd></div>
+            </dl>
+            <p class="score__use">Students in a homestay don't live with other students, so they may have the hardest time meeting people, and residences and flat-shares can't reach them. We can't contact families without a list, so ask coordinators to introduce two host families. Interview each family about what they see in their student's first weeks, and ask them to pass the survey on. Then use A7 to check how many respondents live with a host family. If there are only a few, stop here.</p>
+          </div>
+        </li>
+        <li class="score">
+          <div class="score__body">
+            <div><h4>Language exchange nights <span class="m">Added idea</span></h4><p class="score__who">Intercambio nights in Bilbao bars, and Meetup language groups</p></div>
+            <dl class="score__stats">
+              <div><dt>Effort</dt><dd><span class="pips pips--effort" role="img" aria-label="2 of 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span>2</dd></div>
+              <div><dt>Impact</dt><dd><span class="pips pips--impact" role="img" aria-label="3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span>3</dd></div>
+              <div><dt>Odds by 11 Oct</dt><dd>High</dd></div>
+              <div><dt>Team-hours</dt><dd>~6</dd></div>
+              <div><dt>ROI</dt><dd><span class="tag tag--change">Medium</span></dd></div>
+            </dl>
+            <p class="score__use">People come to these to talk to strangers, so they tend to say yes to a survey. But they're the social end, just like ESN events, so their surveys count toward the "at events" half of each quota. Ask the organiser before handing out QR cards.</p>
+          </div>
+        </li>
+        <li class="score">
+          <div class="score__body">
+            <div><h4>Instagram</h4><p class="score__who">Our own account, story polls, and survey links reshared by partners</p></div>
+            <dl class="score__stats">
+              <div><dt>Effort</dt><dd><span class="pips pips--effort" role="img" aria-label="3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span>3</dd></div>
+              <div><dt>Impact</dt><dd><span class="pips pips--impact" role="img" aria-label="2 of 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span>2 <small>now · 4 after 22 Oct</small></dd></div>
+              <div><dt>Odds by 11 Oct</dt><dd>Low</dd></div>
+              <div><dt>Team-hours</dt><dd>~15</dd></div>
+              <div><dt>ROI</dt><dd><span class="tag tag--change">Medium</span></dd></div>
+            </dl>
+            <p class="score__use">The account goes live on 17 September, so it won't have enough followers to fill a survey this month. Use it for story polls and the two-headline test, and ask ESN and the residences to reshare the survey link. Their followers are the reach this month, not ours. The real payoff is the campaign after 22 October, so these hours aren't wasted, they just count for less in the research.</p>
+          </div>
+        </li>
+        <li class="score">
+          <div class="score__body">
+            <div><h4>Outreach to universities</h4><p class="score__who">International offices and faculty coordinators at UPV/EHU and Deusto</p></div>
+            <dl class="score__stats">
+              <div><dt>Effort</dt><dd><span class="pips pips--effort" role="img" aria-label="5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>5</dd></div>
+              <div><dt>Impact</dt><dd><span class="pips pips--impact" role="img" aria-label="5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>5 <small>if they say yes</small></dd></div>
+              <div><dt>Odds by 11 Oct</dt><dd>Low</dd></div>
+              <div><dt>Team-hours</dt><dd>~10 <small>+ meetings</small></dd></div>
+              <div><dt>ROI</dt><dd><span class="tag tag--change">Medium</span> <small>now · high for January</small></dd></div>
+            </dl>
+            <p class="score__use">The biggest audience, and the slowest yes. Universities get lots of survey requests, and approvals go through people we haven't met. Send the requests this week and ask for something small, like one line in a newsletter. Plan the fieldwork as if the answer is no. Even so, this relationship is exactly what the January partner pitch needs.</p>
+          </div>
+        </li>
+        <li class="score">
+          <div class="score__body">
+            <div><h4>Paid promotion</h4><p class="score__who">Boosted Instagram posts or Meta ads aimed at 18–26-year-olds in Bilbao, or a small reward for finishing the survey</p></div>
+            <dl class="score__stats">
+              <div><dt>Effort</dt><dd><span class="pips pips--effort" role="img" aria-label="2 of 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span>2 <small>+ money</small></dd></div>
+              <div><dt>Impact</dt><dd><span class="pips pips--impact" role="img" aria-label="3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span>3</dd></div>
+              <div><dt>Odds by 11 Oct</dt><dd>Medium</dd></div>
+              <div><dt>Team-hours</dt><dd>~4</dd></div>
+              <div><dt>ROI</dt><dd><span class="tag tag--drop">Low</span> <small>for now</small></dd></div>
+            </dl>
+            <p class="score__use">Ads reach beyond our followers, but they can target an age and a city, not "arrived this month", so many people who see them will be locals. Paid rewards also tend to bring rushed answers. The launch book says the course has no money, so any spending is a team vote. If the vote passes, run one test with a spending cap and its own source tag, then compare completes per euro against the free channels. A free thank-you works too: Operations could ask a partner café for a coffee for each finished survey.</p>
+          </div>
+        </li>
+        <li class="score">
+          <div class="score__body">
+            <div><h4>Subreddits</h4><p class="score__who">r/Erasmus, r/StudyAbroad, r/bilbao</p></div>
+            <dl class="score__stats">
+              <div><dt>Effort</dt><dd><span class="pips pips--effort" role="img" aria-label="1 of 5"><i class="on"></i><i></i><i></i><i></i><i></i></span>1</dd></div>
+              <div><dt>Impact</dt><dd><span class="pips pips--impact" role="img" aria-label="2 of 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span>2 <small>listening · 1 for surveys</small></dd></div>
+              <div><dt>Odds by 11 Oct</dt><dd>High <small>for listening</small></dd></div>
+              <div><dt>Team-hours</dt><dd>~3</dd></div>
+              <div><dt>ROI</dt><dd><span class="tag tag--change">Medium</span> <small>listening</small> <span class="tag tag--drop">Low</span> <small>surveys</small></dd></div>
+            </dl>
+            <p class="score__use">Good for reading, poor for surveying. r/Erasmus and r/StudyAbroad are worldwide, so most people who answer won't be in Bilbao, and many subreddits don't allow survey posts. Read the "how do I make friends" threads for the listening sprint, and at most ask for interviewees. If a survey link does go up, question A4 screens out anyone who doesn't live in Bilbao.</p>
+          </div>
+        </li>
+        <li class="score">
+          <div class="score__body">
+            <div><h4>QR posters <span class="m">Added idea</span></h4><p class="score__who">Cards on faculty noticeboards, by residence laundry rooms, at library entrances</p></div>
+            <dl class="score__stats">
+              <div><dt>Effort</dt><dd><span class="pips pips--effort" role="img" aria-label="2 of 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span>2</dd></div>
+              <div><dt>Impact</dt><dd><span class="pips pips--impact" role="img" aria-label="2 of 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span>2</dd></div>
+              <div><dt>Odds by 11 Oct</dt><dd>Medium</dd></div>
+              <div><dt>Team-hours</dt><dd>~5</dd></div>
+              <div><dt>ROI</dt><dd><span class="tag tag--drop">Low</span></dd></div>
+            </dl>
+            <p class="score__use">They reach quiet people without anyone standing there, but posters rarely get many scans. Ask before putting anything on a noticeboard. Give the posters their own source tag, so after one week we know whether they're worth reprinting.</p>
+          </div>
+        </li>
+      </ol>
+
+      <div class="math">
+        <p><strong>These scores are our best guesses. Replace them with real numbers.</strong> From the first shift, log team-hours next to the tally for each channel. At the 5 October quota check, work out <strong>in-quota completes per team-hour</strong> for each channel, and move the remaining shifts to whichever returns the most.</p>
+      </div>
+    </section>
+
+    <section id="asks">
+      <p class="eyebrow">Questions by channel</p>
+      <h2>What to say, <span class="then">in the order of the scorecard.</span></h2>
+      <p class="lead">Each channel gets two kinds of question. <strong>Ask them to</strong> is the one small favour we ask a gatekeeper for. <strong>Ask them</strong> is what we want to learn from the person in front of us. Under each question, small text shows which research question, hypothesis or survey item it feeds.</p>
+
+      <ul class="principles">
+        <li><strong>Last time, not "would you"</strong>Ask what someone did the last time. What they did is evidence. What they say they'd do is a guess, and people guess politely.</li>
+        <li><strong>One thing per question</strong>"Do you go out and meet people?" is two questions, and people answer whichever one is easier.</li>
+        <li><strong>One small favour, with a date</strong>"Five minutes of one class next week" gets a yes. "Would you partner with us?" gets forwarded to someone else.</li>
+        <li><strong>The idea comes last</strong>Once someone has heard about Corners, they talk about Corners. Hear their story first.</li>
+        <li><strong>Always end with who else</strong>"Who else should we talk to?" is how we reach the people events miss.</li>
+      </ul>
+
+      <div class="chan">
+        <div class="chan__head"><h4>Talking to teachers</h4><span class="m">Email, then five minutes in class</span></div>
+        <div class="chan__cols">
+          <div>
+            <h5>Ask them to</h5>
+            <ul class="ql">
+              <li>Could we have the last five minutes of one class, this week or next, for an anonymous five-minute survey? We'll bring the QR code and leave on time.<small>Survey completes</small></li>
+              <li>Who else teaches a class full of new arrivals and might say yes?<small>Snowball</small></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Ask them</h5>
+            <ul class="ql">
+              <li>In the first weeks of a semester, how can you tell which students are settling in and which aren't?<small>RQ1</small></li>
+              <li>By week six, what's different about the students who found their people?<small>RQ1 · RQ4</small></li>
+              <li>What do students ask you about that has nothing to do with your subject?<small>RQ2</small></li>
+              <li>When do students from the same country start sitting together?<small>RQ1 · the Chiara persona</small></li>
+            </ul>
+          </div>
+        </div>
+        <p class="chan__note">In class, before showing the QR code, ask "Hands up if you've been in Bilbao less than a month." The count goes on the tally, and the students who raised a hand know the survey is for them.</p>
+      </div>
+
+      <div class="chan">
+        <div class="chan__head"><h4>Arrival group chats</h4><span class="m">A message to the admin, then one post</span></div>
+        <div class="chan__cols">
+          <div>
+            <h5>Ask the admin to</h5>
+            <ul class="ql">
+              <li>Would it be OK if I posted a five-minute anonymous survey here once? I'll post the results back to the group.<small>Permission</small></li>
+            </ul>
+            <h5 style="margin-top:16px">Ask the admin</h5>
+            <ul class="ql">
+              <li>When was the chat busiest, and when did it start going quiet?<small>Tests "week three goes quiet"</small></li>
+              <li>What do people ask for most in here?<small>RQ2</small></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Ask the group, in the same post</h5>
+            <ul class="ql">
+              <li>What's one thing you've done here that actually led to a friend, not just a contact?<small>RQ4 · H3. The replies are listening data</small></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="chan">
+        <div class="chan__head"><h4>Advisors of students studying abroad</h4><span class="m">Email, then a 15-minute call</span></div>
+        <div class="chan__cols">
+          <div>
+            <h5>Ask them to</h5>
+            <ul class="ql">
+              <li>Would you forward a five-minute anonymous survey to your students who are in Bilbao or elsewhere in Spain right now?<small>Survey completes</small></li>
+              <li>Would you forward the pre-arrival version to the students who leave in January?<small>P1–P3 · H5</small></li>
+              <li>Who at another university does the same job?<small>Snowball</small></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Ask them</h5>
+            <ul class="ql">
+              <li>When students come back, what do they tell you was hardest about the first weeks?<small>RQ1</small></li>
+              <li>What do you send students before they leave, and what do you think they actually read?<small>H5</small></li>
+              <li>The last time a student was struggling abroad, how did you find out, and how long did it take?<small>RQ7, what a buyer would pay to know</small></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="chan">
+        <div class="chan__head"><h4>Emails to gatekeepers</h4><span class="m">One favour per email</span></div>
+        <div class="chan__cols">
+          <div>
+            <h5>Ask them to</h5>
+            <ul class="ql">
+              <li><b>ESN:</b> Could we put a QR code at one event and ask for one story share? You'll get the full results for your own planning.<small>Survey completes</small></li>
+              <li><b>Residence manager:</b> Could you post the link once in the residents' chat, or put one card on the noticeboard?<small>Survey completes · A7</small></li>
+              <li><b>Programme coordinator:</b> Could you forward the link to your cohort? It's anonymous, and we won't use the programme's name.<small>Survey completes</small></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Ask them, if they'll talk</h5>
+            <ul class="ql">
+              <li>What do you do for new arrivals after the first week?<small>RQ7</small></li>
+              <li>How do you know whether it worked?<small>RQ7, the fortnightly number</small></li>
+              <li>Who would have to say yes to a pilot in January, and what would make them say no?<small>RQ7, the partner pitch</small></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="chan">
+        <div class="chan__head"><h4>People to people</h4><span class="m">Intercepts, and the eleven of us asking classmates</span></div>
+        <div class="chan__cols">
+          <div>
+            <h5>If they only have a minute</h5>
+            <ul class="ql">
+              <li>Did you move to Bilbao recently?<small>Screen</small></li>
+              <li>How many people here could you message to get a coffee today?<small>B1 · H1, the headline number</small></li>
+              <li>Where did you hear about the last thing you went to?<small>D2 · H4</small></li>
+              <li>What's something you'd like to do here that you haven't done yet?<small>C1 · RQ2</small></li>
+              <li>Can I send you the full survey, or a place in a pilot group?<small>E5, on the separate form</small></li>
+            </ul>
+          </div>
+          <div>
+            <h5>The eleven of us, to classmates</h5>
+            <ul class="ql">
+              <li>Quick favour: do you know anyone who moved here this year who'd do a five-minute survey? Especially someone who hasn't found their people yet.<small>Survey completes, and reaches people events miss</small></li>
+            </ul>
+          </div>
+        </div>
+        <p class="chan__note">Write the one-minute answers on the tally sheet. They don't replace the survey, but they count as evidence for B1, D2 and C1, marked as a separate source.</p>
+      </div>
+
+      <div class="chan">
+        <div class="chan__head"><h4>Buddy programmes</h4><span class="m">One message to the coordinator</span></div>
+        <div class="chan__cols">
+          <div>
+            <h5>Ask the coordinator to</h5>
+            <ul class="ql">
+              <li>Could you send your buddies one message asking them to pass the survey to the students they look after?<small>Survey completes</small></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Ask the buddies</h5>
+            <ul class="ql">
+              <li>Without naming anyone, what do new arrivals ask you for help with most?<small>RQ2</small></li>
+              <li>When do most newcomers stop getting in touch with their buddy?<small>RQ1, when the window closes</small></li>
+              <li>Would you join a group of newcomers as the one local?<small>E4 local version · H7 · vote 1</small></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="chan">
+        <div class="chan__head"><h4>Asking people research questions</h4><span class="m">20–25 minute interviews</span></div>
+        <div class="chan__cols">
+          <div>
+            <h5>The five that matter most</h5>
+            <ul class="ql">
+              <li>Walk me through your first day here.<small>RQ1</small></li>
+              <li>Think of the first person here you'd still message. How did that happen?<small>RQ4</small></li>
+              <li>The last time you went out with people, how did the plan come together?<small>RQ3</small></li>
+              <li>Was there a moment you felt stuck or left out? What did you do next?<small>RQ1</small></li>
+              <li>If you could redo your first two weeks, what would you do differently?<small>RQ2 · RQ4</small></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Follow-ups that get the real answer</h5>
+            <ul class="ql">
+              <li>Tell me more about that.</li>
+              <li>What happened next?</li>
+              <li>Why do you think that was?</li>
+              <li>Can you remember a specific time?</li>
+            </ul>
+          </div>
+        </div>
+        <p class="chan__note">The full guide, with the concept question at the end, is in <a href="#interviews">Interviews</a>.</p>
+      </div>
+
+      <div class="chan">
+        <div class="chan__head"><h4>Students who haven't left yet</h4><span class="m">Pre-arrival survey and three interviews</span></div>
+        <div class="chan__cols">
+          <div>
+            <h5>Ask them</h5>
+            <ul class="ql">
+              <li>Apart from paperwork, what have you already done to prepare for your time there?<small>RQ4, what they do before arriving</small></li>
+              <li>Are you in any group chats for your city yet? What's happening in them?<small>RQ3 · H5</small></li>
+              <li>What has your university or programme sent you so far, and what did you actually read?<small>H5</small></li>
+              <li>What are you most worried about for your first weeks?<small>P3, next to B4</small></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Last, after the idea</h5>
+            <ul class="ql">
+              <li>If you were put in a group of eleven before you landed, would you want to talk to them online first, or only meet in person?<small>RQ5, what the January product includes</small></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="chan">
+        <div class="chan__head"><h4>Talking to homestays</h4><span class="m">An introduction through a coordinator</span></div>
+        <div class="chan__cols">
+          <div>
+            <h5>Ask them to</h5>
+            <ul class="ql">
+              <li><b>Coordinator:</b> Could you introduce us to two host families who've hosted several students?<small>Access</small></li>
+              <li><b>Family:</b> Would you pass a five-minute anonymous survey to the student staying with you?<small>Survey completes · A7</small></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Ask the families</h5>
+            <ul class="ql">
+              <li>Thinking about students you've hosted, how could you tell in the first weeks whether they'd found people?<small>RQ1</small></li>
+              <li>What was different about the ones who settled in quickly?<small>RQ4</small></li>
+              <li>Where do students usually meet other students when they don't live with any?<small>RQ2 · RQ3</small></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="chan">
+        <div class="chan__head"><h4>Language exchange nights</h4><span class="m">Ten minutes at the start of the night</span></div>
+        <div class="chan__cols">
+          <div>
+            <h5>Ask the organiser</h5>
+            <ul class="ql">
+              <li>Could we hand out QR cards for ten minutes at the start?<small>Permission</small></li>
+              <li>Roughly how many people are new to the city, and how many come every week?<small>Tells us whether it's worth going back</small></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Ask the people there</h5>
+            <ul class="ql">
+              <li>Is this your first time here? What made you come tonight?<small>RQ4, what they're looking for</small></li>
+              <li>How did you find out about tonight?<small>D2 · H4</small></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="chan">
+        <div class="chan__head"><h4>Instagram</h4><span class="m">Story polls, a question sticker, reshares</span></div>
+        <div class="chan__cols">
+          <div>
+            <h5>Poll stickers, two options each</h5>
+            <ul class="ql">
+              <li>How many people here could you message for coffee today? <b>0–2</b> or <b>3+</b><small>A hint for B1 · H1</small></li>
+              <li>Who do you most want to meet here? <b>Locals</b> or <b>Other internationals</b><small>A hint for C2 · H7</small></li>
+              <li>Your arrivals group chat this week: <b>still busy</b> or <b>gone quiet</b>?<small>A hint for H3</small></li>
+              <li>A group you'd walk into on your own: <b>6 people</b> or <b>11</b>?<small>A hint for H8</small></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Question sticker, open answer</h5>
+            <ul class="ql">
+              <li>What do you wish someone had told you before you arrived in Bilbao?<small>The "wish I'd known" bank, quoted only with permission</small></li>
+            </ul>
+          </div>
+        </div>
+        <p class="chan__note">Only people who already follow us answer polls, so they're hints, never results. Never put them in a hypothesis score.</p>
+      </div>
+
+      <div class="chan">
+        <div class="chan__head"><h4>Outreach to universities</h4><span class="m">Email the international office</span></div>
+        <div class="chan__cols">
+          <div>
+            <h5>Ask them to, small first</h5>
+            <ul class="ql">
+              <li>Could you include one line with the survey link in your next message to international students?<small>Survey completes</small></li>
+              <li>Who decides whether a student project can contact students, and how do we ask them?<small>Tells us whether a yes is possible by 11 Oct</small></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Ask them</h5>
+            <ul class="ql">
+              <li>What happens for international students once orientation week ends?<small>RQ7</small></li>
+              <li>What have students asked for that you haven't been able to offer?<small>RQ2 · RQ7</small></li>
+              <li>If you got one number every fortnight about how your arrivals are settling in, what would you want it to be, and who would read it?<small>RQ7, the fortnightly number and the buyer</small></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="chan">
+        <div class="chan__head"><h4>Paid promotion</h4><span class="m">Only if the team votes for a budget</span></div>
+        <div class="chan__cols">
+          <div>
+            <h5>Two headlines to test</h5>
+            <ul class="ql">
+              <li>Moved to Bilbao this month? Tell us what the first weeks are really like. Five minutes, anonymous.<small>Its own source tag</small></li>
+              <li>New in Bilbao? How many people here could you message for coffee today?<small>Its own source tag. Also tests B1 as a hook for the campaign</small></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Added to the survey for paid traffic</h5>
+            <ul class="ql">
+              <li>To show you're reading, choose "Some of the time" for this question.<small>An attention check. Remove answers that fail it before any analysis</small></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="chan">
+        <div class="chan__head"><h4>Subreddits</h4><span class="m">Discussion posts, after checking each subreddit's rules</span></div>
+        <div class="chan__cols">
+          <div>
+            <h5>r/Erasmus and r/StudyAbroad</h5>
+            <ul class="ql">
+              <li>If you've done a semester abroad: what actually took you from "met lots of people" to "had real friends", and in which week did it happen?<small>RQ4 · RQ1, the timing</small></li>
+              <li>What did you try in your first month abroad that didn't work?<small>RQ4</small></li>
+              <li>On exchange in Bilbao this semester and happy to talk for 20 minutes? Send me a message.<small>Interview recruiting</small></li>
+            </ul>
+          </div>
+          <div>
+            <h5>r/bilbao</h5>
+            <ul class="ql">
+              <li>Locals: would you join a small weekly group of people new to the city? What would make it worth your time?<small>H7 · vote 1</small></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="chan">
+        <div class="chan__head"><h4>QR posters</h4><span class="m">One question as the headline</span></div>
+        <div class="chan__cols">
+          <div>
+            <h5>Version A</h5>
+            <ul class="ql">
+              <li>New in Bilbao? How many people here could you text for coffee today?<small>Its own source tag</small></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Version B</h5>
+            <ul class="ql">
+              <li>Arrived this month? Five minutes, anonymous. Tell us what's hard.<small>Its own source tag</small></li>
+            </ul>
+          </div>
+        </div>
+        <p class="chan__note">Putting two versions up at the same time tells us whether posters get scanned, and which headline works. The winner is free advice for the campaign.</p>
+      </div>
+
+      <h3>Questions that spoil the research</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Don't ask</th><th>Ask instead</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><td>Would you use an app that puts you in a group?</td><td><p>The last time you went out with people, how did the plan come together?</p></td><td><p>People say yes to be kind. What they did last week is evidence</p></td></tr>
+            <tr><td>Don't you think big group chats are useless?</td><td><p>What's one thing that actually led to a friend?</p></td><td><p>The first version tells them what answer we want</p></td></tr>
+            <tr><td>Are you lonely?</td><td><p>How many people here could you message for a coffee today?</p></td><td><p>A yes/no question about a sensitive feeling. A number is easier to answer honestly, and to compare</p></td></tr>
+            <tr><td>How often do you go to events and meet people?</td><td><p>Two separate questions: events (B5), then people (B1)</p></td><td><p>Two questions in one gets an answer to neither</p></td></tr>
+            <tr><td>Would you like to partner with Corners?</td><td><p>Could we have five minutes of one class next week?</p></td><td><p>A big ask gets passed up the chain. A small one gets a yes today</p></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="field">
+      <p class="eyebrow">Fieldwork</p>
+      <h2>Two hundred completes, <span class="then">collected in person and online.</span></h2>
+      <p class="lead">Ask partners first, and wait three working days at most. If nobody answers, go ahead with public spaces and online channels. Never table on a campus without permission, and never use a university's or ESN's name or logo.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Channel</th><th>The ask</th><th>Reaches</th><th>Target</th></tr></thead>
+          <tbody>
+            <tr><td>Spanish courses for internationals</td><td><p>Ask the teacher for five minutes at the end of a class, with QR codes on the screen</p></td><td><p>Exchange students who aren't at events. Our most important channel</p></td><td class="num">50</td></tr>
+            <tr><td>ESN Bilbao</td><td><p>A QR code at one event, plus a story share. We give them the results in return</p></td><td><p>Erasmus, the social end</p></td><td class="num">30</td></tr>
+            <tr><td>Student residences</td><td><p>The manager posts the link in the residence group chat or puts a card on the notice board</p></td><td><p>First-years and exchange students</p></td><td class="num">40</td></tr>
+            <tr><td>Arrivals group chats</td><td><p>The honest post below, with admin OK</p></td><td><p>All segments</p></td><td class="num">40</td></tr>
+            <tr><td>The eleven of us</td><td><p>Each of us sends the link to five classmates who aren't from Bilbao and asks them to pass it on</p></td><td><p>Exchange students and first-years in our own classes</p></td><td class="num">40</td></tr>
+            <tr><td>Programme coordinators</td><td><p>Forward the link to their cohort. We never use the programme's name</p></td><td><p>Study abroad</p></td><td class="num">20</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted small">The targets add up to 220, which leaves room for incomplete responses. Check the tally against the <a href="#who">segment quotas</a> every Monday and Thursday, and put the next shifts where the lowest segment is. If a channel falls short, the backups are buddy programmes, homestays and language exchange nights. See the <a href="#scorecard">channel scorecard</a>.</p>
+
+      <h3>What we say, in person</h3>
+      <div class="script">
+        <blockquote><span>English</span>Hi, quick question: did you move to Bilbao recently? We're students too, and none of us are from here. We're running a five-minute anonymous survey about the first weeks in a new city. Would you scan it?</blockquote>
+        <blockquote lang="es"><span>Español</span>¡Hola! Una pregunta rápida: ¿te has mudado a Bilbao hace poco? Somos estudiantes y ninguno somos de aquí. Hacemos una encuesta anónima de cinco minutos sobre las primeras semanas en una ciudad nueva. ¿Te animas?</blockquote>
+      </div>
+      <p class="muted small">If they say no: "No problem, have a good one." Bring an A5 card with the QR code, a phone for people who won't scan, and a tally of approached, agreed and completed. That tally gives us the response rate, which we report next to the results.</p>
+
+      <h3>What we post, in group chats</h3>
+      <p class="statement">Hi all, I'm [name]. I arrived in Bilbao in September too, from [country]. A few of us are running a <em>five-minute anonymous survey</em> about what the first weeks here are really like: what's hard, and what you'd want to do. We'll post the results back here. [link]</p>
+    </section>
+
+    <section id="team">
+      <p class="eyebrow">The three of us</p>
+      <h2>One owner per method, <span class="then">everyone in the field.</span></h2>
+      <p class="lead">Each of us owns one lane, and we all run five interviews and two intercept shifts a week. Interviews rotate pairs, so each of us works with both of the others.</p>
+
+      <div class="cols3">
+        <article class="box">
+          <h4>Instrument lead</h4>
+          <p class="meta">Owns what we ask and what it means</p>
+          <ul>
+            <li>Survey and interview guides, English and Spanish</li>
+            <li>Sets up the form tool with EU data storage and the separate email form</li>
+            <li>Keeps the quota tally, and calls the Monday and Thursday checks</li>
+            <li>Cleans the data, runs the cross-tabs, scores H1–H8</li>
+          </ul>
+        </article>
+        <article class="box">
+          <h4>Field lead</h4>
+          <p class="meta">Owns who we reach</p>
+          <ul>
+            <li>Permission emails: ESN Bilbao, international offices, residences, Spanish teachers, coordinators</li>
+            <li>Books the three buyer interviews</li>
+            <li>Intercept rota, QR cards, tally sheets</li>
+            <li>Runs the company-wide ask: the eleven of us, five classmates each</li>
+          </ul>
+        </article>
+        <article class="box">
+          <h4>Signals lead</h4>
+          <p class="meta">Owns what people do</p>
+          <ul>
+            <li>Listening sprint and the competitor teardown, starting with Unera</li>
+            <li>Source links, the two-headline test, the group chat posts</li>
+            <li>Pilot baseline questions, agreed with Operations</li>
+            <li>Codes the open answers (E2, and the Instagram question sticker) together with the instrument lead</li>
+          </ul>
+        </article>
+      </div>
+      <p class="muted small">Weekly rhythm: a 15-minute check on Monday (quotas, blockers) and a 45-minute synthesis on Friday (what did we learn, and what changes). As the launch book says, the team reads its numbers in the last five minutes of each session.</p>
+    </section>
+
+    <section id="calendar">
+      <p class="eyebrow">Calendar</p>
+      <h2>Five weeks, <span class="then">ending on the mini-project date.</span></h2>
+      <ol class="timeline">
+        <li>
+          <p class="when"><b>Set up</b>Tue 15 – Sun 20 Sep</p>
+          <div>
+            <h4>Agree it, ask permission, start listening</h4>
+            <ul>
+              <li><b>Tue–Wed:</b> agree the research questions and thresholds, and pick the three roles</li>
+              <li><b>Wed:</b> send every permission email. Ask the course lead whether this needs ethics sign-off</li>
+              <li><b>Thu 17:</b> Instagram goes live. Run the first story poll</li>
+              <li><b>All week:</b> 100 listening entries, competitor teardown, recruit 15 interviewees</li>
+              <li><b>Sun:</b> top ten themes and the words people use</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <p class="when"><b>Talk</b>Mon 21 – Sun 27 Sep</p>
+          <div>
+            <h4>Fifteen interviews, then fix the survey</h4>
+            <ul>
+              <li><b>Mon–Thu:</b> 15 user interviews, five each, plus book the buyer interviews</li>
+              <li><b>Tue 22:</b> bring the research questions and the listening themes to the prompt lab</li>
+              <li><b>Fri 25:</b> code the interviews, rewrite the survey options in their words</li>
+              <li><b>Sat–Sun:</b> Spanish version, then test on five people outside the company, timed</li>
+              <li>Hand interviewees who want a pilot corner to Operations, with their consent</li>
+            </ul>
+            <span class="due">Prompt lab · 22 Sep</span>
+          </div>
+        </li>
+        <li>
+          <p class="when"><b>Field</b>Mon 28 Sep – Sun 11 Oct</p>
+          <div>
+            <h4>Survey live, two weeks, quotas every Monday and Thursday</h4>
+            <ul>
+              <li><b>Mon 28:</b> survey live. Group chat posts and the company-wide ask go out</li>
+              <li>Spanish classes, residences, the ESN event and intercept shifts: six shifts a week between us</li>
+              <li>Buyer interviews happen during these two weeks</li>
+              <li>The two-headline test runs. The pilot baseline is taken at the first meetup</li>
+              <li><b>Mon 5 Oct:</b> if any segment is under half its quota, move every shift to it</li>
+              <li><b>Sun 11, 23:59:</b> survey closes</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <p class="when"><b>Analyse</b>Mon 12 – Sun 18 Oct</p>
+          <div>
+            <h4>Score the claims</h4>
+            <ul>
+              <li>Clean the data. Cross-tab by segment and cohort week</li>
+              <li>Two of us code the same 30 open answers first and agree the themes, then split the rest</li>
+              <li>Score H1–H8 as keep, change or drop, with n next to every number</li>
+              <li>Rewrite the personas, channel ranking and interests map</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <p class="when"><b>Hand in</b>Mon 19 – Thu 22 Oct</p>
+          <div>
+            <h4>Into mini-project one</h4>
+            <ul>
+              <li>Findings go into the campaign section of mini-project one</li>
+              <li>Recommendations on votes 1, 2 and 3 go to the vote</li>
+              <li>Post the results back to every chat and partner we promised them to</li>
+            </ul>
+            <span class="due">Mini-project one · 22 Oct</span>
+          </div>
+        </li>
+        <li>
+          <p class="when"><b>After</b>Nov – Jan</p>
+          <div>
+            <h4>Week six, and the January wave</h4>
+            <ul>
+              <li><b>12 Oct – 20 Nov:</b> the pre-arrival survey and three interviews with students who haven't left yet, reached through study abroad advisors. Early results go in the 22 October hand-in, and the full results feed the block 4 business model</li>
+              <li>Re-ask B1 of pilot corners in their week six</li>
+              <li>Send the pre-arrival survey again through a signed partner before the January cohort lands</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="outputs">
+      <p class="eyebrow">What we hand in</p>
+      <h2>Seven things, <span class="then">each with a team waiting for it.</span></h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Output</th><th>What's in it</th><th>Goes to</th></tr></thead>
+          <tbody>
+            <tr><td>Findings report</td><td><p>H1–H8 scored, with n and a quote for each, plus the response rate and the sampling caveat</p></td><td><p>Mini-project one, and all eleven of us</p></td></tr>
+            <tr><td>Three personas, rewritten</td><td><p>Chiara, Aiyana and Marta, updated with what real people said. Quotes use codes, never names</p></td><td><p>Launch book, Product</p></td></tr>
+            <tr><td>Channel ranking</td><td><p>Per segment: where they spend attention, where they heard about the last thing they went to, and sign-ups by source</p></td><td><p>Audience campaign hours</p></td></tr>
+            <tr><td>Interests map</td><td><p>Top activities by segment from the survey, plus times and budget from the pilot sign-up form</p></td><td><p>Operations (corner places), Monday prompts</p></td></tr>
+            <tr><td>"Wish I'd known" bank</td><td><p>Answers to the Instagram question sticker and interview quotes, all with permission to quote</p></td><td><p>Instagram, the 25% idea content</p></td></tr>
+            <tr><td>Vote recommendations</td><td><p>Local seat, eleven or six, students only, each backed by data</p></td><td><p>The decision system</p></td></tr>
+            <tr><td>Pilot contact list</td><td><p>Opt-in emails only, kept outside the repo</p></td><td><p>Operations</p></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="rules">
+      <p class="eyebrow">Rules</p>
+      <h2>Written down <span class="then">before anyone is asked anything.</span></h2>
+      <ul class="rules">
+        <li><strong>18 or older only.</strong> The first question screens for it. Anyone under 18 is thanked and the survey ends.</li>
+        <li><strong>Consent up front.</strong> Who we are (a student company on a course), what we ask, that it's anonymous, when it's deleted, and a contact email.</li>
+        <li><strong>Emails kept apart.</strong> A separate form, so an email can never be linked to someone's answers.</li>
+        <li><strong>EU storage, minimum data.</strong> Check where the form tool stores data before choosing it. Raw responses are deleted by 31 January 2027.</li>
+        <li><strong>No names in the repo.</strong> Interview notes use P01, P02…, as pitch 7 already says.</li>
+        <li><strong>Loneliness is optional.</strong> B3 offers "prefer not to say" and shows the university's student support contact.</li>
+        <li><strong>We speak for Corners only.</strong> No university, ESN or programme name or logo without written permission.</li>
+        <li><strong>Group chats: watch, don't take.</strong> Paraphrase, never screenshot a name, and post only with an admin's OK.</li>
+        <li><strong>The eleven of us don't answer.</strong> We're the audience too. Our opinions are labelled as ours and kept out of the numbers.</li>
+        <li><strong>Ethics check.</strong> Ask the course lead by Wednesday 16 September whether this needs sign-off.</li>
+      </ul>
+    </section>
+
+    <section id="risks">
+      <p class="eyebrow">Risks</p>
+      <h2>What breaks the research, <span class="then">and what we do instead.</span></h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Risk</th><th>What we do about it</th></tr></thead>
+          <tbody>
+            <tr><td>We only reach the social ones</td><td><p>Half of each segment's surveys come from outside events. Interviews snowball toward "someone who's had a harder time".</p></td></tr>
+            <tr><td>Partners say no, or say nothing</td><td><p>Wait three working days at most, then go ahead through the eleven of us, group chats and public spaces. Offer the results as the thing they get back.</p></td></tr>
+            <tr><td>We ask leading questions</td><td><p>The concept comes last, in both the interviews and the survey. We test the survey on five people outside the company.</p></td></tr>
+            <tr><td>Too few first-years</td><td><p>Use the Spanish version, residences and first-year events. If there are fewer than 30 by 5 October, report them as quotes, not percentages.</p></td></tr>
+            <tr><td>Survey fatigue in September</td><td><p>Keep it to five minutes, make the last question something they want to answer, and promise the results back.</p></td></tr>
+            <tr><td>The window closes</td><td><p>Fieldwork ends 11 October whatever happens. Results that are late are worth less than results that are incomplete.</p></td></tr>
+            <tr><td>Our results clash with the launch book</td><td><p>That's the point of the plan. The thresholds were set in advance, so we report what we found and bring it to the vote.</p></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>

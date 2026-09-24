@@ -1,50 +1,63 @@
-# corners.
+# Corners
 
-Interactive prototype: find your corner, then compare the cities side by side.
+The app for students abroad: Erasmus, study abroad and first-years who moved city. One place for what students nearby are saying, recs, groups, guided experiences, budget weekend trips and everything about your programme.
 
-**Open `index.html` in any browser.** No build step, no install, no server.
+> **Start with [PROJECT.md](PROJECT.md)** — the full reference: where the idea came from, the product,
+> the audience with sourced figures, marketing, the numbers we watch, and what's still to be voted.
+> This README covers the whole repo; the section detail below is the website.
 
-## What it does
+## What's here
 
-For students who have already decided to go abroad and are choosing *where*.
+| Path | What it is |
+|---|---|
+| `PROJECT.md` | The master reference for the whole company. |
+| `app/` | The product: onboarding (`onboarding.html`) and the dashboard (`index.html`), plus `photos/`. No build step. |
+| `website/` | The public landing page: `index.html`, `styles.css`, `main.js`. No build step. |
+| `index.html` | **Find Your Corner** — the six-question survey and the side-by-side city comparison. Single file, Tailwind from a CDN. See [find-your-corner.md](find-your-corner.md). |
+| `docs/launch-book.html` | Pitch eight: audience, sourced market figures, channels, calendar, KPIs, risks. **Written for the earlier "groups of eleven" concept and needs updating** for the feature-based product. |
+| `docs/audience-research-plan.html` | Research plan (also references the earlier concept and a team of eleven). |
 
-- **Where you are from** — set once in the header. Drives the currency and your work rights
-- **Find your corner** — the six-question survey: language, budget, city type, social vibe,
-  climate, and your two non-negotiables
-- **Skip it** — go straight to picking cities and comparing them
-- **Compare** — up to three cities across nine metrics
-- **Sources** — every row carries a tag you can tap for where the value came from
+## Website sections
 
-Cities: Lisbon, Barcelona, Bilbao, Bologna, Vienna, Copenhagen.
-Currencies: EUR, USD, GBP, DKK, converted at ECB reference rates of 23 September 2026.
+Each section has its own layout and interaction:
 
-## Read this before quoting any number
-
-| Tag | Rows | Source |
+| Section | Layout | Interaction |
 |---|---|---|
-| `SOURCED` | Monthly budget, Safety rating, Climate and daylight | Numbeo (September 2026); daylight calculated from latitude |
-| `MOCK DATA` | Housing, transit walkability, English, social, travel, part-time work | **Invented placeholders** |
+| Hero | Split, phone mockup over the eye wreath | Phone tilts, wreath eyes follow the cursor and blink |
+| Why the first weeks | Open, falling curve | Curve draws in on scroll |
+| Nearby (anonymous posts) | Copy + live feed | Vote up/down, new posts drop in every few seconds |
+| Recs | Horizontal tabs + ranked list | Sliding tab indicator, rows stagger in |
+| Groups | Centred cloud | Join / leave, groups float |
+| Guides | Full-bleed carousel | Drag or arrow buttons, cards tilt |
+| Weekends | Controls + trip list | Budget slider and length re-rank trips from Bilbao |
+| Your programme | App-window dashboard | Checklist fills the progress ring |
+| Safety | The only light band | Animated gradient |
+| Universities | Blue grid band | Bars grow in |
+| Join | Centred + city marquee | Rotating gradient border on the form |
+| FAQ | Hairlines | Smooth open |
+| Footer | Giant wordmark | Light follows the cursor |
 
-**Five of the nine rows are mock.** They stand in until the student survey runs. Do not put
-them in a presentation: an empty cell is honest, a wrong number is a claim.
+All motion switches off under `prefers-reduced-motion`. Scroll reveals apply only to content below the fold at load, so the first screen is always visible.
 
-Known limits on the sourced rows:
+## Run it
 
-- **Monthly budget** is Numbeo living costs excluding rent, plus a room in a shared flat. The
-  room is derived from a three-bedroom flat outside the centre divided by three, because no
-  source publishes room prices for all six cities on the same basis. Cross-checked against
-  HousingAnywhere room prices for Spain, where it comes out 4 percent low for Bilbao and 14
-  percent low for Barcelona, so it is conservative rather than inflated. It still runs above
-  the 800 to 1,200 euro range student guides quote for Spain, because Numbeo prices a general
-  adult basket including restaurants and leisure, not a frugal student.
-- **Transit fares** exclude student discounts, which are large. The pass is shown as its own
-  row and is **not** added to the monthly budget, because Numbeo already includes it in the
-  living-costs basket.
-- **Safety rating** is Numbeo's perception index, built from what site visitors report, not
-  from police statistics. City level only, never individual districts.
-- **Part-time work** is orientation, not legal advice. It follows your passport, and your
-  country of study is not the same as your nationality. Confirm with the international office.
+Open any of them in a browser — `website/index.html` for the landing page, `app/onboarding.html` for the
+product, `index.html` for Find Your Corner. Or `npx serve .` and pick from there.
 
-## Built with
+The notes below are about the website.
 
-One self-contained HTML file. Tailwind via CDN, Inter, no dependencies.
+The HTML leaves out the optional `<html>`, `<head>` and `<body>` tags so it can be published as a preview. Add `<!doctype html>` as the first line before deploying to a real host.
+
+## Before launch
+
+- **Everything on the page is example content.** That includes posts, recs, groups, listings and their prices, trip estimates (`TRIPS` in `main.js`), programme dates and report figures, and it's labelled as such on the page.
+- **The waitlist form sends nothing.** Connect a backend (Supabase, Formspree, or a Make/n8n webhook) in the "Join" block of `main.js`.
+- **Anonymous posting needs a moderation plan** before it goes live (the Safety section promises verified accounts and human review within a day).
+
+## Look
+
+- Ground: near-black `#05060A`, with slow blue, indigo and cyan light behind frosted glass.
+- Accent: baby blue `#8FD0FA`, in a gradient from ice `#D6EEFF` to indigo `#6A63FF`.
+- Type: Geist for text, Geist Mono for labels, Instrument Serif italic for accent words.
+- The eye wreath from pitch 5 is the mark, drawn in code (`drawWreath` in `main.js`).
+- Below 40px the mark becomes one eye (the nav logo).
