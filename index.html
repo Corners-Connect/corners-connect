@@ -225,17 +225,17 @@ document.getElementById('origin-pop').addEventListener('click',e=>e.stopPropagat
 /* ---------- CITIES ---------- */
 const CITIES=[
  {id:'lis',name:'Lisbon',country:'Portugal',cc:'pt',tag:'Warm, lowest daily costs, very large Erasmus scene',
-  budget:1869,setting:'coastal',vibe:'vibrant',climate:'warm',langEnv:'english-courses'},
+  budget:1351,setting:'coastal',vibe:'vibrant',climate:'warm',langEnv:'english-courses'},
  {id:'bcn',name:'Barcelona',country:'Spain',cc:'es',tag:'Big city, cheap transit, severe housing shortage',
-  budget:1993,setting:'metropolis',vibe:'vibrant',climate:'warm',langEnv:'immersion'},
+  budget:1383,setting:'metropolis',vibe:'vibrant',climate:'warm',langEnv:'immersion'},
  {id:'bil',name:'Bilbao',country:'Spain',cc:'es',tag:'Coastal and compact, Basque country, green and rainy',
-  budget:1740,setting:'coastal',vibe:'cozy',climate:'fourseasons',langEnv:'immersion'},
+  budget:1273,setting:'coastal',vibe:'cozy',climate:'fourseasons',langEnv:'immersion'},
  {id:'bol',name:'Bologna',country:'Italy',cc:'it',tag:'Classic student city, oldest university in Europe',
-  budget:1777,setting:'college',vibe:'cozy',climate:'fourseasons',langEnv:'immersion'},
+  budget:1429,setting:'college',vibe:'cozy',climate:'fourseasons',langEnv:'immersion'},
  {id:'vie',name:'Vienna',country:'Austria',cc:'at',tag:'Strong public transport, low rent for a capital',
-  budget:1923,setting:'historic',vibe:'laidback',climate:'fourseasons',langEnv:'english-courses'},
+  budget:1503,setting:'historic',vibe:'laidback',climate:'fourseasons',langEnv:'english-courses'},
  {id:'cph',name:'Copenhagen',country:'Denmark',cc:'dk',tag:'English everywhere, by far the most expensive',
-  budget:2612,setting:'metropolis',vibe:'laidback',climate:'fourseasons',langEnv:'english-courses'}
+  budget:1912,setting:'metropolis',vibe:'laidback',climate:'fourseasons',langEnv:'english-courses'}
 ];
 
 const GROUPS=[{id:'money',label:'Money'},{id:'house',label:'Housing'},{id:'life',label:'Daily life'},{id:'people',label:'People'},{id:'admin',label:'Working there'}];
@@ -243,12 +243,12 @@ const NUM_DATES='Lisbon and Vienna 22 Sep, Bilbao and Barcelona 19 Sep, Copenhag
 
 /* money-typed rows carry EUR values and are converted at render */
 const ROWS=[
- {id:'budget',group:'money',label:'Monthly budget',hint:'Rent, food, transport, all in',kind:'real',money:true,outlier:'cph',
-  src:{who:'Numbeo cost of living, rent and transport indices',when:NUM_DATES,
-   note:'Sum of three Numbeo figures: single-person living costs excluding rent, a one-bedroom flat outside the centre, and a monthly transport pass. '+FX_NOTE,
-   gap:'Assumes living alone. Most exchange students share a flat, which cuts the rent component substantially, so treat this as an upper bound. Breakdown per city is in the table below.'},
-  v:{lis:{main:1869,sub:'762 + 1,067 + 40'},bcn:{main:1993,sub:'827 + 1,143 + 23'},bil:{main:1740,sub:'764 + 931 + 45'},
-     bol:{main:1777,sub:'959 + 779 + 39'},vie:{main:1923,sub:'1,028 + 844 + 51'},cph:{main:2612,sub:'1,227 + 1,280 + 105'}}},
+ {id:'budget',group:'money',label:'Monthly budget',hint:'A room in a shared flat, plus living costs',kind:'real',money:true,outlier:'cph',
+  src:{who:'Numbeo cost of living and rent indices',when:NUM_DATES,
+   note:'Two figures added: Numbeo single-person living costs excluding rent, plus a room. The room is a three-bedroom flat outside the centre divided by three, because no source publishes room prices for all six cities on the same basis. The transport pass is NOT added separately, it is already inside the Numbeo living-costs basket. '+FX_NOTE,
+   gap:'Cross-checked against HousingAnywhere room prices for Spain: our derived room comes out 4 percent low for Bilbao and 14 percent low for Barcelona, so this is a slightly conservative estimate rather than an inflated one. It still runs above the 800 to 1,200 euro range that student guides quote for Spain, because Numbeo prices a general adult basket including restaurants and leisure, not a frugal student.'},
+  v:{lis:{main:1351,sub:'762 + 589'},bcn:{main:1383,sub:'827 + 556'},bil:{main:1273,sub:'764 + 509'},
+     bol:{main:1429,sub:'959 + 470'},vie:{main:1503,sub:'1,028 + 475'},cph:{main:1912,sub:'1,227 + 685'}}},
 
  {id:'housing',group:'house',label:'Housing availability',hint:'How hard it is to find a room',kind:'mock',outlier:'bil',
   src:{who:'Mock data, not researched',when:'Placeholder',
@@ -378,10 +378,10 @@ const BUDGET_BANDS=[
 function budgetOptions(){
  const edges=[800,1400,2200];
  return [
-  {v:1,l:'Under '+money(800),d:'Budget-friendly destinations only'},
-  {v:2,l:money(800)+' to '+money(1400),d:'Moderate cost of living'},
-  {v:3,l:money(1400)+' to '+money(2200),d:'Flexible, mid to high cost'},
-  {v:4,l:money(2200)+' and above',d:'Major international capitals'}
+  {v:1,l:'Under '+money(1300),d:'Budget-friendly destinations only'},
+  {v:2,l:money(1300)+' to '+money(1600),d:'Moderate cost of living'},
+  {v:3,l:money(1600)+' to '+money(2000),d:'Flexible, mid to high cost'},
+  {v:4,l:money(2000)+' and above',d:'Cost will not decide it'}
  ];
 }
 function questions(){return [
@@ -440,7 +440,7 @@ function answer(k,v){
  ans[k]=isNaN(+v)?v:+v;
  if(qi<Q.length-1){qi++;renderQ()} else scoreQuiz();
 }
-const CAPS={1:800,2:1400,3:2200,4:99999};
+const CAPS={1:1300,2:1600,3:2000,4:99999};
 const SAFE={lis:67,bcn:48,bil:51,bol:51,vie:70,cph:73};
 function scoreQuiz(){
  const cap=CAPS[ans.budget]||99999;
@@ -543,7 +543,7 @@ paintOrigin(); renderPicker();
 </script>
 <script data-eid="budget-fix">
 (function(){
-  var PARTS={lis:[762,1067,40],bcn:[827,1143,23],bil:[764,931,45],bol:[959,779,39],vie:[1028,844,51],cph:[1227,1280,105]};
+  var PARTS={lis:[762,589],bcn:[827,556],bil:[764,509],bol:[959,470],vie:[1028,475],cph:[1227,685]};
   function syncBudgetSubs(){
     var r=ROWS.filter(function(x){return x.id==='budget'})[0];
     Object.keys(PARTS).forEach(function(k){
