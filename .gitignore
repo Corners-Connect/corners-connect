@@ -1,0 +1,21 @@
+# === Secrets. Niemals committen. ===
+.env
+.env.*
+.mcp.json
+
+# === Lokales Tooling ===
+.claude/
+.pandaos/
+
+# === Kursunterlagen: bleiben lokal, gehoeren nicht ins Repo ===
+company/
+course/
+decisions/
+meetings/
+research/
+prototype/
+
+# === OS / Editoren ===
+.DS_Store
+.vscode/
+.idea/
