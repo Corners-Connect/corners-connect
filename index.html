@@ -161,7 +161,7 @@ tailwind.config={theme:{extend:{colors:{brand:{DEFAULT:'#1D4ED8',700:'#1739A8',5
 <section data-eid="s-compare" id="s-compare" class="scrn">
  <div data-eid="cmp-note" class="border-b" style="background:var(--accent);border-color:#C7D7FE">
   <div class="mx-auto max-w-[1400px] px-6 py-3 text-[13px]" style="color:#1E3A8A">
-   <span class="font-semibold">Four of nine rows are sourced.</span> Budget, safety, climate and transit fares come from Numbeo and public data, September 2026. The rows tagged <span class="font-semibold">Mock data</span> are placeholders until the student survey runs.
+   <span class="font-semibold">Four of nine rows are sourced,</span> plus the transit fare: budget and fares from Numbeo, safety from the Numbeo index, climate from 1991 to 2020 normals, travel from airport statistics. The rows tagged <span class="font-semibold">Mock data</span> are placeholders until the student survey runs.
   </div>
  </div>
  <div data-eid="cmp-bar" class="glass sticky top-16 z-30 border-b border-line">
@@ -288,12 +288,13 @@ const ROWS=[
      vie:{main:'Some German',sub:'Fine in the centre, harder in offices',agree:8,of:12},
      cph:{main:'English everywhere',sub:'Danish almost never required',agree:12,of:12}}},
 
- {id:'climate',group:'life',label:'Climate and daylight',hint:'Daylight on 21 December',kind:'real',outlier:'cph',
-  src:{who:'Calculated from each city latitude',when:'Fixed, does not change year to year',
-   note:'Standard sunrise equation with atmospheric refraction. Method checked against published values for Vienna and Lisbon, which match. The spread is over two and a half hours: a Copenhagen January is a different experience from a Lisbon one.',
-   gap:'Daylight is not sunshine and not temperature. Bilbao gets about as much daylight as Bologna and considerably more rain. Average temperatures still need sourcing.'},
-  v:{lis:{main:'9h 27m',sub:'Mild, 38.7 N'},bcn:{main:'9h 11m',sub:'Mild, 41.4 N'},bil:{main:'8h 58m',sub:'Wet, 43.3 N'},
-     bol:{main:'8h 50m',sub:'Cold and damp, 44.5 N'},vie:{main:'8h 23m',sub:'Cold, 48.2 N'},cph:{main:'7h 01m',sub:'Dark by 15:40, 55.7 N'}}},
+ {id:'climate',group:'life',label:'Climate and daylight',hint:'January daily high, December daylight, yearly rain',kind:'real',outlier:'cph',
+  src:{who:'Temperature and rainfall from 1991 to 2020 climate normals. Daylight calculated from latitude',when:'Normals period 1991 to 2020. Daylight does not change year to year',
+   note:'January is the coldest month of an autumn semester, so the daily high then says more about how it feels than an annual average would. Daylight uses the standard sunrise equation with atmospheric refraction, checked against published values for Vienna and Lisbon. Copenhagen normals come from a separate source because the Wikipedia article carries no climate table.',
+   gap:'Rainfall here is an annual total, not how it falls. Bilbao gets more than twice as much rain as Barcelona and spreads it over far more days, which is the part a yearly total hides. Temperatures are shown in Celsius regardless of where you are from.'},
+  v:{lis:{main:'15.1 C',sub:'9h 27m daylight, 793 mm rain'},bcn:{main:'14.0 C',sub:'9h 11m daylight, 558 mm rain'},
+     bil:{main:'13.5 C',sub:'8h 58m daylight, 1,158 mm rain'},bol:{main:'7.2 C',sub:'8h 50m daylight, 668 mm rain'},
+     vie:{main:'4.2 C',sub:'8h 23m daylight, 669 mm rain'},cph:{main:'3.4 C',sub:'7h 01m daylight, 660 mm rain'}}},
 
  {id:'social',group:'people',label:'Social and nightlife',hint:'International students, bars, events',kind:'mock',outlier:'bil',
   src:{who:'Mock data, not researched',when:'Placeholder',
@@ -303,13 +304,13 @@ const ROWS=[
      bil:{main:'Moderate',sub:'Smaller scene, easier to become part of'},bol:{main:'Large',sub:'Concentrated in the old town'},
      vie:{main:'Large',sub:'Spread across several universities'},cph:{main:'Large',sub:'Organised introduction programme'}}},
 
- {id:'travel',group:'people',label:'Travel connectivity',hint:'Budget airports and rail hubs',kind:'mock',outlier:'vie',
-  src:{who:'Mock data, not researched',when:'Placeholder',
-   note:'Invented for the prototype. Real version comes from airport route counts and rail timetables, both of which are published.',
-   gap:'Sourceable without a survey. Count destinations served by low-cost carriers from each airport, plus direct rail connections.'},
-  v:{lis:{main:'Good',sub:'Airport in the city, few rail links'},bcn:{main:'Excellent',sub:'Major hub, high-speed rail'},
-     bil:{main:'Limited',sub:'Smaller airport, often one stop'},bol:{main:'Good',sub:'Central on the Italian rail network'},
-     vie:{main:'Excellent',sub:'Rail hub for central Europe'},cph:{main:'Good',sub:'Strong air links, limited rail south'}}},
+ {id:'travel',group:'people',label:'Travel connectivity',hint:'Passengers a year at the main airport',kind:'real',outlier:'bcn',
+  src:{who:'Airport passenger statistics from the Wikipedia article for each airport',when:'Barcelona, Lisbon, Vienna and Bilbao 2025. Copenhagen and Bologna 2024, because their 2025 totals are not published yet',
+   note:'Passenger volume is a PROXY for how many places you can reach directly and how often. It is not the same thing as cheap weekend flights, but larger airports carry more low-cost routes. The spread is wide: Barcelona moves eight times as many people as Bilbao.',
+   gap:'Rail is missing from this number, which makes the row unfair to the smaller cities. Bologna sits on the Italian high-speed network and Copenhagen has the Oresund link to Sweden, and neither shows up in airport traffic. Two of the figures are a year older than the rest. Adding a rail measure is the next step.'},
+  v:{bcn:{main:'57.5M',sub:'Barcelona El Prat, 2025'},lis:{main:'36.1M',sub:'Humberto Delgado, 2025'},
+     vie:{main:'32.6M',sub:'Vienna International, 2025'},cph:{main:'29.9M',sub:'Kastrup, 2024'},
+     bol:{main:'10.8M',sub:'Guglielmo Marconi, 2024'},bil:{main:'7.1M',sub:'Bilbao Airport, 2025'}}},
 
  {id:'work',group:'admin',label:'Part-time work',hint:'Depends on where you are from',kind:'mock',origin:true,outlier:null,
   src:{who:'Mock data. Not legal advice',when:'Placeholder',

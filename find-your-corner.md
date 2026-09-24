@@ -22,11 +22,12 @@ Currencies: EUR, USD, GBP, DKK, converted at ECB reference rates of 23 September
 
 | Tag | Rows | Source |
 |---|---|---|
-| `SOURCED` | Monthly budget, Safety rating, Climate and daylight | Numbeo (September 2026); daylight calculated from latitude |
-| `MOCK DATA` | Housing, transit walkability, English, social, travel, part-time work | **Invented placeholders** |
+| `SOURCED` | Monthly budget, Safety rating, Climate and daylight, Travel connectivity | Numbeo (September 2026); airport passenger statistics; 1991–2020 climate normals; daylight calculated from latitude |
+| `MOCK DATA` | Housing, transit walkability, English, social, part-time work | **Invented placeholders** |
 
-**Five of the nine rows are mock.** They stand in until the student survey runs. Do not put
-them in a presentation: an empty cell is honest, a wrong number is a claim.
+**Four of the nine rows are mock,** plus the walkability note on the transit row. They stand
+in until the student survey runs. Do not put them in a presentation: an empty cell is honest,
+a wrong number is a claim.
 
 Known limits on the sourced rows:
 
@@ -44,6 +45,13 @@ Known limits on the sourced rows:
   from police statistics. City level only, never individual districts.
 - **Part-time work** is orientation, not legal advice. It follows your passport, and your
   country of study is not the same as your nationality. Confirm with the international office.
+- **Travel connectivity** is annual airport passengers, a proxy for how many places you can
+  reach directly. It does not include rail, which makes it unfair to Bologna (Italian
+  high-speed network) and Copenhagen (Oresund link). Copenhagen and Bologna figures are 2024,
+  the rest 2025, because their 2025 totals are not published yet.
+- **Climate** shows the January daily high, because January is the coldest month of an autumn
+  semester. Rainfall is an annual total and does not show how it falls: Bilbao gets more than
+  twice Barcelona's rain across far more days. Celsius only.
 
 ## Built with
 
