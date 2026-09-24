@@ -3,402 +3,510 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>corners. — city comparison</title>
-<meta name="od:tweaks" content='[{"id":"radius","label":"Corner radius","type":"slider","cssVar":"--radius","default":12,"min":0,"max":24,"step":2,"unit":"px"},{"id":"display","label":"Headline size","type":"slider","cssVar":"--fs-display","default":60,"min":36,"max":84,"step":2,"unit":"px"},{"id":"rowpad","label":"Row spacing","type":"slider","cssVar":"--row-pad","default":20,"min":12,"max":36,"step":2,"unit":"px"},{"id":"accent","label":"Accent","type":"color","cssVar":"--accent","default":"#EFF4FF"}]'>
+<title>corners. — Find Your Corner</title>
+<meta name="od:tweaks" content='[{"id":"radius","label":"Corner radius","type":"slider","cssVar":"--radius","default":12,"min":0,"max":24,"step":2,"unit":"px"},{"id":"display","label":"Headline size","type":"slider","cssVar":"--fs-display","default":58,"min":36,"max":84,"step":2,"unit":"px"},{"id":"rowpad","label":"Row spacing","type":"slider","cssVar":"--row-pad","default":20,"min":12,"max":36,"step":2,"unit":"px"},{"id":"accent","label":"Accent","type":"color","cssVar":"--accent","default":"#EFF4FF"}]'>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --background:#FFFFFF;
-  --primary:#1D4ED8;
-  --secondary:#0F172A;
-  --accent:#EFF4FF;
-  --font-display:'Inter',system-ui,sans-serif;
-  --radius:12px;
-  --fs-display:60px;
-  --row-pad:20px;
-  --muted:#64748B;
-  --line:#E2E8F0;
-  --surface:#F1F5F9;
-  --good:#047857;
-  --warn:#B45309;
-  --hard:#BE3A2B;
-  --ease-out:cubic-bezier(0.23,1,0.32,1);
-  --ease-drawer:cubic-bezier(0.32,0.72,0,1);
+ --background:#FFFFFF; --primary:#1D4ED8; --secondary:#0F172A; --accent:#EFF4FF;
+ --font-display:'Inter',system-ui,sans-serif;
+ --radius:12px; --fs-display:58px; --row-pad:20px;
+ --muted:#64748B; --line:#E2E8F0; --surface:#F1F5F9;
+ --good:#047857; --warn:#B45309; --hard:#BE3A2B;
+ --ease-out:cubic-bezier(0.23,1,0.32,1); --ease-drawer:cubic-bezier(0.32,0.72,0,1);
 }
 html{-webkit-font-smoothing:antialiased}
 body{font-family:var(--font-display);color:var(--secondary);background:var(--background);margin:0}
-.scrn{display:none}
-.scrn.on{display:block}
+.scrn{display:none}.scrn.on{display:block}
 .fade-up{animation:fu .42s var(--ease-out) both}
 @keyframes fu{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .stagger>*{animation:fu .42s var(--ease-out) both}
-.stagger>*:nth-child(1){animation-delay:.02s}
-.stagger>*:nth-child(2){animation-delay:.06s}
-.stagger>*:nth-child(3){animation-delay:.10s}
-.stagger>*:nth-child(4){animation-delay:.14s}
-.stagger>*:nth-child(5){animation-delay:.18s}
+.stagger>*:nth-child(1){animation-delay:.02s}.stagger>*:nth-child(2){animation-delay:.06s}
+.stagger>*:nth-child(3){animation-delay:.10s}.stagger>*:nth-child(4){animation-delay:.14s}
 .press{transition:transform .14s var(--ease-out),background-color .16s var(--ease-out),border-color .16s var(--ease-out),box-shadow .16s var(--ease-out)}
 .press:active{transform:scale(.97)}
 *:focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:6px}
 .glass{background:color-mix(in srgb,var(--background) 82%,transparent);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%)}
-.rk{border-radius:var(--radius)}
-.rk-lg{border-radius:calc(var(--radius) + 6px)}
+.rk{border-radius:var(--radius)}.rk-lg{border-radius:calc(var(--radius) + 6px)}
 .rowpad{padding-top:var(--row-pad);padding-bottom:var(--row-pad)}
 .drawer{transform:translateX(100%);transition:transform .34s var(--ease-drawer)}
 .drawer.on{transform:none}
 .scrim{opacity:0;pointer-events:none;transition:opacity .28s var(--ease-out)}
 .scrim.on{opacity:1;pointer-events:auto}
 .cell{transition:opacity .3s var(--ease-out),background-color .3s var(--ease-out)}
-.dim .cell:not(.outlier){opacity:.34}
-.dim .cell.outlier{background:var(--accent)}
-.srcchip{transition:color .16s var(--ease-out),background-color .16s var(--ease-out)}
-.pending{border:1px dashed #CBD5E1;border-radius:calc(var(--radius) - 4px);padding:10px 12px;color:var(--muted);font-size:13px;display:inline-flex;align-items:center;gap:7px}
+.dim .cell:not(.outlier){opacity:.34}.dim .cell.outlier{background:var(--accent)}
+.pop{opacity:0;transform:scale(.96) translateY(-4px);transform-origin:top right;pointer-events:none;transition:opacity .18s var(--ease-out),transform .18s var(--ease-out)}
+.pop.on{opacity:1;transform:none;pointer-events:auto}
+.pending{border:1px dashed #CBD5E1;border-radius:calc(var(--radius) - 4px);padding:10px 12px;color:var(--muted);font-size:13px;display:inline-block}
 @media (hover:hover) and (pointer:fine){
-  .srcchip:hover{background:#DCE6FF;color:#1739A8}
-  .lift{transition:transform .2s var(--ease-out),box-shadow .2s var(--ease-out),border-color .2s var(--ease-out)}
-  .lift:hover{transform:translateY(-2px);box-shadow:0 8px 24px -8px rgba(15,23,42,.18);border-color:#94A3B8}
+ .lift{transition:transform .2s var(--ease-out),box-shadow .2s var(--ease-out),border-color .2s var(--ease-out)}
+ .lift:hover{transform:translateY(-2px);box-shadow:0 8px 24px -8px rgba(15,23,42,.18);border-color:#94A3B8}
 }
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important}}
 .bar{height:4px;border-radius:99px;background:var(--line);overflow:hidden}
 .bar>i{display:block;height:100%;border-radius:99px;background:var(--primary);transition:width .5s var(--ease-out)}
 .tnum{font-variant-numeric:tabular-nums}
+.chip{display:inline-flex;align-items:center;gap:4px;border-radius:6px;padding:2px 6px;font-size:10px;font-weight:600;letter-spacing:.03em;text-transform:uppercase}
+.c-real{background:#F1F5F9;color:#475569}
+.c-mock{background:#FFFBEB;color:#92400E;border:1px solid #FDE68A}
 </style>
 <script>
-tailwind.config={theme:{extend:{colors:{
- brand:{DEFAULT:'#1D4ED8',700:'#1739A8',50:'#EFF4FF',100:'#DCE6FF'},
- ink:'#0F172A',muted:'#64748B',line:'#E2E8F0',surface:'#F1F5F9'},
- fontFamily:{sans:['Inter','system-ui','sans-serif']}}}}
+tailwind.config={theme:{extend:{colors:{brand:{DEFAULT:'#1D4ED8',700:'#1739A8',50:'#EFF4FF'},ink:'#0F172A',muted:'#64748B',line:'#E2E8F0',surface:'#F1F5F9'},fontFamily:{sans:['Inter','system-ui','sans-serif']}}}}
 </script>
 </head>
 <body data-eid="body">
 
 <header data-eid="header" class="glass sticky top-0 z-40 border-b border-line">
-  <div class="mx-auto max-w-[1400px] px-6 h-16 flex items-center gap-6">
-    <button data-eid="brand" onclick="go('home')" class="press flex items-baseline gap-px text-[22px] tracking-[-.03em]">
-      <span class="font-semibold">corners</span><span class="font-semibold" style="color:var(--primary)">.</span>
-    </button>
-    <nav data-eid="nav" class="hidden md:flex items-center gap-1 ml-2">
-      <button data-eid="nav-compare" onclick="go('picker')" class="press rk px-3 py-1.5 text-[14px] font-medium text-muted hover:text-ink hover:bg-surface">Compare cities</button>
-      <button data-eid="nav-guided" onclick="startQuiz()" class="press rk px-3 py-1.5 text-[14px] font-medium text-muted hover:text-ink hover:bg-surface">Which city fits you</button>
-    </nav>
-    <div class="ml-auto flex items-center gap-3">
-      <span data-eid="proto-flag" class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 border border-line text-[11px] font-medium text-slate-600">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 6v6l4 2"></path><circle cx="12" cy="12" r="10"></circle></svg>
-        Data: September 2026
-      </span>
-      <button data-eid="signin" class="press text-[14px] font-medium text-muted hover:text-ink">Sign in</button>
-    </div>
+ <div class="mx-auto max-w-[1400px] px-6 h-16 flex items-center gap-6">
+  <button data-eid="brand" onclick="go('home')" class="press flex items-baseline gap-px text-[22px] tracking-[-.03em]">
+   <span class="font-semibold">corners</span><span class="font-semibold" style="color:var(--primary)">.</span>
+  </button>
+  <nav data-eid="nav" class="hidden md:flex items-center gap-1 ml-2">
+   <button data-eid="nav-compare" onclick="go('picker')" class="press rk px-3 py-1.5 text-[14px] font-medium text-muted hover:text-ink hover:bg-surface">Compare cities</button>
+   <button data-eid="nav-guided" onclick="startQuiz()" class="press rk px-3 py-1.5 text-[14px] font-medium text-muted hover:text-ink hover:bg-surface">Find your corner</button>
+  </nav>
+  <div class="ml-auto relative">
+   <button data-eid="origin-btn" id="origin-btn" onclick="togglePop(event)" class="press inline-flex items-center gap-2 rk border border-line bg-white px-3 py-1.5 text-[13px] font-medium hover:bg-surface">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20"></path><path d="M12 2a15 15 0 0 1 0 20a15 15 0 0 1 0-20"></path></svg>
+    <span id="origin-label">Coming from: Germany</span>
+    <span class="text-muted">·</span><span id="cur-label" class="tnum">EUR</span>
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"></path></svg>
+   </button>
+   <div data-eid="origin-pop" id="origin-pop" class="pop absolute right-0 mt-2 w-[300px] rk-lg border border-line bg-white p-4 shadow-[0_16px_40px_-12px_rgba(15,23,42,.25)] z-50">
+    <label class="block text-[12px] font-semibold uppercase tracking-[.07em] text-muted mb-1.5">Where are you coming from</label>
+    <select data-eid="origin-select" id="origin-select" onchange="setOrigin(this.value)" class="w-full rk border border-line bg-white px-3 py-2 text-[14px] mb-1"></select>
+    <p class="text-[12px] text-muted leading-[1.5] mb-4">Sets your currency and what you are allowed to work.</p>
+    <label class="block text-[12px] font-semibold uppercase tracking-[.07em] text-muted mb-1.5">Show prices in</label>
+    <select data-eid="cur-select" id="cur-select" onchange="setCur(this.value)" class="w-full rk border border-line bg-white px-3 py-2 text-[14px]"></select>
+   </div>
   </div>
+ </div>
 </header>
 
 <!-- HOME -->
 <section data-eid="s-home" id="s-home" class="scrn on">
-  <div class="mx-auto max-w-[1400px] px-6">
-    <div class="py-20 md:py-28 max-w-[780px] stagger">
-      <p data-eid="home-eyebrow" class="text-[13px] font-semibold tracking-[.08em] uppercase mb-5" style="color:var(--primary)">For students who already know they are going</p>
-      <h1 data-eid="home-h1" class="leading-[1.02] tracking-[-.035em] font-semibold mb-6" style="font-size:var(--fs-display)">
-        You picked the year abroad.<br>Now pick the city.
-      </h1>
-      <p data-eid="home-sub" class="text-[19px] leading-[1.55] text-muted mb-10 max-w-[620px]">
-        Rankings compare universities. We compare the places you would actually live in: what it costs, how hard it is to find a room, and what students who went last year said about it.
-      </p>
-      <div class="flex flex-wrap gap-3">
-        <button data-eid="cta-quiz" onclick="startQuiz()" class="press rk px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_1px_2px_rgba(15,23,42,.12)]" style="background:var(--primary)">Which city is right for you?</button>
-        <button data-eid="cta-compare" onclick="go('picker')" class="press rk border border-line bg-white px-6 py-3.5 text-[15px] font-semibold hover:bg-surface">I have a shortlist, compare them</button>
-      </div>
-    </div>
-    <div data-eid="home-strip" class="border-t border-line py-10 grid sm:grid-cols-3 gap-8 md:gap-16">
-      <div data-eid="hs-1">
-        <div class="w-9 h-9 rk grid place-items-center mb-3" style="background:var(--accent);color:var(--primary)">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><rect x="7" y="12" width="3" height="6"></rect><rect x="14" y="8" width="3" height="10"></rect></svg>
-        </div>
-        <h3 class="text-[15px] font-semibold mb-1.5">Eight things that change minds</h3>
-        <p class="text-[14px] leading-[1.6] text-muted">Not fifty. The rows students actually switch cities over.</p>
-      </div>
-      <div data-eid="hs-2">
-        <div class="w-9 h-9 rk grid place-items-center mb-3" style="background:var(--accent);color:var(--primary)">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
-        </div>
-        <h3 class="text-[15px] font-semibold mb-1.5">Every number has a source</h3>
-        <p class="text-[14px] leading-[1.6] text-muted">Tap any value to see where it came from, when, and what it misses.</p>
-      </div>
-      <div data-eid="hs-3b"><div class="w-9 h-9 rk grid place-items-center mb-3" style="background:var(--accent);color:var(--primary)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path></svg></div><h3 class="text-[15px] font-semibold mb-1.5">Opinions stay opinions</h3><p class="text-[14px] leading-[1.6] text-muted">Where students disagree we show you the split, never a verdict of our own.</p></div>
-    </div>
+ <div class="mx-auto max-w-[1400px] px-6">
+  <div class="py-20 md:py-24 max-w-[780px] stagger">
+   <p data-eid="home-eyebrow" class="text-[13px] font-semibold tracking-[.08em] uppercase mb-5" style="color:var(--primary)">For students who already know they are going</p>
+   <h1 data-eid="home-h1" class="leading-[1.03] tracking-[-.035em] font-semibold mb-6" style="font-size:var(--fs-display)">Find your corner.</h1>
+   <p data-eid="home-sub" class="text-[19px] leading-[1.55] text-muted mb-10 max-w-[620px]">Answer six questions and we rank the cities for you, or skip it and compare destinations you already have in mind.</p>
+   <div class="flex flex-wrap gap-3">
+    <button data-eid="cta-quiz" onclick="startQuiz()" class="press rk px-6 py-3.5 text-[15px] font-semibold text-white" style="background:var(--primary)">Take the survey</button>
+    <button data-eid="cta-compare" onclick="go('picker')" class="press rk border border-line bg-white px-6 py-3.5 text-[15px] font-semibold hover:bg-surface">Skip, let me compare</button>
+   </div>
   </div>
+  <div data-eid="home-strip" class="border-t border-line py-10 grid sm:grid-cols-3 gap-8 md:gap-16">
+   <div data-eid="hs-1"><h3 class="text-[15px] font-semibold mb-1.5">Nine metrics that change minds</h3><p class="text-[14px] leading-[1.6] text-muted">Budget, housing, safety, transit, English, climate, nightlife, connections, work rights.</p></div>
+   <div data-eid="hs-2"><h3 class="text-[15px] font-semibold mb-1.5">Every number has a source</h3><p class="text-[14px] leading-[1.6] text-muted">Tap any tag to see where the value came from, when, and what it misses.</p></div>
+   <div data-eid="hs-3"><h3 class="text-[15px] font-semibold mb-1.5">In your currency</h3><p class="text-[14px] leading-[1.6] text-muted">Tell us where you are from and prices convert, with the exchange rate on record.</p></div>
+  </div>
+ </div>
 </section>
 
 <!-- PICKER -->
 <section data-eid="s-picker" id="s-picker" class="scrn">
-  <div class="mx-auto max-w-[1400px] px-6 py-14">
-    <div class="flex items-end justify-between gap-6 mb-8 flex-wrap">
-      <div>
-        <button data-eid="picker-back" onclick="go('home')" class="press text-[13px] font-medium text-muted hover:text-ink mb-3 flex items-center gap-1.5">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>Back
-        </button>
-        <h2 data-eid="picker-h" class="text-[32px] tracking-[-.025em] font-semibold">Pick two or three cities</h2>
-        <p data-eid="picker-sub" class="text-[15px] text-muted mt-2">Three is the most you can read side by side without it turning into a spreadsheet.</p>
-      </div>
-      <button data-eid="picker-go" onclick="openCompare()" disabled class="press rk px-6 py-3 text-[15px] font-semibold text-white disabled:bg-slate-200 disabled:text-slate-400" style="background:var(--primary)">
-        Compare <span data-eid="picker-count" id="picker-count">0</span> of 3
-      </button>
-    </div>
-    <style data-eid="btn-fix">[data-eid="picker-go"]:disabled{background:#E2E8F0 !important;color:#94A3B8 !important;cursor:not-allowed}</style><div data-eid="search-wrap" class="mb-7">
-  <div class="relative max-w-[440px]">
-    <svg class="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" style="color:var(--muted)" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
-    <input data-eid="city-search" id="city-search" type="text" autocomplete="off" placeholder="Search a city or country" aria-label="Search cities" class="w-full rk border border-line bg-white pl-11 pr-11 py-3 text-[15px] outline-none placeholder:text-slate-400">
-    <button data-eid="search-clear" id="search-clear" type="button" aria-label="Clear search" class="press hidden absolute right-3 top-1/2 -translate-y-1/2 w-7 h-7 grid place-items-center rounded-full text-muted hover:bg-surface hover:text-ink"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
+ <div class="mx-auto max-w-[1400px] px-6 py-14">
+  <div class="flex items-end justify-between gap-6 mb-8 flex-wrap">
+   <div>
+    <button data-eid="picker-back" onclick="go('home')" class="press text-[13px] font-medium text-muted hover:text-ink mb-3">Back</button>
+    <h2 data-eid="picker-h" class="text-[32px] tracking-[-.025em] font-semibold">Pick two or three cities</h2>
+    <p data-eid="picker-sub" class="text-[15px] text-muted mt-2">Three is the most you can read side by side without it turning into a spreadsheet.</p>
+   </div>
+   <button data-eid="picker-go" onclick="openCompare()" disabled class="press rk px-6 py-3 text-[15px] font-semibold text-white" style="background:var(--primary)">Compare <span id="picker-count">0</span> of 3</button>
   </div>
-  <p data-eid="search-count" id="search-count" class="text-[13px] text-muted mt-2.5"></p>
-</div><div data-eid="city-grid" id="city-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div><div data-eid="no-match" id="no-match" class="hidden rk-lg border border-dashed border-slate-300 px-8 py-12 text-center" style="background:var(--surface)">
-  <div class="w-11 h-11 rounded-full grid place-items-center mx-auto mb-4" style="background:var(--background);color:var(--muted)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"></circle><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 0 0-16 0c0 3 2.7 6.9 8 11.7z"></path></svg></div>
-  <h3 data-eid="nm-title" id="nm-title" class="text-[18px] font-semibold tracking-[-.015em] mb-2">No match</h3>
-  <p data-eid="nm-body" class="text-[14px] leading-[1.6] text-muted max-w-[420px] mx-auto mb-6">We cover six cities while we are testing the idea. Tell us where you are going and it goes to the top of the list.</p>
-  <button data-eid="nm-request" id="nm-request" type="button" class="press rk px-5 py-2.5 text-[14px] font-semibold text-white" style="background:var(--primary)">Request this city</button>
-  <p data-eid="nm-done" id="nm-done" class="hidden text-[14px] font-medium" style="color:var(--good)">Noted. We will let you know when it is covered.</p>
-</div>
+  <div data-eid="search-wrap" class="mb-7">
+   <input data-eid="city-search" id="city-search" type="text" autocomplete="off" placeholder="Search a city or country" aria-label="Search cities" class="w-full max-w-[440px] rk border border-line bg-white px-4 py-3 text-[15px] outline-none placeholder:text-slate-400">
+   <p data-eid="search-count" id="search-count" class="text-[13px] text-muted mt-2.5"></p>
   </div>
+  <div data-eid="city-grid" id="city-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+  <div data-eid="no-match" id="no-match" class="hidden rk-lg border border-dashed border-slate-300 px-8 py-12 text-center" style="background:var(--surface)">
+   <h3 data-eid="nm-title" id="nm-title" class="text-[18px] font-semibold mb-2">No match</h3>
+   <p class="text-[14px] text-muted max-w-[420px] mx-auto mb-6">We cover six cities while we are testing the idea. Tell us where you are going and it goes to the top of the list.</p>
+   <button data-eid="nm-request" id="nm-request" class="press rk px-5 py-2.5 text-[14px] font-semibold text-white" style="background:var(--primary)">Request this city</button>
+   <p data-eid="nm-done" id="nm-done" class="hidden text-[14px] font-medium" style="color:var(--good)">Noted. We will let you know when it is covered.</p>
+  </div>
+ </div>
 </section>
 
 <!-- QUIZ -->
 <section data-eid="s-quiz" id="s-quiz" class="scrn">
-  <div class="mx-auto max-w-[720px] px-6 py-16">
-    <div class="flex items-center gap-3 mb-10">
-      <div class="flex-1 bar"><i id="quiz-bar" style="width:25%"></i></div>
-      <span data-eid="quiz-step" id="quiz-step" class="text-[13px] font-medium text-muted tnum">1 of 4</span>
-    </div>
-    <div data-eid="quiz-body" id="quiz-body"></div>
+ <div class="mx-auto max-w-[760px] px-6 py-16">
+  <div class="flex items-center gap-3 mb-10">
+   <div class="flex-1 bar"><i id="quiz-bar" style="width:16%"></i></div>
+   <span data-eid="quiz-step" id="quiz-step" class="text-[13px] font-medium text-muted tnum">1 of 6</span>
   </div>
+  <div data-eid="quiz-body" id="quiz-body"></div>
+ </div>
 </section>
 
 <!-- RESULT -->
 <section data-eid="s-result" id="s-result" class="scrn">
-  <div class="mx-auto max-w-[1000px] px-6 py-16">
-    <p data-eid="res-eyebrow" class="text-[13px] font-semibold tracking-[.08em] uppercase mb-4" style="color:var(--primary)">Your shortlist</p>
-    <h2 data-eid="res-h" class="text-[34px] tracking-[-.025em] font-semibold mb-3">Three cities that fit what you said</h2>
-    <p data-eid="res-sub" class="text-[15px] text-muted mb-10 max-w-[620px]">Ranked on the four rows we have sourced data for. This is a starting point for the comparison, not a recommendation.</p>
-    <div data-eid="res-list" id="res-list" class="space-y-3 mb-10"></div>
-    <div class="flex flex-wrap gap-3">
-      <button data-eid="res-compare" onclick="openCompare()" class="press rk px-6 py-3.5 text-[15px] font-semibold text-white" style="background:var(--primary)">Compare these three</button>
-      <button data-eid="res-redo" onclick="startQuiz()" class="press rk border border-line bg-white px-6 py-3.5 text-[15px] font-semibold hover:bg-surface">Change my answers</button>
-    </div>
+ <div class="mx-auto max-w-[1000px] px-6 py-16">
+  <p data-eid="res-eyebrow" class="text-[13px] font-semibold tracking-[.08em] uppercase mb-4" style="color:var(--primary)">Your shortlist</p>
+  <h2 data-eid="res-h" class="text-[34px] tracking-[-.025em] font-semibold mb-3">Three cities that fit what you said</h2>
+  <p data-eid="res-sub" class="text-[15px] text-muted mb-8 max-w-[620px]">A starting point for the comparison, not a recommendation.</p>
+  <div data-eid="res-note" id="res-note" class="hidden rk border p-4 mb-8 text-[14px] leading-[1.6]" style="border-color:#FDE68A;background:#FFFBEB;color:#92400E"></div>
+  <div data-eid="res-list" id="res-list" class="space-y-3 mb-10"></div>
+  <div class="flex flex-wrap gap-3">
+   <button data-eid="res-compare" onclick="openCompare()" class="press rk px-6 py-3.5 text-[15px] font-semibold text-white" style="background:var(--primary)">Compare these three</button>
+   <button data-eid="res-redo" onclick="startQuiz()" class="press rk border border-line bg-white px-6 py-3.5 text-[15px] font-semibold hover:bg-surface">Change my answers</button>
   </div>
+ </div>
 </section>
 
 <!-- COMPARE -->
 <section data-eid="s-compare" id="s-compare" class="scrn">
-  
-
-  <div data-eid="cmp-note2" class="border-b" style="background:var(--accent);border-color:#C7D7FE"><div class="mx-auto max-w-[1400px] px-6 py-3 flex items-start gap-2.5 text-[13px]" style="color:#1E3A8A"><svg class="shrink-0 mt-px" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><p><span class="font-semibold">Four rows are real, four are mock.</span> Money and daylight are sourced figures from September 2026. The rows tagged <span class="font-semibold">Mock data</span> are invented placeholders standing in until the student survey runs, and they are labelled so nobody mistakes one for the other.</p></div></div><div data-eid="cmp-bar" class="glass sticky top-16 z-30 border-b border-line">
-    <div class="mx-auto max-w-[1400px] px-6 py-3 flex items-center gap-4 flex-wrap">
-      <button data-eid="cmp-back" onclick="go('picker')" class="press text-[13px] font-medium text-muted hover:text-ink flex items-center gap-1.5">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>Change cities
-      </button>
-      <div class="ml-auto flex items-center gap-2">
-        <button data-eid="cmp-diff" id="cmp-diff" onclick="toggleDiff()" class="press inline-flex items-center gap-2 rk border border-line bg-white px-3 py-1.5 text-[13px] font-medium hover:bg-surface">
-          <span id="diff-dot" class="w-3.5 h-3.5 rounded-full border-2 border-slate-300"></span>
-          Highlight what differs
-        </button>
-      </div>
-    </div>
+ <div data-eid="cmp-note" class="border-b" style="background:var(--accent);border-color:#C7D7FE">
+  <div class="mx-auto max-w-[1400px] px-6 py-3 text-[13px]" style="color:#1E3A8A">
+   <span class="font-semibold">Four of nine rows are sourced.</span> Budget, safety, climate and transit fares come from Numbeo and public data, September 2026. The rows tagged <span class="font-semibold">Mock data</span> are placeholders until the student survey runs.
   </div>
-
-  <div class="mx-auto max-w-[1400px] px-6 pb-24">
-    <div data-eid="cmp-heads" id="cmp-heads" class="grid gap-px bg-line border-b-2 sticky top-[124px] z-20" style="grid-template-columns:210px repeat(3,1fr);border-color:#CBD5E1"></div>
-    <div data-eid="cmp-rows" id="cmp-rows"></div>
+ </div>
+ <div data-eid="cmp-bar" class="glass sticky top-16 z-30 border-b border-line">
+  <div class="mx-auto max-w-[1400px] px-6 py-3 flex items-center gap-4 flex-wrap">
+   <button data-eid="cmp-back" onclick="go('picker')" class="press text-[13px] font-medium text-muted hover:text-ink">Change cities</button>
+   <div class="ml-auto">
+    <button data-eid="cmp-diff" onclick="toggleDiff()" class="press inline-flex items-center gap-2 rk border border-line bg-white px-3 py-1.5 text-[13px] font-medium hover:bg-surface">
+     <span id="diff-dot" class="w-3.5 h-3.5 rounded-full border-2 border-slate-300"></span>Highlight what differs
+    </button>
+   </div>
   </div>
+ </div>
+ <div class="mx-auto max-w-[1400px] px-6 pb-24">
+  <div data-eid="cmp-heads" id="cmp-heads" class="grid gap-px bg-line border-b-2 sticky top-[116px] z-20" style="grid-template-columns:220px repeat(3,1fr);border-color:#CBD5E1"></div>
+  <div data-eid="cmp-rows" id="cmp-rows"></div>
+ </div>
 </section>
 
 <div data-eid="scrim" id="scrim" class="scrim fixed inset-0 z-40" style="background:rgba(15,23,42,.25)" onclick="closeDrawer()"></div>
-<aside data-eid="drawer" id="drawer" class="drawer fixed right-0 top-0 h-full w-full max-w-[430px] bg-white z-50 border-l border-line flex flex-col shadow-[-12px_0_40px_-16px_rgba(15,23,42,.25)]" role="dialog" aria-modal="true" aria-labelledby="dr-title">
-  <div class="px-6 py-5 border-b border-line flex items-start gap-4">
-    <div class="flex-1">
-      <p data-eid="dr-kicker" id="dr-kicker" class="text-[11px] font-semibold tracking-[.09em] uppercase mb-1.5" style="color:var(--primary)"></p>
-      <h3 data-eid="dr-title" id="dr-title" class="text-[19px] font-semibold tracking-[-.015em]"></h3>
-    </div>
-    <button data-eid="dr-close" onclick="closeDrawer()" aria-label="Close" class="press shrink-0 w-8 h-8 grid place-items-center rk text-muted hover:bg-surface hover:text-ink">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
-    </button>
-  </div>
-  <div data-eid="dr-body" id="dr-body" class="px-6 py-6 overflow-y-auto grow"></div>
+<aside data-eid="drawer" id="drawer" class="drawer fixed right-0 top-0 h-full w-full max-w-[430px] bg-white z-50 border-l border-line flex flex-col" role="dialog" aria-modal="true" aria-labelledby="dr-title">
+ <div class="px-6 py-5 border-b border-line flex items-start gap-4">
+  <div class="flex-1"><p id="dr-kicker" class="text-[11px] font-semibold tracking-[.09em] uppercase mb-1.5" style="color:var(--primary)"></p>
+  <h3 data-eid="dr-title" id="dr-title" class="text-[19px] font-semibold"></h3></div>
+  <button data-eid="dr-close" onclick="closeDrawer()" aria-label="Close" class="press w-8 h-8 grid place-items-center rk text-muted hover:bg-surface">
+   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
+ </div>
+ <div data-eid="dr-body" id="dr-body" class="px-6 py-6 overflow-y-auto grow"></div>
 </aside>
 
 <script>
-/* ---- CITIES ---- */
+/* ---------- ORIGIN + CURRENCY ---------- */
+const ORIGINS=[
+ {id:'de',name:'Germany',cur:'EUR',eu:true},{id:'at',name:'Austria',cur:'EUR',eu:true},
+ {id:'es',name:'Spain',cur:'EUR',eu:true},{id:'it',name:'Italy',cur:'EUR',eu:true},
+ {id:'pt',name:'Portugal',cur:'EUR',eu:true},{id:'fr',name:'France',cur:'EUR',eu:true},
+ {id:'nl',name:'Netherlands',cur:'EUR',eu:true},{id:'dk',name:'Denmark',cur:'DKK',eu:true},
+ {id:'gb',name:'United Kingdom',cur:'GBP',eu:false},{id:'us',name:'United States',cur:'USD',eu:false}
+];
+const RATES={EUR:1,USD:1.1411,GBP:0.8595,DKK:7.4756};
+const FX_NOTE='Converted from euro at European Central Bank reference rates of 23 September 2026: 1 EUR = 1.1411 USD = 0.8595 GBP = 7.4756 DKK.';
+let origin=ORIGINS[0], cur='EUR';
+
+function money(eur){
+ const v=eur*RATES[cur];
+ return (cur==='DKK'? Math.round(v/10)*10 : Math.round(v)).toLocaleString('en-US')+' '+cur;
+}
+function setOrigin(id){
+ origin=ORIGINS.find(o=>o.id===id); cur=origin.cur;
+ document.getElementById('cur-select').value=cur;
+ paintOrigin(); if(picked.length) renderCompare();
+}
+function setCur(c){ cur=c; paintOrigin(); if(picked.length) renderCompare(); }
+function paintOrigin(){
+ document.getElementById('origin-label').textContent='Coming from: '+origin.name;
+ document.getElementById('cur-label').textContent=cur;
+}
+function togglePop(e){ e.stopPropagation(); document.getElementById('origin-pop').classList.toggle('on'); }
+document.addEventListener('click',()=>document.getElementById('origin-pop').classList.remove('on'));
+document.getElementById('origin-pop').addEventListener('click',e=>e.stopPropagation());
+
+/* ---------- CITIES ---------- */
 const CITIES=[
- {id:'lis',name:'Lisbon',country:'Portugal',tag:'Warm, cheapest daily costs, very large Erasmus scene',cost:761.6,size:'big',lang:'learn'},
- {id:'bcn',name:'Barcelona',country:'Spain',tag:'Big city, cheapest transport, severe housing shortage',cost:827.4,size:'big',lang:'learn'},
- {id:'bil',name:'Bilbao',country:'Spain',tag:'Coastal and compact, Basque country, green and rainy',cost:764.4,size:'small',lang:'learn'},
- {id:'bol',name:'Bologna',country:'Italy',tag:'Classic small student city, cheapest rent here',cost:958.8,size:'small',lang:'learn'},
- {id:'vie',name:'Vienna',country:'Austria',tag:'Strong public transport, low rent for a capital',cost:1028.3,size:'big',lang:'learn'},
- {id:'cph',name:'Copenhagen',country:'Denmark',tag:'English everywhere, by far the most expensive',cost:1227.1,size:'big',lang:'english'}
+ {id:'lis',name:'Lisbon',country:'Portugal',cc:'pt',tag:'Warm, lowest daily costs, very large Erasmus scene',
+  budget:1869,setting:'coastal',vibe:'vibrant',climate:'warm',langEnv:'english-courses'},
+ {id:'bcn',name:'Barcelona',country:'Spain',cc:'es',tag:'Big city, cheap transit, severe housing shortage',
+  budget:1993,setting:'metropolis',vibe:'vibrant',climate:'warm',langEnv:'immersion'},
+ {id:'bil',name:'Bilbao',country:'Spain',cc:'es',tag:'Coastal and compact, Basque country, green and rainy',
+  budget:1740,setting:'coastal',vibe:'cozy',climate:'fourseasons',langEnv:'immersion'},
+ {id:'bol',name:'Bologna',country:'Italy',cc:'it',tag:'Classic student city, oldest university in Europe',
+  budget:1777,setting:'college',vibe:'cozy',climate:'fourseasons',langEnv:'immersion'},
+ {id:'vie',name:'Vienna',country:'Austria',cc:'at',tag:'Strong public transport, low rent for a capital',
+  budget:1923,setting:'historic',vibe:'laidback',climate:'fourseasons',langEnv:'english-courses'},
+ {id:'cph',name:'Copenhagen',country:'Denmark',cc:'dk',tag:'English everywhere, by far the most expensive',
+  budget:2612,setting:'metropolis',vibe:'laidback',climate:'fourseasons',langEnv:'english-courses'}
 ];
 
-const GROUPS=[{id:'money',label:'Money'},{id:'house',label:'Housing'},{id:'life',label:'Daily life'},{id:'people',label:'People'},{id:'travel',label:'Getting home'}];
+const GROUPS=[{id:'money',label:'Money'},{id:'house',label:'Housing'},{id:'life',label:'Daily life'},{id:'people',label:'People'},{id:'admin',label:'Working there'}];
+const NUM_DATES='Lisbon and Vienna 22 Sep, Bilbao and Barcelona 19 Sep, Copenhagen 17 Sep, Bologna 15 Sep 2026';
 
-const NUMBEO_DATES='Lisbon and Vienna 22 Sep 2026, Bilbao and Barcelona 19 Sep 2026, Copenhagen 17 Sep 2026, Bologna 15 Sep 2026';
-
+/* money-typed rows carry EUR values and are converted at render */
 const ROWS=[
- {id:'cost',group:'money',label:'Living costs, without rent',hint:'One person, month, Numbeo estimate',kind:'est',outlier:'cph',
-  src:{who:'Numbeo, crowd-sourced price index',url:'numbeo.com/cost-of-living',when:NUMBEO_DATES,
-   note:'Numbeo is crowd-sourced, so it reflects what contributors report rather than a statistical survey. It is the only source that covers all six cities on the same basis, which is why we use it: comparability matters more here than precision. Treat gaps of under about 10 percent as noise.',
-   gap:'Not a student figure. It is a general single-person estimate, so it likely overstates what a student on a tight budget spends.'},
-  v:{lis:{main:'762 EUR'},bcn:{main:'827 EUR'},bil:{main:'764 EUR'},bol:{main:'959 EUR'},vie:{main:'1,028 EUR'},cph:{main:'1,227 EUR'}}},
+ {id:'budget',group:'money',label:'Monthly budget',hint:'Rent, food, transport, all in',kind:'real',money:true,outlier:'cph',
+  src:{who:'Numbeo cost of living, rent and transport indices',when:NUM_DATES,
+   note:'Sum of three Numbeo figures: single-person living costs excluding rent, a one-bedroom flat outside the centre, and a monthly transport pass. '+FX_NOTE,
+   gap:'Assumes living alone. Most exchange students share a flat, which cuts the rent component substantially, so treat this as an upper bound. Breakdown per city is in the table below.'},
+  v:{lis:{main:1869,sub:'762 + 1,067 + 40'},bcn:{main:1993,sub:'827 + 1,143 + 23'},bil:{main:1740,sub:'764 + 931 + 45'},
+     bol:{main:1777,sub:'959 + 779 + 39'},vie:{main:1923,sub:'1,028 + 844 + 51'},cph:{main:2612,sub:'1,227 + 1,280 + 105'}}},
 
- {id:'rent',group:'money',label:'Rent, one-bedroom flat',hint:'Outside the centre, whole flat',kind:'est',outlier:'bol',
-  src:{who:'Numbeo, crowd-sourced rent index',url:'numbeo.com/cost-of-living',when:NUMBEO_DATES,
-   note:'Copenhagen converted from 9,550 DKK at roughly 7.46 DKK to the euro. Note the ordering surprise: Vienna, a capital, is cheaper than Lisbon or Barcelona.',
-   gap:'This is a whole flat, not a room in a shared one, which is what most exchange students actually rent. No source covers room prices for all six cities on a consistent basis. Sharing typically cuts this figure substantially. Replacing this row with real room prices is a research task.'},
-  v:{lis:{main:'1,067 EUR'},bcn:{main:'1,143 EUR'},bil:{main:'931 EUR'},bol:{main:'779 EUR'},vie:{main:'844 EUR'},cph:{main:'1,280 EUR',sub:'Converted from 9,550 DKK'}}},
+ {id:'housing',group:'house',label:'Housing availability',hint:'How hard it is to find a room',kind:'mock',outlier:'bil',
+  src:{who:'Mock data, not researched',when:'Placeholder',
+   note:'The row we expect to matter most, and the one no database holds. Housing difficulty is about timing, competition and local practice.',
+   gap:'Fill by surveying students who studied in each city, ten per city. Report how many agreed rather than issuing a verdict.'},
+  v:{lis:{main:'Hard',tone:'warn',sub:'Start looking 3 months ahead',agree:9,of:12},
+     bcn:{main:'Very hard',tone:'hard',sub:'City-wide housing shortage',agree:12,of:12},
+     bil:{main:'Manageable',tone:'good',sub:'Smaller market, less competition',agree:8,of:12},
+     bol:{main:'Hard',tone:'warn',sub:'Demand spikes in September',agree:9,of:12},
+     vie:{main:'Manageable',tone:'good',sub:'Student halls open to exchange students',agree:10,of:12},
+     cph:{main:'Very hard',tone:'hard',sub:'Start looking 5 months ahead',agree:11,of:12}}},
 
- {id:'transit',group:'money',label:'Monthly transport pass',hint:'Standard adult fare',kind:'est',outlier:'bcn',
-  src:{who:'Numbeo, reported ticket prices',url:'numbeo.com/cost-of-living',when:NUMBEO_DATES,
-   note:'Copenhagen converted from 780 DKK. Barcelona stands out at 22.80 EUR because of subsidised integrated travel cards.',
-   gap:'Student discounts are not reflected and they are large. Vienna, for example, sells a semester ticket to students registered in the city at far below the standard monthly fare. Every city here should be re-checked at the student rate before this row is published.'},
-  v:{lis:{main:'40 EUR'},bcn:{main:'22.80 EUR'},bil:{main:'45 EUR'},bol:{main:'39 EUR'},vie:{main:'51 EUR'},cph:{main:'105 EUR',sub:'Converted from 780 DKK'}}},
+ {id:'safety',group:'life',label:'Safety rating',hint:'Numbeo Safety Index, 0 to 100',kind:'real',outlier:'bcn',
+  src:{who:'Numbeo Safety Index and night-walking score',when:'Copenhagen 6 Sep, Lisbon 16 Sep, Bilbao and Bologna 22 Sep, Barcelona and Vienna 23 Sep 2026',
+   note:'Numbeo safety is built from PERCEPTIONS reported by site visitors over five years, not from police statistics. Contributor counts vary by city, from 281 in Bilbao to 646 in Lisbon.',
+   gap:'Perception is not crime data, and it can track how a neighbourhood looks rather than how dangerous it is. We report the index at city level with its source, never a verdict on individual districts.'},
+  v:{lis:{main:'67',tone:'good',sub:'Night walking 61, high'},bcn:{main:'48',tone:'warn',sub:'Night walking 42, moderate'},
+     bil:{main:'51',tone:'warn',sub:'Night walking 42, moderate'},bol:{main:'51',tone:'warn',sub:'Night walking 39, low'},
+     vie:{main:'70',tone:'good',sub:'Night walking 65, high'},cph:{main:'73',tone:'good',sub:'Night walking 68, high'}}},
 
- {id:'light',group:'life',label:'Daylight on 21 December',hint:'Shortest day of the year',kind:'calc',outlier:'cph',
-  src:{who:'Calculated from each city latitude',url:'Standard sunrise equation, with refraction',when:'Fixed, does not change year to year',
-   note:'Worth a row because it is the factor students mention most in hindsight and never consider in advance. The spread here is over two and a half hours: a Copenhagen January is a genuinely different experience from a Lisbon one. Method checked against published values for Vienna and Lisbon, which match.',
-   gap:'Daylight length is not the same as sunshine. Bilbao gets roughly as much daylight as Bologna but considerably more rain.'},
-  v:{lis:{main:'9h 27m',sub:'38.7 degrees north'},bcn:{main:'9h 11m',sub:'41.4 degrees north'},bil:{main:'8h 58m',sub:'43.3 degrees north'},bol:{main:'8h 50m',sub:'44.5 degrees north'},vie:{main:'8h 23m',sub:'48.2 degrees north'},cph:{main:'7h 01m',sub:'55.7 degrees north'}}},
+ {id:'transit',group:'life',label:'Transit and walkability',hint:'Monthly pass, and living without a car',kind:'mock',money:true,outlier:'bcn',
+  src:{who:'Fare from Numbeo. Walkability is mock data',when:NUM_DATES,
+   note:'The fare is a real reported figure. The walkability sentence underneath is invented and needs the student survey. '+FX_NOTE,
+   gap:'Fares exclude student discounts, which are large. Vienna sells students registered in the city a semester ticket far below the standard rate. Re-check every city at the student rate.'},
+  v:{lis:{main:40,sub:'Walkable plus metro, steep hills'},bcn:{main:23,sub:'Very walkable, dense metro'},
+     bil:{main:45,sub:'Compact, metro and tram'},bol:{main:39,sub:'Walk everywhere, covered arcades'},
+     vie:{main:51,sub:'Outstanding network'},cph:{main:105,sub:'Everyone cycles, budget for a bike'}}},
 
- {id:'hard',group:'house',label:'Finding a room',hint:'The row nobody else shows you',kind:'todo',outlier:null,
-  src:{who:'Not researched yet',url:'',when:'Needs the student survey',
-   note:'This is the row we expect to matter most, and it is the one we cannot source from a database. Housing difficulty is about timing, competition and local practice, and the only people who know it are students who have just been through it.',
-   gap:'Fill this by surveying students who studied in each city. Ten per city is enough to show a pattern. Report how many agreed rather than issuing a verdict of our own.'},
-  v:{}},
+ {id:'english',group:'life',label:'English accessibility',hint:'Daily life on English alone',kind:'mock',outlier:'cph',
+  src:{who:'Mock data, not researched',when:'Placeholder',
+   note:'Deliberately separate from the language of instruction, which is usually English. This is about the supermarket, the doctor and the landlord.',
+   gap:'Same student survey. Ask what people actually needed, not what the brochure claims.'},
+  v:{lis:{main:'Usually enough',sub:'Some Portuguese helps off the tourist track',agree:10,of:12},
+     bcn:{main:'Spanish needed',sub:'Catalan visible, rarely required of you',agree:9,of:12},
+     bil:{main:'Spanish needed',sub:'Basque in signage, not expected of you',agree:10,of:12},
+     bol:{main:'Italian needed',sub:'Less English outside the university',agree:11,of:12},
+     vie:{main:'Some German',sub:'Fine in the centre, harder in offices',agree:8,of:12},
+     cph:{main:'English everywhere',sub:'Danish almost never required',agree:12,of:12}}},
 
- {id:'lang',group:'life',label:'Language you need',hint:'To live there, not to study',kind:'todo',outlier:null,
-  src:{who:'Not researched yet',url:'',when:'Needs the student survey',
-   note:'Deliberately separate from the language of instruction, which is usually English. This row is about the supermarket, the doctor and the landlord, and no official source measures it.',
-   gap:'Same survey as the housing row. Ask what students actually needed, not what the university brochure claims.'},
-  v:{}},
+ {id:'climate',group:'life',label:'Climate and daylight',hint:'Daylight on 21 December',kind:'real',outlier:'cph',
+  src:{who:'Calculated from each city latitude',when:'Fixed, does not change year to year',
+   note:'Standard sunrise equation with atmospheric refraction. Method checked against published values for Vienna and Lisbon, which match. The spread is over two and a half hours: a Copenhagen January is a different experience from a Lisbon one.',
+   gap:'Daylight is not sunshine and not temperature. Bilbao gets about as much daylight as Bologna and considerably more rain. Average temperatures still need sourcing.'},
+  v:{lis:{main:'9h 27m',sub:'Mild, 38.7 N'},bcn:{main:'9h 11m',sub:'Mild, 41.4 N'},bil:{main:'8h 58m',sub:'Wet, 43.3 N'},
+     bol:{main:'8h 50m',sub:'Cold and damp, 44.5 N'},vie:{main:'8h 23m',sub:'Cold, 48.2 N'},cph:{main:'7h 01m',sub:'Dark by 15:40, 55.7 N'}}},
 
- {id:'intl',group:'people',label:'International students',hint:'How easy it is to find your people',kind:'todo',outlier:null,
-  src:{who:'Not researched yet',url:'',when:'Needs university data',
-   note:'Enrolment figures exist but each university publishes them differently, and a number pulled from six different reporting standards is not a comparison. Getting this right means asking six international offices the same question.',
-   gap:'One email per university. Also worth asking whether they would share partner lists, which would improve the whole product.'},
-  v:{}},
+ {id:'social',group:'people',label:'Social and nightlife',hint:'International students, bars, events',kind:'mock',outlier:'bil',
+  src:{who:'Mock data, not researched',when:'Placeholder',
+   note:'Invented for the prototype. Real figures mean asking six international offices the same question, because each publishes enrolment differently.',
+   gap:'One email per university. Also worth asking whether they would share partner lists.'},
+  v:{lis:{main:'Very large',sub:'One of the biggest Erasmus scenes'},bcn:{main:'Very large',sub:'Easy to stay in an international bubble'},
+     bil:{main:'Moderate',sub:'Smaller scene, easier to become part of'},bol:{main:'Large',sub:'Concentrated in the old town'},
+     vie:{main:'Large',sub:'Spread across several universities'},cph:{main:'Large',sub:'Organised introduction programme'}}},
 
- {id:'fly',group:'travel',label:'Getting home',hint:'Flight time and typical fare',kind:'todo',outlier:null,
-  src:{who:'Cannot be a fixed value',url:'',when:'Depends on where you are coming from',
-   note:'This row is different from the others: it has no single correct answer. Flight time and fare depend entirely on the student home airport, so the real product calculates it per user rather than publishing it.',
-   gap:'Design decision, not a research task. It needs a home airport from the user before the comparison can show anything here.'},
+ {id:'travel',group:'people',label:'Travel connectivity',hint:'Budget airports and rail hubs',kind:'mock',outlier:'vie',
+  src:{who:'Mock data, not researched',when:'Placeholder',
+   note:'Invented for the prototype. Real version comes from airport route counts and rail timetables, both of which are published.',
+   gap:'Sourceable without a survey. Count destinations served by low-cost carriers from each airport, plus direct rail connections.'},
+  v:{lis:{main:'Good',sub:'Airport in the city, few rail links'},bcn:{main:'Excellent',sub:'Major hub, high-speed rail'},
+     bil:{main:'Limited',sub:'Smaller airport, often one stop'},bol:{main:'Good',sub:'Central on the Italian rail network'},
+     vie:{main:'Excellent',sub:'Rail hub for central Europe'},cph:{main:'Good',sub:'Strong air links, limited rail south'}}},
+
+ {id:'work',group:'admin',label:'Part-time work',hint:'Depends on where you are from',kind:'mock',origin:true,outlier:null,
+  src:{who:'Mock data. Not legal advice',when:'Placeholder',
+   note:'This row changes with your country of origin because work rights follow your passport, not the city. EU citizens moving within the EU have full access; everyone else studies under a visa with hour limits.',
+   gap:'ORIENTATION ONLY. Rules change, differ by visa type, and your country of study is not the same as your nationality. Always confirm with the university international office before relying on this.'},
   v:{}}
 ];
 
-const KIND={
- est:{label:'Estimated',cls:'bg-slate-100 text-slate-600'},
- calc:{label:'Calculated',cls:'bg-slate-100 text-slate-600'},
- todo:{label:'Not researched',cls:'bg-amber-50 text-amber-800 border border-amber-200'}
-};
+/* work-rights matrix, mock */
+function workValue(city){
+ if(origin.eu) return {main:'No restriction',tone:'good',sub:'EU citizen, full access to the labour market'};
+ return {main:'Limited',tone:'warn',sub:'Student visa, typically 20 hours a week. Confirm with the international office'};
+}
 
-let picked=[],diffOn=false;
+let picked=[],diffOn=false,q='';
 
+/* ---------- NAV ---------- */
 function go(id){
  document.querySelectorAll('.scrn').forEach(s=>s.classList.remove('on'));
- const el=document.getElementById('s-'+id);el.classList.add('on');
- el.classList.remove('fade-up');void el.offsetWidth;el.classList.add('fade-up');
+ const el=document.getElementById('s-'+id); el.classList.add('on');
+ el.classList.remove('fade-up'); void el.offsetWidth; el.classList.add('fade-up');
  window.scrollTo({top:0,behavior:'instant'});
- if(id==='picker')renderPicker();
+ if(id==='picker') renderPicker();
 }
 
+/* ---------- PICKER ---------- */
 function renderPicker(){
- document.getElementById('city-grid').innerHTML=CITIES.map(c=>{
+ const term=q.trim().toLowerCase();
+ const list=CITIES.filter(c=>!term||c.name.toLowerCase().includes(term)||c.country.toLowerCase().includes(term));
+ const grid=document.getElementById('city-grid'), none=document.getElementById('no-match');
+ grid.innerHTML=list.map(c=>{
   const on=picked.includes(c.id);
-  return `<button data-eid="city-${c.id}" onclick="togglePick('${c.id}')" class="press lift rk-lg text-left border ${on?'ring-2':'border-line bg-white'} p-5" style="${on?'border-color:var(--primary);background:color-mix(in srgb,var(--accent) 60%,white);--tw-ring-color:var(--accent)':''}">
-   <div class="flex items-start justify-between gap-3 mb-1">
+  return `<button data-eid="city-${c.id}" onclick="togglePick('${c.id}')" class="press lift rk-lg text-left border ${on?'':'border-line'} bg-white p-5" style="${on?'border-color:var(--primary);background:color-mix(in srgb,var(--accent) 60%,white)':''}">
+   <div class="flex items-start justify-between gap-3">
     <div><h3 class="text-[18px] font-semibold tracking-[-.015em]">${c.name}</h3><p class="text-[13px] text-muted">${c.country}</p></div>
     <span class="shrink-0 w-6 h-6 rounded-full grid place-items-center border-2 ${on?'':'border-slate-300'}" style="${on?'background:var(--primary);border-color:var(--primary)':''}">
-     ${on?'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>':''}
-    </span>
+     ${on?'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>':''}</span>
    </div>
    <p class="text-[13px] text-muted mt-3 leading-[1.5]">${c.tag}</p>
+   <p class="text-[13px] font-semibold mt-3 tnum">${money(c.budget)} <span class="font-normal text-muted">a month</span></p>
   </button>`}).join('');
+ grid.classList.toggle('hidden',list.length===0);
+ none.classList.toggle('hidden',list.length>0);
+ if(!list.length) document.getElementById('nm-title').textContent='Nothing here called "'+q.trim()+'"';
+ document.getElementById('search-count').textContent=(term?list.length+' of '+CITIES.length+' cities match':CITIES.length+' cities while we are testing')+(picked.length?' · '+picked.length+' selected':'');
  document.getElementById('picker-count').textContent=picked.length;
- document.querySelector('[data-eid="picker-go"]').disabled=picked.length<2;
+ const b=document.querySelector('[data-eid="picker-go"]');
+ b.disabled=picked.length<2;
+ b.style.background=picked.length<2?'#E2E8F0':'var(--primary)';
+ b.style.color=picked.length<2?'#94A3B8':'#fff';
 }
 function togglePick(id){
- if(picked.includes(id))picked=picked.filter(x=>x!==id);
- else if(picked.length<3)picked.push(id);
+ if(picked.includes(id))picked=picked.filter(x=>x!==id); else if(picked.length<3)picked.push(id);
  renderPicker();
 }
+document.getElementById('city-search').addEventListener('input',e=>{q=e.target.value;renderPicker()});
+document.getElementById('nm-request').addEventListener('click',function(){this.classList.add('hidden');document.getElementById('nm-done').classList.remove('hidden')});
 
-const Q=[
- {id:'budget',q:'What can you spend a month, all in?',sub:'Rent, food, getting around, going out.',a:[{v:1,l:'Under 1,200 EUR',d:'Tight. Rules out the Nordic cities'},{v:2,l:'1,200 to 1,800 EUR',d:'Comfortable in most of southern Europe'},{v:3,l:'I have room to move',d:'Cost will not decide it'}]},
- {id:'lang',q:'Do you want to pick up the local language?',sub:'Living in it, not studying in it.',a:[{v:'learn',l:'Yes, that is part of the point',d:'Send me somewhere I will have to use it'},{v:'english',l:'I would rather get by in English',d:'One less thing to worry about'}]},
- {id:'size',q:'Big city or small city?',sub:'',a:[{v:'big',l:'Big city energy',d:'More going on, more anonymous'},{v:'small',l:'Smaller and walkable',d:'Easier to feel at home, quieter'}]},
- {id:'light',q:'How much do dark winters bother you?',sub:'The shortest day ranges from 7 hours here to nearly 9 and a half.',a:[{v:3,l:'A lot, I want the light',d:'Point me south'},{v:1,l:'Not really',d:'I can handle a dark January'}]}
+/* ---------- QUIZ, six questions from the product group ---------- */
+const BUDGET_BANDS=[
+ {v:1,eur:800,l:'Under {0}',d:'Budget-friendly destinations only'},
+ {v:2,eur:1400,l:'{1} to {0}',d:'Moderate cost of living'},
+ {v:3,eur:2200,l:'{1} to {0}',d:'Flexible, mid to high cost'},
+ {v:4,eur:99999,l:'{1} and above',d:'Major international capitals'}
 ];
-let qi=0,ans={};
-function startQuiz(){qi=0;ans={};go('quiz');renderQ()}
+function budgetOptions(){
+ const edges=[800,1400,2200];
+ return [
+  {v:1,l:'Under '+money(800),d:'Budget-friendly destinations only'},
+  {v:2,l:money(800)+' to '+money(1400),d:'Moderate cost of living'},
+  {v:3,l:money(1400)+' to '+money(2200),d:'Flexible, mid to high cost'},
+  {v:4,l:money(2200)+' and above',d:'Major international capitals'}
+ ];
+}
+function questions(){return [
+ {id:'lang',q:'Language and academic environment',sub:'What you need for classes and for daily life.',a:[
+  {v:'english-only',l:'English-only environment',d:'A destination where English is the native language'},
+  {v:'english-courses',l:'English courses in a foreign city',d:'Classes in English, local language in daily life'},
+  {v:'immersion',l:'Full immersion',d:'Classes and daily life in the local language'}]},
+ {id:'budget',q:'Monthly living budget',sub:'Rent, food, transport and going out. Shown in '+cur+'.',a:budgetOptions()},
+ {id:'setting',q:'City environment and setting',sub:'',a:[
+  {v:'metropolis',l:'Global metropolis',d:'Massive, fast-paced, endless activity'},
+  {v:'historic',l:'Cultural and historic hub',d:'Mid-sized, walkable, rich in heritage'},
+  {v:'coastal',l:'Coastal city',d:'Laid-back, water and the outdoors'},
+  {v:'college',l:'Classic college town',d:'University-centric, dominated by student life'}]},
+ {id:'vibe',q:'Social atmosphere',sub:'The day-to-day rhythm you want.',a:[
+  {v:'vibrant',l:'Vibrant and fast-paced',d:'High-energy scene, big nightlife'},
+  {v:'laidback',l:'Laid-back and balanced',d:'Cafe culture, relaxed social options'},
+  {v:'cozy',l:'Cozy and community-driven',d:'Close-knit student network'}]},
+ {id:'climate',q:'Climate preference',sub:'',a:[
+  {v:'warm',l:'Warm and sunny',d:'Mediterranean, mild winters'},
+  {v:'fourseasons',l:'Four seasons, cold winters',d:'Real autumn and winter, snow within reach'},
+  {v:'any',l:'Weather does not matter',d:'Adaptable to any climate'}]},
+ {id:'prio',q:'Your two non-negotiables',sub:'Pick exactly two. Used to break ties.',multi:2,a:[
+  {v:'safety',l:'Safety and peace of mind'},{v:'nightlife',l:'Nightlife and social options'},
+  {v:'afford',l:'Affordability and rent'},{v:'food',l:'Food and culinary scene'},
+  {v:'intl',l:'High density of international students'},{v:'outdoor',l:'Outdoor and nature access'}]}
+];}
+let Q=[],qi=0,ans={};
+function startQuiz(){Q=questions();qi=0;ans={prio:[]};go('quiz');renderQ()}
 function renderQ(){
- const q=Q[qi];
+ const x=Q[qi];
  document.getElementById('quiz-bar').style.width=((qi+1)/Q.length*100)+'%';
  document.getElementById('quiz-step').textContent=(qi+1)+' of '+Q.length;
+ const sel=v=>x.multi&&ans.prio.includes(v);
  document.getElementById('quiz-body').innerHTML=`<div class="fade-up">
-  <h2 data-eid="q-title" class="text-[30px] leading-[1.15] tracking-[-.025em] font-semibold mb-2">${q.q}</h2>
-  ${q.sub?`<p class="text-[15px] text-muted mb-8">${q.sub}</p>`:'<div class="mb-8"></div>'}
-  <div class="space-y-3">${q.a.map((a,i)=>`<button data-eid="q-${q.id}-${i}" onclick="answer('${q.id}','${a.v}')" class="press lift w-full text-left rk border border-line bg-white p-5">
-   <span class="block text-[16px] font-semibold mb-1">${a.l}</span><span class="block text-[14px] text-muted">${a.d}</span></button>`).join('')}</div>
+  <h2 data-eid="q-title" class="text-[30px] leading-[1.15] tracking-[-.025em] font-semibold mb-2">${x.q}</h2>
+  ${x.sub?`<p class="text-[15px] text-muted mb-8">${x.sub}</p>`:'<div class="mb-8"></div>'}
+  <div class="${x.multi?'grid sm:grid-cols-2 gap-3':'space-y-3'}">
+   ${x.a.map((a,i)=>`<button data-eid="q-${x.id}-${i}" onclick="answer('${x.id}','${a.v}')"
+    class="press lift w-full text-left rk border bg-white p-5 ${sel(a.v)?'':'border-line'}" style="${sel(a.v)?'border-color:var(--primary);background:color-mix(in srgb,var(--accent) 60%,white)':''}">
+    <span class="block text-[16px] font-semibold ${a.d?'mb-1':''}">${a.l}</span>
+    ${a.d?`<span class="block text-[14px] text-muted">${a.d}</span>`:''}</button>`).join('')}
+  </div>
+  ${x.multi?`<div class="mt-8 flex items-center gap-4"><button data-eid="q-next" onclick="scoreQuiz()" ${ans.prio.length!==2?'disabled':''}
+    class="press rk px-6 py-3 text-[15px] font-semibold text-white" style="background:${ans.prio.length===2?'var(--primary)':'#E2E8F0'};color:${ans.prio.length===2?'#fff':'#94A3B8'}">See my shortlist</button>
+    <span class="text-[13px] text-muted">${ans.prio.length} of 2 chosen</span></div>`:''}
   ${qi>0?`<button data-eid="q-back" onclick="qi--;renderQ()" class="press mt-8 text-[13px] font-medium text-muted hover:text-ink">Back</button>`:''}
  </div>`;
 }
-function answer(k,v){ans[k]=isNaN(+v)?v:+v;if(qi<Q.length-1){qi++;renderQ()}else scoreQuiz()}
-const LIGHT={lis:9.45,bcn:9.18,bil:8.97,bol:8.83,vie:8.38,cph:7.02};
+function answer(k,v){
+ const x=Q[qi];
+ if(x.multi){
+  if(ans.prio.includes(v)) ans.prio=ans.prio.filter(p=>p!==v);
+  else if(ans.prio.length<2) ans.prio.push(v);
+  renderQ(); return;
+ }
+ ans[k]=isNaN(+v)?v:+v;
+ if(qi<Q.length-1){qi++;renderQ()} else scoreQuiz();
+}
+const CAPS={1:800,2:1400,3:2200,4:99999};
+const SAFE={lis:67,bcn:48,bil:51,bol:51,vie:70,cph:73};
 function scoreQuiz(){
- const cap=ans.budget===1?850:ans.budget===2?1050:9999;
- const top=CITIES.map(c=>{
+ const cap=CAPS[ans.budget]||99999;
+ const scored=CITIES.map(c=>{
   let s=0;
-  if(c.cost<=cap)s+=3;else s-=Math.min(4,(c.cost-cap)/100);
-  if(ans.lang===c.lang)s+=2;
-  if(ans.size===c.size)s+=2;
-  if(ans.light===3)s+=(LIGHT[c.id]-7)*1.2;
-  return{...c,s}}).sort((a,b)=>b.s-a.s).slice(0,3);
- picked=top.map(c=>c.id);
- document.getElementById('res-list').innerHTML=top.map((c,i)=>`
+  if(c.budget<=cap) s+=4; else s-=Math.min(6,(c.budget-cap)/150);
+  if(ans.lang===c.langEnv) s+=3;
+  if(ans.lang==='english-only') s-=2;
+  if(ans.setting===c.setting) s+=2;
+  if(ans.vibe===c.vibe) s+=2;
+  if(ans.climate===c.climate||ans.climate==='any') s+=2;
+  (ans.prio||[]).forEach(p=>{
+   if(p==='safety') s+=(SAFE[c.id]-55)/12;
+   if(p==='afford') s+=(2100-c.budget)/200;
+   if(p==='nightlife'||p==='intl') s+=(c.vibe==='vibrant'?1.5:c.id==='bil'?-0.5:0.5);
+   if(p==='outdoor') s+=(c.setting==='coastal'?1.5:0);
+   if(p==='food') s+=(['bol','lis','bcn','bil'].includes(c.id)?1:0);
+  });
+  return {...c,s};
+ }).sort((a,b)=>b.s-a.s);
+ picked=scored.slice(0,3).map(c=>c.id);
+ const note=document.getElementById('res-note');
+ if(ans.lang==='english-only'){
+  note.textContent='None of our six cities is in a native English-speaking country, so that answer could not be matched. The ranking below uses your other five answers.';
+  note.classList.remove('hidden');
+ } else note.classList.add('hidden');
+ document.getElementById('res-list').innerHTML=scored.slice(0,3).map((c,i)=>`
   <div data-eid="res-${c.id}" class="flex items-center gap-5 rk-lg border border-line bg-white p-5">
    <span class="shrink-0 w-9 h-9 rounded-full grid place-items-center text-[15px] font-semibold tnum" style="background:var(--accent);color:var(--primary)">${i+1}</span>
-   <div class="grow"><h3 class="text-[17px] font-semibold tracking-[-.015em]">${c.name}<span class="text-muted font-normal">, ${c.country}</span></h3>
+   <div class="grow"><h3 class="text-[17px] font-semibold">${c.name}<span class="text-muted font-normal">, ${c.country}</span></h3>
    <p class="text-[14px] text-muted mt-0.5">${c.tag}</p></div>
-   <span class="shrink-0 text-[13px] font-medium text-muted hidden sm:block tnum">${Math.round(c.cost)} EUR a month</span>
-  </div>`).join('');
+   <span class="shrink-0 text-[13px] font-medium text-muted hidden sm:block tnum">${money(c.budget)}</span></div>`).join('');
  go('result');
 }
 
-function openCompare(){if(picked.length<2)return;renderCompare();go('compare')}
+/* ---------- COMPARE ---------- */
+const TONE={good:'var(--good)',warn:'var(--warn)',hard:'var(--hard)'};
+function openCompare(){ if(picked.length<2) return; renderCompare(); go('compare'); }
 function renderCompare(){
  const cs=picked.map(id=>CITIES.find(c=>c.id===id));
- const cols=`grid-template-columns:210px repeat(${cs.length},1fr)`;
+ const cols='grid-template-columns:220px repeat('+cs.length+',1fr)';
  const h=document.getElementById('cmp-heads');
  h.style.cssText=cols+';border-color:#CBD5E1';
- h.innerHTML=`<div class="bg-white py-5 px-4"></div>`+cs.map(c=>`<div data-eid="head-${c.id}" class="bg-white py-5 px-5">
-  <h3 class="text-[20px] font-semibold tracking-[-.02em]">${c.name}</h3><p class="text-[13px] text-muted mt-0.5">${c.country}</p></div>`).join('');
-
+ h.innerHTML='<div class="bg-white py-5 px-4"></div>'+cs.map(c=>
+  `<div data-eid="head-${c.id}" class="bg-white py-5 px-5"><h3 class="text-[20px] font-semibold tracking-[-.02em]">${c.name}</h3><p class="text-[13px] text-muted mt-0.5">${c.country}</p></div>`).join('');
  document.getElementById('cmp-rows').innerHTML=GROUPS.map(g=>{
-  const rows=ROWS.filter(r=>r.group===g.id);if(!rows.length)return '';
-  return `<div data-eid="grp-${g.id}">
-   <div class="pt-10 pb-3"><h4 class="text-[11px] font-semibold tracking-[.1em] uppercase text-muted">${g.label}</h4></div>
-   ${rows.map(r=>`<div data-eid="row-${r.id}" class="grid gap-px bg-line border-t border-line" style="${cols}">
-    <div class="bg-white rowpad px-4">
-     <p class="text-[14px] font-semibold leading-snug ${r.kind==='todo'?'text-muted':''}">${r.label}</p>
-     <p class="text-[12px] text-muted mt-1 leading-snug">${r.hint}</p>
-     <button data-eid="src-${r.id}" onclick="openDrawer('${r.id}')" class="srcchip press mt-2.5 inline-flex items-center gap-1 rounded-md ${KIND[r.kind].cls} px-1.5 py-0.5 text-[10px] font-semibold tracking-[.03em] uppercase">
-      ${KIND[r.kind].label}
-      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-     </button>
-    </div>
-    ${cs.map(c=>{
-     const v=r.v[c.id];
-     if(!v)return `<div data-eid="cell-${r.id}-${c.id}" class="cell bg-white rowpad px-5">
-      <span class="pending"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14"/></svg>Not researched</span></div>`;
-     return `<div data-eid="cell-${r.id}-${c.id}" class="cell bg-white rowpad px-5 ${r.outlier===c.id?'outlier':''}">
-      <p class="text-[19px] font-semibold tracking-[-.02em] tnum">${v.main}</p>
-      ${v.sub?`<p class="text-[12px] text-muted mt-1 leading-[1.45]">${v.sub}</p>`:''}</div>`}).join('')}
-   </div>`).join('')}</div>`}).join('');
+  const rows=ROWS.filter(r=>r.group===g.id); if(!rows.length) return '';
+  return `<div data-eid="grp-${g.id}"><div class="pt-10 pb-3"><h4 class="text-[11px] font-semibold tracking-[.1em] uppercase text-muted">${g.label}</h4></div>
+  ${rows.map(r=>`<div data-eid="row-${r.id}" class="grid gap-px bg-line border-t border-line" style="${cols}">
+   <div class="bg-white rowpad px-4">
+    <p class="text-[14px] font-semibold leading-snug">${r.label}</p>
+    <p class="text-[12px] text-muted mt-1 leading-snug">${r.hint}</p>
+    <button data-eid="src-${r.id}" onclick="openDrawer('${r.id}')" class="press mt-2.5 chip ${r.kind==='real'?'c-real':'c-mock'}">${r.kind==='real'?'Sourced':'Mock data'}
+     <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></button>
+   </div>
+   ${cs.map(c=>{
+    const v=r.origin?workValue(c):r.v[c.id];
+    if(!v) return `<div data-eid="cell-${r.id}-${c.id}" class="cell bg-white rowpad px-5"><span class="pending">Not researched</span></div>`;
+    const main=r.money?money(v.main):v.main;
+    return `<div data-eid="cell-${r.id}-${c.id}" class="cell bg-white rowpad px-5 ${r.outlier===c.id?'outlier':''}">
+     <p class="text-[19px] font-semibold tracking-[-.02em] tnum" style="${v.tone?'color:'+TONE[v.tone]:''}">${main}</p>
+     ${v.sub?`<p class="text-[12px] text-muted mt-1 leading-[1.45]">${v.sub}</p>`:''}
+     ${v.agree?`<div class="mt-3 max-w-[150px]"><div class="bar"><i style="width:${Math.round(v.agree/v.of*100)}%"></i></div>
+       <p class="text-[11px] text-muted mt-1.5 tnum">${v.agree} of ${v.of} students said this</p></div>`:''}
+    </div>`}).join('')}
+  </div>`).join('')}</div>`}).join('');
 }
 function toggleDiff(){
  diffOn=!diffOn;
@@ -408,152 +516,46 @@ function toggleDiff(){
  d.style.cssText=diffOn?'background:var(--primary);border-color:var(--primary)':'border-color:#CBD5E1';
 }
 
-function openDrawer(rowId){
- const r=ROWS.find(x=>x.id===rowId),todo=r.kind==='todo';
- document.getElementById('dr-kicker').textContent=todo?'Missing data':KIND[r.kind].label+' value';
+/* ---------- DRAWER ---------- */
+function openDrawer(id){
+ const r=ROWS.find(x=>x.id===id), mock=r.kind!=='real';
+ document.getElementById('dr-kicker').textContent=mock?'Mock data':'Sourced value';
  document.getElementById('dr-title').textContent=r.label;
  document.getElementById('dr-body').innerHTML=`
   <dl class="space-y-5 mb-7">
-   <div><dt class="text-[12px] font-semibold uppercase tracking-[.07em] text-muted mb-1.5">Where it comes from</dt>
-    <dd class="text-[15px] leading-[1.55]">${r.src.who}${r.src.url?`<br><span class="text-muted text-[13px]">${r.src.url}</span>`:''}</dd></div>
-   <div><dt class="text-[12px] font-semibold uppercase tracking-[.07em] text-muted mb-1.5">When</dt>
-    <dd class="text-[15px] leading-[1.55]">${r.src.when}</dd></div>
+   <div><dt class="text-[12px] font-semibold uppercase tracking-[.07em] text-muted mb-1.5">Where it comes from</dt><dd class="text-[15px] leading-[1.55]">${r.src.who}</dd></div>
+   <div><dt class="text-[12px] font-semibold uppercase tracking-[.07em] text-muted mb-1.5">When</dt><dd class="text-[15px] leading-[1.55]">${r.src.when}</dd></div>
   </dl>
-  <div class="rk p-5 mb-5" style="background:var(--surface)">
-   <p class="text-[14px] leading-[1.62] text-slate-700">${r.src.note}</p></div>
-  <div class="rk border p-5" style="${todo?'border-color:#FDE68A;background:#FFFBEB':'border-color:var(--line)'}">
-   <p class="text-[13px] font-semibold mb-1.5">${todo?'What it would take to fill this':'What this number does not tell you'}</p>
+  <div class="rk p-5 mb-5" style="background:var(--surface)"><p class="text-[14px] leading-[1.62] text-slate-700">${r.src.note}</p></div>
+  <div class="rk border p-5" style="${mock?'border-color:#FDE68A;background:#FFFBEB':'border-color:var(--line)'}">
+   <p class="text-[13px] font-semibold mb-1.5">${mock?'What it would take to fill this':'What this number does not tell you'}</p>
    <p class="text-[13px] leading-[1.6] text-muted">${r.src.gap}</p></div>`;
  document.getElementById('drawer').classList.add('on');
  document.getElementById('scrim').classList.add('on');
 }
 function closeDrawer(){document.getElementById('drawer').classList.remove('on');document.getElementById('scrim').classList.remove('on')}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer()});
-renderPicker();
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDrawer();document.getElementById('origin-pop').classList.remove('on')}});
+
+/* ---------- INIT ---------- */
+document.getElementById('origin-select').innerHTML=ORIGINS.map(o=>`<option value="${o.id}">${o.name}</option>`).join('');
+document.getElementById('cur-select').innerHTML=['EUR','USD','GBP','DKK'].map(c=>`<option value="${c}">${c}</option>`).join('');
+paintOrigin(); renderPicker();
 </script>
-<script data-eid="search-js">
+<script data-eid="budget-fix">
 (function(){
-  var q='';
-  var grid=document.getElementById('city-grid');
-  var input=document.getElementById('city-search');
-  var clear=document.getElementById('search-clear');
-  var count=document.getElementById('search-count');
-  var none=document.getElementById('no-match');
-  var nmTitle=document.getElementById('nm-title');
-  var nmBtn=document.getElementById('nm-request');
-  var nmDone=document.getElementById('nm-done');
-
-  function card(c){
-    var on=picked.indexOf(c.id)>-1;
-    return '<button data-eid="city-'+c.id+'" onclick="togglePick(\''+c.id+'\')" class="press lift rk-lg text-left border '+(on?'ring-2':'border-line bg-white')+' p-5" style="'+(on?'border-color:var(--primary);background:color-mix(in srgb,var(--accent) 60%,white);--tw-ring-color:var(--accent)':'')+'">'
-     +'<div class="flex items-start justify-between gap-3 mb-1"><div><h3 class="text-[18px] font-semibold tracking-[-.015em]">'+c.name+'</h3><p class="text-[13px] text-muted">'+c.country+'</p></div>'
-     +'<span class="shrink-0 w-6 h-6 rounded-full grid place-items-center border-2 '+(on?'':'border-slate-300')+'" style="'+(on?'background:var(--primary);border-color:var(--primary)':'')+'">'
-     +(on?'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>':'')
-     +'</span></div><p class="text-[13px] text-muted mt-3 leading-[1.5]">'+c.tag+'</p></button>';
-  }
-
-  renderPicker=function(){
-    var term=q.trim().toLowerCase();
-    var list=CITIES.filter(function(c){
-      return !term || c.name.toLowerCase().indexOf(term)>-1 || c.country.toLowerCase().indexOf(term)>-1;
+  var PARTS={lis:[762,1067,40],bcn:[827,1143,23],bil:[764,931,45],bol:[959,779,39],vie:[1028,844,51],cph:[1227,1280,105]};
+  function syncBudgetSubs(){
+    var r=ROWS.filter(function(x){return x.id==='budget'})[0];
+    Object.keys(PARTS).forEach(function(k){
+      r.v[k].sub=PARTS[k].map(function(n){
+        var v=n*RATES[cur];
+        return (cur==='DKK'? Math.round(v/10)*10 : Math.round(v)).toLocaleString('en-US');
+      }).join(' + ')+' '+cur;
     });
-    grid.innerHTML=list.map(card).join('');
-    grid.classList.toggle('hidden', list.length===0);
-    none.classList.toggle('hidden', list.length>0);
-    if(list.length===0){
-      nmTitle.textContent='Nothing here called “'+q.trim()+'”';
-      nmBtn.classList.remove('hidden');
-      nmDone.classList.add('hidden');
-    }
-    clear.classList.toggle('hidden', q.length===0);
-    var sel=picked.length? ' · '+picked.length+' selected':'';
-    count.textContent=(term? list.length+' of '+CITIES.length+' cities match':CITIES.length+' cities while we are testing')+sel;
-    var btn=document.querySelector('[data-eid="picker-go"]');
-    if(btn) btn.disabled=picked.length<2;
-    var pc=document.getElementById('picker-count');
-    if(pc) pc.textContent=picked.length;
-  };
-
-  input.addEventListener('input',function(e){q=e.target.value;renderPicker();});
-  input.addEventListener('keydown',function(e){ if(e.key==='Escape'){q='';input.value='';renderPicker();} });
-  clear.addEventListener('click',function(){q='';input.value='';input.focus();renderPicker();});
-  nmBtn.addEventListener('click',function(){ nmBtn.classList.add('hidden'); nmDone.classList.remove('hidden'); });
-  renderPicker();
-})();
-</script><script data-eid="mock-js">
-(function(){
-  KIND.mock={label:'Mock data',cls:'bg-amber-50 text-amber-800 border border-amber-200'};
-  var M={
-   hard:{
-    lis:{main:'Hard',tone:'warn',sub:'Start looking 3 months ahead',agree:9,of:12},
-    bcn:{main:'Very hard',tone:'hard',sub:'City-wide housing shortage',agree:12,of:12},
-    bil:{main:'Manageable',tone:'good',sub:'Smaller market, far less competition',agree:8,of:12},
-    bol:{main:'Hard',tone:'warn',sub:'Demand spikes sharply in September',agree:9,of:12},
-    vie:{main:'Manageable',tone:'good',sub:'Student halls open to exchange students',agree:10,of:12},
-    cph:{main:'Very hard',tone:'hard',sub:'Start looking 5 months ahead',agree:11,of:12}},
-   lang:{
-    lis:{main:'English is usually enough',sub:'Some Portuguese helps off the tourist track',agree:10,of:12},
-    bcn:{main:'Spanish, day to day',sub:'Catalan visible, rarely required of you',agree:9,of:12},
-    bil:{main:'Spanish, day to day',sub:'Basque everywhere in signage, not expected of you',agree:10,of:12},
-    bol:{main:'Italian, day to day',sub:'Less English once you leave the university',agree:11,of:12},
-    vie:{main:'Some German',sub:'Fine in the centre, harder in any office',agree:8,of:12},
-    cph:{main:'English, everywhere',sub:'Danish almost never required',agree:12,of:12}},
-   intl:{
-    lis:{main:'Very large',sub:'One of the biggest Erasmus scenes in Europe'},
-    bcn:{main:'Very large',sub:'International year round, easy to stay in a bubble'},
-    bil:{main:'Moderate',sub:'Smaller scene, easier to actually become part of'},
-    bol:{main:'Large',sub:'Concentrated in the old town'},
-    vie:{main:'Large',sub:'Spread across several universities'},
-    cph:{main:'Large',sub:'Well organised introduction programme'}},
-   fly:{
-    lis:{main:'3h 55m',sub:'150 to 260 EUR return'},
-    bcn:{main:'2h 45m',sub:'90 to 200 EUR return'},
-    bil:{main:'2h 40m',sub:'130 to 240 EUR, usually one stop'},
-    bol:{main:'1h 45m',sub:'80 to 180 EUR return'},
-    vie:{main:'1h 25m',sub:'70 to 160 EUR return'},
-    cph:{main:'1h 15m',sub:'60 to 150 EUR return'}}
-  };
-  var OUT={hard:'bil',lang:'cph',intl:'bil',fly:'cph'};
-  var HINT={fly:'Direct flight from Berlin',hard:'The row nobody else shows you',lang:'To live there, not to study',intl:'How easy it is to find your people'};
-  var NOTE={
-   hard:'Invented for the prototype. The real version comes from surveying students who studied in each city, reporting how many agreed rather than issuing a verdict of our own.',
-   lang:'Invented for the prototype. Deliberately separate from the language of instruction, which is usually English. This row is about the supermarket, the doctor and the landlord.',
-   intl:'Invented for the prototype. Real figures mean asking six international offices the same question, because each publishes enrolment differently and six reporting standards is not a comparison.',
-   fly:'Invented for the prototype, and assuming Berlin as the home airport. This row has no single correct value: the real product calculates it from wherever the student is actually coming from.'};
-  ROWS.forEach(function(r){
-   if(M[r.id]){ r.v=M[r.id]; r.kind='mock'; r.outlier=OUT[r.id]; r.hint=HINT[r.id];
-    r.src={who:'Mock data, not researched',url:'',when:'Placeholder, September 2026',note:NOTE[r.id],
-     gap:'Replace before this is shown to anyone outside the team. A mock figure that leaks into a pitch is worse than an empty cell.'}; }
-  });
-
-  var TONE={good:'var(--good)',warn:'var(--warn)',hard:'var(--hard)'};
-  renderCompare=function(){
-   var cs=picked.map(function(id){return CITIES.filter(function(c){return c.id===id})[0]});
-   var cols='grid-template-columns:210px repeat('+cs.length+',1fr)';
-   var h=document.getElementById('cmp-heads');
-   h.style.cssText=cols+';border-color:#CBD5E1';
-   h.innerHTML='<div class="bg-white py-5 px-4"></div>'+cs.map(function(c){
-    return '<div data-eid="head-'+c.id+'" class="bg-white py-5 px-5"><h3 class="text-[20px] font-semibold tracking-[-.02em]">'+c.name+'</h3><p class="text-[13px] text-muted mt-0.5">'+c.country+'</p></div>'}).join('');
-   document.getElementById('cmp-rows').innerHTML=GROUPS.map(function(g){
-    var rows=ROWS.filter(function(r){return r.group===g.id});
-    if(!rows.length) return '';
-    return '<div data-eid="grp-'+g.id+'"><div class="pt-10 pb-3"><h4 class="text-[11px] font-semibold tracking-[.1em] uppercase text-muted">'+g.label+'</h4></div>'
-    +rows.map(function(r){
-     return '<div data-eid="row-'+r.id+'" class="grid gap-px bg-line border-t border-line" style="'+cols+'">'
-      +'<div class="bg-white rowpad px-4"><p class="text-[14px] font-semibold leading-snug">'+r.label+'</p>'
-      +'<p class="text-[12px] text-muted mt-1 leading-snug">'+r.hint+'</p>'
-      +'<button data-eid="src-'+r.id+'" onclick="openDrawer(\''+r.id+'\')" class="srcchip press mt-2.5 inline-flex items-center gap-1 rounded-md '+KIND[r.kind].cls+' px-1.5 py-0.5 text-[10px] font-semibold tracking-[.03em] uppercase">'+KIND[r.kind].label
-      +'<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></button></div>'
-      +cs.map(function(c){
-       var v=r.v[c.id];
-       if(!v) return '<div data-eid="cell-'+r.id+'-'+c.id+'" class="cell bg-white rowpad px-5"><span class="pending">Not researched</span></div>';
-       return '<div data-eid="cell-'+r.id+'-'+c.id+'" class="cell bg-white rowpad px-5 '+(r.outlier===c.id?'outlier':'')+'">'
-        +'<p class="text-[19px] font-semibold tracking-[-.02em] tnum" style="'+(v.tone?'color:'+TONE[v.tone]:'')+'">'+v.main+'</p>'
-        +(v.sub?'<p class="text-[12px] text-muted mt-1 leading-[1.45]">'+v.sub+'</p>':'')
-        +(v.agree?'<div class="mt-3 max-w-[150px]"><div class="bar"><i style="width:'+Math.round(v.agree/v.of*100)+'%"></i></div><p class="text-[11px] text-muted mt-1.5 tnum">'+v.agree+' of '+v.of+' students said this</p></div>':'')
-        +'</div>'}).join('')
-      +'</div>'}).join('')+'</div>'}).join('');
-  };
+  }
+  var _rc=renderCompare;
+  renderCompare=function(){ syncBudgetSubs(); _rc(); };
+  syncBudgetSubs();
 })();
 </script></body>
 </html>
