@@ -11,7 +11,7 @@ The app for students abroad: Erasmus, study abroad and first-years who moved cit
 | Path | What it is |
 |---|---|
 | `PROJECT.md` | The master reference for the whole company. |
-| `tasks/` | **Who does what, by when.** The shared task overview: action, department, owner, start date, deadline. |
+| [Corners Tasks](https://github.com/orgs/Corners-Connect/projects/1) | **Who does what, by when.** The task board: action, department, owner, start date, deadline. Not a file, it lives under Projects. |
 | `app/` | The product: onboarding (`onboarding.html`) and the dashboard (`index.html`), plus `photos/`. No build step. |
 | `website/` | The public landing page: `index.html`, `styles.css`, `main.js`. No build step. |
 | `index.html` | **Find Your Corner** — the six-question survey and the side-by-side city comparison. Single file, Tailwind from a CDN. See [find-your-corner.md](find-your-corner.md). |
@@ -21,20 +21,29 @@ The app for students abroad: Erasmus, study abroad and first-years who moved cit
 
 ## Tasks
 
-Who does what, by when. One row per task.
+Who does what, by when:
 
-| Action | Department | Owner | Start date | Deadline |
-|---|---|---|---|---|
-| _No tasks yet_ | | | | |
+### → [Corners Tasks](https://github.com/orgs/Corners-Connect/projects/1)
 
-**[Add a task](https://github.com/Corners-Connect/corners-connect/edit/main/README.md)** — opens
-this file in the browser editor, no git needed. Add your row, then pick "Create a new branch for
-this commit and start a pull request".
+It works like a spreadsheet. Type a row at the bottom, then pick from dropdowns:
 
-Dates as `YYYY-MM-DD`, owner as `@github-username` so the person gets notified. Leave the owner
-empty rather than writing "everyone": a task owned by everyone is owned by nobody. The
-reasoning, and what to do once this table outgrows a single file, is in
-[`tasks/`](https://github.com/Corners-Connect/corners-connect/tree/main/tasks).
+| Column | What goes in it |
+|---|---|
+| Title | The task |
+| Department | Product, Tech, Marketing, Design, Research, Orga |
+| Assignees | The owner, picked from the team |
+| Start date | Date picker |
+| Deadline | Date picker |
+| Status | Todo, In Progress, Done |
+
+Sort, filter and group by person or department, or switch the same list to a board view.
+
+**One owner per task.** Leave it empty rather than assigning everyone: a task owned by everyone
+is owned by nobody.
+
+> This replaced a markdown table in this file. A table in a repo cannot have dropdowns, and
+> editing it meant scrolling through the raw source of this whole README. The trade-off: the
+> board is not a file, so it does not render here — you have to follow the link.
 
 ## Website sections
 
