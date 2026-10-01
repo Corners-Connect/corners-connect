@@ -6,9 +6,6 @@ The app for students abroad: Erasmus, study abroad and first-years who moved cit
 > the audience with sourced figures, marketing, the numbers we watch, and what's still to be voted.
 > This README covers the whole repo; the section detail below is the website.
 
-> **Who does what, by when: [tasks/](tasks/)** — the shared task list. Add a row in the browser,
-> no git needed.
-
 ## What's here
 
 | Path | What it is |
@@ -21,6 +18,21 @@ The app for students abroad: Erasmus, study abroad and first-years who moved cit
 | `docs/launch-book.html` | Pitch eight: audience, sourced market figures, channels, calendar, KPIs, risks. **Written for the earlier "groups of eleven" concept and needs updating** for the feature-based product. |
 | `docs/audience-research-plan.html` | Research plan (also references the earlier concept and a team of eleven). |
 | `docs/kpi-tree.md` | The KPI tree on pitch 6's five boxes — growth, quality, cost, delivery, motivation. Definitions, owners, sources, and what's countable while the pilot is hand-run. |
+
+## Tasks
+
+Who does what, by when. One row per task.
+
+| Action | Department | Owner | Start date | Deadline |
+|---|---|---|---|---|
+| _No tasks yet_ | | | | |
+
+**[Add a task](../../edit/main/README.md)** — opens this file in the browser editor, no git
+needed. Add your row, then pick "Create a new branch for this commit and start a pull request".
+
+Dates as `YYYY-MM-DD`, owner as `@github-username` so the person gets notified. Leave the owner
+empty rather than writing "everyone": a task owned by everyone is owned by nobody. The
+reasoning, and what to do once this table outgrows a single file, is in [`tasks/`](tasks/).
 
 ## Website sections
 
