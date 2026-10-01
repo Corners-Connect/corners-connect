@@ -46,66 +46,63 @@
       <p class="sec__p">What you want out of a semester. This is what ranks the cities.</p>
     </header>
 
-    <div class="q" data-q="acts">
-      <div class="q__head"><h3>What do you want to be doing?</h3><p>Pick as many as you like.</p></div>
-      <div class="opts opts--grid" data-multi="acts">
-        <button class="opt" type="button" data-v="surf">Surfing</button>
-        <button class="opt" type="button" data-v="hike">Hiking and mountains</button>
-        <button class="opt" type="button" data-v="beach">Beach life</button>
-        <button class="opt" type="button" data-v="night">Nightlife</button>
-        <button class="opt" type="button" data-v="art">Museums and art</button>
-        <button class="opt" type="button" data-v="food">Food</button>
-        <button class="opt" type="button" data-v="football">Football</button>
-        <button class="opt" type="button" data-v="ski">Skiing</button>
-        <button class="opt" type="button" data-v="immersion">Language immersion</button>
-        <button class="opt" type="button" data-v="buzz">Big-city buzz</button>
+    <div class="q" data-q="lang">
+      <div class="q__head"><h3>Language and academic environment</h3><p>What you need for classes and for daily life.</p></div>
+      <div class="opts opts--stack" data-one="lang">
+        <button class="opt" type="button" data-v="english-only"><b>English-only environment</b><span>A destination where English is the native language</span></button>
+        <button class="opt is-on" type="button" data-v="english-courses"><b>English courses in a foreign city</b><span>Classes in English, local language in daily life</span></button>
+        <button class="opt" type="button" data-v="immersion"><b>Full immersion</b><span>Classes and daily life in the local language</span></button>
       </div>
+      <p class="field__note" data-lang-note hidden>None of our ten cities is in a native English-speaking country, so that answer can't be matched. The ranking uses your other five answers.</p>
     </div>
 
     <div class="q" data-q="budget">
-      <div class="q__head"><h3>What can you spend a month?</h3><p>Rent, food, transport and a normal social life.</p></div>
-      <div class="slider">
-        <output class="slider__out" data-out="budget">€900</output>
-        <label class="sr-only" for="budget">Monthly budget in euros</label>
-        <input type="range" id="budget" min="500" max="1600" step="50" value="900" data-range="budget">
-        <div class="slider__scale"><span>€500</span><span>€1,600</span></div>
+      <div class="q__head"><h3>Monthly living budget</h3><p>Rent, food, transport and going out. Shown in euros.</p></div>
+      <div class="opts opts--stack" data-one="budget">
+        <button class="opt" type="button" data-v="1"><b>Under €1,300</b><span>Budget-friendly destinations only</span></button>
+        <button class="opt is-on" type="button" data-v="2"><b>€1,300 to €1,600</b><span>Moderate cost of living</span></button>
+        <button class="opt" type="button" data-v="3"><b>€1,600 to €2,000</b><span>Flexible, mid to high cost</span></button>
+        <button class="opt" type="button" data-v="4"><b>€2,000 and above</b><span>Cost will not decide it</span></button>
       </div>
     </div>
 
-    <div class="q" data-q="size">
-      <div class="q__head"><h3>How big a city?</h3></div>
-      <div class="opts" data-one="size">
-        <button class="opt" type="button" data-v="small">Small and walkable</button>
-        <button class="opt is-on" type="button" data-v="mid">Mid-size</button>
-        <button class="opt" type="button" data-v="big">Big city</button>
+    <div class="q" data-q="setting">
+      <div class="q__head"><h3>City environment and setting</h3></div>
+      <div class="opts opts--stack" data-one="setting">
+        <button class="opt" type="button" data-v="metropolis"><b>Global metropolis</b><span>Massive, fast-paced, endless activity</span></button>
+        <button class="opt is-on" type="button" data-v="historic"><b>Cultural and historic hub</b><span>Mid-sized, walkable, rich in heritage</span></button>
+        <button class="opt" type="button" data-v="coastal"><b>Coastal city</b><span>Laid-back, water and the outdoors</span></button>
+        <button class="opt" type="button" data-v="college"><b>Classic college town</b><span>University-centric, dominated by student life</span></button>
+      </div>
+    </div>
+
+    <div class="q" data-q="vibe">
+      <div class="q__head"><h3>Social atmosphere</h3><p>The day-to-day rhythm you want.</p></div>
+      <div class="opts opts--stack" data-one="vibe">
+        <button class="opt" type="button" data-v="vibrant"><b>Vibrant and fast-paced</b><span>High-energy scene, big nightlife</span></button>
+        <button class="opt is-on" type="button" data-v="laidback"><b>Laid-back and balanced</b><span>Café culture, relaxed social options</span></button>
+        <button class="opt" type="button" data-v="cozy"><b>Cozy and community-driven</b><span>Close-knit student network</span></button>
       </div>
     </div>
 
     <div class="q" data-q="climate">
-      <div class="q__head"><h3>What weather suits you?</h3></div>
-      <div class="opts" data-one="climate">
-        <button class="opt" type="button" data-v="mild">Mild and green</button>
-        <button class="opt is-on" type="button" data-v="warm">Warm most of the year</button>
-        <button class="opt" type="button" data-v="hot">Hot summers, I'll cope</button>
+      <div class="q__head"><h3>Climate preference</h3></div>
+      <div class="opts opts--stack" data-one="climate">
+        <button class="opt is-on" type="button" data-v="warm"><b>Warm and sunny</b><span>Mediterranean, mild winters</span></button>
+        <button class="opt" type="button" data-v="fourseasons"><b>Four seasons, cold winters</b><span>Real autumn and winter, snow within reach</span></button>
+        <button class="opt" type="button" data-v="any"><b>Weather does not matter</b><span>Adaptable to any climate</span></button>
       </div>
     </div>
 
-    <div class="q" data-q="lang">
-      <div class="q__head"><h3>Language, honestly.</h3></div>
-      <div class="opts" data-one="lang">
-        <button class="opt is-on" type="button" data-v="spanish">I want Spanish immersion</button>
-        <button class="opt" type="button" data-v="portuguese">Portuguese interests me</button>
-        <button class="opt" type="button" data-v="english">English needs to be enough</button>
-      </div>
-    </div>
-
-    <div class="q" data-q="home">
-      <div class="q__head"><h3>Where are you flying from?</h3></div>
-      <div class="opts" data-one="home">
-        <button class="opt is-on" type="button" data-v="us">United States</button>
-        <button class="opt" type="button" data-v="latam">Latin America</button>
-        <button class="opt" type="button" data-v="eu">Europe</button>
-        <button class="opt" type="button" data-v="asia">Asia or Oceania</button>
+    <div class="q" data-q="prio">
+      <div class="q__head"><h3>Your two non-negotiables</h3><p>Pick exactly two. Used to break ties.</p></div>
+      <div class="opts opts--grid" data-multi="prio" data-max="2">
+        <button class="opt" type="button" data-v="safety">Safety and peace of mind</button>
+        <button class="opt" type="button" data-v="nightlife">Nightlife and social options</button>
+        <button class="opt" type="button" data-v="afford">Affordability and rent</button>
+        <button class="opt" type="button" data-v="food">Food and culinary scene</button>
+        <button class="opt" type="button" data-v="intl">High density of international students</button>
+        <button class="opt" type="button" data-v="outdoor">Outdoor and nature access</button>
       </div>
     </div>
 

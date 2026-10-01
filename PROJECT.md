@@ -3,7 +3,7 @@
 The single place to catch up on what Corners is, where it came from, what's decided and what isn't.
 Keep this file updated. If something here is out of date, fix it here first.
 
-- **Last updated:** 22 September 2026
+- **Last updated:** 24 September 2026
 - **Company:** Corners — a student company, autumn 2026, Bilbao
 - **Team:** 12 people. None of them from Bilbao.
 - **Onboarding + dashboard (one page, light):** https://claude.ai/artifact/43EJ3fwJPR93fCKgvgraBM
@@ -70,7 +70,7 @@ Prompt is a pitch: never binding, always voted, and the class can throw out the 
 | "Not one of you is local" | **Keep** | Became the product thesis and the tagline. |
 | The six-week window | **Keep** | The reason the product exists, and the timing of all marketing. |
 | 70 / 25 / 5 content split | **Keep** | Still the content rule. |
-| KPI tree, leading vs lagging | **Keep** | Adapted to product numbers ([§7](#7-numbers-we-watch)). |
+| KPI tree, leading vs lagging | **Keep** | The five boxes are still the axis, now with product definitions, owners and sources ([§7](#7-numbers-we-watch), [docs/kpi-tree.md](docs/kpi-tree.md)). |
 | Teams + one GitHub repo | **Keep** | Teams for the institution, repo for anything that matters in December. |
 | Wreath mark (direction A) | **Keep, restyled** | The eye wreath is still the mark, now drawn in blue gradient on near-black. **Chocolate brown is gone from the website** — this changes a pitch-5 decision the class voted on, so it needs an amendment. |
 | Direction B, eleven squares | **Drop** | Dies in one ink. |
@@ -251,20 +251,28 @@ us, never as a confession. Nothing gets made without knowing which of the three 
 
 ## 7. Numbers we watch
 
-Same rule as pitch 6: one owner per box, read in the last five minutes of each session, and
-**none of these ever touches anyone's grade.**
+Pitch 6's five boxes — **growth, quality, cost, delivery, motivation** — one owner each, read in the
+last five minutes of each session, and **none of them ever touches anyone's grade.**
+Full definitions, sources and what's countable when: **[docs/kpi-tree.md](docs/kpi-tree.md)**.
 
-| | Leading (this week) | Lagging (later) |
-|---|---|---|
-| **Product** | Posts, recs and trips created this week | Week-4 retention: share of sign-ups still opening it |
-| **Audience** | Sign-ups this week, by city and arrival month | Share of a partner's cohort that joined in its first two weeks |
-| **Operations** | Hours to keep one city stocked with content; time to action a report | Hours per active student |
+| Box | The one number | Leading (this week) | Lagging (later) | Owner |
+|---|---|---|---|---|
+| **Growth** | Weekly actives in Bilbao | Sign-ups this week by source; activation within 48h | Share of a partner's cohort that joined in its first two weeks; week-4 retention | Audience |
+| **Quality** | Finds — see the north star below | Useful-reply rate on Nearby; recs carrying price, time and student rate | Week-4 retention; reports per 100 posts | Product |
+| **Cost** | Hours per active student | Hours to keep one city stocked with content | Four-week trend; hours saved by block 3's automation | Operations |
+| **Delivery** | Commitments shipped by the next session | Time to action a report; rec cycle time | 22 Oct, 10 Nov and 3 Dec hit; anything that slipped twice | Operations |
+| **Motivation** | Different names shipping this week | Field shifts filled; who spoke before the vote | Is it the same three names four weeks running? | **Nobody, on purpose** |
 
-**Nobody owns these two:** motivation (how many different names shipped something this week) and
-whether knowledge crossed between teams.
+**Motivation stays unowned**, as in pitch 6, and so does whether knowledge crossed between teams. A
+motivation number with an owner becomes a target. Never publish the per-person list.
 
-**North star candidate:** students who found something through Corners they'd otherwise have missed.
-Needs a real definition before it can be measured.
+**North star, now defined** (proposed 24 Sep, still to be voted): a **find** is one student, in one week,
+who opened a rec, group, guide or trip, *went*, and answers *no* to one weekly question — "would you have
+found this without Corners?" Three parts, because a tap isn't a visit and a visit isn't a discovery.
+
+**No targets before 8 October.** The first two weeks of block 2 set the baseline; the numbers we aim at
+come from our own pilot, not from a guess made today. Week-4 retention is not countable while the pilot
+is hand-run — say so rather than estimating it.
 
 ---
 
@@ -286,6 +294,9 @@ To be voted under the decision system. Recommendations are mine, not decisions.
    *Recommendation: Operations brings three options with availability checked.*
 7. **App, or hand-run for the pilot?** *Recommendation: hand-run until 22 October — it's zero build
    work and it's what mini-project one is graded on.*
+8. **The KPI tree** — adopt the five boxes as the axis, the north star definition, four named owners
+   and no targets before 8 October. Full pitch in [docs/kpi-tree.md §10](docs/kpi-tree.md#10-what-this-asks-the-class-to-decide).
+   *Recommendation: adopt, and start asking the north star question this week.*
 
 ---
 

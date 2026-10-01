@@ -8,7 +8,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="styles.css">
 
-<header class="nav">
+<div class="wash" aria-hidden="true"></div>
+
+<header class="nav" data-nav>
   <div class="wrap nav__in">
     <a class="brand" href="#top">corners<i>.</i></a>
     <nav class="nav__links" aria-label="Sections">
@@ -19,10 +21,12 @@
       <a href="#partners">Universities</a>
     </nav>
     <div class="nav__right">
-      <span class="datechip">Data: September 2026</span>
+      <span class="datechip">Data · September 2026</span>
+      <a class="btn btn--ghost btn--sm" href="https://claude.ai/artifact/SyVrLipV63UHqEjPSweDyj">Open the app</a>
       <a class="btn btn--primary btn--sm" href="#join">Join the list</a>
     </div>
   </div>
+  <span class="nav__bar" data-progress aria-hidden="true"></span>
 </header>
 
 <main id="top">
@@ -31,38 +35,57 @@
   <section class="hero">
     <div class="wrap hero__grid">
       <div class="hero__copy">
-        <p class="eyebrow">For students who already know they're going</p>
-        <h1 class="h1">You picked the year abroad.<br>Now pick the city — and the room.</h1>
-        <p class="lede">Rankings compare universities. corners. compares the places you'd actually live in: what a month costs, how hard it is to find a room, and what students who went last year said. Then it helps you land.</p>
-        <div class="hero__cta">
-          <a class="btn btn--primary" href="#choose">Which city fits you</a>
+        <p class="eyebrow rv">For students who already know they're going</p>
+        <h1 class="h1 rv">You picked the year abroad.<br>Now pick the <em>city</em> — and the room.</h1>
+        <p class="lede rv">Rankings compare universities. corners. compares the places you'd actually live in: what a month really costs, how hard it is to find a room, and what students who went last year said. Then it helps you land.</p>
+        <div class="hero__cta rv">
+          <a class="btn btn--primary" href="https://claude.ai/artifact/43EJ3fwJPR93fCKgvgraBM">Which city fits you <i>→</i></a>
           <a class="btn btn--ghost" href="#housing">Find a room</a>
         </div>
-        <p class="fine">Live pilot in Bilbao · ten cities in the comparison · every number carries its source.</p>
+        <div class="hero__meta rv">
+          <span><b></b>Live pilot in Bilbao</span>
+          <span>Ten cities compared</span>
+          <span>Every number sourced</span>
+        </div>
       </div>
-      <div class="hero__shot">
-        <img data-photo="bilbao_ria" alt="Bilbao from above, the river running through the city">
-        <span class="hero__badge"><i></i>Bilbao · autumn 2026 pilot</span>
+
+      <div class="collage rv">
+        <figure class="c1"><img data-photo="bilbao_ria" alt="Bilbao seen from above, the river curving through the city"></figure>
+        <figure class="c2"><img data-photo="bilbao_sopelana" alt="The beach at Sopelana, thirty minutes from Bilbao by metro"></figure>
+        <figure class="c3"><img data-photo="bilbao_casco" alt="Plaza Nueva in Bilbao's old town"></figure>
+        <span class="collage__tag">Bilbao · autumn 2026</span>
       </div>
     </div>
 
     <div class="wrap">
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker__track">
+          <span class="on">Bilbao</span><span>San Sebastián</span><span>Barcelona</span><span>Madrid</span><span>Valencia</span><span>Granada</span><span>Sevilla</span><span>Salamanca</span><span>Lisbon</span><span>Porto</span>
+          <span class="on">Bilbao</span><span>San Sebastián</span><span>Barcelona</span><span>Madrid</span><span>Valencia</span><span>Granada</span><span>Sevilla</span><span>Salamanca</span><span>Lisbon</span><span>Porto</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRIP -->
+  <section class="sec" style="padding-top:clamp(28px,4vw,48px)">
+    <div class="wrap">
       <div class="strip">
-        <div>
-          <div class="strip__ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="14" y="8" width="3" height="10"/></svg></div>
-          <h3>Ten things that change minds</h3>
-          <p class="small">Not fifty. Cost, housing, safety, transit, English, climate, nightlife, flights, work rules, student tips.</p>
-        </div>
-        <div>
-          <div class="strip__ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
-          <h3>Every number has a source</h3>
-          <p class="small">Tap any value to see where it came from, when, and what it misses. Our own ratings say so.</p>
-        </div>
-        <div>
-          <div class="strip__ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
-          <h3>Then it doesn't leave you there</h3>
-          <p class="small">Housing, your programme's dates, groups that meet, and weekends inside your budget.</p>
-        </div>
+        <article class="strip__item rv">
+          <span class="ico" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="14" y="8" width="3" height="10"/></svg></span>
+          <h3 class="h3">Ten things that change minds</h3>
+          <p class="small">Not fifty. Cost, housing, safety, transit, English, climate, nightlife, flights, work rules and student tips.</p>
+        </article>
+        <article class="strip__item rv">
+          <span class="ico ico--green" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <h3 class="h3">Every number has a source</h3>
+          <p class="small">Tap any value for where it came from, when, and what it misses. Our own ratings say so on the label.</p>
+        </article>
+        <article class="strip__item rv">
+          <span class="ico ico--violet" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg></span>
+          <h3 class="h3">Then it doesn't leave you there</h3>
+          <p class="small">Housing, your programme's dates, groups that actually meet, and weekends inside your budget.</p>
+        </article>
       </div>
     </div>
   </section>
@@ -70,30 +93,30 @@
   <!-- CHOOSE -->
   <section class="sec sec--tint" id="choose">
     <div class="wrap">
-      <div class="sec__head">
-        <p class="eyebrow">Find your corner</p>
+      <div class="sec__head rv">
+        <p class="sec__num">01 — FIND YOUR CORNER</p>
         <h2 class="h2">Six questions, or skip them and compare.</h2>
-        <p class="lede">The survey filters and ranks. If you already have a shortlist, go straight to the chart — up to three cities side by side.</p>
+        <p class="lede">The survey filters and ranks. Already have a shortlist? Go straight to the chart and put three cities side by side.</p>
       </div>
 
       <div class="cards">
-        <article class="card c-3">
-          <div class="card__ico" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.4S4.6 16.1 4.6 10.8a4.2 4.2 0 0 1 7.4-2.7 4.2 4.2 0 0 1 7.4 2.7c0 5.3-7.4 9.6-7.4 9.6Z"/></svg></div>
+        <article class="card c-3 rv">
+          <span class="ico" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.4S4.6 16.1 4.6 10.8a4.2 4.2 0 0 1 7.4-2.7 4.2 4.2 0 0 1 7.4 2.7c0 5.3-7.4 9.6-7.4 9.6Z"/></svg></span>
           <h3 class="h3">The survey</h3>
-          <ol class="rows" style="margin-top:6px">
-            <li class="row"><i>1</i><div><b>Language &amp; academic environment</b><p>English-only, English courses abroad, or full immersion.</p></div></li>
-            <li class="row"><i>2</i><div><b>Monthly living budget</b><p>Four bands, from under $800 to $2,200+.</p></div></li>
-            <li class="row"><i>3</i><div><b>City environment</b><p>Metropolis, historic hub, coastal, or college town.</p></div></li>
-            <li class="row"><i>4</i><div><b>Social atmosphere</b><p>Fast-paced, laid-back, or close-knit.</p></div></li>
-            <li class="row"><i>5</i><div><b>Climate</b><p>Warm and sunny, four seasons, or flexible.</p></div></li>
-            <li class="row"><i>6</i><div><b>Two non-negotiables</b><p>The tie-breaker: safety, nightlife, affordability, food, international students, or the outdoors.</p></div></li>
-          </ol>
+          <div class="steps">
+            <div class="step"><span class="step__n">1</span><div><b>Language &amp; academic environment</b><p>English-only, English courses abroad, or full immersion.</p></div></div>
+            <div class="step"><span class="step__n">2</span><div><b>Monthly living budget</b><p>Four bands, from under $800 to $2,200+.</p></div></div>
+            <div class="step"><span class="step__n">3</span><div><b>City environment</b><p>Metropolis, historic hub, coastal, or college town.</p></div></div>
+            <div class="step"><span class="step__n">4</span><div><b>Social atmosphere</b><p>Fast-paced, laid-back, or close-knit.</p></div></div>
+            <div class="step"><span class="step__n">5</span><div><b>Climate</b><p>Warm and sunny, four seasons, or flexible.</p></div></div>
+            <div class="step"><span class="step__n">6</span><div><b>Two non-negotiables</b><p>Safety, nightlife, affordability, food, international students, or the outdoors.</p></div></div>
+          </div>
         </article>
 
-        <article class="card c-3">
-          <div class="card__ico" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.4 6.6h6M4.4 12h9M4.4 17.4h4"/><path d="M18 5.6v10.8M15.4 8.2 18 5.6l2.6 2.6"/></svg></div>
+        <article class="card c-3 rv">
+          <span class="ico ico--sky" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.4 6.6h6M4.4 12h9M4.4 17.4h4"/><path d="M18 5.6v10.8M15.4 8.2 18 5.6l2.6 2.6"/></svg></span>
           <h3 class="h3">The comparison chart</h3>
-          <div class="metrics" style="margin-top:6px">
+          <div class="metrics">
             <div class="metric"><b>Monthly budget</b><span class="kind kind--src">Sourced</span><p>Rent, food, transport and spending money.</p></div>
             <div class="metric"><b>Housing availability</b><span class="kind kind--rate">Our rating</span><p>How hard it is to find a room or a flat.</p></div>
             <div class="metric"><b>Safety rating</b><span class="kind kind--src">Sourced</span><p>General safety and walking home at night.</p></div>
@@ -102,49 +125,45 @@
             <div class="metric"><b>Climate &amp; weather</b><span class="kind kind--src">Sourced</span><p>July and January averages, rain across the year.</p></div>
             <div class="metric"><b>Social &amp; nightlife</b><span class="kind kind--rate">Our rating</span><p>Bars, events, and how many internationals are around.</p></div>
             <div class="metric"><b>Travel connectivity</b><span class="kind kind--src">Sourced</span><p>Direct flights home, and weekend trains.</p></div>
-            <div class="metric"><b>Part-time work allowance</b><span class="kind kind--rate">Check it</span><p>What your visa lets you work. Verify with the consulate.</p></div>
+            <div class="metric"><b>Part-time work</b><span class="kind kind--rate">Check it</span><p>What your visa allows. Verify with the consulate.</p></div>
             <div class="metric"><b>Local student tips</b><span class="kind kind--mock">Demo data</span><p>Gyms, barbers, groceries, added by students.</p></div>
           </div>
         </article>
       </div>
-      <p class="fine" style="margin-top:16px">Rents from idealista, meals and safety from Numbeo, climate from AEMET and IPMA, English from the EF index, Erasmus numbers from the European Commission. Ratings marked as ours are judgement, not measurement.</p>
     </div>
   </section>
 
   <!-- HOUSING -->
   <section class="sec" id="housing">
     <div class="wrap">
-      <div class="sec__head">
-        <p class="eyebrow">Housing</p>
-        <h2 class="h2">The part everyone says is the hardest.</h2>
-        <p class="lede">Every portal in one search, plus rooms listed directly by students leaving your city. Filter to what's near your campus, see who you'd be living with, and book without a deposit to a stranger.</p>
+      <div class="sec__head rv">
+        <p class="sec__num">02 — HOUSING</p>
+        <h2 class="h2">The part everyone says is hardest.</h2>
+        <p class="lede">Every portal in one search, plus rooms listed directly by the students leaving yours. See who you'd live with before you message anyone.</p>
       </div>
 
       <div class="housing">
-        <div class="rows">
-          <div class="row"><i>◎</i><div><b>Every portal, one search</b><p>Idealista, Spotahome and Uniplaces side by side, filtered to your city and campus. Compare instantly instead of keeping six tabs open.</p></div></div>
-          <div class="row"><i>✓</i><div><b>Corners Verified listings</b><p>Rooms we've checked: real address, real distance to campus, real photos. The badge means someone confirmed it.</p></div></div>
-          <div class="row"><i>◍</i><div><b>Map view, by campus</b><p>Switch from list to map and see price pins against your university, metro stops and the neighbourhoods students actually recommend.</p></div></div>
-          <div class="row"><i>☺</i><div><b>Who you'd live with</b><p>Direct student listings show the flatmates — names, countries, what they study — before you message anyone.</p></div></div>
-          <div class="row"><i>↻</i><div><b>Leaving? Sublet your room</b><p>The students arriving next semester need exactly what you're giving up. Hand it over inside the app instead of a chaotic group chat.</p></div></div>
-          <div class="row"><i>€</i><div><b>Honest costs</b><p>Rent shown next to that city's average, so you know when €550 is a good deal and when it isn't.</p></div></div>
+        <div class="steps rv">
+          <div class="step"><span class="step__n">◎</span><div><b>Every portal, one search</b><p>Idealista, Spotahome and Uniplaces side by side, filtered to your city and campus. Compare instantly instead of juggling six tabs.</p></div></div>
+          <div class="step"><span class="step__n">✓</span><div><b>Corners Verified listings</b><p>Rooms we've checked: real address, real distance to campus, real photos. The badge means a human confirmed it.</p></div></div>
+          <div class="step"><span class="step__n">◍</span><div><b>Map view, by campus</b><p>Switch from list to map and see price pins against your university, the metro, and the neighbourhoods students recommend.</p></div></div>
+          <div class="step"><span class="step__n">☺</span><div><b>Who you'd live with</b><p>Direct listings show the flatmates — names, countries, what they study — before you send a message.</p></div></div>
+          <div class="step"><span class="step__n">↻</span><div><b>Leaving? Sublet your room</b><p>The students arriving next semester need exactly what you're giving up. Hand it over in the app, not in a chaotic group chat.</p></div></div>
         </div>
 
-        <div class="phone" role="img" aria-label="The housing screen: search, partner portals, verified student listings, and a map view">
+        <div class="phone rv" role="img" aria-label="The housing screen: search, partner portals, verified student listings and a map view">
           <div class="phone__top">
             <p class="phone__loc">Madrid, Spain · campus area</p>
             <div class="phone__search"><span>Search rooms, areas, unis…</span><b>Map</b></div>
           </div>
           <div class="phone__body">
             <div class="phone__filters"><span>All</span><span>Rooms</span><span>Flats</span><span>Verified</span></div>
-
             <div class="phone__h"><b>Partner portals</b><span>Compare instantly</span></div>
             <div class="portals">
               <div class="portal"><b>Idealista</b><span>★ 4.5</span><em>Explore →</em></div>
               <div class="portal"><b>Spotahome</b><span>★ 4.8</span><em>Explore →</em></div>
               <div class="portal"><b>Uniplaces</b><span>★ 4.6</span><em>Explore →</em></div>
             </div>
-
             <div class="phone__h"><b>Direct student listings</b></div>
             <div class="listing">
               <div class="listing__top"><p class="listing__price">€550 <span>/month</span></p><span class="listing__tag">Verified</span></div>
@@ -158,57 +177,55 @@
               <p class="listing__with"><i>A</i><i>E</i> With Alex and Elena</p>
               <p class="listing__cta">Contact / book room</p>
             </div>
-
             <div class="map" aria-hidden="true">
               <span class="map__dot map__dot--uni">UCM</span>
               <span class="map__dot map__dot--a">€550</span>
               <span class="map__dot map__dot--b">€480</span>
               <span class="map__dot map__dot--c">Idealista</span>
             </div>
-
             <p class="sublet">Leaving Madrid? Sublet your room</p>
           </div>
           <div class="phone__tabs"><span>Departure</span><span class="on">Housing</span><span>Events</span><span>Uni</span></div>
         </div>
       </div>
-      <p class="fine" style="margin-top:18px">Design mock-up. Portal names are the services students already use; no partnership exists yet, and verification is a process we'd have to staff.</p>
+      <p class="fine rv" style="margin-top:22px">Design mock-up. Those portals are the services students already use; no partnership exists yet, and verification is a process we'd have to staff.</p>
     </div>
   </section>
 
-  <!-- WHEN YOU ARRIVE -->
+  <!-- ARRIVE -->
   <section class="sec sec--tint" id="arrive">
     <div class="wrap">
-      <div class="sec__head">
-        <p class="eyebrow">When you arrive</p>
+      <div class="sec__head rv">
+        <p class="sec__num">03 — WHEN YOU ARRIVE</p>
         <h2 class="h2">The first six weeks, handled.</h2>
-        <p class="lede">Live in Bilbao now. Everything below is in the app, with real places and real prices.</p>
+        <p class="lede">Live in Bilbao now, with real places and real prices.</p>
       </div>
 
       <div class="cards">
-        <article class="card c-2 card--link">
+        <article class="card card--media c-2 card--link rv">
+          <span class="ico card__badge" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13.2c0 3-3.1 5.4-7 5.4a8.8 8.8 0 0 1-2.2-.3L5.5 20.4l1-3.3A5.4 5.4 0 0 1 4 13.2c0-3 3.1-5.4 7-5.4s9 2.4 9 5.4Z"/></svg></span>
           <div class="shot"><img data-photo="bilbao_casco" alt="Plaza Nueva in Bilbao's old town"></div>
-          <h3 class="h3">Nearby</h3>
-          <p>Anonymous posts from verified students a few streets away. Ask which bus goes to the beach, find people for pintxo pote, vote up what helps.</p>
+          <div class="card__body"><h3 class="h3">Nearby</h3><p>Anonymous posts from verified students a few streets away. Ask which bus goes to the beach, find people for pintxo pote, vote up what helps.</p></div>
         </article>
-        <article class="card c-2 card--link">
+        <article class="card card--media c-2 card--link rv">
+          <span class="ico ico--amber card__badge" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3.8 2.5 5.3 5.6.8-4 4 1 5.7-5.1-2.8-5.1 2.8 1-5.7-4-4 5.6-.8Z"/></svg></span>
           <div class="shot"><img data-photo="pintxos" alt="Pintxos on a bar counter"></div>
-          <h3 class="h3">Recs</h3>
-          <p>Food, gyms and sport, events, things to do — ranked by students who live there, tagged by price and day.</p>
+          <div class="card__body"><h3 class="h3">Recs</h3><p>Food, gyms, events and things to do — ranked by students who live there, tagged by price and day.</p></div>
         </article>
-        <article class="card c-2 card--link">
+        <article class="card card--media c-2 card--link rv">
+          <span class="ico ico--violet card__badge" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9.5" r="3.2"/><path d="M3.6 19.4a5.6 5.6 0 0 1 10.8 0"/><path d="M15.8 7.2a3 3 0 0 1 0 5.8M16.8 14.6a5.4 5.4 0 0 1 3.6 4.8"/></svg></span>
           <div class="shot"><img data-photo="bilbao_sopelana" alt="The beach at Sopelana"></div>
-          <h3 class="h3">Groups</h3>
-          <p>Surf, hiking, language exchange, football, film club. Found by what you do, not where you're from.</p>
+          <div class="card__body"><h3 class="h3">Groups</h3><p>Surf, hiking, language exchange, football, film club. Found by what you do, not where you're from.</p></div>
         </article>
-        <article class="card c-3 card--link">
+        <article class="card card--media c-3 card--link rv">
+          <span class="ico ico--green card__badge" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.6"/><path d="m15.2 8.8-1.9 4.6-4.5 1.8 1.9-4.6Z"/></svg></span>
           <div class="shot"><img data-photo="gaztelugatxe" alt="San Juan de Gaztelugatxe on the Basque coast"></div>
-          <h3 class="h3">Weekends</h3>
-          <p>Tell it your budget and how many nights. Eight destinations from Bilbao re-sort into what fits, broken into travel, bed and food.</p>
+          <div class="card__body"><h3 class="h3">Weekends</h3><p>Tell it your budget and how many nights. Eight destinations from Bilbao re-sort into what fits, split into travel, bed and food.</p></div>
         </article>
-        <article class="card c-3 card--link">
+        <article class="card card--media c-3 card--link rv">
+          <span class="ico ico--rose card__badge" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.6h12a1 1 0 0 1 1 1v15.8l-7-3.2-7 3.2V4.6a1 1 0 0 1 1-1Z"/><path d="M9 8.4h6M9 11.8h4"/></svg></span>
           <div class="shot"><img data-photo="bilbao_ehu" alt="A university campus building"></div>
-          <h3 class="h3">Your programme &amp; uni</h3>
-          <p>Key dates, the first-week checklist — transport card, empadronamiento, TIE appointment — who to ask, and what everyone is asking about this week.</p>
+          <div class="card__body"><h3 class="h3">Your programme &amp; uni</h3><p>Key dates, the first-week checklist — transport card, empadronamiento, TIE appointment — who to ask, and what everyone's asking this week.</p></div>
         </article>
       </div>
     </div>
@@ -217,50 +234,34 @@
   <!-- DATA -->
   <section class="sec" id="data">
     <div class="wrap">
-      <div class="sec__head">
-        <p class="eyebrow">Our data</p>
+      <div class="sec__head rv">
+        <p class="sec__num">04 — OUR DATA</p>
         <h2 class="h2">We label what we know from what we guessed.</h2>
         <p class="lede">Every row carries a chip. Tap it and you get the source, the date, and what the number doesn't tell you.</p>
       </div>
       <div class="cards">
-        <article class="card c-2"><span class="kind kind--src">Sourced</span><h3 class="h3">Real figures</h3><p>Rents from idealista Q2–Q3 2026. Meals and safety from Numbeo. Climate from AEMET and IPMA 1991–2020 normals. English from the EF index 2025. Erasmus intake from European Commission microdata. Transport prices from the operators.</p></article>
-        <article class="card c-2"><span class="kind kind--rate">Our rating</span><h3 class="h3">Judgement calls</h3><p>Housing availability, transit quality, nightlife and outdoors are our ratings, informed but not measured. Part-time work rules are indicative and need checking with a consulate.</p></article>
-        <article class="card c-2"><span class="kind kind--mock">Demo data</span><h3 class="h3">Placeholders</h3><p>Student tip counts, example posts, listings and prices in the mock-ups. Labelled everywhere they appear, and replaced before anything ships.</p></article>
+        <article class="card c-2 rv"><span class="kind kind--src">Sourced</span><h3 class="h3">Real figures</h3><p>Rents from idealista Q2–Q3 2026. Meals and safety from Numbeo. Climate from AEMET and IPMA 1991–2020 normals. English from the EF index 2025. Erasmus intake from European Commission microdata. Transport prices from the operators themselves.</p></article>
+        <article class="card c-2 rv"><span class="kind kind--rate">Our rating</span><h3 class="h3">Judgement calls</h3><p>Housing availability, transit quality, nightlife and outdoors are our ratings — informed, but not measured. Part-time work rules are indicative and need checking with a consulate.</p></article>
+        <article class="card c-2 rv"><span class="kind kind--mock">Demo data</span><h3 class="h3">Placeholders</h3><p>Student tip counts, example posts, listings and mock-up prices. Labelled everywhere they appear, and replaced before anything ships.</p></article>
       </div>
-      <div class="stats" style="margin-top:22px">
-        <div class="stat"><b class="tnum">59,271</b><span>Erasmus students came to Spain in 2024, more than any country</span></div>
-        <div class="stat"><b class="tnum">36,826</b><span>US students studied in Spain in 2023/24, second only to Italy</span></div>
-        <div class="stat"><b class="tnum">1,185</b><span>Erasmus students a year in Bilbao, our pilot city</span></div>
-        <div class="stat"><b class="tnum">54.67%</b><span>of exchange students took part in no local activity at all</span></div>
+      <div class="stats rv" style="margin-top:20px">
+        <div class="stat"><b class="tnum" data-count="59271">0</b><span>Erasmus students came to Spain in 2024, more than any other country</span></div>
+        <div class="stat"><b class="tnum" data-count="36826">0</b><span>US students studied in Spain in 2023/24, second only to Italy</span></div>
+        <div class="stat"><b class="tnum" data-count="1185">0</b><span>Erasmus students a year in Bilbao, our pilot city</span></div>
+        <div class="stat"><b class="tnum" data-count="55" data-suffix="%">0</b><span>of exchange students took part in no local activity at all</span></div>
       </div>
-    </div>
-  </section>
-
-  <!-- CITIES -->
-  <section class="sec sec--tint" id="cities">
-    <div class="wrap">
-      <div class="sec__head">
-        <p class="eyebrow">Cities</p>
-        <h2 class="h2">Ten in the comparison. One live.</h2>
-        <p class="lede">Bilbao is first because that's where we are. The rest are in the chart while we get the city app right.</p>
-      </div>
-      <ul class="chips">
-        <li class="chip chip--on">Bilbao · live</li>
-        <li class="chip">San Sebastián</li><li class="chip">Barcelona</li><li class="chip">Madrid</li><li class="chip">Valencia</li>
-        <li class="chip">Granada</li><li class="chip">Sevilla</li><li class="chip">Salamanca</li><li class="chip">Lisbon</li><li class="chip">Porto</li>
-      </ul>
     </div>
   </section>
 
   <!-- PARTNERS -->
   <section class="sec" id="partners">
     <div class="wrap">
-      <div class="band">
+      <div class="band rv">
         <p class="eyebrow" style="color:#93C5FD">For universities and programmes</p>
         <h2 class="h2">Your orientation lasts five days. corners. lasts the semester.</h2>
-        <p>A programme page your office keeps current, a cohort code so arrivals are set up in week one, and a fortnightly pulse of what your students are asking about. Never a name, a post author or a location.</p>
+        <p>A programme page your office keeps current, a cohort code so arrivals are set up in week one, and a fortnightly pulse of what your students are asking about. Never a name, a post author, or a location.</p>
         <div class="hero__cta">
-          <a class="btn btn--primary" href="#join">Talk to us about a pilot</a>
+          <a class="btn btn--primary" href="#join">Talk to us about a pilot <i>→</i></a>
           <a class="btn btn--ghost" href="#data">See how we source data</a>
         </div>
       </div>
@@ -268,31 +269,31 @@
   </section>
 
   <!-- JOIN -->
-  <section class="sec" id="join">
+  <section class="sec sec--tint" id="join">
     <div class="wrap">
-      <div class="sec__head">
-        <p class="eyebrow">Get on the list</p>
+      <div class="sec__head rv">
+        <p class="sec__num">05 — JOIN</p>
         <h2 class="h2">Going abroad next semester?</h2>
-        <p class="lede">Tell us where and when, and we'll open your city in order of who's waiting.</p>
+        <p class="lede">Tell us where and when. Cities open in the order people are waiting for them.</p>
       </div>
       <form class="cards" data-join onsubmit="return false">
-        <div class="card c-3" style="gap:14px">
-          <label class="small" for="email" style="font-weight:600;color:var(--ink)">Student email</label>
-          <input id="email" type="email" placeholder="you@university.edu" required style="padding:13px 14px;border:1px solid var(--line-2);border-radius:var(--r);font:inherit">
-          <label class="small" for="city" style="font-weight:600;color:var(--ink)">Where are you going?</label>
-          <select id="city" style="padding:13px 14px;border:1px solid var(--line-2);border-radius:var(--r);font:inherit">
-            <option>Bilbao</option><option>San Sebastián</option><option>Barcelona</option><option>Madrid</option><option>Valencia</option>
-            <option>Granada</option><option>Sevilla</option><option>Salamanca</option><option>Lisbon</option><option>Porto</option><option>Somewhere else</option>
-          </select>
-          <button class="btn btn--primary" type="submit">Add me to the list</button>
+        <div class="card c-3 rv" style="gap:16px">
+          <div class="field"><label for="email">Student email</label><input id="email" type="email" placeholder="you@university.edu" required></div>
+          <div class="field"><label for="city">Where are you going?</label>
+            <select id="city">
+              <option>Bilbao</option><option>San Sebastián</option><option>Barcelona</option><option>Madrid</option><option>Valencia</option>
+              <option>Granada</option><option>Sevilla</option><option>Salamanca</option><option>Lisbon</option><option>Porto</option><option>Somewhere else</option>
+            </select>
+          </div>
+          <button class="btn btn--primary" type="submit">Add me to the list <i>→</i></button>
           <p class="fine" data-msg role="status">Preview build — this form doesn't send anything yet.</p>
         </div>
-        <div class="card c-3">
+        <div class="card c-3 rv">
           <h3 class="h3">What you get</h3>
-          <div class="rows">
-            <div class="row"><i>1</i><div><b>The comparison, now</b><p>Ten cities, ten metrics, sources on every number.</p></div></div>
-            <div class="row"><i>2</i><div><b>Housing when your city opens</b><p>Portals, verified rooms and sublets from students leaving.</p></div></div>
-            <div class="row"><i>3</i><div><b>The city app on arrival</b><p>Groups, recs, weekends and your programme's dates.</p></div></div>
+          <div class="steps">
+            <div class="step"><span class="step__n">1</span><div><b>The comparison, now</b><p>Ten cities, ten metrics, a source on every number.</p></div></div>
+            <div class="step"><span class="step__n">2</span><div><b>Housing when your city opens</b><p>Portals, verified rooms, and sublets from students leaving.</p></div></div>
+            <div class="step"><span class="step__n">3</span><div><b>The city app on arrival</b><p>Groups, recs, weekends and your programme's dates.</p></div></div>
           </div>
         </div>
       </form>
@@ -300,14 +301,14 @@
   </section>
 
   <!-- FAQ -->
-  <section class="sec sec--tint">
+  <section class="sec">
     <div class="wrap">
-      <div class="sec__head"><h2 class="h2">Questions people ask first.</h2></div>
-      <div class="faq">
-        <details><summary>Is the housing section real?</summary><p>Not yet. The portals shown are the services students already use, but we have no partnership with them, and "Corners Verified" describes a process we would have to staff. It's a design mock-up until a city goes live.</p></details>
+      <div class="sec__head rv"><p class="sec__num">06 — FAQ</p><h2 class="h2">Questions people ask first.</h2></div>
+      <div class="faq rv">
+        <details><summary>Is the housing section real?</summary><p>Not yet. The portals shown are services students already use, but we have no partnership with them, and "Corners Verified" describes a process we would have to staff. It's a design mock-up until a city goes live.</p></details>
         <details><summary>Where do the numbers come from?</summary><p>idealista for rents, Numbeo for meals and safety, AEMET and IPMA for climate, the EF index for English, European Commission microdata for Erasmus intake, and the transport operators for student passes. Anything that's our own judgement is labelled as our rating.</p></details>
         <details><summary>What does it cost?</summary><p>Free for students. Universities and programmes pay for their programme page and the fortnightly pulse.</p></details>
-        <details><summary>Why only Bilbao?</summary><p>Because we're students in Bilbao, and a city app is worth nothing if the recommendations are wrong. We'd rather be right in one city than vague in ten.</p></details>
+        <details><summary>Why only Bilbao?</summary><p>Because we're students in Bilbao, and a city app is worth nothing if the recommendations are wrong. Better right in one city than vague in ten.</p></details>
         <details><summary>Is Nearby anonymous?</summary><p>To other students, yes. Moderators can always see who posted, which is what makes the rules hold. Posts that name or target a person are removed.</p></details>
       </div>
     </div>
@@ -318,30 +319,21 @@
   <div class="wrap foot__in">
     <div>
       <a class="brand" href="#top">corners<i>.</i></a>
-      <p class="fine" style="margin-top:6px">A student company, autumn 2026. Made in Bilbao by twelve people, none of them from here.</p>
+      <p class="fine" style="margin-top:8px;max-width:44ch">A student company, autumn 2026. Made in Bilbao by twelve people, none of them from here.</p>
     </div>
     <nav class="foot__links" aria-label="Footer">
       <a href="#choose">Choose a city</a><a href="#housing">Housing</a><a href="#arrive">When you arrive</a><a href="#data">Our data</a><a href="#join">Join the list</a>
     </nav>
   </div>
-  <div class="wrap" style="margin-top:20px">
+  <div class="wrap" style="margin-top:24px">
     <p class="fine">Photographs from Wikimedia Commons under CC licences. corners. speaks in its own name, never for a university or programme.</p>
   </div>
 </footer>
 
+<div class="cta-bar" data-cta>
+  <p>Going abroad next semester?</p>
+  <a class="btn btn--primary" href="#join">Join the list <i>→</i></a>
+</div>
+
 <script src="photos.js"></script>
-<script>
-  (function () {
-    document.querySelectorAll("[data-photo]").forEach(function (img) {
-      var id = img.getAttribute("data-photo");
-      if (window.CORNERS_PHOTOS && window.CORNERS_PHOTOS[id]) img.src = window.CORNERS_PHOTOS[id];
-    });
-    var form = document.querySelector("[data-join]");
-    if (form) form.addEventListener("submit", function () {
-      var email = document.getElementById("email");
-      var msg = document.querySelector("[data-msg]");
-      if (!email.value || !email.checkValidity()) { msg.textContent = "That email doesn't look complete — check for a missing @ or domain."; email.focus(); return; }
-      msg.textContent = "Got it: " + email.value + ", " + document.getElementById("city").value + ". Preview build, so nothing was sent.";
-    });
-  })();
-</script>
+<script src="site.js"></script>

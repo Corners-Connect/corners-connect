@@ -170,11 +170,12 @@
     bilbao: "bilbao_guggenheim", sansebastian: "sansebastian", barcelona: "barcelona", madrid: "madrid",
     valencia: "valencia", granada: "granada", sevilla: "sevilla", salamanca: "salamanca", lisbon: "lisbon", porto: "porto"
   };
-  var GUIDE_PHOTO = { g1: "pintxos", g2: "bilbao_sopelana", g3: "bilbao_guggenheim", g4: "gaztelugatxe", g5: "pintxos", g7: "bilbao_zubizuri" };
+  var GUIDE_PHOTO = { g1: "pintxos", g2: "bilbao_sopelana", g3: "bilbao_guggenheim", g4: "gaztelugatxe", g5: "cooking_class", g6: "la_rioja", g7: "kayak" };
 
   function hasPhoto(id) { return !!(window.CORNERS_PHOTOS && window.CORNERS_PHOTOS[id]); }
   function photoAlt(id) {
     var c = (window.CORNERS_CREDITS || []).filter(function (x) { return x.id === id; })[0];
+    if (c && c.alt) return c.alt;
     return c ? c.title.replace(/\.(jpg|jpeg)$/i, "").replace(/_/g, " ") : "Photo";
   }
   function pic(photoId, fallbackScene) {
@@ -208,7 +209,7 @@
 
   var KEY = "corners.demo.v2";
   var state = {
-    prefs: { lang: "englishCourses", budget: "b2", setting: "historic", vibe: "balanced", weather: "warm", priorities: [] },
+    prefs: { lang: "english-courses", budget: 2, setting: "historic", vibe: "laidback", weather: "warm", priorities: [] },
     ranked: false, shortlist: [], compare: ["bilbao"], destination: null, prep: [],
     votes: {}, saves: [], joins: ["language"], checks: ["c1", "c2"], posts: [], going: {},
     profile: { name: "Chiara", role: "Erasmus" }
@@ -221,20 +222,22 @@
 
   // Older saved answers (or none) get normalised to the survey's shape.
   (function () {
-    var d = { lang: "englishCourses", budget: "b2", setting: "historic", vibe: "balanced", weather: "warm", priorities: [] };
+    var d = { lang: "english-courses", budget: 2, setting: "historic", vibe: "laidback", weather: "warm", priorities: [] };
     var p = Object.assign({}, d, state.prefs || {});
-    if (typeof p.budget === "number") p.budget = p.budget < 800 ? "b1" : p.budget < 1400 ? "b2" : p.budget < 2200 ? "b3" : "b4";
-    if (["englishOnly", "englishCourses", "immersion"].indexOf(p.lang) < 0) p.lang = "englishCourses";
-    if (["metro", "historic", "coastal", "college"].indexOf(p.setting) < 0) p.setting = "historic";
-    if (["fast", "balanced", "cozy"].indexOf(p.vibe) < 0) p.vibe = "balanced";
-    if (["warm", "seasons", "flexible"].indexOf(p.weather) < 0) p.weather = "warm";
+    p.budget = parseInt(p.budget, 10);
+    if (!(p.budget >= 1 && p.budget <= 4)) p.budget = 2;
+    if (["english-only", "english-courses", "immersion"].indexOf(p.lang) < 0) p.lang = "english-courses";
+    if (["metropolis", "historic", "coastal", "college"].indexOf(p.setting) < 0) p.setting = "historic";
+    if (["vibrant", "laidback", "cozy"].indexOf(p.vibe) < 0) p.vibe = "laidback";
+    if (["warm", "fourseasons", "any"].indexOf(p.weather) < 0) p.weather = "warm";
+    p.priorities = (p.priorities || []).map(function (k) { return k === "outdoors" ? "outdoor" : k; });
     if (!Array.isArray(p.priorities)) p.priorities = [];
     state.prefs = p;
   })();
 
   // #demo opens the app already set up in Bilbao, for showing it without any setup.
   if (/demo/.test(location.hash)) {
-    state.prefs = { lang: "englishCourses", budget: "b2", setting: "historic", vibe: "balanced", weather: "mild", priorities: ["outdoors", "food"] };
+    state.prefs = { lang: "immersion", budget: 2, setting: "coastal", vibe: "cozy", weather: "fourseasons", priorities: ["food", "outdoor"] };
     state.destination = "bilbao";
     state.ranked = true;
     state.finished = true;
@@ -397,17 +400,20 @@
 
   /* Survey metrics. Housing, transit and tips are our own ratings, not measurements —
      tips counts are demo data for the pilot. Work rules are indicative: check your consulate. */
+  /* Setting, vibe, climate and langEnv use the same vocabulary as the team's comparison
+     prototype, so the two surveys rank on identical axes. Bilbao, Barcelona and Lisbon
+     carry exactly the values that file uses. */
   var EXTRA = {
-    bilbao: { settings: ["historic", "coastal"], vibe: "balanced", weather: "mild", house: 4, transit: 5, tips: 128 },
-    sansebastian: { settings: ["coastal", "historic"], vibe: "balanced", weather: "mild", house: 2, transit: 4, tips: 41 },
-    barcelona: { settings: ["metro", "coastal"], vibe: "fast", weather: "warm", house: 1, transit: 5, tips: 96 },
-    madrid: { settings: ["metro"], vibe: "fast", weather: "seasons", house: 2, transit: 5, tips: 88 },
-    valencia: { settings: ["coastal", "metro"], vibe: "balanced", weather: "warm", house: 3, transit: 4, tips: 57 },
-    granada: { settings: ["college", "historic"], vibe: "fast", weather: "seasons", house: 4, transit: 3, tips: 49 },
-    sevilla: { settings: ["historic"], vibe: "fast", weather: "warm", house: 3, transit: 3, tips: 44 },
-    salamanca: { settings: ["college", "historic"], vibe: "cozy", weather: "seasons", house: 5, transit: 3, tips: 22 },
-    lisbon: { settings: ["metro", "coastal"], vibe: "fast", weather: "warm", house: 1, transit: 4, tips: 63 },
-    porto: { settings: ["historic", "coastal"], vibe: "balanced", weather: "mild", house: 3, transit: 4, tips: 38 }
+    bilbao: { setting: "coastal", settings: ["coastal", "historic"], vibe: "cozy", weather: "fourseasons", langEnv: "immersion", house: 4, transit: 5, tips: 128 },
+    sansebastian: { setting: "coastal", settings: ["coastal", "historic"], vibe: "laidback", weather: "fourseasons", langEnv: "immersion", house: 2, transit: 4, tips: 41 },
+    barcelona: { setting: "metropolis", settings: ["metropolis", "coastal"], vibe: "vibrant", weather: "warm", langEnv: "immersion", house: 1, transit: 5, tips: 96 },
+    madrid: { setting: "metropolis", settings: ["metropolis"], vibe: "vibrant", weather: "fourseasons", langEnv: "immersion", house: 2, transit: 5, tips: 88 },
+    valencia: { setting: "coastal", settings: ["coastal", "metropolis"], vibe: "laidback", weather: "warm", langEnv: "immersion", house: 3, transit: 4, tips: 57 },
+    granada: { setting: "college", settings: ["college", "historic"], vibe: "vibrant", weather: "fourseasons", langEnv: "immersion", house: 4, transit: 3, tips: 49 },
+    sevilla: { setting: "historic", settings: ["historic"], vibe: "vibrant", weather: "warm", langEnv: "immersion", house: 3, transit: 3, tips: 44 },
+    salamanca: { setting: "college", settings: ["college", "historic"], vibe: "cozy", weather: "fourseasons", langEnv: "immersion", house: 5, transit: 3, tips: 22 },
+    lisbon: { setting: "coastal", settings: ["coastal", "metropolis"], vibe: "vibrant", weather: "warm", langEnv: "english-courses", house: 1, transit: 4, tips: 63 },
+    porto: { setting: "historic", settings: ["historic", "coastal"], vibe: "laidback", weather: "fourseasons", langEnv: "english-courses", house: 3, transit: 4, tips: 38 }
   };
   CITIES.forEach(function (c) { Object.assign(c, EXTRA[c.id] || {}); });
 
@@ -417,7 +423,12 @@
   };
   var HOUSE_LABEL = ["", "Very tight", "Tight", "Mixed", "Manageable", "Easy"];
   var TRANSIT_LABEL = ["", "Limited", "Basic", "Decent", "Good", "Excellent"];
-  var BUDGET_BAND = { b1: { cap: 735, label: "Under $800" }, b2: { cap: 1290, label: "$800–$1,400" }, b3: { cap: 2025, label: "$1,400–$2,200" }, b4: { cap: 99999, label: "$2,200+" } };
+  /* Bands and caps as set by the comparison prototype on 24 Sep. */
+  var BUDGET_BAND = {
+    1: { cap: 1300, label: "under €1,300" }, 2: { cap: 1600, label: "€1,300–€1,600" },
+    3: { cap: 2000, label: "€1,600–€2,000" }, 4: { cap: 99999, label: "€2,000+" }
+  };
+  var FOOD_CITIES = ["bilbao", "sansebastian", "barcelona", "lisbon"];
 
   var byId = function (id) { return CITIES.filter(function (c) { return c.id === id; })[0]; };
 
@@ -439,35 +450,30 @@
     afford: function (c) { return costScore(c); },
     food: function (c) { return c.acts.food / 5; },
     intl: function (c) { return clamp(c.erasmus / 5400, .05, 1); },
-    outdoors: function (c) { return Math.max(c.acts.hike, c.acts.surf, c.acts.beach) / 5; }
+    outdoor: function (c) { return Math.max(c.acts.hike, c.acts.surf, c.acts.beach) / 5; }
   };
-  var VIBE_ORDER = ["fast", "balanced", "cozy"];
 
-  function matchScore(c) {
-    var p = state.prefs;
-    // 1 · language and academic environment
-    var lang = p.lang === "englishOnly" ? .15 : p.lang === "immersion" ? c.acts.immersion / 5 : engScore(c);
-    // 2 · budget band
-    var cap = (BUDGET_BAND[p.budget] || BUDGET_BAND.b2).cap;
-    var mo = monthly(c);
-    var budget = mo <= cap ? 1 : clamp(1 - (mo - cap) / 400, 0, 1);
-    // 3 · setting
-    var setting = (c.settings || []).indexOf(p.setting) > -1 ? 1 : .35;
-    // 4 · vibe
-    var d = Math.abs(VIBE_ORDER.indexOf(c.vibe) - VIBE_ORDER.indexOf(p.vibe));
-    var vibe = d === 0 ? 1 : d === 1 ? .6 : .3;
-    // 5 · weather
-    var weather = p.weather === "flexible" ? 1
-      : c.weather === p.weather ? 1
-        : c.weather === "mild" ? .6 : .3;
-    // 6 · non-negotiables
-    var list = p.priorities || [];
-    var pri = list.length
-      ? list.reduce(function (s, k) { return s + (PRIORITY[k] ? PRIORITY[k](c) : .5); }, 0) / list.length
-      : .6;
-    var total = lang * .22 + budget * .2 + setting * .16 + vibe * .12 + weather * .1 + pri * .2;
-    return Math.round(clamp(total, 0, 1) * 100);
+  /* Same weights and tie-breakers as the comparison prototype, so both rank alike. */
+  function rawScore(c) {
+    var p = state.prefs, s = 0;
+    var cap = (BUDGET_BAND[p.budget] || BUDGET_BAND[2]).cap;
+    var b = monthly(c);
+    if (b <= cap) s += 4; else s -= Math.min(6, (b - cap) / 150);
+    if (p.lang === c.langEnv) s += 3;
+    if (p.lang === "english-only") s -= 2;
+    if (p.setting === c.setting) s += 2;
+    if (p.vibe === c.vibe) s += 2;
+    if (p.weather === c.weather || p.weather === "any") s += 2;
+    (p.priorities || []).forEach(function (k) {
+      if (k === "safety") s += (c.safety - 55) / 12;
+      if (k === "afford") s += (2100 - b) / 200;
+      if (k === "nightlife" || k === "intl") s += (c.vibe === "vibrant" ? 1.5 : 0.5);
+      if (k === "outdoor") s += (c.setting === "coastal" ? 1.5 : 0);
+      if (k === "food") s += (FOOD_CITIES.indexOf(c.id) > -1 ? 1 : 0);
+    });
+    return s;
   }
+  function matchScore(c) { return clamp(Math.round((rawScore(c) + 3) / 22 * 100), 5, 99); }
 
   function dims(c) {
     return [
@@ -659,10 +665,10 @@
   $$("[data-one]").forEach(function (box) {
     var key = box.dataset.one;
     $$(".pick", box).forEach(function (b) {
-      b.classList.toggle("is-on", state.prefs[key] === b.dataset.v);
-      b.setAttribute("aria-pressed", String(state.prefs[key] === b.dataset.v));
+      b.classList.toggle("is-on", String(state.prefs[key]) === b.dataset.v);
+      b.setAttribute("aria-pressed", String(String(state.prefs[key]) === b.dataset.v));
       b.addEventListener("click", function () {
-        state.prefs[key] = b.dataset.v;
+        state.prefs[key] = isNaN(+b.dataset.v) ? b.dataset.v : +b.dataset.v;
         $$(".pick", box).forEach(function (o) {
           o.classList.toggle("is-on", o === b);
           o.setAttribute("aria-pressed", String(o === b));
@@ -703,7 +709,7 @@
     if (!box) return;
     var note = $(".lang-note") || elem("p", "lang-note hint");
     note.className = "lang-note hint";
-    if (state.prefs.lang === "englishOnly") {
+    if (state.prefs.lang === "english-only") {
       note.textContent = "None of the ten cities is in a native English-speaking country yet, so everything will score low on this. Porto and Lisbon come closest: Portugal ranks 6th in the world for English.";
       box.parentNode.appendChild(note);
     } else if (note.parentNode) note.parentNode.removeChild(note);
@@ -798,8 +804,7 @@
   var FEATURES = [
     ["nearby", "plaza", "Nearby", "Anonymous posts from students a few streets away. Ask anything, vote up what helps.", "near"],
     ["recs", "pintxos", "Recs", "Where to eat, train and go out, ranked by students who live there.", "recs"],
-    ["groups", "mountains", "Groups", "Surf, hiking, language exchange, football. Find people by what you do.", "groups"],
-    ["weekends", "bridge", "Weekends", "Tell it your budget, it tells you which trips fit.", "trips"]
+    ["groups", "mountains", "Groups", "Surf, hiking, language exchange, football. Find people by what you do.", "groups"]
   ];
 
   function photoCard(opts) {
@@ -848,7 +853,7 @@
     var grid = elem("section", "bento");
 
     grid.appendChild(photoCard({
-      span: "b-hero", photo: "bilbao_ria", scene: "guggenheim",
+      span: "b-hero b-3", photo: "bilbao_ria", scene: "guggenheim",
       kicker: "Bilbao · autumn 2026",
       title: "A semester abroad, sorted.",
       text: "Choose the city, get ready to go, then find your feet once you land: what students nearby are saying, where to eat and train, groups to join, and weekends that fit your budget.",
@@ -857,7 +862,7 @@
     }));
 
     grid.appendChild(photoCard({
-      span: "b-3", photo: "granada", scene: "mountains",
+      span: "b-2", photo: "granada", scene: "mountains",
       kicker: "Before you leave", title: "Compare ten cities",
       text: "Cost, safety, climate, English, Erasmus numbers. Real figures, ranked on what you actually want.",
       onClick: function () { go("cities"); }
@@ -897,20 +902,20 @@
       });
 
     grid.appendChild(photoCard({
-      span: "b-3", photo: "gaztelugatxe", scene: "mountains",
+      span: "b-2", photo: "gaztelugatxe", scene: "mountains",
       kicker: "Weekends", title: "Trips that fit your budget",
       text: "Eight places from Bilbao, priced by travel, bed and food. Move the slider, watch them re-sort.",
       onClick: function () { setMode("there", false); go("trips"); }
     }));
 
     grid.appendChild(photoCard({
-      span: "b-3", photo: "bilbao_sanmames", scene: "stadium",
+      span: "b-2", photo: "bilbao_sanmames", scene: "stadium",
       kicker: "Your programme", title: "Dates, paperwork, people to ask",
       text: "Key dates, the first-week checklist, and what everyone is asking about this week.",
       onClick: function () { setMode("there", false); go("prog"); }
     }));
 
-    var unis = elem("article", "tcard b-4");
+    var unis = elem("article", "tcard b-4 landing-extra");
     var uniHead = elem("div", "card__head");
     var uniIco = elem("span", "ico ico--amber");
     uniIco.innerHTML = '<svg><use href="#i-prog"/></svg>';
@@ -930,7 +935,7 @@
       });
     grid.appendChild(unis);
 
-    var ready = elem("article", "tcard b-2");
+    var ready = elem("article", "tcard b-2 landing-extra");
     var readyHead = elem("div", "card__head");
     var readyIco = elem("span", "ico ico--rose");
     readyIco.innerHTML = '<svg><use href="#i-prep"/></svg>';
@@ -1073,7 +1078,7 @@
     why.appendChild(sectionHead("Why " + c.name + ", for you"));
     var pills = elem("div", "pills");
     var wanted = (state.prefs.priorities || []).map(function (k) {
-      return { safety: "safety", nightlife: "night", afford: null, food: "food", intl: null, outdoors: "hike" }[k];
+      return { safety: "safety", nightlife: "night", afford: null, food: "food", intl: null, outdoor: "hike" }[k];
     }).filter(function (k) { return k && (c.acts[k] || 0) >= 4; });
     (wanted.length ? wanted : Object.keys(c.acts).filter(function (k) { return c.acts[k] === 5; }))
       .forEach(function (k) {
@@ -1121,7 +1126,7 @@
     var mo = monthly(c);
     cbox.appendChild(elem("p", "note", "The monthly figure is rent + €" + FOOD + " food + transport + €" + OTHER + " for everything else, built the same way for all ten cities. "
       + (function () {
-        var band = BUDGET_BAND[state.prefs.budget] || BUDGET_BAND.b2;
+        var band = BUDGET_BAND[state.prefs.budget] || BUDGET_BAND[2];
         return band.cap >= mo
           ? "Your " + band.label + " band covers it, with about €" + Math.max(0, band.cap - mo) + " spare."
           : "That is about €" + (mo - band.cap) + " above your " + band.label + " band.";

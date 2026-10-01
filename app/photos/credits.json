@@ -138,5 +138,29 @@
                     "license":  "CC BY-SA 3.0",
                     "page":  "https://commons.wikimedia.org/wiki/File:Pergola_-_Plaza_de_Espa%C3%B1a_-_Tazacorte_03.jpg",
                     "title":  "File:Pergola - Plaza de España - Tazacorte 03.jpg"
-                }
+                },
+    "cooking_class":  {
+                          "url":  "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cb/Food_cooking_%2833591303890%29.jpg/1920px-Food_cooking_%2833591303890%29.jpg?utm_source=commons.wikimedia.org\u0026utm_campaign=imageinfo\u0026utm_content=thumbnail",
+                          "artist":  "COD Newsroom",
+                          "license":  "CC BY 2.0",
+                          "page":  "https://commons.wikimedia.org/wiki/File:Food_cooking_(33591303890).jpg",
+                          "title":  "File:Food cooking (33591303890).jpg",
+                          "alt":  "A cook finishing rows of small plates in a teaching kitchen"
+                      },
+    "la_rioja":  {
+                     "url":  "https://upload.wikimedia.org/wikipedia/commons/a/a7/La_Rioja_1998_10.jpg?utm_source=commons.wikimedia.org\u0026utm_campaign=imageinfo\u0026utm_content=thumbnail_unscaled",
+                     "artist":  "LBM1948",
+                     "license":  "CC BY-SA 4.0",
+                     "page":  "https://commons.wikimedia.org/wiki/File:La_Rioja_1998_10.jpg",
+                     "title":  "File:La Rioja 1998 10.jpg",
+                     "alt":  "Vineyards turning red and gold across a valley in La Rioja"
+                 },
+    "kayak":  {
+                  "url":  "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/06/Kayaking_under_the_Iron_Bridge_-_geograph.org.uk_-_7549344.jpg/1920px-Kayaking_under_the_Iron_Bridge_-_geograph.org.uk_-_7549344.jpg?utm_source=commons.wikimedia.org\u0026utm_campaign=imageinfo\u0026utm_content=thumbnail",
+                  "artist":  "TCExplorer",
+                  "license":  "CC BY-SA 2.0",
+                  "page":  "https://commons.wikimedia.org/wiki/File:Kayaking_under_the_Iron_Bridge_-_geograph.org.uk_-_7549344.jpg",
+                  "title":  "File:Kayaking under the Iron Bridge - geograph.org.uk - 7549344.jpg",
+                  "alt":  "Two kayakers paddling under a river bridge"
+              }
 }
