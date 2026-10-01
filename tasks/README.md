@@ -1,6 +1,7 @@
 # Tasks
 
-**The task table itself lives on the [repo front page](../README.md#tasks),** so everyone sees
+**The task table itself lives on the
+[repo front page](https://github.com/Corners-Connect/corners-connect#tasks),** so everyone sees
 it when they open the repo. This folder holds the reasoning behind it and the plan for when it
 outgrows one table.
 

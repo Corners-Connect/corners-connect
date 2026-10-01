@@ -27,12 +27,14 @@ Who does what, by when. One row per task.
 |---|---|---|---|---|
 | _No tasks yet_ | | | | |
 
-**[Add a task](../../edit/main/README.md)** — opens this file in the browser editor, no git
-needed. Add your row, then pick "Create a new branch for this commit and start a pull request".
+**[Add a task](https://github.com/Corners-Connect/corners-connect/edit/main/README.md)** — opens
+this file in the browser editor, no git needed. Add your row, then pick "Create a new branch for
+this commit and start a pull request".
 
 Dates as `YYYY-MM-DD`, owner as `@github-username` so the person gets notified. Leave the owner
 empty rather than writing "everyone": a task owned by everyone is owned by nobody. The
-reasoning, and what to do once this table outgrows a single file, is in [`tasks/`](tasks/).
+reasoning, and what to do once this table outgrows a single file, is in
+[`tasks/`](https://github.com/Corners-Connect/corners-connect/tree/main/tasks).
 
 ## Website sections
 
