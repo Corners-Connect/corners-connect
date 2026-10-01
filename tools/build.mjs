@@ -20,25 +20,34 @@ import { fileURLToPath } from "node:url";
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(ROOT, "site");
 
-/** Preview URLs rewritten to paths that work on the live site. */
+/**
+ * Preview URLs become links relative to the page that holds them, so the site works
+ * at a domain root, under a project path like /corners-connect/, or opened from disk.
+ */
 const LINK_MAP = [
-  ["https://claude.ai/artifact/SyVrLipV63UHqEjPSweDyj", "/app/"],
-  ["https://claude.ai/artifact/43EJ3fwJPR93fCKgvgraBM", "/onboarding/"],
-  ["https://claude.ai/artifact/KgwCmfG8kqduNSqJDEsqDg", "/"]
+  ["https://claude.ai/artifact/SyVrLipV63UHqEjPSweDyj", "app/"],
+  ["https://claude.ai/artifact/43EJ3fwJPR93fCKgvgraBM", "onboarding/"],
+  ["https://claude.ai/artifact/KgwCmfG8kqduNSqJDEsqDg", ""]
 ];
 
-const rewrite = (text) => LINK_MAP.reduce((acc, [from, to]) => acc.split(from).join(to), text);
+/** depth 0 = root of the site, 1 = one folder down (/app/, /find/, …) */
+function rewrite(text, depth) {
+  const up = depth === 0 ? "./" : "../".repeat(depth);
+  return LINK_MAP.reduce((acc, [from, to]) => acc.split(from).join(up + to), text);
+}
+
+const depthOf = (destDir) => (destDir === "." ? 0 : destDir.split("/").length);
 
 /** The sources omit the document wrapper so they can be published as previews. */
-function wrap(html) {
-  if (/^\s*<!doctype/i.test(html)) return rewrite(html);
-  return `<!doctype html>\n<html lang="en">\n${rewrite(html)}\n</html>\n`;
+function wrap(html, depth) {
+  if (/^\s*<!doctype/i.test(html)) return rewrite(html, depth);
+  return `<!doctype html>\n<html lang="en">\n${rewrite(html, depth)}\n</html>\n`;
 }
 
 async function page(src, destDir, destName = "index.html") {
   await mkdir(join(OUT, destDir), { recursive: true });
   const html = await readFile(join(ROOT, src), "utf8");
-  await writeFile(join(OUT, destDir, destName), wrap(html), "utf8");
+  await writeFile(join(OUT, destDir, destName), wrap(html, depthOf(destDir)), "utf8");
 }
 
 async function asset(src, destDir, destName) {
@@ -46,7 +55,7 @@ async function asset(src, destDir, destName) {
   const name = destName || src.split("/").pop();
   if (/\.(js|css|json|svg|txt)$/i.test(src)) {
     const text = await readFile(join(ROOT, src), "utf8");
-    await writeFile(join(OUT, destDir, name), rewrite(text), "utf8");
+    await writeFile(join(OUT, destDir, name), rewrite(text, depthOf(destDir)), "utf8");
   } else {
     await copyFile(join(ROOT, src), join(OUT, destDir, name));
   }
