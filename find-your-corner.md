@@ -31,6 +31,12 @@ a wrong number is a claim.
 
 Known limits on the sourced rows:
 
+- **Monthly budget** is broken out in the cell into living costs, room and total, and the
+  source drawer carries a price list (restaurant meal, transport pass, utilities, internet,
+  gym, cappuccino, beer) for the cities you are comparing. **Those prices deliberately do not
+  add up to the budget.** Numbeo does not publish how its basket is weighted, so adding named
+  items on top of the lump sum would repeat the double-count bug that made the budget 25
+  percent too high. They are there to give the number a feel, not to reconstruct it.
 - **Monthly budget** is Numbeo living costs excluding rent, plus a room in a shared flat. The
   room is derived from a three-bedroom flat outside the centre divided by three, because no
   source publishes room prices for all six cities on the same basis. Cross-checked against
