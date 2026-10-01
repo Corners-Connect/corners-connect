@@ -177,6 +177,21 @@ tailwind.config={theme:{extend:{colors:{brand:{DEFAULT:'#1D4ED8',700:'#1739A8',5
  <div class="mx-auto max-w-[1400px] px-6 pb-24">
   <div data-eid="cmp-heads" id="cmp-heads" class="grid gap-px bg-line border-b-2 sticky top-[116px] z-20" style="grid-template-columns:220px repeat(3,1fr);border-color:#CBD5E1"></div>
   <div data-eid="cmp-rows" id="cmp-rows"></div>
+
+  <!-- Where the journey goes after the table. The preview links below are rewritten
+       to relative paths (../app/, ../onboarding/) by tools/build.mjs at build time. -->
+  <div data-eid="cmp-next" class="mt-14 rk-lg border border-line bg-white p-6 md:p-8">
+   <h3 data-eid="next-h" class="text-[22px] font-semibold tracking-[-.02em] mb-2">Picked one? Here is what happens next.</h3>
+   <p data-eid="next-sub" class="text-[15px] leading-[1.6] text-muted max-w-[64ch] mb-6">
+    The comparison stops at the decision. The city app takes it from there: a room, the groups that meet,
+    where students actually eat and train, weekends that fit a budget, and your programme dates. It is live
+    for Bilbao while we get one city right.
+   </p>
+   <div class="flex flex-wrap gap-3">
+    <a data-eid="next-app" href="https://claude.ai/artifact/SyVrLipV63UHqEjPSweDyj" class="press rk px-6 py-3.5 text-[15px] font-semibold text-white" style="background:var(--primary)">Open the city app</a>
+    <a data-eid="next-onboard" href="https://claude.ai/artifact/43EJ3fwJPR93fCKgvgraBM" class="press rk border border-line bg-white px-6 py-3.5 text-[15px] font-semibold hover:bg-surface">Set yourself up first</a>
+   </div>
+  </div>
  </div>
 </section>
 
