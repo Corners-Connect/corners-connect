@@ -6,11 +6,15 @@ The app for students abroad: Erasmus, study abroad and first-years who moved cit
 > the audience with sourced figures, marketing, the numbers we watch, and what's still to be voted.
 > This README covers the whole repo; the section detail below is the website.
 
+> **Who does what, by when: [tasks/](tasks/)** — the shared task list. Add a row in the browser,
+> no git needed.
+
 ## What's here
 
 | Path | What it is |
 |---|---|
 | `PROJECT.md` | The master reference for the whole company. |
+| `tasks/` | **Who does what, by when.** The shared task overview: action, department, owner, start date, deadline. |
 | `app/` | The product: onboarding (`onboarding.html`) and the dashboard (`index.html`), plus `photos/`. No build step. |
 | `website/` | The public landing page: `index.html`, `styles.css`, `main.js`. No build step. |
 | `index.html` | **Find Your Corner** — the six-question survey and the side-by-side city comparison. Single file, Tailwind from a CDN. See [find-your-corner.md](find-your-corner.md). |
