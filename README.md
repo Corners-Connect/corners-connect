@@ -11,39 +11,12 @@ The app for students abroad: Erasmus, study abroad and first-years who moved cit
 | Path | What it is |
 |---|---|
 | `PROJECT.md` | The master reference for the whole company. |
-| [Corners Tasks](https://github.com/orgs/Corners-Connect/projects/1) | **Who does what, by when.** The task board: action, department, owner, start date, deadline. Not a file, it lives under Projects. |
 | `app/` | The product: onboarding (`onboarding.html`) and the dashboard (`index.html`), plus `photos/`. No build step. |
 | `website/` | The public landing page: `index.html`, `styles.css`, `main.js`. No build step. |
 | `index.html` | **Find Your Corner** — the six-question survey and the side-by-side city comparison. Single file, Tailwind from a CDN. See [find-your-corner.md](find-your-corner.md). |
 | `docs/launch-book.html` | Pitch eight: audience, sourced market figures, channels, calendar, KPIs, risks. **Written for the earlier "groups of eleven" concept and needs updating** for the feature-based product. |
 | `docs/audience-research-plan.html` | Research plan (also references the earlier concept and a team of eleven). |
 | `docs/kpi-tree.md` | The KPI tree on pitch 6's five boxes — growth, quality, cost, delivery, motivation. Definitions, owners, sources, and what's countable while the pilot is hand-run. |
-
-## Tasks
-
-Who does what, by when:
-
-### → [Corners Tasks](https://github.com/orgs/Corners-Connect/projects/1)
-
-It works like a spreadsheet. Type a row at the bottom, then pick from dropdowns:
-
-| Column | What goes in it |
-|---|---|
-| Title | The task |
-| Department | Product, Tech, Marketing, Design, Research, Orga |
-| Assignees | The owner, picked from the team |
-| Start date | Date picker |
-| Deadline | Date picker |
-| Status | Todo, In Progress, Done |
-
-Sort, filter and group by person or department, or switch the same list to a board view.
-
-**One owner per task.** Leave it empty rather than assigning everyone: a task owned by everyone
-is owned by nobody.
-
-> This replaced a markdown table in this file. A table in a repo cannot have dropdowns, and
-> editing it meant scrolling through the raw source of this whole README. The trade-off: the
-> board is not a file, so it does not render here — you have to follow the link.
 
 ## Website sections
 
