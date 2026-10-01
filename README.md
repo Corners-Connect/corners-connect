@@ -11,12 +11,30 @@ The app for students abroad: Erasmus, study abroad and first-years who moved cit
 | Path | What it is |
 |---|---|
 | `PROJECT.md` | The master reference for the whole company. |
+| `tasks/` | **Who does what, by when.** The shared task overview: action, department, owner, start date, deadline. |
 | `app/` | The product: onboarding (`onboarding.html`) and the dashboard (`index.html`), plus `photos/`. No build step. |
 | `website/` | The public landing page: `index.html`, `styles.css`, `main.js`. No build step. |
 | `index.html` | **Find Your Corner** — the six-question survey and the side-by-side city comparison. Single file, Tailwind from a CDN. See [find-your-corner.md](find-your-corner.md). |
 | `docs/launch-book.html` | Pitch eight: audience, sourced market figures, channels, calendar, KPIs, risks. **Written for the earlier "groups of eleven" concept and needs updating** for the feature-based product. |
 | `docs/audience-research-plan.html` | Research plan (also references the earlier concept and a team of eleven). |
 | `docs/kpi-tree.md` | The KPI tree on pitch 6's five boxes — growth, quality, cost, delivery, motivation. Definitions, owners, sources, and what's countable while the pilot is hand-run. |
+
+## Tasks
+
+Who does what, by when. One row per task.
+
+| Action | Department | Owner | Start date | Deadline |
+|---|---|---|---|---|
+| _No tasks yet_ | | | | |
+
+**[Add a task](https://github.com/Corners-Connect/corners-connect/edit/main/README.md)** — opens
+this file in the browser editor, no git needed. Add your row, then pick "Create a new branch for
+this commit and start a pull request".
+
+Dates as `YYYY-MM-DD`, owner as `@github-username` so the person gets notified. Leave the owner
+empty rather than writing "everyone": a task owned by everyone is owned by nobody. The
+reasoning, and what to do once this table outgrows a single file, is in
+[`tasks/`](https://github.com/Corners-Connect/corners-connect/tree/main/tasks).
 
 ## Website sections
 
