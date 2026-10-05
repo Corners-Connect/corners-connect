@@ -12,7 +12,10 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  # Several of us push to main in quick succession. Cancelling the run in
+  # progress meant a queued deploy could be dropped before it ever started,
+  # leaving the live site on an older commit. Let them queue instead.
+  cancel-in-progress: false
 
 jobs:
   build:
