@@ -3,9 +3,17 @@
 The single place to catch up on what Corners is, where it came from, what's decided and what isn't.
 Keep this file updated. If something here is out of date, fix it here first.
 
-- **Last updated:** 24 September 2026
+- **Last updated:** 5 October 2026
 - **Company:** Corners — a student company, autumn 2026, Bilbao
 - **Team:** 12 people. None of them from Bilbao.
+
+**The hosted prototype — one link for the whole thing:** https://corners-connect.github.io/corners-connect/
+Built from `main` by `.github/workflows/pages.yml` on every push, so it is always the current repo.
+Four pages: `/` the website, `/find/` Find Your Corner, `/app/` the city app, `/onboarding/` the survey
+and dashboard. The artifact links below are the same pages published individually, handy for pasting
+into chat or a deck.
+
+- **Find Your Corner (survey + comparison chart):** https://claude.ai/artifact/SmRJrY5ktD2a3tMZmr4S4a
 - **Onboarding + dashboard (one page, light):** https://claude.ai/artifact/43EJ3fwJPR93fCKgvgraBM
   — add `#demo` to the URL for a filled-in example that opens straight on the dashboard.
   The same `#demo` works on the app link, which opens set up in Bilbao. That's the run-through to show the class.
