@@ -27,6 +27,7 @@ const OUT = join(ROOT, "site");
 const LINK_MAP = [
   ["https://claude.ai/artifact/SyVrLipV63UHqEjPSweDyj", "app/"],
   ["https://claude.ai/artifact/43EJ3fwJPR93fCKgvgraBM", "onboarding/"],
+  ["https://claude.ai/artifact/SmRJrY5ktD2a3tMZmr4S4a", "find/"],
   ["https://claude.ai/artifact/KgwCmfG8kqduNSqJDEsqDg", ""]
 ];
 
