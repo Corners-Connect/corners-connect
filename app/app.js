@@ -850,16 +850,20 @@
     if (!box) return;
     box.textContent = "";
     var bil = byId("bilbao");
-    var grid = elem("section", "bento");
 
-    grid.appendChild(photoCard({
-      span: "b-hero b-3", photo: "bilbao_ria", scene: "guggenheim",
+    /* The banner sits outside the masonry. Inside it, a card spanning every column
+       stretches into a letterbox on a wide screen; outside, it keeps its own height. */
+    var banner = photoCard({
+      span: "land-banner", photo: "bilbao_ria", scene: "guggenheim",
       kicker: "Bilbao · autumn 2026",
       title: "A semester abroad, sorted.",
       text: "Choose the city, get ready to go, then find your feet once you land: what students nearby are saying, where to eat and train, groups to join, and weekends that fit your budget.",
       buttons: [["Find your city"], ["Look around Bilbao", null, true]],
       onClick: function () { go("match"); }
-    }));
+    });
+    box.appendChild(banner);
+
+    var grid = elem("section", "bento");
 
     grid.appendChild(photoCard({
       span: "b-2", photo: "granada", scene: "mountains",

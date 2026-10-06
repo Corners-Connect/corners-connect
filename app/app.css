@@ -1090,32 +1090,62 @@ body { letter-spacing: -.01em; }
   .landing { max-width: none; margin: 0; }
 }
 
+/* ---- the landing: a banner, then a masonry ----
+   One card system for both kinds of tile. Photo cards and text cards get the same
+   radius, border, shadow and hover, so a column of mixed cards reads as one set. */
+.landing { gap: 14px; }
+.landing .credit { margin-top: 10px; }
+
+.land-banner { border-radius: 22px; }
+.land-banner .pcard__in { min-height: clamp(300px, 26vw, 440px); padding: clamp(22px, 2.4vw, 36px); }
+.land-banner .pcard__t { font-size: clamp(30px, 3.4vw, 50px); line-height: 1.04; letter-spacing: -.04em; max-width: 17ch; }
+.land-banner .pcard__p { font-size: clamp(15px, 1.2vw, 18px); max-width: 56ch; }
+.land-banner .pcard__scrim { background: linear-gradient(100deg, rgba(15,23,42,.84) 10%, rgba(15,23,42,.45) 52%, rgba(15,23,42,.25)); }
+
 @media (min-width: 1100px) {
   /* Multicol ignores the grid rules above it, including the short-window row
      heights, so the only things to undo here are the scroll and height clamps. */
-  #v-start .bento {
-    display: block; columns: 3; column-gap: 14px;
-  }
+  #v-start .bento { display: block; columns: 3; column-gap: 14px; min-height: 0; }
+  /* A rule from the old fixed-height landing dropped these two cards on any window
+     under 860px tall, the universities card among them. A masonry scrolls, so there
+     is nothing to save by hiding them. */
+  #v-start .landing-extra { display: block !important; }
   #v-start .bento > * {
     display: block; width: 100%; margin: 0 0 14px;
     break-inside: avoid; -webkit-column-break-inside: avoid;
     overflow: visible; height: auto;
   }
-  #v-start .bento > *:first-child { column-span: all; }
 
-  /* Staggered heights are what make it read as masonry rather than a stack. */
-  #v-start .bento .pcard, #v-start .bento .pcard__in { min-height: 196px; }
-  #v-start .bento > *:nth-child(3n+2) .pcard,
-  #v-start .bento > *:nth-child(3n+2) .pcard__in { min-height: 252px; }
-  #v-start .bento > *:nth-child(4n+3) .pcard,
-  #v-start .bento > *:nth-child(4n+3) .pcard__in { min-height: 164px; }
-  #v-start .bento > *:first-child .pcard__in,
-  #v-start .b-hero .pcard__in { min-height: clamp(280px, 24vw, 400px); }
-  #v-start .tcard { overflow: visible; }
+  /* A height ladder rather than whatever the text happens to need: four steps,
+     repeating, so the columns stagger instead of lining up. */
+  #v-start .bento > *:nth-child(4n+1) .pcard__in { min-height: 268px; }
+  #v-start .bento > *:nth-child(4n+2) .pcard__in { min-height: 198px; }
+  #v-start .bento > *:nth-child(4n+3) .pcard__in { min-height: 324px; }
+  #v-start .bento > *:nth-child(4n+4) .pcard__in { min-height: 232px; }
+  #v-start .bento .pcard { min-height: 0; }
+  #v-start .tcard { overflow: visible; min-height: 232px; }
 }
 @media (min-width: 1500px) { #v-start .bento { columns: 4; } }
 @media (min-width: 1950px) { #v-start .bento { columns: 5; } }
 @media (min-width: 2400px) { #v-start .bento { columns: 6; } }
+
+/* One chrome for every tile on the landing. */
+#v-start .pcard, #v-start .tcard {
+  border-radius: 18px; border: 1px solid var(--line);
+  box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 12px 28px -24px rgba(15,23,42,.5);
+  transition: transform .4s var(--spring), box-shadow .35s var(--ease), border-color .3s;
+}
+#v-start .pcard:hover, #v-start .tcard:hover {
+  transform: translateY(-4px); border-color: var(--line-2);
+  box-shadow: 0 2px 4px rgba(15,23,42,.05), 0 26px 50px -28px rgba(15,23,42,.6);
+}
+/* Photo cards carry text over whatever is in the photo, so the scrim has to be
+   dark enough at the bottom to read against a busy one. */
+#v-start .pcard__scrim { background: linear-gradient(180deg, rgba(15,23,42,.1) 18%, rgba(15,23,42,.42) 55%, rgba(15,23,42,.84)); }
+#v-start .pcard__k { color: rgba(255,255,255,.86); }
+#v-start .pcard__p { color: rgba(255,255,255,.9); }
+#v-start .tcard { background: var(--card); }
+#v-start .tcard--tint { background: linear-gradient(155deg, var(--accent), var(--card) 62%); border-color: #C7D7FE; }
 
 /* The dashboard stays a grid — it has a fixed reading order — but widens into
    twelve columns so the cards keep their size instead of stretching. */

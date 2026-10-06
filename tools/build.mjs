@@ -14,6 +14,7 @@
  */
 import { mkdir, readFile, writeFile, copyFile, rm, readdir, stat } from "node:fs/promises";
 import { existsSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -45,10 +46,29 @@ function wrap(html, depth) {
   return `<!doctype html>\n<html lang="en">\n${rewrite(html, depth)}\n</html>\n`;
 }
 
-async function page(src, destDir, destName = "index.html") {
+/**
+ * Pages serves assets with max-age=600, so for ten minutes after a deploy a
+ * browser can keep an old stylesheet and show a layout that no longer exists.
+ * Stamping each reference with a hash of the file makes the URL change whenever
+ * the file does, which retires the cached copy immediately.
+ */
+function stamp(html, assets) {
+  return assets.reduce((acc, [name, hash]) => {
+    const quoted = name.replace(/\./g, "\\.");
+    return acc
+      .replace(new RegExp(`(href=")(${quoted})(")`, "g"), `$1$2?v=${hash}$3`)
+      .replace(new RegExp(`(src=")(${quoted})(")`, "g"), `$1$2?v=${hash}$3`);
+  }, html);
+}
+
+const hashOf = async (src) =>
+  createHash("sha1").update(await readFile(join(ROOT, src))).digest("hex").slice(0, 8);
+
+async function page(src, destDir, destName = "index.html", assets = []) {
   await mkdir(join(OUT, destDir), { recursive: true });
   const html = await readFile(join(ROOT, src), "utf8");
-  await writeFile(join(OUT, destDir, destName), wrap(html, depthOf(destDir)), "utf8");
+  const stamps = await Promise.all(assets.map(async (a) => [a.split("/").pop(), await hashOf(a)]));
+  await writeFile(join(OUT, destDir, destName), stamp(wrap(html, depthOf(destDir)), stamps), "utf8");
 }
 
 async function asset(src, destDir, destName) {
@@ -78,19 +98,19 @@ async function build() {
   await mkdir(OUT, { recursive: true });
 
   // marketing site at the root
-  await page("website/index.html", ".");
+  await page("website/index.html", ".", "index.html", ["website/styles.css", "website/site.js", "website/photos.js"]);
   await asset("website/styles.css", ".");
   await asset("website/site.js", ".");
   await asset("website/photos.js", ".");
 
   // the app
-  await page("app/index.html", "app");
+  await page("app/index.html", "app", "index.html", ["app/app.css", "app/app.js", "app/photos.js"]);
   await asset("app/app.css", "app");
   await asset("app/app.js", "app");
   await asset("app/photos.js", "app");
 
   // onboarding and dashboard
-  await page("app/onboarding.html", "onboarding");
+  await page("app/onboarding.html", "onboarding", "index.html", ["app/onboarding.css", "app/onboarding.js"]);
   await asset("app/onboarding.css", "onboarding");
   await asset("app/onboarding.js", "onboarding");
 
