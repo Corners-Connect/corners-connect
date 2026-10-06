@@ -1113,8 +1113,13 @@ body { letter-spacing: -.01em; }
   #v-start .bento > * {
     display: block; width: 100%; margin: 0 0 14px;
     break-inside: avoid; -webkit-column-break-inside: avoid;
-    overflow: visible; height: auto;
+    height: auto;
   }
+  /* A photo card fills its whole box with an image, so it has to clip to its own
+     radius or the picture paints square corners over a rounded card. Only the text
+     cards need the overflow released, to undo the short-window scroll rule. */
+  #v-start .bento > .pcard { overflow: hidden; }
+  #v-start .bento > .tcard { overflow: visible; }
 
   /* A height ladder rather than whatever the text happens to need: four steps,
      repeating, so the columns stagger instead of lining up. */
