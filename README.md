@@ -17,6 +17,7 @@ The app for students abroad: Erasmus, study abroad and first-years who moved cit
 | `docs/launch-book.html` | Pitch eight: audience, sourced market figures, channels, calendar, KPIs, risks. **Written for the earlier "groups of eleven" concept and needs updating** for the feature-based product. |
 | `docs/audience-research-plan.html` | Research plan (also references the earlier concept and a team of eleven). |
 | `docs/kpi-tree.md` | The KPI tree on pitch 6's five boxes — growth, quality, cost, delivery, motivation. Definitions, owners, sources, and what's countable while the pilot is hand-run. |
+| `video-tool/` | Turns raw talking videos into vertical clips with TikTok-style captions in the Corners look (Remotion + faster-whisper). Has its own build step. See [video-tool/README.md](video-tool/README.md). |
 
 ## Website sections
 
