@@ -1473,15 +1473,19 @@
     { id: "g6", t: "A day in La Rioja", cat: "Day trip", dur: "9 h", price: 60, a: "#DDAE45", b: "#7A1F3D", about: "Two wineries and a long village lunch, transport included." },
     { id: "g7", t: "Kayak on the Ría", cat: "Sport", dur: "2 h", price: 28, a: "#6FB8F5", b: "#0F3B4F", about: "Paddle under the bridges and past the museum." }
   ];
+  /* `photo` is the Commons image each trip shows; `note` is the one line worth
+     knowing before you go. Costs are planning estimates, flagged as such in the view. */
   var TRIPS = [
-    { id: "t1", name: "San Sebastián", how: "Bus · 1 h 20", travel: 16, bed: 35, food: 20, min: 0 },
-    { id: "t2", name: "Vitoria-Gasteiz", how: "Bus · 1 h", travel: 14, bed: 26, food: 16, min: 0 },
-    { id: "t3", name: "Santander", how: "Bus · 1 h 30", travel: 22, bed: 30, food: 18, min: 0 },
-    { id: "t4", name: "Logroño", how: "Bus · 2 h", travel: 28, bed: 28, food: 20, min: 0 },
-    { id: "t5", name: "Biarritz", how: "Bus · 2 h 30", travel: 32, bed: 42, food: 26, min: 0 },
-    { id: "t6", name: "Picos de Europa", how: "Car share · 2 h 30", travel: 38, bed: 22, food: 18, min: 1 },
-    { id: "t7", name: "Madrid", how: "Train · 5 h", travel: 50, bed: 30, food: 22, min: 1 },
-    { id: "t8", name: "Porto", how: "Flight · 1 h", travel: 75, bed: 26, food: 18, min: 1 }
+    { id: "t1", name: "San Sebastián", how: "Bus · 1 h 20", travel: 16, bed: 35, food: 20, min: 0, photo: "sansebastian", note: "La Concha, the old town, and more Michelin stars per person than almost anywhere." },
+    { id: "t9", name: "Gaztelugatxe", how: "Bus · 1 h 15", travel: 12, bed: 24, food: 16, min: 0, photo: "gaztelugatxe", note: "Dragonstone in Game of Thrones. 241 steps to the chapel; book the free slot in advance." },
+    { id: "t2", name: "Vitoria-Gasteiz", how: "Bus · 1 h", travel: 14, bed: 26, food: 16, min: 0, photo: "vitoria", note: "The Basque capital, and the cheapest of the easy ones." },
+    { id: "t3", name: "Santander", how: "Bus · 1 h 30", travel: 22, bed: 30, food: 18, min: 0, photo: "santander", note: "A long beach city with the Magdalena palace on its own headland." },
+    { id: "t4", name: "Logroño", how: "Bus · 2 h", travel: 28, bed: 28, food: 20, min: 0, photo: "logrono", note: "Calle Laurel: one tapa and one small wine per bar, all evening." },
+    { id: "t5", name: "Biarritz", how: "Bus · 2 h 30", travel: 32, bed: 42, food: 26, min: 0, photo: "biarritz", note: "Over the French border. Take your passport or ID card." },
+    { id: "t6", name: "Picos de Europa", how: "Car share · 2 h 30", travel: 38, bed: 22, food: 18, min: 1, photo: "picos", note: "Mountains and the Cares gorge walk. Needs boots and an early start." },
+    { id: "t7", name: "Madrid", how: "Train · 5 h", travel: 50, bed: 30, food: 22, min: 1, photo: "madrid", note: "Cheaper by bus overnight, faster by the morning train." },
+    { id: "t8", name: "Porto", how: "Flight · 1 h", travel: 75, bed: 26, food: 18, min: 1, photo: "porto", note: "The cheapest flight out of Bilbao most weeks." },
+    { id: "t10", name: "Ibiza", how: "Flight · 1 h 50", travel: 110, bed: 45, food: 28, min: 2, photo: "ibiza", note: "Only worth it in September, before the season ends and while fares are low." }
   ];
   var DATES = [
     { d: "1 Sep", s: "Arrival and orientation", k: "done" },
@@ -1898,9 +1902,13 @@
       var li = elem("li", "trip" + (t.over ? " is-over" : "") + (t.na ? " is-na" : ""));
       li.dataset.tid = t.id;
       li.tabIndex = 0; li.setAttribute("role", "button");
+      var shot = elem("div", "trip__shot");
+      shot.innerHTML = pic(t.photo, "city");
+      li.appendChild(shot);
       var left = elem("div");
       left.appendChild(elem("p", "trip__t", t.name));
       left.appendChild(elem("p", "trip__m", t.how));
+      if (t.note) left.appendChild(elem("p", "trip__note", t.note));
       var right = elem("div", "trip__sum");
       right.appendChild(document.createTextNode(t.na ? "—" : "€" + t.total));
       right.appendChild(elem("span", "trip__st", t.na ? "Needs a night" : t.over ? "€" + (t.total - budget) + " over" : "€" + (budget - t.total) + " left"));
@@ -2067,6 +2075,140 @@
     ["bilbao_guggenheim", "guggenheim", "Guggenheim", "Free with a student card", "--h9", function () { openCity("bilbao"); }],
     ["bilbao_sanmames", "stadium", "San Mamés", "Athletic, standing tickets", "--h1", function () { setMode("there", false); go("guides"); }]
   ];
+
+  /* ---- slideshow ----
+     Slides stack and crossfade. It advances on its own, stops while you are
+     hovering, touching or tabbing through it, and never auto-advances for anyone
+     who asked for reduced motion. */
+  function makeSlideshow(opts) {
+    var box = elem("div", "show");
+    var frame = elem("div", "show__frame");
+    var slides = opts.slides.map(function (s, i) {
+      var fig = elem("figure", "show__slide" + (i === 0 ? " is-on" : ""));
+      fig.innerHTML = pic(s.photo, s.scene);
+      var cap = elem("figcaption", "show__cap");
+      cap.appendChild(elem("b", null, s.title));
+      cap.appendChild(elem("span", null, s.text));
+      fig.appendChild(elem("span", "show__scrim"));
+      fig.appendChild(cap);
+      frame.appendChild(fig);
+      return fig;
+    });
+    box.appendChild(frame);
+
+    var head = elem("div", "show__head");
+    head.appendChild(elem("p", "show__k", opts.kicker));
+    head.appendChild(elem("h2", "show__t", opts.title));
+    frame.appendChild(head);
+
+    var at = 0, timer = null;
+    function show(n) {
+      at = (n + slides.length) % slides.length;
+      slides.forEach(function (f, i) { f.classList.toggle("is-on", i === at); });
+      dots.forEach(function (d, i) {
+        d.classList.toggle("is-on", i === at);
+        d.setAttribute("aria-current", i === at ? "true" : "false");
+      });
+    }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    function start() {
+      stop();
+      if (reduce || slides.length < 2) return;
+      timer = setInterval(function () { show(at + 1); }, opts.every || 4200);
+    }
+
+    var bar = elem("div", "show__bar");
+    var prev = elem("button", "show__nav", "‹");
+    prev.type = "button";
+    prev.setAttribute("aria-label", "Previous photo");
+    var dotBox = elem("div", "show__dots");
+    var dots = opts.slides.map(function (s, i) {
+      var d = elem("button", "show__dot" + (i === 0 ? " is-on" : ""));
+      d.type = "button";
+      d.setAttribute("aria-label", s.title);
+      d.addEventListener("click", function () { show(i); start(); });
+      dotBox.appendChild(d);
+      return d;
+    });
+    var next = elem("button", "show__nav", "›");
+    next.type = "button";
+    next.setAttribute("aria-label", "Next photo");
+    prev.addEventListener("click", function () { show(at - 1); start(); });
+    next.addEventListener("click", function () { show(at + 1); start(); });
+    bar.appendChild(prev); bar.appendChild(dotBox); bar.appendChild(next);
+
+    if (opts.cta) {
+      var go2 = elem("button", "btn btn--sm", opts.cta[0]);
+      go2.type = "button";
+      go2.addEventListener("click", opts.cta[1]);
+      bar.appendChild(go2);
+    }
+    box.appendChild(bar);
+
+    ["pointerenter", "focusin"].forEach(function (e) { box.addEventListener(e, stop); });
+    ["pointerleave", "focusout"].forEach(function (e) { box.addEventListener(e, start); });
+    start();
+    return box;
+  }
+
+  /* Surfing is the activity students ask about most here, and the three beaches
+     are genuinely different: a lesson break, a contest beach, and a world-famous
+     left that is no place to learn. Each slide names where it actually is. */
+  var SURF_SLIDES = [
+    { photo: "bilbao_sopelana", scene: "surf", title: "Sopelana", text: "Lessons every weekend. 30 min on metro line 1, board and wetsuit included." },
+    { photo: "surf_zarautz", scene: "surf", title: "Zarautz", text: "The long beach the contests use. An hour east, bus from Termibus." },
+    { photo: "mundaka", scene: "surf", title: "Mundaka", text: "One of the best left-hand waves in Europe. Watch it before you try it." },
+    { photo: "surf_sunset", scene: "surf", title: "Evening sessions", text: "The water stays surfable into October. Autumn is the good season." }
+  ];
+
+  function renderHomeSurf() {
+    var box = $("[data-home-surf]");
+    if (!box) return;
+    box.textContent = "";
+    box.appendChild(makeSlideshow({
+      kicker: "Activities", title: "Surfing the Basque coast",
+      slides: SURF_SLIDES,
+      cta: ["Book a lesson", function () { setMode("there", false); go("guides"); }]
+    }));
+  }
+
+  /* Eating is half of why people pick this city, so it gets its own block rather
+     than one line in Recs. */
+  var FOOD_TILES = [
+    ["pintxos", "pintxos", "Best eats", "Pintxo bars students rate", function () { setMode("there", false); go("recs"); }],
+    ["cooking_class", "pintxos", "Cooking class", "Make four pintxos, eat them", function () { setMode("there", false); go("guides"); }],
+    ["ribera_market", "oldtown", "La Ribera", "The market on the river", function () { setMode("there", false); go("recs"); }]
+  ];
+
+  function renderHomeFood() {
+    var box = $("[data-home-food]");
+    if (!box) return;
+    box.textContent = "";
+    var card = elem("section", "card food");
+    var head = elem("div", "card__head");
+    var ico = elem("span", "ico ico--rose");
+    ico.innerHTML = '<svg><use href="#i-recs"/></svg>';
+    head.appendChild(ico);
+    head.appendChild(elem("p", "micro", "Food and gastronomy"));
+    card.appendChild(head);
+    card.appendChild(elem("h2", "card__title", "Eat, and learn to cook it"));
+
+    var grid = elem("div", "food__grid");
+    FOOD_TILES.forEach(function (f) {
+      var t = elem("button", "ftile");
+      t.type = "button";
+      t.innerHTML = pic(f[0], f[1]);
+      t.appendChild(elem("span", "ftile__wash"));
+      var cap = elem("span", "ftile__cap");
+      cap.appendChild(elem("b", null, f[2]));
+      cap.appendChild(elem("span", null, f[3]));
+      t.appendChild(cap);
+      t.addEventListener("click", f[4]);
+      grid.appendChild(t);
+    });
+    card.appendChild(grid);
+    box.appendChild(card);
+  }
 
   function renderHomeArea() {
     var box = $("[data-home-area]");
@@ -2277,6 +2419,8 @@
   renderMe();
   renderHomeGoing();
   renderHomeHero();
+  renderHomeSurf();
+  renderHomeFood();
   renderHomeArea();
 
   var startHash = (location.hash || "").slice(1);
