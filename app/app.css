@@ -917,6 +917,106 @@ body { letter-spacing: -.01em; }
 .land-uni b { font-size: 15.5px; font-weight: 600; }
 .land-uni span { display: block; font-size: 13.5px; color: var(--text-2); }
 
+/* ================= home: photo hero, the area strip, card colour =================
+   These sit at the end of the file on purpose: the light-theme block above resets
+   .card backgrounds to flat white, so the tints have to come after it to win. */
+
+.hban {
+  position: relative; overflow: hidden; isolation: isolate;
+  border-radius: 22px; border: 1px solid var(--line); background: var(--bg-2);
+}
+.hban__art { position: absolute; inset: 0; }
+.hban__art img, .hban__art .art {
+  width: 100%; height: 100%; object-fit: cover;
+  transform: scale(1.04); transition: transform 1.6s var(--ease);
+}
+.hban:hover .hban__art img { transform: scale(1.09); }
+/* Duotone wash: the photo reads as brand blue instead of fighting the UI for attention. */
+.hban__wash {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(120% 95% at 88% -10%, rgba(125,185,255,.5), transparent 62%),
+    linear-gradient(118deg, rgba(29,78,216,.82) 6%, rgba(67,56,202,.52) 48%, rgba(15,23,42,.78));
+}
+.hban__in {
+  position: relative; display: grid; gap: 16px; align-content: end;
+  min-height: clamp(200px, 21vw, 258px); padding: clamp(18px, 2.2vw, 28px);
+}
+.greet--photo { padding: 0; }
+.greet--photo .hello { color: #fff; text-shadow: 0 1px 24px rgba(15,23,42,.3); }
+.greet--photo .hello__sub { color: rgba(255,255,255,.88); }
+
+.hban__facts { display: flex; flex-wrap: wrap; gap: 10px; }
+.hfact {
+  display: flex; align-items: center; gap: 10px;
+  padding: 7px 15px; border-radius: 999px; color: #fff; font-size: 13px; line-height: 1.25;
+  background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3);
+  -webkit-backdrop-filter: blur(12px) saturate(150%); backdrop-filter: blur(12px) saturate(150%);
+}
+.hfact--uni { padding-left: 7px; }
+.hfact__thumb { width: 32px; height: 32px; border-radius: 50%; overflow: hidden; flex: none; background: rgba(255,255,255,.2); }
+.hfact__thumb img, .hfact__thumb .art, .hfact__thumb svg { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hfact__txt { display: grid; color: rgba(255,255,255,.82); font-size: 12px; }
+.hfact__txt b { font-size: 13.5px; font-weight: 600; letter-spacing: -.01em; color: #fff; }
+
+.astrip {
+  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(144px, 1fr);
+  gap: 12px; margin-top: 14px; overflow-x: auto; scrollbar-width: thin;
+  padding-bottom: 2px;
+}
+.atile {
+  position: relative; overflow: hidden; cursor: pointer; text-align: left;
+  min-height: 104px; border-radius: 15px; border: 1px solid var(--line); padding: 0;
+  background: var(--bg-2); isolation: isolate;
+  transition: transform .4s var(--spring), box-shadow .3s;
+}
+.atile:hover { transform: translateY(-3px); box-shadow: 0 14px 30px -18px rgba(15,23,42,.5); }
+.atile:active { transform: scale(.98); }
+.atile img, .atile .art {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  transition: transform 1.2s var(--ease);
+}
+.atile:hover img { transform: scale(1.07); }
+/* The colour wash is what makes six photos look like one set. */
+.atile__wash {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(15,23,42,.05) 22%, color-mix(in srgb, var(--tint, var(--blue)) 78%, transparent));
+  mix-blend-mode: multiply;
+}
+.atile__cap { position: relative; display: grid; gap: 1px; align-content: end; height: 100%; min-height: 104px; padding: 11px; color: #fff; }
+.atile__cap b { font-size: 14.5px; font-weight: 600; letter-spacing: -.015em; }
+.atile__cap span { font-size: 11.5px; color: rgba(255,255,255,.88); }
+
+/* Colour keyed to each card's icon, so the grid is not six white boxes. */
+.card--tint-sky, .card--tint-sky:hover { background: linear-gradient(158deg, #F0F9FF, var(--card) 60%); border-color: #BAE6FD; }
+.card--tint-blue, .card--tint-blue:hover { background: linear-gradient(158deg, var(--accent), var(--card) 60%); border-color: #C7D7FE; }
+.card--tint-green, .card--tint-green:hover { background: linear-gradient(158deg, #ECFDF5, var(--card) 60%); border-color: #A7F3D0; }
+.card--tint-amber, .card--tint-amber:hover { background: linear-gradient(158deg, #FFFBEB, var(--card) 60%); border-color: #FDE68A; }
+.card--tint-violet, .card--tint-violet:hover { background: linear-gradient(158deg, #F5F3FF, var(--card) 60%); border-color: #DDD6FE; }
+
+/* Short windows: the dashboard still has to fit without the hero eating the screen.
+   Everything here shrinks; nothing gets clipped. The tile sub-labels are the one thing
+   dropped, because the place name alone still says which photo you are looking at. */
+@media (min-width: 900px) and (max-height: 760px) {
+  #v-home .bento { grid-template-rows: auto 104px 104px auto; }
+  .hban__in { min-height: 96px; gap: 7px; padding: 12px; }
+  .greet--photo .hello { font-size: clamp(19px, 2vw, 23px); }
+  .greet--photo .hello__sub { font-size: 12.5px; }
+  .hban__facts { gap: 6px; }
+  .hfact { padding: 4px 10px; font-size: 11.5px; }
+  .hfact--uni { padding-left: 4px; }
+  .hfact__thumb { width: 22px; height: 22px; }
+  .hfact__txt { font-size: 10.5px; }
+  .hfact__txt b { font-size: 12px; }
+  .astrip { grid-auto-columns: minmax(104px, 1fr); gap: 8px; margin-top: 7px; }
+  .atile, .atile__cap { min-height: 58px; }
+  .atile__cap { padding: 7px; }
+  .atile__cap b { font-size: 12px; }
+  .atile__cap span { display: none; }
+  #v-home [data-home-area] { padding: 11px; }
+  #v-home [data-home-area] .block__h { font-size: 14px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
   ::view-transition-old(root), ::view-transition-new(root) { animation: none; }

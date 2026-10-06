@@ -2034,18 +2034,73 @@
     var ss = TRIPS.filter(function (t) { return t.name === "San Sebastián"; })[0];
     el.textContent = "€" + (ss.travel + ss.food);
   }
-  function renderHomePhoto() {
-    var box = $("[data-home-photo]");
+  /* The hero photo and the two figures beside the campus. The greeting itself is in the
+     markup so whatever sets [data-hello] keeps working regardless of render order. */
+  function renderHomeHero() {
+    var bil = byId("bilbao");
+    var art = $("[data-hero-art]");
+    if (art) art.innerHTML = pic("bilbao_ria", "guggenheim");
+    var thumb = $("[data-hero-campus]");
+    if (thumb) thumb.innerHTML = pic("bilbao_ehu", "campus");
+    var facts = $("[data-hero-facts]");
+    if (!facts || !bil) return;
+    $$(".hfact--num", facts).forEach(function (n) { n.remove(); });
+    [["€" + monthly(bil), "a month, all in"],
+     [bil.erasmus.toLocaleString("en-GB"), "Erasmus students a year"]]
+      .forEach(function (f) {
+        var s = elem("span", "hfact hfact--num");
+        var t = elem("span", "hfact__txt");
+        t.appendChild(elem("b", null, f[0]));
+        t.appendChild(document.createTextNode(f[1]));
+        s.appendChild(t);
+        facts.appendChild(s);
+      });
+  }
+
+  /* The area as six tiles: the campus, the old town, the hill, the beach, the two landmarks.
+     Each carries a colour wash, so the strip reads as a palette instead of six grey photos. */
+  var AREA = [
+    ["bilbao_ehu", "campus", "UPV/EHU", "Leioa campus · metro L1", "--h8", function () { setMode("there", false); go("prog"); }],
+    ["bilbao_casco", "oldtown", "Casco Viejo", "Pintxos, the Seven Streets", "--h2", function () { setMode("there", false); go("recs"); }],
+    ["bilbao_artxanda", "mountains", "Artxanda", "Funicular, the city below", "--h4", function () { setMode("there", false); go("trips"); }],
+    ["bilbao_sopelana", "surf", "Sopelana", "Beach, 30 min on the metro", "--h6", function () { setMode("there", false); go("groups"); }],
+    ["bilbao_guggenheim", "guggenheim", "Guggenheim", "Free with a student card", "--h9", function () { openCity("bilbao"); }],
+    ["bilbao_sanmames", "stadium", "San Mamés", "Athletic, standing tickets", "--h1", function () { setMode("there", false); go("guides"); }]
+  ];
+
+  function renderHomeArea() {
+    var box = $("[data-home-area]");
     if (!box) return;
     box.textContent = "";
-    var card = photoCard({
-      span: "", photo: "pintxos", scene: "pintxos",
-      kicker: "Thursday", title: "Pintxo pote in Casco Viejo",
-      text: "A drink and a pintxo for a few euros, bar to bar. The cheapest night out in the city.",
-      onClick: function () { go("recs"); }
+
+    var head = elem("div", "block__head");
+    var h = elem("div", "card__head");
+    var ico = elem("span", "ico ico--sky");
+    ico.innerHTML = '<svg><use href="#i-cities"/></svg>';
+    h.appendChild(ico);
+    h.appendChild(elem("h2", "block__h", "Around you in Bilbao"));
+    head.appendChild(h);
+    var all = elem("button", "link", "City page");
+    all.type = "button";
+    all.addEventListener("click", function () { openCity("bilbao"); });
+    head.appendChild(all);
+    box.appendChild(head);
+
+    var strip = elem("div", "astrip");
+    AREA.forEach(function (a) {
+      var tile = elem("button", "atile");
+      tile.type = "button";
+      tile.style.setProperty("--tint", "var(" + a[4] + ")");
+      tile.innerHTML = pic(a[0], a[1]);
+      tile.appendChild(elem("span", "atile__wash"));
+      var cap = elem("span", "atile__cap");
+      cap.appendChild(elem("b", null, a[2]));
+      cap.appendChild(elem("span", null, a[3]));
+      tile.appendChild(cap);
+      tile.addEventListener("click", a[5]);
+      strip.appendChild(tile);
     });
-    card.className = "pcard";
-    box.appendChild(card);
+    box.appendChild(strip);
   }
 
   function renderHomeGoing() {
@@ -2221,7 +2276,8 @@
   renderGate();
   renderMe();
   renderHomeGoing();
-  renderHomePhoto();
+  renderHomeHero();
+  renderHomeArea();
 
   var startHash = (location.hash || "").slice(1);
   var start = VIEWS[startHash] ? startHash : (state.destination && byId(state.destination) && byId(state.destination).live ? "home" : (state.ranked ? "cities" : "start"));

@@ -172,9 +172,23 @@
         <div data-city-gate hidden></div>
         <div data-city-content>
           <div class="bento">
-            <div class="greet">
-              <p class="hello" data-hello>Good evening.</p>
-              <p class="hello__sub">Here's what's worth knowing in Bilbao right now.</p>
+            <!-- The day opens on where you actually are: the ría behind the greeting,
+                 your campus inset in the first fact. Photo and numbers come from app.js. -->
+            <div class="hban b-6">
+              <div class="hban__art" data-hero-art aria-hidden="true"></div>
+              <div class="hban__wash" aria-hidden="true"></div>
+              <div class="hban__in">
+                <div class="greet greet--photo">
+                  <p class="hello" data-hello>Good evening.</p>
+                  <p class="hello__sub">Here's what's worth knowing in Bilbao right now.</p>
+                </div>
+                <div class="hban__facts" data-hero-facts>
+                  <span class="hfact hfact--uni">
+                    <span class="hfact__thumb" data-hero-campus aria-hidden="true"></span>
+                    <span class="hfact__txt"><b>UPV/EHU</b>Leioa campus · metro L1</span>
+                  </span>
+                </div>
+              </div>
             </div>
 
             <article class="card card--next b-4" data-open="group:language">
@@ -191,7 +205,7 @@
               </div>
             </article>
 
-            <article class="card b-2 quick-card">
+            <article class="card b-2 quick-card card--tint-sky">
               <div class="card__head"><span class="ico ico--sky" aria-hidden="true"><svg><use href="#i-plus"/></svg></span><p class="micro">Quick</p></div>
               <div class="quick quick--stack">
                 <button class="quick__btn" data-compose><svg><use href="#i-plus"/></svg>Post nearby</button>
@@ -208,7 +222,7 @@
               <ol class="list" data-home-feed></ol>
             </section>
 
-            <article class="card b-2" data-open="trip:San Sebastián">
+            <article class="card b-2 card--tint-green" data-open="trip:San Sebastián">
               <div class="card__head"><span class="ico ico--green" aria-hidden="true"><svg><use href="#i-trips"/></svg></span><p class="micro">This weekend</p></div>
               <h2 class="card__title">San Sebastián</h2>
               <p class="card__meta">Day trip · bus 1 h 20</p>
@@ -216,14 +230,14 @@
               <p class="card__meta">fits your €100 budget</p>
             </article>
 
-            <article class="card b-2" data-go="prog">
+            <article class="card b-2 card--tint-amber" data-go="prog">
               <div class="card__head"><span class="ico ico--amber" aria-hidden="true"><svg><use href="#i-prog"/></svg></span><p class="micro">Your programme</p></div>
               <h2 class="card__title">First week</h2>
               <div class="ring" data-home-ring style="--p:33%"><span data-home-ring-label>2/6</span></div>
               <p class="card__meta" data-home-next>Next: get your Barik card</p>
             </article>
 
-            <div class="b-6" data-home-photo></div>
+            <section class="card b-6" data-home-area></section>
           </div>
         </div>
       </section>
