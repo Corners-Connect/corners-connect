@@ -1017,6 +1017,60 @@ body { letter-spacing: -.01em; }
   #v-home [data-home-area] .block__h { font-size: 14px; }
 }
 
+/* ================= full-bleed masonry =================
+   The card views were capped at 1040px, which left most of a wide screen empty.
+   They now run to the window edge with a gutter, and the landing packs its cards
+   as a true masonry — multi-column, natural heights — instead of a fixed row grid.
+   The list views keep a reading width on purpose: a post at 2,400px is unreadable. */
+
+@media (min-width: 900px) {
+  .app { --pad: 26px; }
+  .top__row, .pills { max-width: none; }
+  #v-home, #v-start { max-width: none; margin: 0; }
+  .landing { max-width: none; margin: 0; }
+}
+
+@media (min-width: 1100px) {
+  /* Multicol ignores the grid rules above it, including the short-window row
+     heights, so the only things to undo here are the scroll and height clamps. */
+  #v-start .bento {
+    display: block; columns: 3; column-gap: 14px;
+  }
+  #v-start .bento > * {
+    display: block; width: 100%; margin: 0 0 14px;
+    break-inside: avoid; -webkit-column-break-inside: avoid;
+    overflow: visible; height: auto;
+  }
+  #v-start .bento > *:first-child { column-span: all; }
+
+  /* Staggered heights are what make it read as masonry rather than a stack. */
+  #v-start .bento .pcard, #v-start .bento .pcard__in { min-height: 196px; }
+  #v-start .bento > *:nth-child(3n+2) .pcard,
+  #v-start .bento > *:nth-child(3n+2) .pcard__in { min-height: 252px; }
+  #v-start .bento > *:nth-child(4n+3) .pcard,
+  #v-start .bento > *:nth-child(4n+3) .pcard__in { min-height: 164px; }
+  #v-start .bento > *:first-child .pcard__in,
+  #v-start .b-hero .pcard__in { min-height: clamp(280px, 24vw, 400px); }
+  #v-start .tcard { overflow: visible; }
+}
+@media (min-width: 1500px) { #v-start .bento { columns: 4; } }
+@media (min-width: 1950px) { #v-start .bento { columns: 5; } }
+@media (min-width: 2400px) { #v-start .bento { columns: 6; } }
+
+/* The dashboard stays a grid — it has a fixed reading order — but widens into
+   twelve columns so the cards keep their size instead of stretching. */
+@media (min-width: 1500px) {
+  #v-home .bento { grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-flow: row dense; }
+  #v-home .bento > *:nth-child(1) { grid-column: span 8; }
+  #v-home .bento > *:nth-child(2) { grid-column: span 4; }
+  #v-home .bento > *:nth-child(3),
+  #v-home .bento > *:nth-child(4),
+  #v-home .bento > *:nth-child(5),
+  #v-home .bento > *:nth-child(6) { grid-column: span 3; }
+  #v-home .bento > *:nth-child(7) { grid-column: span 12; }
+  .astrip { grid-auto-columns: minmax(180px, 1fr); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
   ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
