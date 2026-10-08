@@ -1,0 +1,170 @@
+[
+  {
+    "text": " Using",
+    "startMs": 0,
+    "endMs": 260,
+    "timestampMs": 130,
+    "confidence": 0.926
+  },
+  {
+    "text": " Remotions",
+    "startMs": 260,
+    "endMs": 840,
+    "timestampMs": 550,
+    "confidence": 0.842
+  },
+  {
+    "text": " TikTok",
+    "startMs": 840,
+    "endMs": 1160,
+    "timestampMs": 1000,
+    "confidence": 0.612
+  },
+  {
+    "text": " template,",
+    "startMs": 1160,
+    "endMs": 1760,
+    "timestampMs": 1460,
+    "confidence": 0.846
+  },
+  {
+    "text": " you",
+    "startMs": 1960,
+    "endMs": 2020,
+    "timestampMs": 1990,
+    "confidence": 0.991
+  },
+  {
+    "text": " can",
+    "startMs": 2020,
+    "endMs": 2200,
+    "timestampMs": 2110,
+    "confidence": 0.992
+  },
+  {
+    "text": " create",
+    "startMs": 2200,
+    "endMs": 2520,
+    "timestampMs": 2360,
+    "confidence": 0.997
+  },
+  {
+    "text": " engaging",
+    "startMs": 2520,
+    "endMs": 3460,
+    "timestampMs": 2990,
+    "confidence": 0.985
+  },
+  {
+    "text": " reels",
+    "startMs": 3460,
+    "endMs": 4340,
+    "timestampMs": 3900,
+    "confidence": 0.855
+  },
+  {
+    "text": " and",
+    "startMs": 4340,
+    "endMs": 4540,
+    "timestampMs": 4440,
+    "confidence": 0.976
+  },
+  {
+    "text": " TikToks",
+    "startMs": 4540,
+    "endMs": 5400,
+    "timestampMs": 4970,
+    "confidence": 0.832
+  },
+  {
+    "text": " by",
+    "startMs": 5400,
+    "endMs": 5880,
+    "timestampMs": 5640,
+    "confidence": 0.941
+  },
+  {
+    "text": " transcribing",
+    "startMs": 5880,
+    "endMs": 6600,
+    "timestampMs": 6240,
+    "confidence": 0.996
+  },
+  {
+    "text": " your",
+    "startMs": 6600,
+    "endMs": 6920,
+    "timestampMs": 6760,
+    "confidence": 0.993
+  },
+  {
+    "text": " audio",
+    "startMs": 6920,
+    "endMs": 7380,
+    "timestampMs": 7150,
+    "confidence": 0.991
+  },
+  {
+    "text": " using",
+    "startMs": 7380,
+    "endMs": 7780,
+    "timestampMs": 7580,
+    "confidence": 0.975
+  },
+  {
+    "text": " Whisper",
+    "startMs": 7780,
+    "endMs": 8380,
+    "timestampMs": 8080,
+    "confidence": 0.626
+  },
+  {
+    "text": " CPP",
+    "startMs": 8380,
+    "endMs": 8920,
+    "timestampMs": 8650,
+    "confidence": 0.674
+  },
+  {
+    "text": " and",
+    "startMs": 8920,
+    "endMs": 9740,
+    "timestampMs": 9330,
+    "confidence": 0.862
+  },
+  {
+    "text": " animating",
+    "startMs": 9740,
+    "endMs": 10360,
+    "timestampMs": 10050,
+    "confidence": 0.997
+  },
+  {
+    "text": " your",
+    "startMs": 10360,
+    "endMs": 10600,
+    "timestampMs": 10480,
+    "confidence": 0.994
+  },
+  {
+    "text": " captions",
+    "startMs": 10600,
+    "endMs": 11000,
+    "timestampMs": 10800,
+    "confidence": 0.992
+  },
+  {
+    "text": " with",
+    "startMs": 11000,
+    "endMs": 11460,
+    "timestampMs": 11230,
+    "confidence": 0.993
+  },
+  {
+    "text": " React.",
+    "startMs": 11460,
+    "endMs": 11760,
+    "timestampMs": 11610,
+    "confidence": 0.875
+  }
+]
