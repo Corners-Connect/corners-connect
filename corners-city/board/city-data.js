@@ -18,12 +18,29 @@ export const PLOTS = [
 // One building per section of the app that is in build for Mini Project 1, named
 // exactly as the section is named in the product. Plots 08 and 09 stay open.
 // Drafted 8 October 2026; student review and sign-off pending.
+// `blurb` is what the section is, `href` opens it in the live app, and `acts` are
+// the board action ids being built there, so a building is an entry rather than a
+// shell. Only this reviewed file may carry href and acts; browser drafts cannot.
 export const EXTENSIONS = [
- {plotId:'plot-01', type:'biblioteca', label:'Before you leave'},
- {plotId:'plot-02', type:'base', label:'Nearby'},
- {plotId:'plot-03', type:'nave', label:'Recs'},
- {plotId:'plot-04', type:'estudio', label:'Groups'},
- {plotId:'plot-05', type:'oficina', label:'Guides'},
- {plotId:'plot-06', type:'torre', label:'Weekends'},
- {plotId:'plot-07', type:'ayuntamiento', label:'Programme'}
+ {plotId:'plot-01', type:'biblioteca', label:'Before you leave',
+  blurb:'Choosing the city: six questions, then nine metrics side by side, then getting ready to go.',
+  href:'https://corners-connect.github.io/corners-connect/find/', acts:['A-015','A-016']},
+ {plotId:'plot-02', type:'base', label:'Nearby',
+  blurb:'The anonymous feed from students a few streets away. Ask anything, vote up what helps.',
+  href:'https://corners-connect.github.io/corners-connect/app/#near', acts:['A-009','A-010']},
+ {plotId:'plot-03', type:'nave', label:'Recs',
+  blurb:'Where to eat, train and go out, ranked by students who live there.',
+  href:'https://corners-connect.github.io/corners-connect/app/#recs', acts:['A-012']},
+ {plotId:'plot-04', type:'estudio', label:'Groups',
+  blurb:'Surf, hiking, language exchange, football. Find people by what you do.',
+  href:'https://corners-connect.github.io/corners-connect/app/#groups', acts:['A-011']},
+ {plotId:'plot-05', type:'oficina', label:'Guides',
+  blurb:'Guided experiences you can actually book: pick a date, a time and how many of you.',
+  href:'https://corners-connect.github.io/corners-connect/app/#guides', acts:['A-007']},
+ {plotId:'plot-06', type:'torre', label:'Weekends',
+  blurb:'Ten places from Bilbao priced by travel, bed and food. Move the slider, watch them re-sort.',
+  href:'https://corners-connect.github.io/corners-connect/app/#trips', acts:['A-013']},
+ {plotId:'plot-07', type:'ayuntamiento', label:'Programme',
+  blurb:'Key dates, the first-week checklist, and what everyone is asking about this week.',
+  href:'https://corners-connect.github.io/corners-connect/app/#prog', acts:['A-014']}
 ];

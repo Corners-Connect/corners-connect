@@ -13,10 +13,24 @@ function validateDraft(rows) {
   seen.add(r.plotId); return {plotId:r.plotId, type:r.type, label:r.label.trim()};
  });
 }
+/* Reviewed entries in city-data.js may also carry a blurb, a link into the product
+   and the board action ids being built there. Browser drafts never can: validateDraft
+   drops every extra field, so a draft cannot inject a link. */
+const HREF_SAFE = /^(https:\/\/[A-Za-z0-9.-]+\/[A-Za-z0-9._~/#-]*|[A-Za-z0-9._-]+\.html(#[A-Za-z0-9-]+)?)$/;
+function approveExtensions(rows) {
+ const base = validateDraft(rows);
+ return base.map((clean, i) => {
+  const raw = rows[i], out = {...clean};
+  if (typeof raw.blurb === 'string' && raw.blurb.trim().length <= 180) out.blurb = raw.blurb.trim();
+  if (typeof raw.href === 'string' && HREF_SAFE.test(raw.href)) out.href = raw.href;
+  if (Array.isArray(raw.acts)) out.acts = raw.acts.filter(a => /^A-\d{3}$/.test(a));
+  return out;
+ });
+}
 let drafts = [], storageOK = true, selected = null, paused = matchMedia('(prefers-reduced-motion: reduce)').matches;
 try { const raw = localStorage.getItem(KEY); if (raw) drafts = validateDraft(JSON.parse(raw)); }
 catch(e) { storageOK = false; $('storageStatus').textContent = 'Saved draft unavailable. Export changes before closing.'; }
-const approved = validateDraft(EXTENSIONS);
+const approved = approveExtensions(EXTENSIONS);
 drafts = drafts.filter(d => !approved.some(a => a.plotId === d.plotId));
 function announce(message) { $('toast').textContent=message; $('toast').hidden=false; clearTimeout(announce.timer); announce.timer=setTimeout(()=>$('toast').hidden=true,5000); }
 function persist() {
@@ -68,7 +82,26 @@ function buildPlaces(){
 function projectLabels(){for(const v of places.values()){const point=new THREE.Vector3(v.info.x,.25,v.info.z+4.8).project(camera);v.label.style.left=`${(point.x*.5+.5)*$('scene').clientWidth}px`;v.label.style.top=`${(-point.y*.5+.5)*$('scene').clientHeight}px`;v.label.hidden=point.x < -1.2 || point.x >1.2 || point.y < -1.15 || point.y >1.15;}}
 function resize(){const w=$('scene').clientWidth,h=$('scene').clientHeight;let aspect=w/h;camera.left=-viewHeight*aspect/2;camera.right=viewHeight*aspect/2;camera.top=viewHeight/2;camera.bottom=-viewHeight/2;camera.position.copy(target).add(new THREE.Vector3(65,65*.86,65));camera.lookAt(target);camera.updateProjectionMatrix();renderer.setSize(w,h);projectLabels();}
 function fit(){target.set(0,0,0);viewHeight=innerWidth<700?84:39;resize();}
-function selectPlace(id){selected=id;const v=places.get(id),info=v.info;for(const p of places.values())p.label.classList.toggle('selected',p===v);$('placeKind').textContent=info.team?'EXISTING DEPARTMENT':info.type?'VISUAL CITY DRAFT':'AVAILABLE TO YOUR TEAM';$('placeTitle').textContent=info.label;$('placeDescription').textContent=info.question || (info.type?'A building shell for your idea. This visual draft does not create tasks, assign people, or run an AI agent.':'An empty plot. Choose a shape and name for a visual draft, then build its real function with your agent.');const actions=$('placeActions');actions.replaceChildren();if(info.team){const link=document.createElement('a');link.href=`index.html#${info.team}`;link.textContent='Open the existing department ↗';actions.append(link);}else if(!info.type){const button=document.createElement('button');button.textContent='Build on this plot ↗';button.onclick=()=>{$('plotName').textContent=info.label;$('buildError').textContent='';$('buildForm').reset();$('builder').showModal();$('buildingLabel').focus();};actions.append(button);}else{const link=document.createElement('a');link.href='city-guide.html';link.textContent='Build the real function ↗';actions.append(link);}$('inspector').hidden=false;}
+function selectPlace(id){selected=id;const v=places.get(id),info=v.info;for(const p of places.values())p.label.classList.toggle('selected',p===v);$('placeKind').textContent=info.team?'EXISTING DEPARTMENT':!info.type?'AVAILABLE TO YOUR TEAM':info.draft?'VISUAL CITY DRAFT':'SECTION IN BUILD';$('placeTitle').textContent=info.label;$('placeDescription').textContent=info.question || (info.type?'A building shell for your idea. This visual draft does not create tasks, assign people, or run an AI agent.':'An empty plot. Choose a shape and name for a visual draft, then build its real function with your agent.');if(info.blurb)$('placeDescription').textContent=info.blurb;renderWork(info);const actions=$('placeActions');actions.replaceChildren();if(info.team){const link=document.createElement('a');link.href=`index.html#${info.team}`;link.textContent='Open the existing department ↗';actions.append(link);}else if(!info.type){const button=document.createElement('button');button.textContent='Build on this plot ↗';button.onclick=()=>{$('plotName').textContent=info.label;$('buildError').textContent='';$('buildForm').reset();$('builder').showModal();$('buildingLabel').focus();};actions.append(button);}else{if(info.href){const open=document.createElement('a');open.href=info.href;open.target='_blank';open.rel='noopener';open.textContent=`Open ${info.label} in the app ↗`;actions.append(open);}const link=document.createElement('a');link.href='city-guide.html';link.className=info.href?'secondary':'';link.textContent='Build the real function ↗';actions.append(link);}$('inspector').hidden=false;}
+
+/* What the board says is being built in this section. The board stays the record;
+   the city only reads it, so there is no second task system. */
+function renderWork(info){
+ const box=$('placeWork');if(!box)return;box.replaceChildren();
+ const ids=info.acts||[],rows=(window.DIP?.actions||[]).filter(a=>ids.includes(a.id));
+ if(!rows.length)return;
+ const head=document.createElement('p');head.className='work-h';head.textContent='On the board';box.append(head);
+ const list=document.createElement('ul');list.className='work';
+ for(const a of rows){
+  const person=(window.DIP?.people||[]).find(p=>p.id===a.owner);
+  const who=person&&person.name&&person.name!=='—'?person.name:a.owner;
+  const item=document.createElement('li');if(a.state==='done')item.className='is-done';
+  const what=document.createElement('b');what.textContent=a.what;
+  const meta=document.createElement('small');meta.textContent=`${who} · due ${a.due} · ${a.state}`;
+  item.append(what,meta);list.append(item);
+ }
+ box.append(list);
+}
 $('closeInspector').onclick=()=>{$('inspector').hidden=true;places.get(selected)?.label.focus();};
 $('cancelBuild').onclick=()=>$('builder').close();
 $('buildForm').onsubmit=e=>{e.preventDefault();const name=$('buildingLabel').value.trim(),type=$('buildingType').value;try{const newRows=validateDraft([...drafts,{plotId:selected,label:name,type}]);drafts=newRows;persist();buildPlaces();resize();$('builder').close();selectPlace(selected);announce(storageOK?'Your corner is built. Saved in this browser.':'Your corner is built temporarily. Export it before closing.');}catch(err){$('buildError').textContent='Use a short invented place name, without contacts or personal data.';}};
