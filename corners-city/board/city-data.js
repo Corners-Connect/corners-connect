@@ -11,4 +11,13 @@ export const PLOTS = [
 // Approved visual additions live here as code after review. Local browser drafts
 // are separate and never become company decisions, tasks or evidence automatically.
 // Example schema only: {plotId:'plot-01', label:'A student-approved label', type:'base'}
-export const EXTENSIONS = [];
+//
+// The four below are the product team's split for Mini Project 1, one plot per
+// part of the application, matching issues #9 to #12. Plots 05 and 06 stay open.
+// Drafted 8 October 2026; student review and sign-off pending.
+export const EXTENSIONS = [
+ {plotId:'plot-01', type:'biblioteca', label:'Before you leave'},
+ {plotId:'plot-02', type:'base', label:'Nearby and groups'},
+ {plotId:'plot-03', type:'nave', label:'Eat, do and weekends'},
+ {plotId:'plot-04', type:'ayuntamiento', label:'Programme and housing'}
+];
