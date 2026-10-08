@@ -66,5 +66,51 @@ window.DIP.actions = [
     "owner": "p02", "team": "product", "state": "check",
     "estimate": 8, "due": "2026-09-17", "opened": "2026-09-10", "touched": "2026-09-15",
     "expect": "If voting is anonymous and instant, then people will vote against a proposal when they think it is wrong, because the reason they do not is that the professor is watching.",
-    "result": "", "evidence": "", "shipped": false, "note": "" }
+    "result": "", "evidence": "", "shipped": false, "note": "" },
+
+  /* Product's eight functions for Mini Project 1, two per seat, one per thing a
+     student can actually do in the app. 27 hours against 28 of capacity, so the
+     estimates have no slack in them: cut scope before you cut the date. Nothing
+     is due in the week of 19 October, because p03 is away and that is the week
+     M1 lands. Surfaces are tracked on GitHub as issues #9 to #12. */
+
+  { "id": "A-007", "what": "Build the booking step on Guides so an activity ends somewhere, not just described",
+    "owner": "p01", "team": "product", "state": "planned",
+    "estimate": 4, "due": "2026-10-15", "opened": "2026-10-08", "touched": "2026-10-08",
+    "expect": "If an activity ends in a confirmed place rather than a paragraph, then Guides becomes a reason to open the app a second time, because a guidebook is read once.",
+    "result": "", "evidence": "", "shipped": false, "note": "" },
+  { "id": "A-008", "what": "Build the housing screen in the app: portals, saved rooms and a map",
+    "owner": "p01", "team": "product", "state": "planned",
+    "estimate": 5, "due": "2026-10-22", "opened": "2026-10-08", "touched": "2026-10-08",
+    "expect": "", "result": "", "evidence": "", "shipped": false,
+    "note": "The website already promises this; the app has no housing screen at all." },
+
+  { "id": "A-009", "what": "Let a student reply to a Nearby post, not only read the replies",
+    "owner": "p02", "team": "product", "state": "planned",
+    "estimate": 3, "due": "2026-10-13", "opened": "2026-10-08", "touched": "2026-10-08",
+    "expect": "", "result": "", "evidence": "", "shipped": false, "note": "" },
+  { "id": "A-010", "what": "Add report and hide to every Nearby post, with a reason",
+    "owner": "p02", "team": "product", "state": "planned",
+    "estimate": 3, "due": "2026-10-15", "opened": "2026-10-08", "touched": "2026-10-08",
+    "expect": "If every post can be reported in one tap, then we can answer the moderation question on stage instead of promising to think about it, because that is the first question an anonymous feed gets asked.",
+    "result": "", "evidence": "", "shipped": false, "note": "" },
+
+  { "id": "A-011", "what": "Make joining a group and I'm going persist, and show who else is going",
+    "owner": "p03", "team": "product", "state": "planned",
+    "estimate": 3, "due": "2026-10-13", "opened": "2026-10-08", "touched": "2026-10-08",
+    "expect": "", "result": "", "evidence": "", "shipped": false, "note": "" },
+  { "id": "A-012", "what": "Let a student add their own rec, with a category and one line of why",
+    "owner": "p03", "team": "product", "state": "planned",
+    "estimate": 3, "due": "2026-10-15", "opened": "2026-10-08", "touched": "2026-10-08",
+    "expect": "", "result": "", "evidence": "", "shipped": false,
+    "note": "Both of p03's land before 19 October; p03 is away the week M1 falls in." },
+
+  { "id": "A-013", "what": "Add nights and a sort to the weekend planner, keeping the budget slider in step",
+    "owner": "p04", "team": "product", "state": "planned",
+    "estimate": 3, "due": "2026-10-15", "opened": "2026-10-08", "touched": "2026-10-08",
+    "expect": "", "result": "", "evidence": "", "shipped": false, "note": "" },
+  { "id": "A-014", "what": "Make the first-week programme checklist tick, save and show progress",
+    "owner": "p04", "team": "product", "state": "planned",
+    "estimate": 3, "due": "2026-10-22", "opened": "2026-10-08", "touched": "2026-10-08",
+    "expect": "", "result": "", "evidence": "", "shipped": false, "note": "" }
 ];
