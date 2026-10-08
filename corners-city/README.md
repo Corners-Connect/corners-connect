@@ -5,6 +5,22 @@ Three buildings enter the existing Product, Audience and Operations screens;
 five robots are visual demonstrations; six plots are room for your team's ideas.
 The board's data is a **sample template**, not a record of current student work.
 
+## Ask your local agent to open it
+
+Open the repository root, `corners-city/`, or the extracted standalone kit folder
+in local **Codex (desktop/CLI)** or **Claude Code**, start a new session, and say:
+
+> Open Corners City on localhost and leave the server running.
+
+The included `AGENTS.md` and `CLAUDE.md` route both agents to one
+[startup runbook](board/CORNERS-CITY-LOCALHOST.md). You do not need to copy the
+full builder prompt just to start. The agent must run on your laptop with local
+file/terminal access; a remote sandbox's localhost belongs to that sandbox.
+
+If you have not downloaded the source, give your local agent this brief:
+
+> Get https://github.com/Corners-Connect/corners-connect into a new local folder without overwriting existing work. Read its agent instructions, open Corners City on localhost, and leave the server running. Check the requirements and working page, then give me the actual URL.
+
 ## Get the source
 
 The team repository is [Corners-Connect/corners-connect](https://github.com/Corners-Connect/corners-connect).
@@ -28,8 +44,9 @@ and [clone instructions](https://docs.github.com/en/repositories/creating-and-ma
 
 ## Run locally
 
-Check Python before installing anything. For a new installation use supported
-stable Python 3.11–3.14 from [python.org](https://www.python.org/downloads/).
+The [startup runbook](board/CORNERS-CITY-LOCALHOST.md) is the canonical procedure.
+Check Python before installing anything. For a new installation use a supported
+stable Python 3 from [python.org](https://www.python.org/downloads/).
 The prototype also runs on the instructor's older Python 3.9.6, but that is not
 an installation recommendation. Use a current browser with WebGL 2.
 
@@ -109,7 +126,7 @@ but because in December nobody will remember it the same way.
 
 ## Corners City
 
-The city is the visual entry to this workspace: three department buildings, demonstration robots, and six open plots for student builds. Read `board/CORNERS-CITY-START.md`; give your coding agent `board/CORNERS-CITY-BUILDER-PROMPT.md`. Browser drafts stay on one browser/origin. Reviewed file changes are how your team shares the city. No live synchronization is implemented.
+The city is the visual entry to this workspace: three department buildings, demonstration robots, and six open plots for student builds. Read `board/CORNERS-CITY-START.md`; for feature work, give your coding agent `board/CORNERS-CITY-BUILDER-PROMPT.md`. To open it, ask your local agent to follow `board/CORNERS-CITY-LOCALHOST.md`. Browser drafts stay on one browser/origin. Reviewed file changes are how your team shares the city. No live synchronization is implemented.
 
 ## The board
 

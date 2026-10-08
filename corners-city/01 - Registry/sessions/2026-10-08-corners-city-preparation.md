@@ -12,4 +12,6 @@ Browser drafts do not become shared company facts. Accepted visual additions are
 
 Distribution: the standalone kit includes local fonts and their original licenses, with no runtime CDN requests. It excludes the automatic activity-writing workflow; `board/import-activity.py` remains available for deliberate use. The clean kit and the repository folder contain the same workspace files.
 
+Local agent startup: the instructor requested opening Corners City with a short natural-language request in local Codex or Claude Code. Repository-root and city-workspace `AGENTS.md`/`CLAUDE.md` entries now route to the single `board/CORNERS-CITY-LOCALHOST.md` runbook. The brief includes the exact public repository URL for safe acquisition when the source is missing. It covers Python checks, preserving existing servers, persistent launch and HTTP/browser verification. The full builder prompt is for feature work. City visuals, data and launchers remain unchanged; these instructions do not authorize company decisions or deployment.
+
 Tool attribution: Codex implemented and checked the local base. Human reviewer/sign-off: pending. Proposed next step: demonstrate a first plot build in class, then let students choose its function.

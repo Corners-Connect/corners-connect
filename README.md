@@ -13,6 +13,21 @@ three department entries, demonstration robots and six open plots. It runs
 locally; browser drafts are private to that browser, while reviewed source files
 are the shared build. The existing product and website stay in their folders.
 
+With **local Codex (desktop/CLI) or Claude Code**, open this repository folder
+and ask:
+
+> Open Corners City on localhost and leave the server running.
+
+If you do not have the folder yet, give the agent this brief:
+
+> Get https://github.com/Corners-Connect/corners-connect into a new local folder without overwriting existing work. Read its agent instructions, open Corners City on localhost, and leave the server running. Check the requirements and working page, then give me the actual URL.
+
+The agent must work on your computer with file/terminal access. A remote
+sandbox has its own localhost. Root and city-folder agent instructions point
+to the same [startup runbook](corners-city/board/CORNERS-CITY-LOCALHOST.md);
+no builder prompt is needed just to open the city. Start a new local agent
+session after downloading these instruction files.
+
 Download this repository with **Code → Download ZIP**, extract it, and open
 `corners-connect-main/corners-city/`; Git is not required. Or clone it:
 

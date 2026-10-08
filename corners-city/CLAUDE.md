@@ -3,6 +3,14 @@
 > You are working inside the workspace of a company that eleven students run
 > together for one term. Read this before touching anything.
 
+## Open Corners City on localhost
+
+For a request to open, run or show the city locally, follow the single startup
+runbook below. This folder contains `start.py`. Launching does not require the
+full builder prompt or choosing a hackathon contribution.
+
+@board/CORNERS-CITY-LOCALHOST.md
+
 ## What this company is
 
 The whole class — eleven people — runs a single company. Every deliverable the

@@ -26,29 +26,21 @@ For the hackathon, pick one outcome you can demonstrate: a new building shape; o
 
 ## Start on your own laptop
 
-Get the team repository from https://github.com/Corners-Connect/corners-connect using clone or Code → Download ZIP. Extract it and enter `corners-city/`. Alternatively, extract the standalone kit ZIP and enter `Corners-City-GitHub/`. Do not open just this page or a localhost URL. Check Python before installing anything. For a fresh installation, choose supported stable Python **3.11–3.14** from [python.org](https://www.python.org/downloads/); see the [supported versions](https://devguide.python.org/versions/). Use a current browser with WebGL 2 and JavaScript enabled.
+Open the repository root or the city workspace folder in local **Codex (desktop/CLI)** or **Claude Code**, start a new session, and ask:
 
-Open a terminal at the city workspace root (the directory containing `start.py`):
+> Open Corners City on localhost and leave the server running.
 
-macOS:
-```sh
-python3 --version
-python3 start.py
-```
-Windows PowerShell:
-```powershell
-py -3 --version
-py -3 start.py
-```
-If Windows has `python` rather than `py`, use `python --version` and `python start.py`. Double-clicking `start.command` on Mac or `start.bat` on Windows is also supported. Keep the terminal open. Ctrl+C stops it.
+The agent instructions in both folders point to [the single startup runbook](CORNERS-CITY-LOCALHOST.md). It covers obtaining the source safely, checking Python, launching from either folder on Mac/Windows, reusing a suitable server or choosing another port, keeping it running, and checking the actual URL and assets. No builder prompt is needed just to open the city.
 
-Open the URL printed by the launcher, usually `http://127.0.0.1:8097/city.html`. It will try another port if necessary. This URL belongs to **your own laptop**. It is not a classroom-wide server. Avoid `file://`; the drawing code uses browser modules.
+If you do not have the folder yet:
 
-There is no npm install or build. Python’s standard library serves the existing board. Three.js r178, Instrument Serif and Space Grotesk are bundled locally. No model key, database, hosting service or paid tool is required. Git and automated browser testing are optional. Source-sharing access and an available coding agent/editor must be confirmed by your team.
+> Get https://github.com/Corners-Connect/corners-connect into a new local folder without overwriting existing work. Read its agent instructions, open Corners City on localhost, and leave the server running. Check the requirements and working page, then give me the actual URL.
+
+The agent must work on your laptop with access to files and a terminal. A remote sandbox's localhost belongs to that sandbox. The city uses Python's standard library, bundled Three.js and local fonts; no npm/pip setup, API key or hosting service is needed. Manual launch follows the same runbook.
 
 ## Give your agent the right brief
 
-Open **`CORNERS-CITY-BUILDER-PROMPT.md`** in this same folder. Give the entire prompt to your agent with the workspace folder and your desired outcome. It includes installation checks, Mac/Windows commands, exact editable components, the palette, validation and delivery rules.
+For a feature you want to build, open **`CORNERS-CITY-BUILDER-PROMPT.md`** in this same folder. Give the entire prompt to your agent with the workspace folder and your desired outcome. It includes installation checks, Mac/Windows commands, exact editable components, the palette, validation and delivery rules.
 
 Important files: `city.html` (interface), `city.css` (style), `city-data.js` (plots/reviewed extensions), `city-models.js` (shapes/robots), and `city.js` (interaction/drafts). Keep permanent ids and bundled library licenses. Keep chocolate `#5A422F` on every background, baby blue `#A8DDFB` with vivid `#6BCBFF` and shading `#54B0E5` on the city. The exact name is **Corners City**.
 

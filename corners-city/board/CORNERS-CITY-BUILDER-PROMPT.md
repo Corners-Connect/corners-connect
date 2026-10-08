@@ -1,5 +1,7 @@
 # Corners City — give this prompt to your coding agent
 
+**Just opening the city?** Open the repository folder in local Codex or Claude Code and say: “Open Corners City on localhost and leave the server running.” Follow [the startup runbook](CORNERS-CITY-LOCALHOST.md); the full prompt below is for building a contribution.
+
 Copy everything below into your agent while it has access to your local copy of the **city workspace root** folder. Start with the smallest useful improvement you want to make; if you have not chosen one, the agent should help you choose, not decide for your team.
 
 ---
@@ -8,7 +10,7 @@ You are my coding partner for **Corners City**, the visual workspace of **Corner
 
 ## 1. Understand the environment before changing it
 
-Find the city workspace root (`corners-city/` inside https://github.com/Corners-Connect/corners-connect, or the extracted standalone kit folder): it contains `CLAUDE.md`, `start.py`, `board/`, and `00 - Manual/`. Read `CLAUDE.md`, `README.md`, `board/CORNERS-CITY-START.md`, `board/city-data.js`, `board/city-models.js`, `board/city.js`, `board/city.html`, and `board/city.css`. This city workspace root is the workspace. The instructor's parent folder and source city are not needed; this package is self-contained.
+Find the city workspace root (`corners-city/` inside https://github.com/Corners-Connect/corners-connect, or the extracted standalone kit folder): it contains `CLAUDE.md`, `start.py`, `board/`, and `00 - Manual/`. Read `CLAUDE.md`, `README.md`, `board/CORNERS-CITY-START.md`, `board/CORNERS-CITY-LOCALHOST.md`, `board/city-data.js`, `board/city-models.js`, `board/city.js`, `board/city.html`, and `board/city.css`. This city workspace root is the workspace. The instructor's parent folder and source city are not needed; this package is self-contained.
 
 **What the city means:** Corners City is a place to enter and extend the company’s existing workspace. It is not another task tracker. Its three starting buildings link to the existing Product, Audience and Operations screens. Their names come from `board/data/company.js`; the supplied company file is still marked `sample: true`. This confirms the documented template, not current student assignments or a fresh vote. Do not invent people, roles, departmental decisions, KPIs or company activity.
 
@@ -20,53 +22,17 @@ The buildings use the clean geometric shapes adapted from the instructor's Freed
 - The build form saves visual drafts in `localStorage` under `corners-city-draft-v1`, only in this browser profile at this exact origin (scheme, host and port). Another browser, laptop or port sees a different draft. Private browsing or storage restrictions may prevent persistence; then the page explicitly tells me to export before closing. Export downloads a JSON proposal, not shared company state.
 - Reviewed **source-file changes** are how the team shares builds. A reviewed visual addition goes in `EXTENSIONS` in `city-data.js`, using a permanent existing `plotId`, a label and a supported shape. An exported draft can inform that change, but is never approved or merged automatically. New functions must use the existing company files and Manual where appropriate. Task commitments, activity and competence evidence belong in `board/data/`, not in city draft storage.
 
-## 2. Check what is already installed
+## 2. Check the local environment
 
-Report the result of these checks before recommending installation. Do not install software or create accounts on my behalf.
+Use `board/CORNERS-CITY-LOCALHOST.md` as the single startup runbook. Check the actual local folder and Python interpreter; it documents Mac/Windows checks, official installation when Python is missing, and the distinction between a local agent and a remote sandbox. Do not claim a student-laptop localhost from a remote environment. Follow my real permissions for installations and OS prompts. No npm, pip, virtual environment, model key, database or extra subscription is required.
 
-**Required for local execution and the existing checker:**
-1. A supported stable Python 3. For a new installation choose **Python 3.11–3.14** from [python.org](https://www.python.org/downloads/). These branches are listed by the [Python Developer's Guide](https://devguide.python.org/versions/). The prototype also ran on the instructor's existing Python 3.9.6, but that is an old, unsupported version, not an installation recommendation. Only the standard library is used: there is no `pip install`, virtual environment or requirements file to satisfy.
-2. A current browser with JavaScript modules and **WebGL 2** enabled. Chromium was checked for this handoff; Safari and Firefox have not been tested here. If 3D cannot start, the page explains the hardware-acceleration remedy and keeps links to the board and guide available. Do not promise support without opening it on my device.
-3. This complete workspace folder, including `board/city-assets/`. Ask the instructor for the prepared folder or the actual team repository URL if I do not have it. A localhost link on the instructor’s laptop does not give me the source files or access to their computer.
-4. A way to edit local files: my existing coding agent/editor, or a normal text editor. No specific paid agent or subscription is required to run or edit the city. If my agent cannot access files or run a terminal, give me exact edits and commands to perform locally; do not pretend you ran them.
+Git is optional for reviewing and sharing source changes. The public team repository is https://github.com/Corners-Connect/corners-connect; downloading it does not grant write permission. Preserve existing local changes and the team's workflow. Additional browser QA tools are optional and require my choice; do not install them for ordinary startup.
 
-**Check commands:**
-- macOS Terminal: `python3 --version`, then `python3 -c "import http.server, pathlib; print('standard library ready')"`.
-- Windows PowerShell: `py -3 --version`, then `py -3 -c "import http.server, pathlib; print('standard library ready')"`. If `py` is unavailable but `python` works, use `python --version` and `python -c "import http.server, pathlib; print('standard library ready')"`. Confirm it reports Python 3, not a Store shortcut or Python 2.
-- Check the required files and browser first. Open the city and confirm a visible 3D scene before claiming WebGL compatibility.
+## 3. Start and verify the actual project
 
-**If Python is missing:** show me the official installation page and the [macOS instructions](https://docs.python.org/3/using/mac.html) or [Windows instructions](https://docs.python.org/3/using/windows.html); let me run the installer. Reopen the terminal and repeat the checks. Homebrew, Xcode, WSL, Docker and an IDE are not city prerequisites. macOS does not guarantee that a usable Python is preinstalled.
+Follow the launch and verification workflow in `board/CORNERS-CITY-LOCALHOST.md`: reuse a matching running copy or start `start.py` with the verified interpreter in a persistent session, keep it alive, and open the actual printed URL. Do not stop unrelated processes. Check HTTP, bundled resources and rendering with the available browser. State any unverified part honestly. Do not substitute another server, deployment or build system.
 
-**Optional, only if relevant:**
-- Git for reviewing and exchanging source changes. Check `git --version` and `git status` first. This instructor project was not a Git repository when prepared. Do not initialize one, guess a remote, switch branches or push without the team's decision. Official installation: [Git](https://git-scm.com/downloads).
-- Node.js is unnecessary to run, check or build the city. If I explicitly choose automated JavaScript/browser tooling, check `node --version` and `npm --version`; a supported **Node 22 or 24 LTS** is a reasonable optional choice per [Node’s release table](https://nodejs.org/en/about/previous-releases). Do not run `npm install`, `npx`, or introduce a package manifest for ordinary city edits.
-- Automated browser testing is optional. Manual checks below are sufficient for a small hackathon contribution. Additional QA dependencies and browser downloads require my choice.
-
-**Accounts/access still to confirm:** the team's source-sharing location, a real repository URL if they use Git, repository write permission, and which agent/editor I can already access. Teams remains the official course system for personal data. No hosting account, database, API key, model account or subscription is needed for this prototype. Do not provision any of them.
-
-## 3. Start the actual project
-
-Open a terminal **at the city workspace root**, the folder containing `start.py`.
-
-macOS:
-```sh
-python3 start.py
-```
-Or double-click `start.command`. If macOS blocks double-clicking, use the terminal command; do not alter security settings globally.
-
-Windows PowerShell:
-```powershell
-py -3 start.py
-```
-If only `python` is available:
-```powershell
-python start.py
-```
-Or double-click `start.bat`. The launcher tries `py -3` and then `python`.
-
-The launcher serves **only `board/`**, binds to **127.0.0.1**, starts at port 8097 and tries the next 19 ports if one is busy. It prints the actual city and board URLs, then opens Corners City. Keep the terminal open. Stop with Ctrl+C. To choose a port or avoid opening a browser, use `start.py --port 8100 --no-open` with your Python command. Open the printed URL, usually `http://127.0.0.1:8097/city.html`. Do not double-click `city.html`: JavaScript modules need HTTP, not `file://`.
-
-There is **no npm build step**. HTML/CSS/JavaScript run directly. Three.js **r178** is already bundled as `three.module.min.js` plus its matching `three.core.min.js`, with its MIT license. Keep the pair together. The local font files and their licenses are included; the city does not need a CDN or Internet connection after receiving the folder. Do not upgrade or substitute one vendor file casually. The [Three.js installation guide](https://threejs.org/manual/#en/installation) explains direct browser-module use and local serving.
+The launcher serves only `board/` on `127.0.0.1`. HTML/CSS/JavaScript run directly. Three.js r178 is bundled as matching `three.module.min.js` and `three.core.min.js`, with its license; fonts and the mark are local. Keep the library pair and licenses. The [Three.js installation guide](https://threejs.org/manual/#en/installation) explains direct browser modules and local serving.
 
 ## 4. Know exactly which components to edit
 
