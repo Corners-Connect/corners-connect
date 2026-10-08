@@ -1,0 +1,1551 @@
+{
+  "schemaVersion": 1,
+  "prepared": "2026-10-08",
+  "title": "Learning Lab",
+  "scope": "Preparation guidance. No submission, completion, mastery claim, grade or student assignment is created here.",
+  "sources": {
+    "usac": {
+      "title": "USAC · AI for Business official syllabus",
+      "locator": "Outline classes 1–25; Student Learning Outcomes; Course Requirements; Assessment; Grade Scale; Academic Honesty, Disability and Recording policies.",
+      "availability": "Original supplied in course materials; not bundled in this kit."
+    },
+    "term": {
+      "title": "AI for Business · Fall 2026 Term Syllabus",
+      "locator": "Tentative schedule; key dates; five grades this term; company ground rules.",
+      "availability": "Published course document in Teams; not bundled in this kit."
+    },
+    "system": {
+      "title": "The System Prompt",
+      "locator": "Parts 1–3: 21 competences, USAC constraints and company rules.",
+      "href": "COURSE-SYSTEM-PROMPT.md"
+    },
+    "checklists": {
+      "title": "The four required deliverables · course checklist",
+      "locator": "Items 1–4 and shared attribution/review rules.",
+      "path": "03 - Deliverables/CHECKLISTS.md"
+    },
+    "d1": {
+      "title": "D1 · Why we are here",
+      "locator": "Individual aims and company fit; Starting points.",
+      "availability": "Published student build guide in Teams; method adapted here without its old headcount."
+    },
+    "d2": {
+      "title": "D2 · What the company does",
+      "locator": "Context, company choices and reality tests; Starting points.",
+      "availability": "Published student build guide in Teams; methods are proposals, not new company decisions."
+    },
+    "d3": {
+      "title": "D3 · How we run",
+      "locator": "Manual, definitions of done, feedback and handovers.",
+      "availability": "Published student build guide in Teams; current board paths replace old template paths."
+    },
+    "dimensions": {
+      "title": "Company build-guide map · ten dimensions",
+      "locator": "Purpose, operating rules, audience, brand, discovery, product, workflows, viability and learning; build proposals adapted into the topic mapping.",
+      "availability": "Instructor preparation source; not bundled. This map suggests pieces, not company decisions."
+    }
+  },
+  "blocks": [
+    {
+      "id": 1,
+      "title": "Foundations & Prompt Engineering",
+      "span": "01–05"
+    },
+    {
+      "id": 2,
+      "title": "Marketing AI & Creative Media",
+      "span": "06–13"
+    },
+    {
+      "id": 3,
+      "title": "Vibe Coding & Automations",
+      "span": "14–18"
+    },
+    {
+      "id": 4,
+      "title": "Strategy, Innovation & Capstone",
+      "span": "19–25"
+    }
+  ],
+  "outcomes": [
+    "Explain core AI concepts, opportunities, risks, and legal/ethical constraints.",
+    "Use prompt engineering: roles, constraints, chaining, multimodal inputs and evaluation.",
+    "Produce and edit AI images, video, audio/voice and avatars for business use.",
+    "Apply AI to market research, SEO/SEM, email and social media.",
+    "Build a vibe-coded micro-app and connect it to AI and data.",
+    "Implement end-to-end automations in Make/n8n.",
+    "Assess business models, GTM and ROI and present an evidence-based case."
+  ],
+  "assessment": [
+    {
+      "name": "Class Participation",
+      "weight": 10,
+      "authority": "USAC",
+      "course": "Before every session: test the week's tool, read/watch the posted material and post one named question/debate in Teams. The post is the course participation record.",
+      "evidence": "Your Teams question and the sources/task behind it.",
+      "path": "Microsoft Teams · course channel",
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system"
+      ]
+    },
+    {
+      "name": "In-Class Labs",
+      "weight": 20,
+      "authority": "USAC",
+      "course": "Hands-on artifacts and ten-minute presentations in class. Each member explains their own piece: prompt sheets, images/video/audio or workflow links.",
+      "evidence": "A working artifact, reproducible steps and the demonstration you give.",
+      "path": "03 - Deliverables/ and 04 - Playbooks/",
+      "sourceRefs": [
+        "usac",
+        "term"
+      ]
+    },
+    {
+      "name": "Case Studies",
+      "weight": 10,
+      "authority": "USAC",
+      "course": "Short practical analyses; format/team setup is specified per case. The term plan names four: ethics (session 5), AI market research (11), SEO/SEM on launch data (16), process redesign (20).",
+      "evidence": "Question, sources/data, your analysis, alternatives and a justified recommendation.",
+      "path": "03 - Deliverables/",
+      "sourceRefs": [
+        "usac",
+        "term"
+      ]
+    },
+    {
+      "name": "Module Mini-Projects",
+      "weight": 40,
+      "authority": "USAC",
+      "course": "Two module projects. The published course checklist/weekly plan allocates 20% to each; USAC fixes their combined category at 40%.",
+      "evidence": "The launch and machine packages, including individual contributions.",
+      "path": "03 - Deliverables/",
+      "sourceRefs": [
+        "usac",
+        "term",
+        "checklists"
+      ]
+    },
+    {
+      "name": "Final Project",
+      "weight": 20,
+      "authority": "USAC",
+      "course": "One team AI-enabled solution with its evidence-based business case, presented in class. Term final presentation: 15 December.",
+      "evidence": "Working solution, case, test evidence and a presentation each contributor can defend.",
+      "path": "03 - Deliverables/",
+      "sourceRefs": [
+        "usac",
+        "term",
+        "checklists"
+      ]
+    }
+  ],
+  "solutionRoutes": [
+    {
+      "name": "AI Campaign",
+      "requires": "Creative + SEO/SEM + email/social, with a test plan and KPIs."
+    },
+    {
+      "name": "Support/Lead Chatbot",
+      "requires": "Prompt stack, safety, escalation and knowledge scope."
+    },
+    {
+      "name": "AI/data Micro-App",
+      "requires": "A vibe-coded micro-app integrated with AI and data."
+    },
+    {
+      "name": "Automated Process",
+      "requires": "Make/n8n solving a real task end to end."
+    }
+  ],
+  "gradeScale": [
+    [
+      "A",
+      "93–100"
+    ],
+    [
+      "A-",
+      "90–92"
+    ],
+    [
+      "B+",
+      "87–89"
+    ],
+    [
+      "B",
+      "83–86"
+    ],
+    [
+      "B-",
+      "80–82"
+    ],
+    [
+      "C+",
+      "77–79"
+    ],
+    [
+      "C",
+      "73–76"
+    ],
+    [
+      "C-",
+      "70–72"
+    ],
+    [
+      "D+",
+      "67–69"
+    ],
+    [
+      "D",
+      "63–66"
+    ],
+    [
+      "D-",
+      "60–62"
+    ],
+    [
+      "F",
+      "00–59"
+    ]
+  ],
+  "rules": [
+    {
+      "authority": "USAC",
+      "title": "Own understanding and honest attribution",
+      "text": "AI may assist brainstorming and creation. Final work must reflect your understanding, analysis and creativity. Do not submit word-for-word AI output or work primarily composed by AI without significant original input. Name the tool, use quotation marks for generated passages and cite it. Plagiarism/cheating may lead to grade penalties, course failure or further USAC action."
+    },
+    {
+      "authority": "USAC",
+      "title": "Attendance, access and recording",
+      "text": "Attend and participate in class. Approved accommodations are arranged through USAC and the instructor. Audio/video recording of class needs written instructor permission; do not record covertly."
+    },
+    {
+      "authority": "Course",
+      "title": "Review before the date; deliver on the date",
+      "text": "The written standard is published in advance. Request as many client reviews as needed before the date. Dates are real; no re-submission. Nobody may lower another member's grade through the company's internal system. Grades and personal records stay in Teams, not this repository."
+    },
+    {
+      "authority": "Course",
+      "title": "People and company decisions",
+      "text": "Students write and ratify the Manual. Named responsibility, a role for everyone, rotation, written handovers and helping absent members are course constraints. Roles, structure, KPIs, feedback, definitions of done and purpose remain student decisions. This building does not assign them."
+    },
+    {
+      "authority": "Course",
+      "title": "Safe data and outside commitments",
+      "text": "Use invented or your own data. Stop if third-party personal data would enter a workflow. The company speaks in its own name as an academic project, never as USAC. External-brand offers and commitments need instructor review/approval. Build proposals locally; sending, publishing or deploying needs explicit human authorisation."
+    },
+    {
+      "authority": "Course",
+      "title": "Evidence belongs in the existing workspace",
+      "text": "Use board/data/ for PDCA, activity and mastery claims, the existing Mastery screen for competence evidence, the Manual for rules, Registry for decisions and handovers, Deliverables for submissions and Playbooks for repeatable methods. Level 2 means you did it with evidence; level 3 means someone else did it after you taught them. The Lab creates no claim or score."
+    }
+  ],
+  "discrepancies": [
+    {
+      "id": "event-budget",
+      "title": "Topic 21: ROI, not an event-budget assignment",
+      "detail": "The published term outline still says “Event budget” beside topic 21. The current course plan says ROI of what the company built; instructor decisions removed the event-budget exercise. Prepare the official ROI topic. The instructor must clarify/correct the published assignment label; the Lab does not silently amend it.",
+      "sources": [
+        "term",
+        "usac"
+      ]
+    },
+    {
+      "id": "make-n8n",
+      "title": "Mini Project 2: Make / n8n",
+      "detail": "The official mini-project description names a Make workflow; the term syllabus and course checklist allow Make/n8n. Make fits both texts. Confirm acceptance with the instructor before choosing n8n for this submission.",
+      "sources": [
+        "usac",
+        "term",
+        "checklists"
+      ]
+    },
+    {
+      "id": "readings",
+      "title": "Background readings: required / recommended",
+      "detail": "The original USAC document labels the reading list required. The published term syllabus treats it as recommended background and assesses weekly material posted in Teams. Check the instructor's current instructions; this Lab does not resolve that discrepancy.",
+      "sources": [
+        "usac",
+        "term"
+      ]
+    },
+    {
+      "id": "obligations",
+      "title": "The obligation count in the templates",
+      "detail": "The System Prompt and Manual say “five things” but name four: Manual, record, mastery table and final presentation. The published term syllabus lists the same four. Use the named obligations; do not invent a fifth. The instructor should clarify the count.",
+      "sources": [
+        "system",
+        "term"
+      ]
+    }
+  ],
+  "deliveries": [
+    {
+      "id": "prompt-lab",
+      "name": "Prompt lab + brief case critique",
+      "subtitle": "Explain the choices, not just the output.",
+      "date": "2026-09-22",
+      "session": 5,
+      "bucket": "Case Studies · within the 10% category",
+      "required": [
+        {
+          "text": "A prompt lab with versions and the reasons for changes",
+          "evidence": "Prompt sheets: intended result, original prompt, output, revised prompt and your comparison.",
+          "review": "Can you explain why each revision improved or failed to improve the result?",
+          "authority": "Course"
+        },
+        {
+          "text": "A brief ethics case critique applied to your company",
+          "evidence": "One concrete dilemma, affected parties, privacy/bias/copyright/transparency risks and an argued response.",
+          "review": "Is the response your analysis, with sources, rather than an AI answer pasted as your own?",
+          "authority": "Course"
+        },
+        {
+          "text": "Attribution and individual contribution",
+          "evidence": "Tools named, generated passages in quotation marks, citations and a first-name contribution footer.",
+          "review": "Can you point to the work you did and explain it yourself?",
+          "authority": "Course"
+        }
+      ],
+      "steps": [
+        "Choose one genuine company task and one ethical dilemma; use invented or your own data.",
+        "Run the prompt, keep the output and change one meaningful instruction. Compare against the intended result.",
+        "Write your own case argument: evidence, alternatives, risks and the response you defend.",
+        "Assemble prompt history, critique and attribution in 03 - Deliverables/. Request a review before the syllabus date."
+      ],
+      "decisions": [
+        "Which company task and dilemma will you use?",
+        "Which published Manual definition of done applies?"
+      ],
+      "topics": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note": "The official outline names this delivery. The detailed preparation criteria come from the course checklist. Manual ratification is a separate course obligation on the same date.",
+      "sourceRefs": [
+        "usac",
+        "term",
+        "checklists",
+        "system"
+      ]
+    },
+    {
+      "id": "mini-project-1",
+      "name": "Mini Project 1",
+      "subtitle": "Build a launch you can explain.",
+      "date": "2026-10-22",
+      "session": 13,
+      "bucket": "Module Mini-Projects · 40% combined",
+      "required": [
+        {
+          "text": "At least one directed image",
+          "evidence": "The finished image, its prompt/settings, iterations and the brand constraint it follows.",
+          "review": "Does the final image match the intended brand, and do you have rights to the inputs?",
+          "authority": "USAC"
+        },
+        {
+          "text": "At least one short video",
+          "evidence": "A playable short video plus the inputs and quality/safety checks you used.",
+          "review": "Can the audience understand it, including the audio/subtitles you chose?",
+          "authority": "USAC"
+        },
+        {
+          "text": "An SEO brief",
+          "evidence": "Search intent, target page, structure and internal-link recommendations backed by research.",
+          "review": "Is every recommendation connected to an intent or a source?",
+          "authority": "USAC"
+        },
+        {
+          "text": "SEM variants",
+          "evidence": "Ad variants, intended audiences and the planned comparison.",
+          "review": "What changes between variants, and what would make one more useful?",
+          "authority": "USAC"
+        },
+        {
+          "text": "A concise rationale linking choices to data or constraints",
+          "evidence": "A short explanation linking each creative/SEO/SEM choice to evidence or an explicit constraint.",
+          "review": "Could someone follow the argument without having been in the room?",
+          "authority": "USAC"
+        },
+        {
+          "text": "Who made what, tools and generated content",
+          "evidence": "First-name contribution footer, tool citations and marked generated passages.",
+          "review": "Can each contributor explain their own piece?",
+          "authority": "Course"
+        }
+      ],
+      "steps": [
+        "Read the company purpose in the Manual, brand material in 05 - Brand/ and the audience evidence you already have.",
+        "Produce the image and short video; keep iterations and record the choices you made.",
+        "Build the SEO brief and SEM variants against your research; propose a test before publishing anything.",
+        "Package the assets and concise rationale in 03 - Deliverables/. Check attribution, playback, evidence and request review."
+      ],
+      "decisions": [
+        "Which audience and message are your launch for?",
+        "Which creative direction and test will your team choose?"
+      ],
+      "topics": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "note": "The course checklists/weekly plan allocate 20% to each mini-project. USAC fixes the combined mini-project category at 40%; this tool does not calculate grades.",
+      "sourceRefs": [
+        "usac",
+        "term",
+        "checklists",
+        "system"
+      ]
+    },
+    {
+      "id": "mini-project-2",
+      "name": "Mini Project 2",
+      "subtitle": "Make one complete flow work.",
+      "date": "2026-11-10",
+      "session": 18,
+      "bucket": "Module Mini-Projects · 40% combined",
+      "required": [
+        {
+          "text": "A small vibe-coded micro-app",
+          "evidence": "A runnable app and a demonstration of one company use case.",
+          "review": "Can another person start it and complete the intended task?",
+          "authority": "USAC"
+        },
+        {
+          "text": "Connect the app to AI and data",
+          "evidence": "A traced example input, model response and data read/write with secrets kept out of source.",
+          "review": "Can you explain the connection and show what happens if the model/data is unavailable?",
+          "authority": "Course"
+        },
+        {
+          "text": "Capture → AI enrich → store → notify",
+          "evidence": "A Make scenario, safe test input, screenshots/export and the resulting stored record and test notification.",
+          "review": "Did every stage run end to end, rather than only appear in a diagram?",
+          "authority": "USAC"
+        },
+        {
+          "text": "A one-page readme",
+          "evidence": "Flow diagram, key prompts, basic cost notes and log notes on one page.",
+          "review": "Does it explain the running flow and its failures within one page?",
+          "authority": "USAC"
+        },
+        {
+          "text": "Authorship and safe data",
+          "evidence": "First-name contribution/tool footer; invented or your own data; no secrets or third-party personal data.",
+          "review": "Are the evidence and logs safe to share?",
+          "authority": "Course"
+        }
+      ],
+      "steps": [
+        "Choose one existing company task and define one input and one useful result; do not build a second task system.",
+        "Build the smallest micro-app and connect it to a model and data using the course tools available to you.",
+        "Complete the capture/enrich/store/notify flow in a safe test destination; test a failed input and an unavailable service too.",
+        "Write the one-page readme, attach working evidence and request review before the syllabus date."
+      ],
+      "decisions": [
+        "What problem, data and notification destination will you choose?",
+        "If choosing n8n instead of Make, confirm the source discrepancy with the instructor first."
+      ],
+      "topics": [
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "note": "Source check: the official mini-project description names a Make workflow. The term syllabus and course checklist say Make/n8n. A Make implementation fits both; acceptance of n8n needs instructor confirmation.",
+      "sourceRefs": [
+        "usac",
+        "term",
+        "checklists",
+        "system"
+      ]
+    },
+    {
+      "id": "final-project",
+      "name": "Final Project",
+      "subtitle": "Show a working solution and an evidence-based case.",
+      "date": "2026-12-03",
+      "session": 25,
+      "bucket": "Final Project · 20%",
+      "required": [
+        {
+          "text": "One team AI-enabled solution with a concise business case",
+          "evidence": "A working campaign, support/lead chatbot, AI/data micro-app or end-to-end automated process.",
+          "review": "Can you demonstrate the real solution and explain the problem it solves?",
+          "authority": "USAC"
+        },
+        {
+          "text": "Business model and go-to-market",
+          "evidence": "An argued model, intended users, route to market, scalability and risks.",
+          "review": "Which claims are backed by evidence, and which remain assumptions?",
+          "authority": "Course"
+        },
+        {
+          "text": "KPIs and a test plan",
+          "evidence": "The company's chosen measures and a test that could disprove your claims.",
+          "review": "Are the measures meaningful for the chosen solution rather than invented for this guide?",
+          "authority": "Course"
+        },
+        {
+          "text": "An ROI model with real costs: tokens, tools and time",
+          "evidence": "Measured usage/time, stated assumptions, expected benefits and a simple transparent calculation.",
+          "review": "Do you distinguish measured costs and benefits from estimates?",
+          "authority": "Course"
+        },
+        {
+          "text": "Learning, including what did not work",
+          "evidence": "An evidence-linked account of iterations, failures and changes of mind.",
+          "review": "Can you show what changed because of what you learned?",
+          "authority": "Course"
+        },
+        {
+          "text": "In-class presentation and individual questioning",
+          "evidence": "A working demo and a presentation rehearsed for sessions 24–25; each person explains their area.",
+          "review": "Can each contributor defend their own evidence?",
+          "authority": "Course"
+        }
+      ],
+      "steps": [
+        "Choose one of the four official solution routes; reuse the company work already produced.",
+        "Collect proof that it runs. Build the business case from the audience, technical tests and measured usage/time.",
+        "Use your chosen KPIs and test plan to examine the claims; document limitations and what failed.",
+        "Prepare the in-class presentation for sessions 24–25 and deliver on 3 December. Rehearse again on 10 December for the final presentation on 15 December."
+      ],
+      "decisions": [
+        "Which official solution route fits what your company built?",
+        "Which claims, KPIs and division of presentation work will you defend?"
+      ],
+      "topics": [
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "note": "3 December is the official project deadline. 15 December is the term final presentation in the exam slot, not a fifth official deliverable or an extension of the project deadline.",
+      "sourceRefs": [
+        "usac",
+        "term",
+        "checklists",
+        "system"
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "n": 1,
+      "title": "AI concepts, history, applications & limits",
+      "block": 1,
+      "date": "2026-09-08",
+      "competences": [
+        "C-01",
+        "C-05"
+      ],
+      "build": "An AI-use boundary for the company",
+      "knowledge": "Describe what a model can/cannot do and distinguish demonstrated performance from a claim.",
+      "path": "00 - Manual/MANUAL.md",
+      "entry": "operations",
+      "steps": [
+        "Choose a company task where an AI output could mislead somebody.",
+        "Compare a source-backed answer with a model output and identify one limitation or failure.",
+        "Propose a permitted-use boundary and a human review step; bring it to the team."
+      ],
+      "evidence": [
+        "A source-linked explanation and a concrete failure example."
+      ],
+      "decisions": [
+        "Which uses and review boundaries will your company accept?"
+      ],
+      "deliveries": [
+        "prompt-lab"
+      ],
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system",
+        "dimensions"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Generative AI & LLMs (ChatGPT, Claude, Gemini); copilots (M365, Workspace)",
+      "block": 1,
+      "date": "2026-09-10",
+      "competences": [
+        "C-01"
+      ],
+      "build": "A tool-choice note",
+      "knowledge": "Compare an LLM assistant with a workspace copilot using a real company task.",
+      "path": "04 - Playbooks/",
+      "entry": "operations",
+      "steps": [
+        "Give two available tools the same invented task and context.",
+        "Compare accuracy, workflow fit and limitations; keep the actual outputs.",
+        "Draft a short recommendation and its alternative, leaving the tool choice to the team."
+      ],
+      "evidence": [
+        "Task, tools/settings, outputs and your comparison."
+      ],
+      "decisions": [
+        "Which available tool best fits this task and your constraints?"
+      ],
+      "deliveries": [
+        "prompt-lab"
+      ],
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system",
+        "d1",
+        "dimensions"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Prompt Engineering I: roles, context, constraints, style/format control",
+      "block": 1,
+      "date": "2026-09-15",
+      "competences": [
+        "C-02"
+      ],
+      "build": "A reusable company prompt",
+      "knowledge": "Use role, context, constraints and output format deliberately.",
+      "path": "04 - Playbooks/",
+      "entry": "product",
+      "steps": [
+        "Read the purpose and constraints already written in the Manual.",
+        "Choose one company task, for example a class-preparation assistant; define the desired output.",
+        "Write and test a prompt with role/context/constraints/format; keep your own improvements."
+      ],
+      "evidence": [
+        "Prompt sheet, output and the reason for each instruction."
+      ],
+      "decisions": [
+        "Which task and output format should this prompt serve?"
+      ],
+      "deliveries": [
+        "prompt-lab"
+      ],
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system",
+        "d2",
+        "dimensions"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Prompt Engineering II: chaining, multimodal prompts, output evaluation & reproducibility",
+      "block": 1,
+      "date": "2026-09-17",
+      "competences": [
+        "C-03",
+        "C-04"
+      ],
+      "build": "A tested preparation flow",
+      "knowledge": "Chain prompts, include a multimodal input and evaluate reproducible outputs.",
+      "path": "04 - Playbooks/",
+      "entry": "product",
+      "steps": [
+        "Split your chosen task into input, draft and review stages.",
+        "Use an invented or rights-cleared image/document input; record tools, settings and prompts.",
+        "Run the same test again, compare the results and write a method another member can use."
+      ],
+      "evidence": [
+        "Chained prompts, safe input, comparison and reproducibility notes."
+      ],
+      "decisions": [
+        "Which test and review criteria will you choose before running it?"
+      ],
+      "deliveries": [
+        "prompt-lab"
+      ],
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system",
+        "d2",
+        "dimensions"
+      ]
+    },
+    {
+      "n": 5,
+      "title": "Ethics & legal: privacy, bias, copyright, transparency; responsible use guidelines",
+      "block": 1,
+      "date": "2026-09-22",
+      "competences": [
+        "C-05"
+      ],
+      "build": "A responsible-use review",
+      "knowledge": "Argue privacy, bias, copyright and transparency risks in a concrete company case.",
+      "path": "00 - Manual/MANUAL.md",
+      "entry": "operations",
+      "steps": [
+        "Pick a dilemma in something your company wants to do.",
+        "Check all four risk areas with sources; compare at least two responses.",
+        "Write your own critique and propose a house rule for discussion, without approving it yourself."
+      ],
+      "evidence": [
+        "The case critique, cited sources and the response you defend."
+      ],
+      "decisions": [
+        "What responsible-use rule will the company ratify?"
+      ],
+      "deliveries": [
+        "prompt-lab"
+      ],
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system",
+        "d3",
+        "dimensions"
+      ]
+    },
+    {
+      "n": 6,
+      "title": "Images & Design: Midjourney/DALL·E basics",
+      "block": 2,
+      "date": "2026-09-24",
+      "competences": [
+        "C-06"
+      ],
+      "build": "A directed brand image",
+      "knowledge": "Generate and direct imagery consistently with a chosen brand.",
+      "path": "05 - Brand/",
+      "entry": "audience",
+      "steps": [
+        "Read the team's brand choices; if absent, propose alternatives for a human decision.",
+        "Generate a rights-safe image with the available course tool; record prompt and iterations.",
+        "Compare the result with the chosen brand constraints and explain your revisions."
+      ],
+      "evidence": [
+        "At least one image, prompts/iterations and a brand-fit explanation."
+      ],
+      "decisions": [
+        "Which visual direction and intended use do you choose?"
+      ],
+      "deliveries": [
+        "mini-project-1"
+      ],
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system",
+        "dimensions"
+      ]
+    },
+    {
+      "n": 7,
+      "title": "Images & Design: ComfyUI node flows (control, upscales, brand styles)",
+      "block": 2,
+      "date": "2026-09-29",
+      "competences": [
+        "C-07"
+      ],
+      "build": "A repeatable image pipeline",
+      "knowledge": "Use a node-based flow to control composition, upscale and brand style.",
+      "path": "04 - Playbooks/",
+      "entry": "product",
+      "steps": [
+        "Choose one approved visual task and safe inputs.",
+        "Build or adapt a ComfyUI flow; name the control, upscale and style nodes.",
+        "Export the flow and have another member run it; record settings and what changed."
+      ],
+      "evidence": [
+        "Workflow export/screenshot, input/output and settings."
+      ],
+      "decisions": [
+        "Which controllable visual features matter for your brand?"
+      ],
+      "deliveries": [
+        "mini-project-1"
+      ],
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system",
+        "dimensions"
+      ]
+    },
+    {
+      "n": 8,
+      "title": "Video & Audio: Runway (T2V/edit), dubbing, subtitles workflows; quality/safety checks",
+      "block": 2,
+      "date": "2026-10-01",
+      "competences": [
+        "C-08"
+      ],
+      "build": "A playable company video",
+      "knowledge": "Produce/edit video and audio, dubbing and subtitles; apply quality and safety checks.",
+      "path": "05 - Brand/",
+      "entry": "audience",
+      "steps": [
+        "Plan a short video that serves the company's chosen message.",
+        "Make/edit it with the course tools; prepare audio/dubbing/subtitles with safe inputs.",
+        "Check playback, intelligibility, synchronisation, rights and misleading content."
+      ],
+      "evidence": [
+        "A playable short video, production inputs and quality/safety notes."
+      ],
+      "decisions": [
+        "What message and audience should this video serve?"
+      ],
+      "deliveries": [
+        "mini-project-1"
+      ],
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system",
+        "dimensions"
+      ]
+    },
+    {
+      "n": 9,
+      "title": "Avatars: spokespersons, training; disclosure & risk management",
+      "block": 2,
+      "date": "2026-10-06",
+      "competences": [
+        "C-09",
+        "C-05"
+      ],
+      "build": "An avatar disclosure pattern",
+      "knowledge": "Build an avatar and justify disclosure and risk controls.",
+      "path": "05 - Brand/",
+      "entry": "audience",
+      "steps": [
+        "Choose a hypothetical spokesperson/training use with an invented character.",
+        "Produce a test and draft clear disclosure of synthetic identity/content.",
+        "Review impersonation, consent and misleading claims before proposing any real use."
+      ],
+      "evidence": [
+        "Avatar test, disclosure text and a risk argument."
+      ],
+      "decisions": [
+        "Will the company use an avatar at all, and under which safeguards?"
+      ],
+      "deliveries": [
+        "mini-project-1"
+      ],
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system",
+        "dimensions"
+      ]
+    },
+    {
+      "n": 10,
+      "title": "Marketing with AI: segmentation, personalization, experimentation; market research (incl. B2B)",
+      "block": 2,
+      "date": "2026-10-08",
+      "competences": [
+        "C-10"
+      ],
+      "build": "An audience research brief",
+      "knowledge": "Use AI for research, usable segments and testable personalisation hypotheses, including B2B.",
+      "path": "03 - Deliverables/",
+      "entry": "audience",
+      "steps": [
+        "Choose an audience question your company needs answered.",
+        "Use cited public research or invented/own data; distinguish observations from AI inferences.",
+        "Propose usable segments and a personalisation experiment; include what would disprove them."
+      ],
+      "evidence": [
+        "Sources, segment rationale, limitations and an experiment proposal."
+      ],
+      "decisions": [
+        "Which segment and hypothesis will you test?"
+      ],
+      "deliveries": [
+        "mini-project-1"
+      ],
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system",
+        "dimensions"
+      ]
+    },
+    {
+      "n": 11,
+      "title": "SEO with AI: intent, briefs, internal links",
+      "block": 2,
+      "date": "2026-10-13",
+      "competences": [
+        "C-11"
+      ],
+      "build": "A search-intent brief",
+      "knowledge": "Connect search intent, page structure and internal links.",
+      "path": "03 - Deliverables/",
+      "entry": "audience",
+      "steps": [
+        "Pick a company page and research the intended search query.",
+        "Write a brief linking intent to headings, content and internal-link proposals.",
+        "Check claims against sources and your audience research before changing a page."
+      ],
+      "evidence": [
+        "SEO brief, source-linked intent and internal-link map."
+      ],
+      "decisions": [
+        "Which query and page fit the company's audience?"
+      ],
+      "deliveries": [
+        "mini-project-1"
+      ],
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system",
+        "dimensions"
+      ]
+    },
+    {
+      "n": 12,
+      "title": "SEM with AI: ad variants, audiences, testing",
+      "block": 2,
+      "date": "2026-10-15",
+      "competences": [
+        "C-12"
+      ],
+      "build": "A controlled ad comparison",
+      "knowledge": "Create ad/audience variants and a test that distinguishes them.",
+      "path": "03 - Deliverables/",
+      "entry": "audience",
+      "steps": [
+        "Choose one message and one audience hypothesis.",
+        "Draft variants with a stated difference and check unsupported claims.",
+        "Write a comparison plan with the team's chosen measure; keep it a proposal until approved."
+      ],
+      "evidence": [
+        "SEM variants, audience rationale, test design and decision rule."
+      ],
+      "decisions": [
+        "Which comparison and success measure will your team choose?"
+      ],
+      "deliveries": [
+        "mini-project-1"
+      ],
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system",
+        "dimensions"
+      ]
+    },
+    {
+      "n": 13,
+      "title": "Email & Social: dynamic content, calendars, safe automation",
+      "block": 2,
+      "date": "2026-10-22",
+      "competences": [
+        "C-13"
+      ],
+      "build": "A safe content calendar",
+      "knowledge": "Use dynamic email/social content, calendars and safe automation.",
+      "path": "04 - Playbooks/",
+      "entry": "audience",
+      "steps": [
+        "Define one reusable message with placeholders and a chosen audience.",
+        "Draft a small calendar linked to actual company content and the chosen brand.",
+        "Prototype approval/preview and error checks with invented data; do not send or publish."
+      ],
+      "evidence": [
+        "Calendar, content examples and the safe automation/approval flow."
+      ],
+      "decisions": [
+        "Which channels, cadence and approval method will you choose?"
+      ],
+      "deliveries": [
+        "mini-project-1"
+      ],
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system",
+        "dimensions"
+      ]
+    },
+    {
+      "n": 14,
+      "title": "Vibe Coding I: intro to Lovable (or similar); project setup (lead magnet or content assistant)",
+      "block": 3,
+      "date": "2026-10-27",
+      "competences": [
+        "C-14"
+      ],
+      "build": "A micro-app that solves one task",
+      "knowledge": "Set up and build a usable vibe-coded micro-app.",
+      "path": "board/",
+      "entry": "product",
+      "steps": [
+        "Choose one small company use case, such as a lead-magnet prototype or content assistant.",
+        "Define the demonstration and inspect the existing code before extending it.",
+        "Build the smallest runnable version and test the intended task with invented data."
+      ],
+      "evidence": [
+        "Runnable source/link, start instructions and a demonstrated user task."
+      ],
+      "decisions": [
+        "Which company problem should the app solve?"
+      ],
+      "deliveries": [
+        "mini-project-2"
+      ],
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system",
+        "dimensions"
+      ]
+    },
+    {
+      "n": 15,
+      "title": "Vibe Coding II: connecting the micro-app to AI & data",
+      "block": 3,
+      "date": "2026-10-29",
+      "competences": [
+        "C-15"
+      ],
+      "build": "An AI/data connection",
+      "knowledge": "Connect a micro-app to a model and to data.",
+      "path": "board/",
+      "entry": "product",
+      "steps": [
+        "Specify the app's safe input, expected model output and data read/write.",
+        "Connect the services using secrets outside committed/browser source; explain the data path.",
+        "Test valid input, bad input and unavailable model/data; record actual behaviour."
+      ],
+      "evidence": [
+        "Working connection, safe test trace, model prompt and failure behaviour."
+      ],
+      "decisions": [
+        "Which model, data and access boundary will the team choose?"
+      ],
+      "deliveries": [
+        "mini-project-2"
+      ],
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system",
+        "dimensions"
+      ]
+    },
+    {
+      "n": 16,
+      "title": "Automations I: Make/n8n basics; webhook/form triggers",
+      "block": 3,
+      "date": "2026-11-03",
+      "competences": [
+        "C-16"
+      ],
+      "build": "A safe intake trigger",
+      "knowledge": "Build a webhook or form trigger in Make/n8n.",
+      "path": "04 - Playbooks/",
+      "entry": "operations",
+      "steps": [
+        "Choose one existing company process and one invented test input.",
+        "Create a webhook/form trigger and document its expected schema.",
+        "Test missing/invalid fields and prevent accidental use of real third-party data."
+      ],
+      "evidence": [
+        "Trigger setup/export, sample input and validation results."
+      ],
+      "decisions": [
+        "Which intake and data fields are actually necessary?"
+      ],
+      "deliveries": [
+        "mini-project-2"
+      ],
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system",
+        "dimensions"
+      ]
+    },
+    {
+      "n": 17,
+      "title": "Automations II: AI enrichment/classify → CRM/Notion/Sheets",
+      "block": 3,
+      "date": "2026-11-05",
+      "competences": [
+        "C-17"
+      ],
+      "build": "An enrichment and storage stage",
+      "knowledge": "Enrich/classify with AI and write the result to a chosen destination.",
+      "path": "04 - Playbooks/",
+      "entry": "operations",
+      "steps": [
+        "Reuse the safe input from your trigger.",
+        "Define classification/enrichment fields and one CRM/Notion/Sheets test destination.",
+        "Run the stage; inspect what was actually stored and how you handle malformed AI output."
+      ],
+      "evidence": [
+        "Key prompts, safe input/output, stored record and an invalid-output test."
+      ],
+      "decisions": [
+        "Which destination and categories fit the company's process?"
+      ],
+      "deliveries": [
+        "mini-project-2"
+      ],
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system",
+        "dimensions"
+      ]
+    },
+    {
+      "n": 18,
+      "title": "Automations III: notify Slack/email; end-to-end scenario review",
+      "block": 3,
+      "date": "2026-11-10",
+      "competences": [
+        "C-18"
+      ],
+      "build": "An end-to-end workflow",
+      "knowledge": "Complete notify/store behaviour and review failure handling.",
+      "path": "03 - Deliverables/",
+      "entry": "operations",
+      "steps": [
+        "Connect capture, AI enrichment, storage and a safe notification destination.",
+        "Run the full scenario with invented data; use a test recipient only after human authorisation.",
+        "Test a failure and document log/retry behaviour in the one-page readme."
+      ],
+      "evidence": [
+        "Complete scenario, safe success/failure traces and one-page readme."
+      ],
+      "decisions": [
+        "Who approves notifications and what should happen on failure?"
+      ],
+      "deliveries": [
+        "mini-project-2"
+      ],
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system",
+        "dimensions"
+      ]
+    },
+    {
+      "n": 19,
+      "title": "AI for decision-making and operations",
+      "block": 4,
+      "date": "2026-11-12",
+      "competences": [
+        "C-19",
+        "C-20"
+      ],
+      "build": "An evidence-backed decision note",
+      "knowledge": "Use AI to support a decision or redesign an operation while keeping judgement human.",
+      "path": "01 - Registry/DECISIONS.md",
+      "entry": "operations",
+      "steps": [
+        "Choose one real company decision or process problem.",
+        "Compare options using existing evidence and explicit assumptions; let AI assist the analysis.",
+        "Present the argument and alternative to the team; record only the decision they actually take."
+      ],
+      "evidence": [
+        "Options, supporting evidence, assumptions and human decision if one is taken."
+      ],
+      "decisions": [
+        "Which decision rule and operational measure will you choose?"
+      ],
+      "deliveries": [
+        "final-project"
+      ],
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system",
+        "dimensions"
+      ]
+    },
+    {
+      "n": 20,
+      "title": "Business models with AI (service/product, internal vs external use, scalability, risks)",
+      "block": 4,
+      "date": "2026-11-17",
+      "competences": [
+        "C-19"
+      ],
+      "build": "A business-model comparison",
+      "knowledge": "Explain AI business models, internal/external use, scaling and risks.",
+      "path": "03 - Deliverables/",
+      "entry": "product",
+      "steps": [
+        "Describe the company's chosen solution and who it helps.",
+        "Compare service/product and internal/external alternatives with scaling constraints and risks.",
+        "Write the model you can defend and identify claims that still need evidence."
+      ],
+      "evidence": [
+        "Model comparison, intended users, scaling assumptions and risks."
+      ],
+      "decisions": [
+        "Which model will your company defend?"
+      ],
+      "deliveries": [
+        "final-project"
+      ],
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system",
+        "dimensions"
+      ]
+    },
+    {
+      "n": 21,
+      "title": "Economic viability & ROI: costs (tokens, tools, time), benefits (time saved, conversion lift); simple ROI model",
+      "block": 4,
+      "date": "2026-11-19",
+      "competences": [
+        "C-20"
+      ],
+      "build": "A transparent ROI worksheet",
+      "knowledge": "Model costs and benefits with units, a baseline and stated assumptions.",
+      "path": "03 - Deliverables/",
+      "entry": "operations",
+      "steps": [
+        "Select one thing your company has built and measure its baseline time/usage.",
+        "Record observed token/tool usage and time; label unavailable figures as assumptions, never as facts.",
+        "Compare with measured or estimated benefits; show the calculation and a sensitivity case."
+      ],
+      "evidence": [
+        "Academic ROI model, units, sources, measured figures and labelled assumptions."
+      ],
+      "decisions": [
+        "Which baseline, benefit and time horizon will you use?"
+      ],
+      "deliveries": [
+        "final-project"
+      ],
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system",
+        "dimensions"
+      ]
+    },
+    {
+      "n": 22,
+      "title": "Cross-industry case studies I: retail, finance, media",
+      "block": 4,
+      "date": "2026-11-24",
+      "competences": [
+        "C-19",
+        "C-20",
+        "C-21"
+      ],
+      "build": "A transferable case comparison",
+      "knowledge": "Analyse cases in retail, finance and media and assess transfer to your company.",
+      "path": "03 - Deliverables/",
+      "entry": "product",
+      "steps": [
+        "Select source-backed AI cases in all three named industries.",
+        "Compare the task, evidence, risks and viability without treating a vendor claim as proof.",
+        "Identify one transferable idea and one reason it might fail in your company."
+      ],
+      "evidence": [
+        "Three cited case comparisons and an argued transfer/limit."
+      ],
+      "decisions": [
+        "Which idea, if any, is worth testing in your company?"
+      ],
+      "deliveries": [
+        "final-project"
+      ],
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system",
+        "dimensions"
+      ]
+    },
+    {
+      "n": 23,
+      "title": "Cross-industry case studies II: services/consulting; GTM strategy with AI",
+      "block": 4,
+      "date": "2026-11-26",
+      "competences": [
+        "C-19",
+        "C-21"
+      ],
+      "build": "A go-to-market argument",
+      "knowledge": "Analyse services/consulting cases and build an evidence-based GTM strategy.",
+      "path": "03 - Deliverables/",
+      "entry": "audience",
+      "steps": [
+        "Compare a services case and a consulting case with cited evidence.",
+        "Use your own audience research to propose a route to reach the chosen users.",
+        "Connect channel/message/test to the business case and state what could invalidate it."
+      ],
+      "evidence": [
+        "Cited cases and a GTM proposal linked to company evidence."
+      ],
+      "decisions": [
+        "Which route to market and test will your team choose?"
+      ],
+      "deliveries": [
+        "final-project"
+      ],
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system",
+        "dimensions"
+      ]
+    },
+    {
+      "n": 24,
+      "title": "Final Project presentations (Part 1)",
+      "block": 4,
+      "date": "2026-12-01",
+      "competences": [
+        "C-21"
+      ],
+      "build": "A defensible demo",
+      "knowledge": "Present the AI-enabled solution and answer questions using evidence.",
+      "path": "03 - Deliverables/",
+      "entry": "product",
+      "steps": [
+        "Build a short sequence: problem, working demonstration, evidence, business case and limits.",
+        "Rehearse with each contributor explaining their own area.",
+        "Have a teammate challenge the weakest claim and improve the evidence before presenting."
+      ],
+      "evidence": [
+        "In-class presentation/demo, evidence links and the answers you can defend."
+      ],
+      "decisions": [
+        "How will your team divide the presentation and questioning?"
+      ],
+      "deliveries": [
+        "final-project"
+      ],
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system",
+        "dimensions"
+      ]
+    },
+    {
+      "n": 25,
+      "title": "Final Project presentations (Part 2) & course wrap-up",
+      "block": 4,
+      "date": "2026-12-03",
+      "competences": [
+        "C-21"
+      ],
+      "build": "A reusable handover",
+      "knowledge": "Finish the presentation and explain what was learned, including failures.",
+      "path": "01 - Registry/HANDOVER-TEMPLATE.md",
+      "entry": "operations",
+      "steps": [
+        "Complete the project delivery on the syllabus date with working evidence and attribution.",
+        "Explain what failed, what changed and the limits that remain.",
+        "Draft a handover using the existing template so another person can run and understand the work."
+      ],
+      "evidence": [
+        "Final delivery, evidence-based retrospective and a reproducible handover."
+      ],
+      "decisions": [
+        "What would your team keep, change or hand over?"
+      ],
+      "deliveries": [
+        "final-project"
+      ],
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system",
+        "dimensions"
+      ]
+    }
+  ],
+  "caseStudies": [
+    {
+      "id": "case-study-1",
+      "kind": "case",
+      "name": "Case Study 1 · ethics dilemma",
+      "subtitle": "A short analysis tied to your company.",
+      "date": "2026-09-22",
+      "session": 5,
+      "topics": [
+        5
+      ],
+      "bucket": "Case Studies · 10% combined",
+      "required": [
+        {
+          "text": "Analyse an ethical dilemma in your own company.",
+          "evidence": "Privacy/bias/copyright/transparency case, alternatives and your argued response.",
+          "review": "Is the argument supported by actual evidence, and can you explain it yourself?",
+          "authority": "Course"
+        },
+        {
+          "text": "Own analysis, tool attribution and visible contribution",
+          "evidence": "Cited sources/tools, marked generated passages and a first-name contribution footer.",
+          "review": "Can another reader distinguish your contribution from machine output?",
+          "authority": "Course"
+        }
+      ],
+      "steps": [
+        "Read the specific case instructions in Teams; confirm the requested format and individual/team setup.",
+        "Use the existing company work as evidence. Separate observations, assumptions and AI suggestions.",
+        "Compare alternatives and write your own recommendation with its limitations. Request a review before the published date."
+      ],
+      "decisions": [
+        "Which concrete company question will your analysis answer?",
+        "Which recommendation can you defend with the evidence?"
+      ],
+      "note": "This is a case in the published term plan, within the 10% Case Studies category. It is not a fifth official project. The instructor specifies each case format/setup; this guide adds no length, score or grading condition.",
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system"
+      ]
+    },
+    {
+      "id": "case-study-2",
+      "kind": "case",
+      "name": "Case Study 2 · market research with AI",
+      "subtitle": "A short analysis tied to your company.",
+      "date": "2026-10-13",
+      "session": 11,
+      "topics": [
+        10
+      ],
+      "bucket": "Case Studies · 10% combined",
+      "required": [
+        {
+          "text": "Analyse AI market research for your own company.",
+          "evidence": "Research question, cited sources or safe data, segments, limitations and your own interpretation.",
+          "review": "Is the argument supported by actual evidence, and can you explain it yourself?",
+          "authority": "Course"
+        },
+        {
+          "text": "Own analysis, tool attribution and visible contribution",
+          "evidence": "Cited sources/tools, marked generated passages and a first-name contribution footer.",
+          "review": "Can another reader distinguish your contribution from machine output?",
+          "authority": "Course"
+        }
+      ],
+      "steps": [
+        "Read the specific case instructions in Teams; confirm the requested format and individual/team setup.",
+        "Use the existing company work as evidence. Separate observations, assumptions and AI suggestions.",
+        "Compare alternatives and write your own recommendation with its limitations. Request a review before the published date."
+      ],
+      "decisions": [
+        "Which concrete company question will your analysis answer?",
+        "Which recommendation can you defend with the evidence?"
+      ],
+      "note": "This is a case in the published term plan, within the 10% Case Studies category. It is not a fifth official project. The instructor specifies each case format/setup; this guide adds no length, score or grading condition.",
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system"
+      ]
+    },
+    {
+      "id": "case-study-3",
+      "kind": "case",
+      "name": "Case Study 3 · SEO/SEM optimisation",
+      "subtitle": "A short analysis tied to your company.",
+      "date": "2026-11-03",
+      "session": 16,
+      "topics": [
+        11,
+        12
+      ],
+      "bucket": "Case Studies · 10% combined",
+      "required": [
+        {
+          "text": "Analyse SEO/SEM using your actual launch data.",
+          "evidence": "Search/ad evidence, what you would change, alternatives and the test that would compare them.",
+          "review": "Is the argument supported by actual evidence, and can you explain it yourself?",
+          "authority": "Course"
+        },
+        {
+          "text": "Own analysis, tool attribution and visible contribution",
+          "evidence": "Cited sources/tools, marked generated passages and a first-name contribution footer.",
+          "review": "Can another reader distinguish your contribution from machine output?",
+          "authority": "Course"
+        }
+      ],
+      "steps": [
+        "Read the specific case instructions in Teams; confirm the requested format and individual/team setup.",
+        "Use the existing company work as evidence. Separate observations, assumptions and AI suggestions.",
+        "Compare alternatives and write your own recommendation with its limitations. Request a review before the published date."
+      ],
+      "decisions": [
+        "Which concrete company question will your analysis answer?",
+        "Which recommendation can you defend with the evidence?"
+      ],
+      "note": "This is a case in the published term plan, within the 10% Case Studies category. It is not a fifth official project. The instructor specifies each case format/setup; this guide adds no length, score or grading condition.",
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system"
+      ]
+    },
+    {
+      "id": "case-study-4",
+      "kind": "case",
+      "name": "Case Study 4 · process redesign",
+      "subtitle": "A short analysis tied to your company.",
+      "date": "2026-11-17",
+      "session": 20,
+      "topics": [
+        19
+      ],
+      "bucket": "Case Studies · 10% combined",
+      "required": [
+        {
+          "text": "Analyse the redesign of one company process.",
+          "evidence": "Current process evidence, proposed changes, risks and how you would test improvement.",
+          "review": "Is the argument supported by actual evidence, and can you explain it yourself?",
+          "authority": "Course"
+        },
+        {
+          "text": "Own analysis, tool attribution and visible contribution",
+          "evidence": "Cited sources/tools, marked generated passages and a first-name contribution footer.",
+          "review": "Can another reader distinguish your contribution from machine output?",
+          "authority": "Course"
+        }
+      ],
+      "steps": [
+        "Read the specific case instructions in Teams; confirm the requested format and individual/team setup.",
+        "Use the existing company work as evidence. Separate observations, assumptions and AI suggestions.",
+        "Compare alternatives and write your own recommendation with its limitations. Request a review before the published date."
+      ],
+      "decisions": [
+        "Which concrete company question will your analysis answer?",
+        "Which recommendation can you defend with the evidence?"
+      ],
+      "note": "This is a case in the published term plan, within the 10% Case Studies category. It is not a fifth official project. The instructor specifies each case format/setup; this guide adds no length, score or grading condition.",
+      "sourceRefs": [
+        "usac",
+        "term",
+        "system"
+      ]
+    }
+  ]
+}

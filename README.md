@@ -9,7 +9,7 @@ The app for students abroad: Erasmus, study abroad and first-years who moved cit
 ## Corners City · local company workspace
 
 [Corners City](corners-city/README.md) is the chocolate/blue builder base, with
-three department entries, demonstration robots and six open plots. It runs
+three department entries, seven product-section entries, demonstration robots, the working Learning Lab and one open plot. It runs
 locally; browser drafts are private to that browser, while reviewed source files
 are the shared build. The existing product and website stay in their folders.
 
@@ -41,6 +41,11 @@ On Windows, run `py -3 start.py` (or `python start.py`) in the same city folder.
 Open the printed localhost URL and keep the terminal open. No npm or pip setup
 is needed for Corners City. The full [environment guide](corners-city/board/CORNERS-CITY-START.md)
 and [agent prompt](corners-city/board/CORNERS-CITY-BUILDER-PROMPT.md) are included.
+
+Learning Lab is an instructor contribution for preparing the four official course
+deliveries and integrating all 25 syllabus topics into the company. Enter through
+the library on plot-08 while the city runs. Its [guide](corners-city/board/LEARNING-LAB.md)
+and [reviewed mapping](corners-city/board/learning-lab-data.json) are included.
 
 ## What's here
 

@@ -14,7 +14,11 @@ Find the city workspace root (`corners-city/` inside https://github.com/Corners-
 
 **What the city means:** Corners City is a place to enter and extend the company’s existing workspace. It is not another task tracker. Its three starting buildings link to the existing Product, Audience and Operations screens. Their names come from `board/data/company.js`; the supplied company file is still marked `sample: true`. This confirms the documented template, not current student assignments or a fresh vote. Do not invent people, roles, departmental decisions, KPIs or company activity.
 
-The buildings use the clean geometric shapes adapted from the instructor's Freedom city. The five moving blue robots are **visual demonstrations only**: they do not call models, execute work, or represent students. Six open plots invite students to build. A plot can become a workshop, studio, office, tower, library, factory or hall. Choosing a shape does not assign a business function. Students decide what their corner should do.
+The library on `plot-08` opens the working Learning Lab (`learning-lab.html`), an instructor contribution for preparing four deliveries and integrating all 25 syllabus topics. Its course mapping is `learning-lab-data.json`; read `LEARNING-LAB.md` before extending it. This tool records no progress, tasks or grades, and does not own student decisions.
+
+On mobile, **Choose a place** lists every building and open plot; use it to open details without relying on map labels. Keep this list generated from the same plot data when extending the city.
+
+The buildings use the clean geometric shapes adapted from the instructor's Freedom city. The five moving blue robots are **visual demonstrations only**: they do not call models, execute work, or represent students. One open plot remains for students to build. A plot can become a workshop, studio, office, tower, library, factory or hall. Choosing a shape does not assign a business function. Students decide what their corner should do.
 
 **What already works:** an isometric 3D scene; named, keyboard-accessible place buttons; building selection; links to the existing departments; drag to pan; wheel and button zoom; Fit city; pause/resume robots; a form that builds a named visual shell on a vacant plot; browser-local saving; and JSON draft export. No AI execution, backend, login, network synchronization or real-time collaboration exists.
 
@@ -43,12 +47,14 @@ The launcher serves only `board/` on `127.0.0.1`. HTML/CSS/JavaScript run direct
 | `board/city-data.js` | You need plot coordinates or a **reviewed visual addition** in `EXTENSIONS`. |
 | `board/city-models.js` | You need a new building silhouette or robot geometry. Preserve existing shape keys. |
 | `board/city.js` | You need scene behavior, selection, draft validation, persistence or export. |
+| `board/learning-lab.html`, `board/learning-lab.css`, `board/learning-lab.js` | Functional course preparation UI; read `LEARNING-LAB.md` first. |
+| `board/learning-lab-data.json` | Reviewed 25-topic/four-delivery mapping. Preserve source authority; steps are proposals. |
 | `board/city-assets/` | Bundled Three.js, fonts and the mark. Keep licenses; these are not company data. |
 | `board/index.html`, `board/nav.js` | Existing board entry links to Corners City. Keep navigation working. |
 | `board/data/` | Existing company data only, under its field rules and checker. Do not copy it into a second system. |
 | `00 - Manual/`, `01 - Registry/`, `04 - Playbooks/` | Student decisions, session records and reusable methods, in their existing homes. |
 
-Existing shape keys: `base`, `estudio`, `oficina`, `torre`, `biblioteca`, `nave`, `ayuntamiento`. Starting plot ids: `product`, `audience`, `operations`, and `plot-01` through `plot-06`. The first three are department entries. `EXTENSIONS` may use only vacant plot ids, without duplicates. Each entry is `{plotId, label, type}`. A draft label is a short invented place name, maximum 40 characters, not contacts or personal data. If adding plot ids or shapes, update the validation and labels together, then verify them.
+Existing shape keys: `base`, `estudio`, `oficina`, `torre`, `biblioteca`, `nave`, `ayuntamiento`. Current plot ids: `product`, `audience`, `operations`, and `plot-01` through `plot-09`. The first three are department entries. `EXTENSIONS` may use only vacant plot ids, without duplicates. Each visual entry is `{plotId, label, type}`. Reviewed functional entries may also carry a `tool` ID resolved through the source-only `TOOLS` mapping; browser drafts cannot supply a tool URL. Plots 01–07 contain the team’s product-section builds; plot-08 contains Learning Lab. Plot-09 is the remaining open plot. Preserve these source contributions, including their reviewed blurb, href and acts fields. Product links open the published app in a new tab; action references read the existing board without creating tasks. A draft label is a short invented place name, maximum 40 characters, not contacts or personal data. If adding plot ids or shapes, update the validation and labels together, then verify them.
 
 ## 5. Preserve Corners identity and student ownership
 

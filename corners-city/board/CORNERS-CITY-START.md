@@ -6,15 +6,19 @@ Corners City is the shared **source-code canvas** for the company you are buildi
 
 **Buildings are places to enter.** Product, Audience and Operations open their existing screens on the company board. Their labels come from `data/company.js`; that file is still a sample template. The prototype does not prove current team membership or ratify the organization. A studio, tower or office is a visual shape, not a prescribed workflow.
 
+**Learning Lab is a working instructor contribution.** The library on `plot-08` opens `learning-lab.html`: four delivery guides, all 25 syllabus topics, proposed company builds and copy/download preparation briefs. Course rules distinguish USAC requirements, published course requirements and student decisions. It creates no tasks, progress or grades. Its mapping is `learning-lab-data.json`; read `LEARNING-LAB.md` before extending it.
+
 **Robots are demonstration characters.** Five blue robots move along a street. Pause them with “Pause robots.” They do not run AI, execute tasks, read messages, or represent people. Building a real agent would be a separate student-designed feature with its own data and access decisions.
 
-**Open plots are room to build.** There are six. Select one, click “Build on this plot,” choose an invented place name and one of seven shapes, then build. This creates a visual shell. It does not create a company task or a finished tool. Start with one shell, then decide what useful function your team wants to implement there.
+On mobile, use **Choose a place** to select any building or open plot. The compact list uses the same place details and actions as the map.
+
+**Open plots are room to build.** The team added seven product-section buildings on plots 01–07; they open the published app in a new tab and show existing board actions without creating records. Learning Lab is on plot-08. Plot-09 remains open. Select one, click “Build on this plot,” choose an invented place name and one of seven shapes, then build. This creates a visual shell. It does not create a company task or a finished tool. Start with one shell, then decide what useful function your team wants to implement there.
 
 **The streets connect the base.** Drag the scene to move, use the wheel or zoom buttons, and click “Fit city” to return. Named place buttons also work with a keyboard. “Company board” takes you back to the existing workspace. The builder guide and prompt are available from the top bar.
 
 ## What is ready; what you can build
 
-The ready base has an isometric 3D city, three department links, five animated robots, six vacant plots, a plot-building form, browser-local saving, and JSON export. It includes its drawing library, fonts and mark. It has no backend, AI execution, login, live company feeds, real-time collaboration or automatic publication.
+The ready base has an isometric 3D city, three department links, five animated robots, one vacant plot, a plot-building form, browser-local saving, and JSON export. It includes its drawing library, fonts and mark. It has no backend, AI execution, login, live company feeds, real-time collaboration or automatic publication.
 
 For the hackathon, pick one outcome you can demonstrate: a new building shape; one reviewed place with a student-defined purpose; a better interaction; or one small functioning tool inside an existing department. Define what “works” means before coding. Reuse the board’s data for commitments and activity; the city is not a second task system.
 

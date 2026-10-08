@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Learning Lab · Corners City</title>
+<link rel="icon" href="city-assets/mark.svg">
+<link rel="stylesheet" href="city.css">
+<link rel="stylesheet" href="learning-lab.css">
+</head>
+<body>
+<a class="skip" href="#workbench">Skip to preparation guide</a>
+<header class="masthead">
+ <a class="wordmark" href="city.html"><img src="city-assets/mark.svg" alt="" width="32" height="32">CORNERS.</a>
+ <nav aria-label="Workspace"><a href="city.html">Back to city ↗</a><a href="index.html#today">Company board ↗</a><button id="rulesOpen" type="button">Course rules & sources</button></nav>
+</header>
+<main class="lab">
+ <section class="lab-hero" aria-labelledby="labTitle">
+  <div><p class="eyebrow">A PLACE TO LEARN. A COMPANY TO BUILD.</p><h1 id="labTitle">Learning Lab<span>Make the course<br>part of your company.</span></h1><p class="hero-note">Prepare the evidence. Build something useful.<br>The purpose, people and decisions stay yours.</p></div>
+  <div class="course-map" aria-label="Course coverage"><div><strong>25</strong><span>topics to integrate</span></div><div><strong>04</strong><span>official deliveries</span></div><div><strong>21</strong><span>competences to demonstrate</span></div><p>Instructor contribution · preparation guidance<br>No submission or progress is recorded here.</p></div>
+ </section>
+ <div class="lab-switch" role="tablist" aria-label="Preparation view">
+  <button type="button" id="deliveriesTab" role="tab" aria-controls="workbench" aria-selected="true">01 <span>Prepare a delivery</span></button>
+  <button type="button" id="topicsTab" role="tab" aria-controls="workbench" aria-selected="false" tabindex="-1">02 <span>Build from the syllabus</span></button>
+ </div>
+ <section id="workbench" class="workbench" role="tabpanel" aria-labelledby="deliveriesTab" tabindex="0">
+  <aside class="lab-menu" aria-label="Choose a delivery or topic">
+   <div id="topicFilters" hidden><label for="topicSearch">Find a topic or competence</label><input type="search" id="topicSearch" placeholder="Try SEO, C-16, or video"><label for="blockFilter">Course block</label><select id="blockFilter"><option value="">All 25 topics</option></select></div>
+   <p class="menu-hint" id="menuHint">Syllabus dates · Fall 2026</p><div id="itemList" class="item-list"></div>
+   <p class="menu-note">One workspace.<br>Manual · Registry · Deliverables · Playbooks</p>
+  </aside>
+  <article id="detail" class="lab-detail" aria-live="polite"><p role="status">Opening the preparation guide…</p></article>
+ </section>
+ <footer class="lab-footer"><span>From a requirement to a useful piece of the company.</span><a href="LEARNING-LAB.md">How this guide is maintained ↗</a></footer>
+</main>
+<dialog id="courseRules" aria-labelledby="rulesTitle"><button type="button" class="close" id="rulesClose" aria-label="Close course rules">×</button><p class="eyebrow">THE WALLS OF THE ROOM</p><h2 id="rulesTitle">Course rules & sources</h2><p class="dialog-intro">USAC sets the content and weights. The published course sets its format. Your company writes its decisions in the Manual.</p><div id="rulesContent"></div></dialog>
+<div class="lab-toast" id="labToast" hidden role="status"></div>
+<script src="data/company.js"></script>
+<script type="module" src="learning-lab.js"></script>
+</body>
+</html>

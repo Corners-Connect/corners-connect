@@ -16,7 +16,7 @@ export const PLOTS = [
 // Example schema only: {plotId:'plot-01', label:'A student-approved label', type:'base'}
 //
 // One building per section of the app that is in build for Mini Project 1, named
-// exactly as the section is named in the product. Plots 08 and 09 stay open.
+// exactly as the section is named in the product. Learning Lab uses plot-08; plot-09 stays open.
 // Drafted 8 October 2026; student review and sign-off pending.
 // `blurb` is what the section is, `href` opens it in the live app, and `acts` are
 // the board action ids being built there, so a building is an entry rather than a
@@ -42,5 +42,12 @@ export const EXTENSIONS = [
   href:'https://corners-connect.github.io/corners-connect/app/#trips', acts:['A-013']},
  {plotId:'plot-07', type:'ayuntamiento', label:'Programme',
   blurb:'Key dates, the first-week checklist, and what everyone is asking about this week.',
-  href:'https://corners-connect.github.io/corners-connect/app/#prog', acts:['A-014']}
+  href:'https://corners-connect.github.io/corners-connect/app/#prog', acts:['A-014']},
+ {plotId:'plot-08', label:'Learning Lab', type:'biblioteca', tool:'learning-lab'}
 ];
+
+// Functional entries are reviewed source code. Browser drafts cannot supply URLs.
+export const TOOLS = {
+ 'learning-lab': {href:'learning-lab.html', kind:'INSTRUCTOR CONTRIBUTION',
+  action:'Enter Learning Lab ↗', description:'Prepare the four course deliveries and turn all 25 syllabus topics into useful pieces of your company. Your team keeps the decisions.'}
+};

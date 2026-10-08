@@ -126,7 +126,17 @@ but because in December nobody will remember it the same way.
 
 ## Corners City
 
-The city is the visual entry to this workspace: three department buildings, demonstration robots, and six open plots for student builds. Read `board/CORNERS-CITY-START.md`; for feature work, give your coding agent `board/CORNERS-CITY-BUILDER-PROMPT.md`. To open it, ask your local agent to follow `board/CORNERS-CITY-LOCALHOST.md`. Browser drafts stay on one browser/origin. Reviewed file changes are how your team shares the city. No live synchronization is implemented.
+The city is the visual entry to this workspace: three department buildings, seven product-section entries, the working Learning Lab, demonstration robots, and one open plot for student builds. Read `board/CORNERS-CITY-START.md`; for feature work, give your coding agent `board/CORNERS-CITY-BUILDER-PROMPT.md`. To open it, ask your local agent to follow `board/CORNERS-CITY-LOCALHOST.md`. Browser drafts stay on one browser/origin. Reviewed file changes are how your team shares the city. No live synchronization is implemented.
+
+## Learning Lab
+
+The library on `plot-08` is a working instructor contribution. Open
+`board/learning-lab.html` through the city to prepare all four official
+deliveries, review the four course case studies and connect all 25 topics to
+useful company pieces. Steps and build ideas are proposals; company decisions
+stay yours. Copy/download preparation briefs, inspect evidence and read the
+course rules/source notes. No grades, tasks or progress are recorded.
+Read `board/LEARNING-LAB.md` to extend the reviewed mapping.
 
 ## The board
 

@@ -66,6 +66,7 @@ NAV.build = function (go) {
     '</a>' +
     '<nav class="riel__nav">' +
       '<a class="riel__it" href="city.html" title="Open Corners City">' + icon('product') + '<span class="riel__et">Corners City ↗</span></a>' +
+      '<a class="riel__it" href="learning-lab.html" title="Prepare course work in Learning Lab">' + icon('mastery') + '<span class="riel__et">Learning Lab ↗</span></a>' +
       PAGES.map(function (p) {
         if (p.g) return '<span class="riel__grupo">' + p.g + '</span>';
         return '<button class="riel__it" data-go="' + p.id + '">' + icon(p.id) +

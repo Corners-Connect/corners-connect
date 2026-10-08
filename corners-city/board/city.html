@@ -10,12 +10,13 @@
 <body>
 <header class="masthead">
  <a class="wordmark" href="index.html#today"><img src="city-assets/mark.svg" alt="" width="32" height="32">CORNERS.</a>
- <nav aria-label="Workspace"><a href="index.html#today">Company board ↗</a><a href="city-guide.html" id="guideLink">Builder guide ↗</a><a href="CORNERS-CITY-BUILDER-PROMPT.md" download>Get the prompt ↓</a></nav>
+ <nav aria-label="Workspace"><a href="index.html#today">Company board ↗</a><a href="learning-lab.html">Learning Lab ↗</a><a href="city-guide.html" id="guideLink">Builder guide ↗</a><a href="CORNERS-CITY-BUILDER-PROMPT.md" download>Get the prompt ↓</a></nav>
 </header>
 <section class="intro" aria-labelledby="cityTitle"><p class="eyebrow">YOUR COMPANY. ROOM TO BUILD.</p><h1 id="cityTitle">Corners City</h1><p>One city. Your next corner.</p></section>
 <main id="city" aria-label="Interactive isometric city">
  <div id="scene"></div><div id="labels" aria-label="Buildings and open plots"></div>
  <div id="loadNotice" role="status">Opening your city…</div>
+ <nav class="place-picker" aria-label="City places"><button id="placesToggle" type="button" aria-expanded="false" aria-controls="placeList">Choose a place ⌃</button><div id="placeList" hidden></div></nav>
  <div class="view-tools" aria-label="City view"><button id="zoomIn" aria-label="Zoom in">＋</button><button id="zoomOut" aria-label="Zoom out">−</button><button id="homeView">Fit city</button><button id="motion" aria-pressed="false">Pause robots</button></div>
 </main>
 <aside class="inspector" id="inspector" hidden aria-labelledby="placeTitle">
