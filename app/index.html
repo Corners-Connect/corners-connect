@@ -286,8 +286,24 @@
       </section>
 
       <section class="view" id="v-guides" data-view="guides" data-mode-view="there" hidden>
-        <p class="note note--top">Guided experiences run by local operators. Example listings, illustrative prices.</p>
+        <div class="toolbar">
+          <div class="chips" role="group" aria-label="Filter by kind">
+            <button class="chip is-on" data-gcat="all">All</button>
+            <button class="chip" data-gcat="Food">Food</button>
+            <button class="chip" data-gcat="Sport">Sport</button>
+            <button class="chip" data-gcat="Culture">Culture</button>
+            <button class="chip" data-gcat="Day trip">Day trips</button>
+          </div>
+          <p class="toolbar__out" data-guides-count></p>
+        </div>
+        <section class="block" data-bookings-block hidden>
+          <div class="block__head">
+            <div class="card__head"><span class="ico ico--green" aria-hidden="true"><svg><use href="#i-guides"/></svg></span><h2 class="block__h">Your bookings</h2></div>
+          </div>
+          <ol class="list" data-bookings></ol>
+        </section>
         <ol class="grid" data-guides></ol>
+        <p class="note">Guided experiences run by local operators. Example listings, illustrative prices, and no booking here is real.</p>
       </section>
 
       <section class="view" id="v-trips" data-view="trips" data-mode-view="there" hidden>

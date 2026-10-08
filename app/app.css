@@ -1022,6 +1022,57 @@ body { letter-spacing: -.01em; }
   #v-home [data-home-area] .block__h { font-size: 14px; }
 }
 
+/* ================= guides: the booking step ================= */
+
+.guide.is-booked { border-color: #A7F3D0; }
+/* Bottom-left, because the category and duration pills already hold the top row. */
+.guide__img .guide__flag {
+  position: absolute; left: 12px; bottom: 12px; top: auto; z-index: 2;
+  padding: 3px 9px; border-radius: 999px; background: #047857; color: #fff;
+  font: 600 10.5px var(--sans); letter-spacing: .05em; text-transform: uppercase;
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+}
+
+.gsheet__shot { height: 190px; border-radius: 14px; overflow: hidden; background: var(--bg-2); margin-bottom: 14px; }
+.gsheet__shot img, .gsheet__shot .art { width: 100%; height: 100%; object-fit: cover; }
+.gsheet__k { margin-top: 18px; font: 600 11.5px var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--text-2); }
+.gsheet__inc { display: grid; gap: 7px; margin-top: 8px; padding: 0; list-style: none; }
+.gsheet__inc li { position: relative; padding-left: 22px; font-size: 14.5px; line-height: 1.45; }
+.gsheet__inc li::before {
+  content: "✓"; position: absolute; left: 0; top: 0;
+  color: var(--good); font-weight: 700; font-size: 13px;
+}
+.gsheet__facts { display: grid; gap: 0; margin-top: 14px; border-top: 1px solid var(--line); }
+.gsheet__facts > div {
+  display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 12px;
+  padding: 10px 0; border-bottom: 1px solid var(--line);
+}
+.gsheet__facts dt { font-size: 13px; color: var(--text-2); }
+.gsheet__facts dd { margin: 0; font-size: 14px; }
+.gsheet__total { margin-top: 18px; font-size: 15px; color: var(--text-2); }
+.gsheet__total b { font-size: 24px; font-weight: 600; letter-spacing: -.03em; color: var(--text); margin-right: 8px; }
+
+.chips--wrap { flex-wrap: wrap; margin-top: 8px; }
+.link--back { display: inline-block; margin-bottom: 12px; }
+
+.stepper { display: inline-flex; align-items: center; gap: 4px; margin-top: 8px; padding: 4px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); }
+.stepper__b {
+  width: 36px; height: 36px; border-radius: 50%; border: 0; background: var(--bg-2);
+  font-size: 19px; line-height: 1; cursor: pointer; color: var(--text);
+  transition: background-color .2s, color .2s;
+}
+.stepper__b:hover:not(:disabled) { background: var(--accent); color: var(--blue); }
+.stepper__b:disabled { opacity: .35; cursor: default; }
+.stepper__n { min-width: 36px; text-align: center; font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+.booked { margin-top: 18px; padding: 16px; border-radius: 14px; border: 1px solid #A7F3D0; background: linear-gradient(160deg, #ECFDF5, var(--card) 70%); }
+.booked__head { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.booked__tick { width: 24px; height: 24px; border-radius: 50%; background: var(--good); color: #fff; display: grid; place-items: center; font-size: 13px; font-weight: 700; }
+.booked__head b { font-size: 16px; }
+.booked__ref { margin-left: auto; font: 500 12px var(--mono); letter-spacing: .06em; color: var(--text-2); }
+.booked .gsheet__facts { border-top: 0; }
+.booked .btn { margin-top: 14px; }
+
 /* ================= activities: slideshow, food, trip photos ================= */
 
 .show { display: grid; gap: 10px; }

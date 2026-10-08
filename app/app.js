@@ -211,7 +211,7 @@
   var state = {
     prefs: { lang: "english-courses", budget: 2, setting: "historic", vibe: "laidback", weather: "warm", priorities: [] },
     ranked: false, shortlist: [], compare: ["bilbao"], destination: null, prep: [],
-    votes: {}, saves: [], joins: ["language"], checks: ["c1", "c2"], posts: [], going: {},
+    votes: {}, saves: [], joins: ["language"], checks: ["c1", "c2"], posts: [], going: {}, bookings: [],
     profile: { name: "Chiara", role: "Erasmus" }
   };
   try {
@@ -1467,15 +1467,47 @@
     { id: "climb", name: "Climbing", n: 67, c: "var(--h11)", next: "Tuesday 18:00 · the wall in Zorroza" },
     { id: "photo", name: "Photography walks", n: 83, c: "var(--h7)", next: "Sunday 11:00 · Casco Viejo" }
   ];
+  /* `days` uses getDay(): 0 Sunday to 6 Saturday. `times` are the slots an operator
+     runs that day, `max` the group size, so the booking step has something real to
+     offer instead of a button that only changes its own label. */
   var GUIDES = [
-    { id: "g1", t: "Pintxo tour of Casco Viejo", cat: "Food", dur: "2.5 h", price: 25, a: "#F59C5E", b: "#6A63FF", about: "Five bars, the right order at each one, with a student guide who lives here." },
-    { id: "g2", t: "Surf lesson in Sopelana", cat: "Sport", dur: "3 h", price: 30, a: "#2EC7DB", b: "#2F6BFF", about: "Board, wetsuit and an instructor. Beginners welcome." },
-    { id: "g3", t: "Guggenheim with a guide", cat: "Culture", dur: "2 h", price: 18, a: "#A6A8F7", b: "#1B2440", about: "The building, the collection and what the city was before it." },
-    { id: "g4", t: "Gaztelugatxe and Bermeo", cat: "Day trip", dur: "6 h", price: 35, a: "#72CF8E", b: "#1F5F8A", about: "The island steps in the morning, a fishing town for lunch." },
-    { id: "g5", t: "Basque cooking class", cat: "Food", dur: "3 h", price: 45, a: "#F090C8", b: "#4E2A8A", about: "Cook four pintxos in a shared kitchen, then eat all of them." },
-    { id: "g6", t: "A day in La Rioja", cat: "Day trip", dur: "9 h", price: 60, a: "#DDAE45", b: "#7A1F3D", about: "Two wineries and a long village lunch, transport included." },
-    { id: "g7", t: "Kayak on the Ría", cat: "Sport", dur: "2 h", price: 28, a: "#6FB8F5", b: "#0F3B4F", about: "Paddle under the bridges and past the museum." }
+    { id: "g1", t: "Pintxo tour of Casco Viejo", cat: "Food", dur: "2.5 h", price: 25, a: "#F59C5E", b: "#6A63FF",
+      about: "Five bars, the right order at each one, with a student guide who lives here.",
+      meet: "Plaza Nueva, under the arches", langs: "Spanish, English", max: 10,
+      days: [4, 5, 6], times: ["19:30", "20:30"],
+      includes: ["Five pintxos, one at each bar", "A drink at every stop", "A guide who actually lives in the Casco"] },
+    { id: "g2", t: "Surf lesson in Sopelana", cat: "Sport", dur: "3 h", price: 30, a: "#2EC7DB", b: "#2F6BFF",
+      about: "Board, wetsuit and an instructor. Beginners welcome.",
+      meet: "Sopelana metro, the beach exit", langs: "Spanish, English", max: 8,
+      days: [3, 6, 0], times: ["10:00", "16:00"],
+      includes: ["Board and wetsuit", "Ninety minutes in the water", "An instructor who starts from nothing"] },
+    { id: "g3", t: "Guggenheim with a guide", cat: "Culture", dur: "2 h", price: 18, a: "#A6A8F7", b: "#1B2440",
+      about: "The building, the collection and what the city was before it.",
+      meet: "Museum entrance, under the spider", langs: "Spanish, English, French", max: 15,
+      days: [2, 3, 4, 5, 6], times: ["11:00", "17:00"],
+      includes: ["Entry ticket", "A two-hour route through the building", "Headset, so you can hear"] },
+    { id: "g4", t: "Gaztelugatxe and Bermeo", cat: "Day trip", dur: "6 h", price: 35, a: "#72CF8E", b: "#1F5F8A",
+      about: "The island steps in the morning, a fishing town for lunch.",
+      meet: "Termibus, bay 12", langs: "Spanish, English", max: 16,
+      days: [6, 0], times: ["08:30"],
+      includes: ["Return coach", "The 241 steps, at your own pace", "Two hours in Bermeo for lunch"] },
+    { id: "g5", t: "Basque cooking class", cat: "Food", dur: "3 h", price: 45, a: "#F090C8", b: "#4E2A8A",
+      about: "Cook four pintxos in a shared kitchen, then eat all of them.",
+      meet: "Mercado de la Ribera, main door", langs: "Spanish, English", max: 12,
+      days: [1, 3, 5], times: ["11:00", "18:00"],
+      includes: ["Every ingredient", "Four pintxos you make yourself", "Eating all four, sitting down"] },
+    { id: "g6", t: "A day in La Rioja", cat: "Day trip", dur: "9 h", price: 60, a: "#DDAE45", b: "#7A1F3D",
+      about: "Two wineries and a long village lunch, transport included.",
+      meet: "Termibus, bay 7", langs: "Spanish, English", max: 20,
+      days: [6], times: ["08:00"],
+      includes: ["Return coach", "Two winery visits with tastings", "A long lunch in a village"] },
+    { id: "g7", t: "Kayak on the Ría", cat: "Sport", dur: "2 h", price: 28, a: "#6FB8F5", b: "#0F3B4F",
+      about: "Paddle under the bridges and past the museum.",
+      meet: "Euskalduna bridge, the river steps", langs: "Spanish, English", max: 10,
+      days: [5, 6, 0], times: ["10:30", "16:30"],
+      includes: ["Kayak and paddle", "Buoyancy aid", "Two hours on the water"] }
   ];
+  var GUIDE_CATS = ["all", "Food", "Sport", "Culture", "Day trip"];
   /* `photo` is the Commons image each trip shows; `note` is the one line worth
      knowing before you go. Costs are planning estimates, flagged as such in the view. */
   var TRIPS = [
@@ -1662,6 +1694,13 @@
       renderFeed(true);
     });
   });
+  $$("[data-gcat]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      $$("[data-gcat]").forEach(function (o) { o.classList.toggle("is-on", o === b); });
+      guideCat = b.dataset.gcat;
+      renderGuides();
+    });
+  });
   var refreshBtn = $("[data-refresh]");
   if (refreshBtn) {
     var FRESH = [
@@ -1836,10 +1875,42 @@
 
   /* ---------- guides ---------- */
   var guidesEl = $("[data-guides]");
+  var guideCat = "all";
+
+  function renderBookings() {
+    var list = $("[data-bookings]"), block = $("[data-bookings-block]");
+    if (!list || !block) return;
+    list.textContent = "";
+    var rows = state.bookings.slice().sort(function (a, b) { return a.date < b.date ? -1 : 1; });
+    block.hidden = rows.length === 0;
+    rows.forEach(function (b) {
+      var g = GUIDES.filter(function (x) { return x.id === b.gid; })[0];
+      if (!g) return;
+      var li = elem("li", "rec");
+      var badge = elem("span", "rec__badge", "✓");
+      badge.style.setProperty("--c", g.a);
+      var body = elem("div", "rec__body");
+      body.appendChild(elem("p", "rec__t", g.t));
+      body.appendChild(elem("p", "rec__m", prettyDate(b.date) + " at " + b.time + " · " +
+        b.people + (b.people === 1 ? " person" : " people") + " · €" + b.total + " · " + b.ref));
+      body.style.cursor = "pointer";
+      body.addEventListener("click", function () { openGuide(g); });
+      li.appendChild(badge); li.appendChild(body);
+      list.appendChild(li);
+    });
+  }
+
   function renderGuides() {
     if (!guidesEl) return;
+    renderBookings();
     guidesEl.textContent = "";
-    GUIDES.forEach(function (g, i) {
+    var shown = GUIDES.filter(function (g) { return guideCat === "all" || g.cat === guideCat; });
+    var count = $("[data-guides-count]");
+    if (count) {
+      count.textContent = shown.length + (shown.length === 1 ? " experience" : " experiences") +
+        (state.bookings.length ? " · " + state.bookings.length + " booked" : "");
+    }
+    shown.forEach(function (g, i) {
       var li = elem("li", "guide");
       li.style.setProperty("--a", g.a); li.style.setProperty("--b", g.b);
       li.tabIndex = 0; li.setAttribute("role", "button");
@@ -1847,11 +1918,18 @@
       img.innerHTML = pic(GUIDE_PHOTO[g.id], GUIDE_ART[g.id] || "city");
       img.appendChild(elem("span", null, g.cat));
       img.appendChild(elem("span", null, g.dur));
+      var mine = bookingFor(g.id);
+      if (mine) {
+        li.classList.add("is-booked");
+        img.appendChild(elem("span", "guide__flag", "Booked"));
+      }
       var body = elem("div", "guide__body");
       body.appendChild(elem("p", "guide__t", g.t));
-      body.appendChild(elem("p", "guide__m", g.about.split(".")[0] + "."));
-      var price = elem("p", "guide__p", "from ");
-      price.appendChild(elem("b", null, "€" + g.price));
+      body.appendChild(elem("p", "guide__m", mine
+        ? prettyDate(mine.date) + " at " + mine.time + " · " + mine.ref
+        : g.about.split(".")[0] + "."));
+      var price = elem("p", "guide__p", mine ? "paid " : "from ");
+      price.appendChild(elem("b", null, "€" + (mine ? mine.total : g.price)));
       body.appendChild(price);
       li.appendChild(img); li.appendChild(body);
       var open = function () { openGuide(g); };
@@ -1861,24 +1939,180 @@
       if (!reduce) li.animate([{ opacity: 0, transform: "translateY(14px)" }, { opacity: 1, transform: "none" }], { duration: 430, delay: i * 45, easing: "cubic-bezier(.2,.8,.2,1)", fill: "backwards" });
     });
   }
+  /* ---- booking ----
+     Three steps in one sheet: what it is, when you want it, and what you booked.
+     Dates only offer the weekdays the operator actually runs. */
+  var DAY_NAME = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  var MONTH_NAME = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  var iso = function (d) { return d.toISOString().slice(0, 10); };
+  function prettyDate(s) {
+    var d = new Date(s + "T12:00:00");
+    return DAY_NAME[d.getDay()] + " " + d.getDate() + " " + MONTH_NAME[d.getMonth()];
+  }
+  /** The next 21 days this guide runs, capped at six choices. */
+  function nextDates(g) {
+    var out = [], d = new Date();
+    d.setHours(12, 0, 0, 0);
+    for (var i = 1; i <= 21 && out.length < 6; i++) {
+      var day = new Date(d.getTime() + i * 86400000);
+      if (g.days.indexOf(day.getDay()) > -1) out.push(iso(day));
+    }
+    return out;
+  }
+  function bookingRef(g, date) {
+    var seed = (g.id + date + state.bookings.length).split("").reduce(function (a, c) { return (a * 31 + c.charCodeAt(0)) >>> 0; }, 7);
+    return "CB-" + seed.toString(36).toUpperCase().slice(0, 5);
+  }
+  var bookingFor = function (gid) {
+    return state.bookings.filter(function (b) { return b.gid === gid; })[0];
+  };
+
   function openGuide(g) {
-    openSheet(function (box) {
-      var strip = elem("div", "hero-strip");
-      strip.style.setProperty("--a", g.a); strip.style.setProperty("--b", g.b);
-      box.appendChild(strip);
-      box.appendChild(elem("p", "micro", g.cat + " · " + g.dur));
-      box.appendChild(elem("h2", null, g.t));
-      box.appendChild(elem("p", null, g.about));
-      var btn = elem("button", "btn btn--wide", "Book for €" + g.price);
-      btn.addEventListener("click", function () {
-        btn.textContent = "Booked · demo only";
-        btn.classList.add("is-on");
-        btn.disabled = true;
-        toast("Demo booking — nothing was charged");
+    openSheet(function (box) { guideDetail(box, g); });
+  }
+
+  function guideDetail(box, g) {
+    box.textContent = "";
+    var shot = elem("div", "gsheet__shot");
+    shot.innerHTML = pic(GUIDE_PHOTO[g.id], GUIDE_ART[g.id] || "city");
+    box.appendChild(shot);
+    box.appendChild(elem("p", "micro", g.cat + " · " + g.dur + " · up to " + g.max + " people"));
+    box.appendChild(elem("h2", null, g.t));
+    box.appendChild(elem("p", null, g.about));
+
+    var ul = elem("ul", "gsheet__inc");
+    g.includes.forEach(function (t) { ul.appendChild(elem("li", null, t)); });
+    box.appendChild(elem("p", "gsheet__k", "What's included"));
+    box.appendChild(ul);
+
+    var facts = elem("dl", "gsheet__facts");
+    [["Meeting point", g.meet], ["Languages", g.langs], ["Runs on", g.days.map(function (d) { return DAY_NAME[d]; }).join(", ")]]
+      .forEach(function (f) {
+        var row = elem("div");
+        row.appendChild(elem("dt", null, f[0]));
+        row.appendChild(elem("dd", null, f[1]));
+        facts.appendChild(row);
       });
-      box.appendChild(btn);
-      box.appendChild(elem("p", "note", "Example listing. Prices are illustrative and no booking is real."));
+    box.appendChild(facts);
+
+    var have = bookingFor(g.id);
+    if (have) {
+      box.appendChild(bookedPanel(g, have, function () { guideDetail(box, g); }));
+      return;
+    }
+    var go = elem("button", "btn btn--wide", "Check availability · from €" + g.price);
+    go.addEventListener("click", function () { guidePick(box, g); });
+    box.appendChild(go);
+    box.appendChild(elem("p", "note", "Example listing. Prices are illustrative and no booking here is real."));
+  }
+
+  function guidePick(box, g) {
+    box.textContent = "";
+    var back = elem("button", "link link--back", "← Back");
+    back.addEventListener("click", function () { guideDetail(box, g); });
+    box.appendChild(back);
+    box.appendChild(elem("h2", null, "When suits you?"));
+    box.appendChild(elem("p", "card__meta", g.t + " · " + g.dur));
+
+    var dates = nextDates(g), pickDate = dates[0], pickTime = g.times[0], people = 1;
+
+    box.appendChild(elem("p", "gsheet__k", "Date"));
+    var dbox = elem("div", "chips chips--wrap");
+    var dBtns = dates.map(function (d) {
+      var b = elem("button", "chip" + (d === pickDate ? " is-on" : ""), prettyDate(d));
+      b.type = "button";
+      b.addEventListener("click", function () {
+        pickDate = d;
+        dBtns.forEach(function (x, i) { x.classList.toggle("is-on", dates[i] === pickDate); });
+      });
+      dbox.appendChild(b);
+      return b;
     });
+    box.appendChild(dbox);
+
+    box.appendChild(elem("p", "gsheet__k", "Time"));
+    var tbox = elem("div", "chips chips--wrap");
+    var tBtns = g.times.map(function (t) {
+      var b = elem("button", "chip" + (t === pickTime ? " is-on" : ""), t);
+      b.type = "button";
+      b.addEventListener("click", function () {
+        pickTime = t;
+        tBtns.forEach(function (x, i) { x.classList.toggle("is-on", g.times[i] === pickTime); });
+      });
+      tbox.appendChild(b);
+      return b;
+    });
+    box.appendChild(tbox);
+
+    box.appendChild(elem("p", "gsheet__k", "How many of you"));
+    var step = elem("div", "stepper");
+    var minus = elem("button", "stepper__b", "−");
+    var count = elem("span", "stepper__n", "1");
+    var plus = elem("button", "stepper__b", "+");
+    minus.type = plus.type = "button";
+    minus.setAttribute("aria-label", "Fewer people");
+    plus.setAttribute("aria-label", "More people");
+    step.appendChild(minus); step.appendChild(count); step.appendChild(plus);
+    box.appendChild(step);
+
+    var total = elem("p", "gsheet__total");
+    var confirm = elem("button", "btn btn--wide", "Confirm booking");
+    function paint() {
+      count.textContent = String(people);
+      minus.disabled = people <= 1;
+      plus.disabled = people >= Math.min(6, g.max);
+      total.textContent = "";
+      total.appendChild(elem("b", null, "€" + g.price * people));
+      total.appendChild(document.createTextNode(" · " + people + (people === 1 ? " person" : " people") + " × €" + g.price));
+    }
+    minus.addEventListener("click", function () { if (people > 1) { people--; paint(); } });
+    plus.addEventListener("click", function () { if (people < Math.min(6, g.max)) { people++; paint(); } });
+    paint();
+    box.appendChild(total);
+
+    confirm.addEventListener("click", function () {
+      var b = { ref: bookingRef(g, pickDate), gid: g.id, date: pickDate, time: pickTime,
+                people: people, total: g.price * people, made: iso(new Date()) };
+      state.bookings.push(b);
+      save();
+      renderGuides();
+      renderMe();
+      guideDetail(box, g);
+      toast("Booked " + prettyDate(b.date) + " at " + b.time + " — demo only");
+    });
+    box.appendChild(confirm);
+    box.appendChild(elem("p", "note", "Nothing is charged and no operator is contacted. This is a prototype."));
+  }
+
+  function bookedPanel(g, b, refresh) {
+    var wrap = elem("div", "booked");
+    var head = elem("div", "booked__head");
+    head.appendChild(elem("span", "booked__tick", "✓"));
+    head.appendChild(elem("b", null, "Booked"));
+    head.appendChild(elem("span", "booked__ref", b.ref));
+    wrap.appendChild(head);
+    var dl = elem("dl", "gsheet__facts");
+    [["When", prettyDate(b.date) + " at " + b.time],
+     ["Who", b.people + (b.people === 1 ? " person" : " people")],
+     ["Total", "€" + b.total],
+     ["Meeting point", g.meet]].forEach(function (f) {
+      var row = elem("div");
+      row.appendChild(elem("dt", null, f[0]));
+      row.appendChild(elem("dd", null, f[1]));
+      dl.appendChild(row);
+    });
+    wrap.appendChild(dl);
+    var cancel = elem("button", "btn btn--ghost btn--wide", "Cancel this booking");
+    cancel.addEventListener("click", function () {
+      state.bookings = state.bookings.filter(function (x) { return x.ref !== b.ref; });
+      save();
+      renderGuides();
+      renderMe();
+      refresh();
+      toast("Booking cancelled");
+    });
+    wrap.appendChild(cancel);
+    return wrap;
   }
 
   /* ---------- weekend trips ---------- */
