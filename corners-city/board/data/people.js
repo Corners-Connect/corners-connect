@@ -28,8 +28,10 @@
    ══════════════════════════════════════════════════════════════════════════ */
 window.DIP = window.DIP || {};
 window.DIP.people = [
-  { "id": "p01", "name": "—", "team": "product",    "hat": "liaison", "capacity": 4, "away": [], "mastery": [] },
-  { "id": "p02", "name": "—", "team": "product",    "hat": null, "capacity": 4, "away": [], "mastery": [] },
+  { "id": "p01", "name": "Austin", "team": "product",    "hat": "liaison", "capacity": 4, "away": [],
+    "git": "Austinmayer9", "mastery": [] },
+  { "id": "p02", "name": "Jose", "team": "product",    "hat": null, "capacity": 4, "away": [],
+    "git": "josemena04", "mastery": [] },
   { "id": "p03", "name": "—", "team": "product",    "hat": null, "capacity": 4,
     "away": [ { "week": "2026-10-19", "capacity": 0, "note": "USAC excursion week" } ], "mastery": [] },
   { "id": "p04", "name": "—", "team": "product",    "hat": null, "capacity": 4, "away": [], "mastery": [] },
