@@ -75,7 +75,7 @@ window.DIP.actions = [
      M1 lands. Surfaces are tracked on GitHub as issues #9 to #12. */
 
   { "id": "A-007", "what": "Build the booking step on Guides so an activity ends somewhere, not just described",
-    "owner": "p01", "team": "product", "state": "check",
+    "owner": "p01", "team": "product", "state": "done",
     "estimate": 4, "due": "2026-10-15", "opened": "2026-10-08", "touched": "2026-10-08",
     "expect": "If an activity ends in a confirmed place rather than a paragraph, then Guides becomes a reason to open the app a second time, because a guidebook is read once.",
     "result": "Built: category filters, a detail sheet with what is included, meeting point, languages and group size, then date, time and party size, a live total and a confirmation carrying a reference. Bookings persist, show on the card and in a Your bookings list, and can be cancelled. Whether it brings anyone back a second time is not yet measured, so the expect is not answered.",
