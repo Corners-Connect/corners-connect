@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The board · Corners</title>
+<link rel="icon" href="mark.svg">
+<link rel="stylesheet" href="theme.css">
+</head>
+<body>
+
+<!-- The rail is built by nav.js and inserted here, so every screen has the
+     same one and it cannot drift between them. -->
+
+<div class="topbar">
+  <span class="topbar__now" id="topNow"></span>
+  <a href="city.html" class="btn btn--ghost btn--sm">Corners City ↗</a>
+  <span class="topbar__save">
+    <span class="topbar__state" id="saveState">reading</span>
+    <button type="button" class="btn btn--ghost btn--sm" id="saveBtn" hidden>Save</button>
+    <button type="button" class="btn btn--ghost btn--sm" id="connectBtn" hidden>Connect data folder</button>
+  </span>
+</div>
+
+<main class="wrap" id="screen"></main>
+
+<div id="sheet" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle"></div></div>
+<div id="flash" hidden></div>
+
+<script src="data/company.js"></script>
+<script src="data/people.js"></script>
+<script src="data/actions.js"></script>
+<script src="data/activity.js"></script>
+<script src="nav.js"></script>
+<script src="store.js"></script>
+<script src="forms.js"></script>
+<script src="board.js"></script>
+</body>
+</html>

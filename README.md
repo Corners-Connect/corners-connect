@@ -6,6 +6,27 @@ The app for students abroad: Erasmus, study abroad and first-years who moved cit
 > the audience with sourced figures, marketing, the numbers we watch, and what's still to be voted.
 > This README covers the whole repo; the section detail below is the website.
 
+## Corners City · local company workspace
+
+[Corners City](corners-city/README.md) is the chocolate/blue builder base, with
+three department entries, demonstration robots and six open plots. It runs
+locally; browser drafts are private to that browser, while reviewed source files
+are the shared build. The existing product and website stay in their folders.
+
+Download this repository with **Code → Download ZIP**, extract it, and open
+`corners-connect-main/corners-city/`; Git is not required. Or clone it:
+
+```sh
+git clone https://github.com/Corners-Connect/corners-connect.git
+cd corners-connect/corners-city
+python3 start.py
+```
+
+On Windows, run `py -3 start.py` (or `python start.py`) in the same city folder.
+Open the printed localhost URL and keep the terminal open. No npm or pip setup
+is needed for Corners City. The full [environment guide](corners-city/board/CORNERS-CITY-START.md)
+and [agent prompt](corners-city/board/CORNERS-CITY-BUILDER-PROMPT.md) are included.
+
 ## What's here
 
 | Path | What it is |

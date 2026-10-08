@@ -1,0 +1,28 @@
+# Local machine files
+.DS_Store
+Thumbs.db
+Desktop.ini
+__MACOSX/
+# Python and optional development caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.cache/
+.venv/
+venv/
+node_modules/
+# Secrets and editor state must never be shared
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+*.log
+# Local drafts and distribution archives are not reviewed source
+/corners-city-draft.json
+/*.zip

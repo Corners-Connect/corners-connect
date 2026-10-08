@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Corners City</title>
+<link rel="icon" href="city-assets/mark.svg">
+<link rel="stylesheet" href="city.css">
+</head>
+<body>
+<header class="masthead">
+ <a class="wordmark" href="index.html#today"><img src="city-assets/mark.svg" alt="" width="32" height="32">CORNERS.</a>
+ <nav aria-label="Workspace"><a href="index.html#today">Company board ↗</a><a href="city-guide.html" id="guideLink">Builder guide ↗</a><a href="CORNERS-CITY-BUILDER-PROMPT.md" download>Get the prompt ↓</a></nav>
+</header>
+<section class="intro" aria-labelledby="cityTitle"><p class="eyebrow">YOUR COMPANY. ROOM TO BUILD.</p><h1 id="cityTitle">Corners City</h1><p>One city. Your next corner.</p></section>
+<main id="city" aria-label="Interactive isometric city">
+ <div id="scene"></div><div id="labels" aria-label="Buildings and open plots"></div>
+ <div id="loadNotice" role="status">Opening your city…</div>
+ <div class="view-tools" aria-label="City view"><button id="zoomIn" aria-label="Zoom in">＋</button><button id="zoomOut" aria-label="Zoom out">−</button><button id="homeView">Fit city</button><button id="motion" aria-pressed="false">Pause robots</button></div>
+</main>
+<aside class="inspector" id="inspector" hidden aria-labelledby="placeTitle">
+ <button class="close" id="closeInspector" aria-label="Close details">×</button><p class="eyebrow" id="placeKind"></p><h2 id="placeTitle"></h2><p id="placeDescription"></p><div id="placeActions"></div>
+</aside>
+<footer class="city-footer"><div><span class="eyebrow">TODAY’S HACKATHON</span><p>Choose an open plot.<br>Build one thing that works.</p></div><div class="city-meta"><p id="cityCount"></p><p id="storageStatus" role="status">Drafts stay in this browser. No shared editing.</p><button id="exportDraft">Export city draft ↓</button><small>Board template · no live company data</small></div></footer>
+<dialog id="builder" aria-labelledby="builderTitle">
+ <form id="buildForm"><p class="eyebrow" id="plotName"></p><h2 id="builderTitle">Make a new corner.</h2><p>This is a visual draft. Your team decides what it becomes.</p>
+ <label for="buildingLabel">Place name <small>Use an invented label. No personal data.</small></label><input id="buildingLabel" name="label" maxlength="40" placeholder="Name your idea" required autocomplete="off">
+ <label for="buildingType">Building shape</label><select id="buildingType" name="type"><option value="base">Workshop</option><option value="estudio">Studio</option><option value="oficina">Office</option><option value="torre">Tower</option><option value="biblioteca">Library</option><option value="nave">Factory</option><option value="ayuntamiento">Hall</option></select>
+ <p class="small">Saved only in this browser at this address. Export the draft to hand it to your agent; approved code changes are how the city is shared.</p><p id="buildError" role="alert"></p><div class="dialog-actions"><button type="button" id="cancelBuild">Cancel</button><button class="primary" type="submit">Build on this plot ↗</button></div></form>
+</dialog>
+<div class="toast" id="toast" hidden role="status"></div>
+<script src="data/company.js"></script><script type="module" src="city.js"></script>
+</body>
+</html>

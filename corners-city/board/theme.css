@@ -1,0 +1,391 @@
+/*
+ * The board · Corner — visual system
+ * theme.css v2.0 · 15 Sep 2026
+ *
+ * The structure is the DIP standard we build for clients: a rail on the left,
+ * a paper page, cards, pills, mono numbers. The palette is Corner's, because
+ * the platform of a company carries that company's colours (ADR-020).
+ *
+ * THE PROBLEM THIS FILE SOLVES
+ * Corner's brand is chocolate and baby blue, and a board is full of things that
+ * mean good, bad and careful. If the identity colour and the alarm colour are
+ * the same, the board lies. So: chocolate and baby blue are reserved for
+ * IDENTITY and PRIMARY ACTION — the rail, the mark, the main button, the
+ * 3 px rule. States use a separate family, and it is not invented: it is
+ * Corner's own deep ring at L 0.42, far enough from both brand colours to be
+ * unmistakable at any size. A datum in chocolate does not exist.
+ *
+ * MEASURED ON PAPER #F5F3EE, not assumed:
+ *   ink 17.5 · ink-2 15.0 · ink-3 6.1 · ink-4 4.7 · chocolate 8.4
+ *   ok 7.3 · warn 7.7 · bad 8.1 · info 7.6
+ *   on the chocolate rail: white 9.3 · baby blue 6.4
+ *   the eleven person tones on paper: 6.8 to 8.1, so they carry text too
+ * check.py recomputes all of it and fails if somebody changes a hex.
+ */
+
+/* Offline distribution: the city's bundled fonts serve the board too. */
+@font-face { font-family: 'Instrument Serif'; src: url('city-assets/InstrumentSerif-Regular.ttf'); }
+@font-face { font-family: 'Instrument Serif'; font-style: italic; src: url('city-assets/InstrumentSerif-Italic.ttf'); }
+@font-face { font-family: 'Space Grotesk'; font-weight: 300 700; src: url('city-assets/SpaceGrotesk.ttf'); }
+
+:root {
+  /* ---- Corner, measured in its own brand book --------------------------- */
+  --choc:        #5A422F;   /* the ground of the brand. The rail is this */
+  --choc-700:    #46331F;   /* pressed, and text on pale surfaces */
+  --choc-100:    #EAE1D8;
+  --blue:        #A8DDFB;   /* the mark. On chocolate, never on paper as text */
+  --blue-700:    #1E5A7D;   /* when baby blue has to be readable ON paper */
+  --blue-100:    #E4F3FD;
+
+  /* ---- Ink and paper. Corner's own invariants --------------------------- */
+  --ink:         #090E12;
+  --ink-2:       #191F25;
+  --ink-3:       #555C63;   /* 6.11 on paper */
+  --ink-4:       #656B72;   /* 4.71 on paper — the quietest text allowed */
+  --paper:       #FFFFFF;
+  --paper-2:     #F5F3EE;   /* the page */
+  --paper-3:     #EAE7E0;   /* table heads, stripes */
+  --line:        #DFDBD2;
+  --line-2:      #C6C1B6;
+
+  /* ---- States. Corner's deep ring, nowhere near the two brand colours --- */
+  --ok:          #075D26;  --ok-bg:   #DDEFE2;
+  --warn:        #6A4500;  --warn-bg: #F4EBD5;
+  --bad:         #802D35;  --bad-bg:  #F6E2E2;
+  --info:        #005088;  --info-bg: #DEEAF4;
+
+  /* ---- The eleven. Identical lightness, identical chroma, 32.7° apart.
+          One per person for the term, which is why the palette cannot make a
+          hierarchy: that is Corner's thesis, measured. ------------------- */
+  --p1:#802D35; --p2:#7C3600; --p3:#6A4500; --p4:#4B5400; --p5:#075D26; --p6:#006051;
+  --p7:#005B73; --p8:#005088; --p9:#42438A; --p10:#623779; --p11:#772E5B;
+
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans:  'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono:  'IBM Plex Mono', ui-monospace, monospace;
+
+  --t-xs:11px; --t-sm:12px; --t-md:13px; --t-base:14px;
+  --t-lg:16px; --t-xl:19px; --t-2xl:24px; --t-3xl:31px; --t-4xl:40px;
+
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px;
+  --s-5:24px; --s-6:32px; --s-7:48px; --s-8:64px;
+
+  --r-sm:5px; --r-md:8px; --r-lg:12px; --r-full:999px;
+  --sh-1:0 1px 2px rgba(22,25,28,.06);
+  --sh-2:0 2px 8px rgba(22,25,28,.07),0 1px 2px rgba(22,25,28,.05);
+  --sh-3:0 12px 32px rgba(22,25,28,.16);
+
+  --riel-w:56px; --riel-abierto:232px; --wrap:1320px;
+  color-scheme: light;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper-2);color:var(--ink);
+  font-family:var(--sans);font-size:var(--t-base);line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{margin:0;font-weight:600;letter-spacing:-.014em;line-height:1.2}
+h1{font-family:var(--serif);font-weight:400;font-size:var(--t-4xl);letter-spacing:-.01em}
+h2{font-size:var(--t-xl)} h3{font-size:var(--t-lg)} h4{font-size:var(--t-base)}
+p{margin:0 0 var(--s-3)}
+a{color:var(--choc-700)} a:hover{text-decoration:underline}
+img{max-width:100%} [hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--choc);outline-offset:2px;border-radius:3px}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.rule{width:44px;height:3px;background:var(--choc);border-radius:2px;margin-bottom:var(--s-3)}
+
+/* ══ the rail ═══════════════════════════════════════════════════════════════
+   Collapsed it is a 56 px strip of icons; hovered it slides open and floats
+   over the page, because that is a glance and nobody is reading underneath.
+   PINNED it pushes instead, because a pinned bar that covers half the screen
+   is worse than no bar. Key B pins it, and it is remembered. */
+.riel{position:fixed;left:0;top:0;bottom:0;z-index:120;width:var(--riel-w);overflow:hidden;
+  display:flex;flex-direction:column;background:var(--choc);color:#fff;
+  padding:12px 10px;gap:3px;transition:width .34s cubic-bezier(.16,1,.3,1);
+  box-shadow:2px 0 14px rgba(22,25,28,.10)}
+.riel:hover,body.riel-fijo .riel{width:var(--riel-abierto)}
+body.con-riel{padding-left:var(--riel-w);transition:padding-left .34s cubic-bezier(.16,1,.3,1)}
+body.con-riel.riel-fijo{padding-left:var(--riel-abierto)}
+
+.riel__marca{display:flex;align-items:center;gap:11px;height:40px;margin-bottom:14px;
+  text-decoration:none;flex-shrink:0;color:#fff}
+.riel__marca:hover{text-decoration:none}
+.riel__mono{width:36px;height:36px;flex-shrink:0;border-radius:9px;background:var(--blue);
+  display:grid;place-items:center}
+.riel__mono svg{width:22px;height:22px;display:block}
+.riel__logo{display:flex;flex-direction:column;gap:2px;opacity:0;
+  transition:opacity .18s ease .06s;white-space:nowrap}
+.riel__logo b{font-family:var(--serif);font-weight:400;font-size:19px;line-height:1;letter-spacing:.01em}
+/* No translucent whites on the rail. Hierarchy comes from size and spacing,
+   not from fading text out — a faded label on a mid-tone ground is the single
+   commonest way a panel like this fails contrast. */
+.riel__firma{font-size:9px;line-height:1;color:#fff}
+.riel:hover .riel__logo,body.riel-fijo .riel__logo{opacity:1}
+
+.riel__nav{display:flex;flex-direction:column;gap:3px;overflow-y:auto;flex:1;min-height:0}
+.riel__nav::-webkit-scrollbar{width:0}
+.riel__grupo{font-size:8.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:#fff;padding:12px 8px 4px;opacity:0;transition:opacity .18s ease .06s;
+  white-space:nowrap;height:0;overflow:hidden}
+.riel:hover .riel__grupo,body.riel-fijo .riel__grupo{opacity:1;height:auto}
+
+.riel__it{display:flex;align-items:center;gap:12px;height:38px;flex-shrink:0;padding:0 8px;
+  border:0;background:transparent;width:100%;text-align:left;cursor:pointer;
+  border-radius:9px;text-decoration:none;color:#fff;font:500 13px/1 var(--sans);
+  transition:background .16s ease}
+/* Rail states DARKEN, never lighten: lightening the chip raises the ground
+   under white text and drops the contrast exactly where most of the text is. */
+.riel__it:hover{background:rgba(0,0,0,.12);text-decoration:none}
+.riel__it.on{background:rgba(0,0,0,.20)}
+.riel__it svg{width:20px;height:20px;flex-shrink:0}
+.riel__et{font-size:13px;font-weight:500;white-space:nowrap;opacity:0;
+  transition:opacity .18s ease .06s}
+.riel:hover .riel__et,body.riel-fijo .riel__et{opacity:1}
+.riel__badge{margin-left:auto;background:var(--blue);color:var(--choc);font-size:10px;
+  font-weight:700;border-radius:var(--r-full);padding:1px 7px;opacity:0;
+  transition:opacity .18s ease .06s}
+.riel:hover .riel__badge,body.riel-fijo .riel__badge{opacity:1}
+
+.riel__pie{flex-shrink:0;padding-top:12px;margin-top:6px;
+  border-top:1px solid rgba(255,255,255,.34);display:flex;flex-direction:column;gap:3px}
+.riel__sello{display:flex;align-items:center;gap:12px;height:34px;padding:0 8px;
+  border-radius:9px;font-size:12px;color:#fff}
+.riel__sello i{width:20px;height:20px;flex-shrink:0;border-radius:5px;
+  border:1px dashed rgba(255,255,255,.8)}
+.riel__fijar{position:absolute;right:8px;top:18px;width:24px;height:24px;border:0;
+  border-radius:7px;background:rgba(0,0,0,.18);color:#fff;cursor:pointer;
+  display:grid;place-items:center;opacity:0;transition:opacity .18s ease .06s}
+.riel__fijar svg{width:13px;height:13px;transition:transform .2s ease}
+.riel:hover .riel__fijar,body.riel-fijo .riel__fijar{opacity:1}
+body.riel-fijo .riel__fijar svg{transform:rotate(180deg)}
+
+/* ══ page ═════════════════════════════════════════════════════════════════ */
+.wrap{max-width:var(--wrap);margin:0 auto;padding:var(--s-6) var(--s-5) var(--s-8)}
+.page-head{margin-bottom:var(--s-5)}
+.page-head .kicker{font-size:var(--t-xs);font-weight:600;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--choc-700);margin-bottom:var(--s-2)}
+.page-head .sub{color:var(--ink-3);font-size:var(--t-lg);max-width:76ch;margin-top:var(--s-2)}
+.page-head__row{display:flex;align-items:flex-start;gap:var(--s-4);flex-wrap:wrap}
+.page-head__row .btn{margin-left:auto}
+.sec{margin:var(--s-6) 0 var(--s-4);display:flex;align-items:baseline;gap:var(--s-3);flex-wrap:wrap}
+.sec h2{font-size:var(--t-lg)}
+.sec .card__note{margin-left:auto}
+
+.grid{display:grid;gap:var(--s-4)}
+.grid>*,.do>*{min-width:0}
+.g-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.g-5{grid-template-columns:repeat(5,minmax(0,1fr))}
+.span-2{grid-column:span 2}
+
+/* ══ cards and numbers ══════════════════════════════════════════════════ */
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:var(--s-5);box-shadow:var(--sh-1)}
+.card--flush{padding:0;overflow:hidden}
+.card__head{display:flex;align-items:flex-start;justify-content:space-between;
+  gap:var(--s-4);margin-bottom:var(--s-4)}
+.card__title{font-size:var(--t-base);font-weight:600}
+.card__note{font-size:var(--t-sm);color:var(--ink-3)}
+.card__src{margin-top:var(--s-3);padding-top:var(--s-3);border-top:1px solid var(--line);
+  font-size:var(--t-xs);color:var(--ink-4);font-family:var(--mono)}
+
+.kpi{display:flex;flex-direction:column;gap:var(--s-1)}
+.kpi__label{font-size:var(--t-sm);color:var(--ink-3);font-weight:500}
+.kpi__value{font-family:var(--mono);font-size:var(--t-3xl);font-weight:600;letter-spacing:-.02em}
+.kpi__value small{font-size:var(--t-lg);color:var(--ink-3);font-weight:500}
+.kpi__foot{font-size:var(--t-sm);color:var(--ink-3)}
+.kpi--accent{border-top:3px solid var(--choc)}
+.kpi--bad .kpi__value{color:var(--bad)}
+/* A tile whose value is a name, not a number: the mono display face at 31px
+   breaks a milestone title into a ransom note. */
+.kpi--text .kpi__value{font-family:var(--sans);font-size:var(--t-lg);
+  font-weight:600;line-height:1.3;letter-spacing:0}
+.kpi--ok  .kpi__value{color:var(--ok)}
+
+/* ══ pills, stamps, dots ════════════════════════════════════════════════ */
+.pill{display:inline-flex;align-items:center;gap:5px;padding:2px var(--s-2);
+  border-radius:var(--r-full);font-size:var(--t-xs);font-weight:600;white-space:nowrap}
+.pill--ok{background:var(--ok-bg);color:var(--ok)}
+.pill--warn{background:var(--warn-bg);color:var(--warn)}
+.pill--bad{background:var(--bad-bg);color:var(--bad)}
+.pill--info{background:var(--info-bg);color:var(--info)}
+.pill--flat{background:var(--paper-3);color:var(--ink-2)}
+.maqueta{display:inline-flex;align-items:center;gap:6px;background:var(--info-bg);
+  color:var(--info);border:1px dashed var(--info);border-radius:var(--r-sm);
+  padding:3px var(--s-2);font-size:var(--t-xs);font-weight:600}
+.who{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.who i{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--ink-4)}
+
+/* ══ tables ═════════════════════════════════════════════════════════════ */
+.tbl{width:100%;border-collapse:collapse;font-size:var(--t-md)}
+.tbl thead th{background:var(--paper-3);text-align:left;padding:var(--s-2) var(--s-3);
+  font-size:var(--t-xs);font-weight:600;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--ink-3);border-bottom:1px solid var(--line-2);white-space:nowrap}
+.tbl thead th.r,.tbl td.r{text-align:right}
+.tbl tbody td{padding:var(--s-3);border-bottom:1px solid var(--line);vertical-align:middle}
+.tbl tbody tr:last-child td{border-bottom:none}
+.tbl tbody tr:hover{background:var(--paper-2)}
+.tbl td.r{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.tbl td.strong{font-weight:600}
+.tbl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+/* A table in a scroller keeps its shape and scrolls sideways. Without this it
+   squashes instead: on a phone the first column went down to two words a line
+   and the state control fell off the edge, which is a table nobody can use. */
+.tbl-scroll .tbl{min-width:680px}
+.tbl-scroll .tbl td:first-child{min-width:240px}
+.tbl .over{color:var(--bad);font-weight:600}
+.tbl__empty{padding:var(--s-6);text-align:center;color:var(--ink-3);font-size:var(--t-md)}
+
+/* ══ buttons and the do bar ═════════════════════════════════════════════ */
+/* The do bar is the answer to a board you can only look at: the thing each
+   screen is FOR sits at the top of it, already open, no modal in the way. */
+.btn{display:inline-flex;align-items:center;gap:var(--s-2);cursor:pointer;
+  padding:var(--s-2) var(--s-4);border-radius:var(--r-md);border:1px solid transparent;
+  font-family:var(--sans);font-size:var(--t-md);font-weight:600;text-decoration:none;
+  transition:background .12s,border-color .12s;white-space:nowrap}
+.btn--primary{background:var(--choc);color:#fff}
+.btn--primary:hover{background:var(--choc-700);text-decoration:none}
+.btn--ghost{background:var(--paper);color:var(--ink-2);border-color:var(--line-2)}
+.btn--ghost:hover{background:var(--paper-3);text-decoration:none}
+.btn--danger{background:var(--paper);color:var(--bad);border-color:var(--bad)}
+.btn--sm{padding:4px var(--s-3);font-size:var(--t-sm)}
+.btn--link{background:none;border:0;color:var(--choc-700);padding:2px 4px;
+  font-size:var(--t-sm);font-weight:600;cursor:pointer}
+.btn--link:hover{text-decoration:underline}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+
+.do{background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--choc);
+  border-radius:var(--r-md);padding:var(--s-4);margin-bottom:var(--s-5);box-shadow:var(--sh-1)}
+.do__t{font-size:var(--t-xs);font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--choc-700);margin-bottom:var(--s-3)}
+.do__row{display:flex;gap:var(--s-2);align-items:flex-end;flex-wrap:wrap}
+.do__f{display:flex;flex-direction:column;gap:3px;flex:1 1 130px;min-width:0}
+.do__f--wide{flex:3 1 260px}
+.do__f--tiny{flex:0 0 78px}
+.do__f label{font-size:var(--t-xs);color:var(--ink-3);font-weight:500}
+.do__hint{font-size:var(--t-sm);color:var(--ink-3);margin:var(--s-3) 0 0}
+
+/* ══ fields ═════════════════════════════════════════════════════════════ */
+input[type=text],input[type=number],input[type=date],select,textarea{
+  width:100%;font:inherit;font-size:var(--t-md);color:var(--ink);background:var(--paper);
+  border:1px solid var(--line-2);border-radius:var(--r-sm);padding:7px 9px}
+textarea{resize:vertical;line-height:1.45}
+select{appearance:none;padding-right:26px;
+  background-image:linear-gradient(45deg,transparent 50%,var(--ink-3) 50%),
+                   linear-gradient(135deg,var(--ink-3) 50%,transparent 50%);
+  background-position:calc(100% - 14px) 15px,calc(100% - 9px) 15px;
+  background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--choc);outline-offset:1px}
+select.mini{padding:3px 22px 3px 7px;font-size:var(--t-sm);border-radius:var(--r-sm);
+  background-position:calc(100% - 12px) 11px,calc(100% - 7px) 11px}
+.fld{display:block;margin:0 0 var(--s-4)}
+.fld>span{display:block;font-size:var(--t-xs);font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-3);margin:0 0 5px}
+.fld>span i{font-style:normal;color:var(--bad);letter-spacing:0;text-transform:none;font-weight:500}
+.fld em{display:block;font-style:normal;font-size:var(--t-sm);color:var(--ink-3);
+  margin-top:5px;max-width:64ch}
+.chk{display:flex;align-items:center;gap:8px;font-size:var(--t-md)}
+.chk input{width:auto}
+
+/* ══ the sheet ══════════════════════════════════════════════════════════ */
+#sheet{position:fixed;inset:0;z-index:200;background:rgba(22,25,28,.44);
+  display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:5vh 14px 40px}
+.sheet{background:var(--paper);border-radius:var(--r-lg);width:min(620px,100%);
+  padding:var(--s-5);box-shadow:var(--sh-3);margin:auto 0}
+.sheet h2{font-size:var(--t-2xl);margin-bottom:var(--s-2)}
+.sheet__lead{color:var(--ink-3);font-size:var(--t-md);margin:0 0 var(--s-5);max-width:62ch}
+.sheet__acts{display:flex;gap:var(--s-2);align-items:center;margin-top:var(--s-5);
+  padding-top:var(--s-4);border-top:1px solid var(--line);flex-wrap:wrap}
+.sheet__acts .btn--danger{margin-left:auto}
+.err{color:var(--bad);background:var(--bad-bg);border-radius:var(--r-sm);
+  padding:var(--s-2) var(--s-3);font-size:var(--t-md);margin:var(--s-4) 0 0}
+
+/* ══ save state ═════════════════════════════════════════════════════════ */
+.topbar{position:sticky;top:0;z-index:100;background:var(--paper);
+  border-bottom:1px solid var(--line);padding:var(--s-2) var(--s-5);
+  display:flex;align-items:center;gap:var(--s-3);flex-wrap:wrap}
+.topbar__now{font-size:var(--t-sm);color:var(--ink-3)}
+.topbar__now b{color:var(--ink);font-weight:600}
+.topbar__save{margin-left:auto;display:flex;align-items:center;gap:var(--s-2)}
+.topbar__state{font-size:var(--t-sm);color:var(--ink-3)}
+.topbar__state.hot{color:var(--bad);font-weight:600}
+
+#flash{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;z-index:300;
+  background:var(--ink);color:#fff;font-size:var(--t-md);font-weight:500;
+  padding:11px 18px;border-radius:var(--r-md);max-width:min(560px,92vw);box-shadow:var(--sh-3)}
+
+/* ══ the loop ═══════════════════════════════════════════════════════════
+   The four steps of PDCA drawn as what they are — a line that comes back —
+   with this company's real counts sitting on it. It is the diagram and the
+   filter at the same time, so nobody has to learn one to use the other. */
+.loop{display:flex;align-items:stretch;gap:var(--s-2);flex-wrap:wrap;margin:0 0 var(--s-5)}
+.loop__s{flex:1 1 150px;min-width:0;text-align:left;cursor:pointer;
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:var(--s-3) var(--s-4);box-shadow:var(--sh-1);font:inherit;color:inherit;
+  transition:border-color .14s,background .14s}
+.loop__s:hover{border-color:var(--choc)}
+.loop__s.on{border-color:var(--choc);border-width:2px;background:var(--choc-100);padding:11px 15px}
+.loop__s--out{flex:0 1 170px;background:var(--paper-2);border-style:dashed}
+.loop__step{display:block;font-size:9.5px;font-weight:700;letter-spacing:.16em;color:var(--choc-700)}
+.loop__n{display:block;font-family:var(--mono);font-size:var(--t-3xl);font-weight:600;line-height:1.1}
+.loop__l{display:block;font-size:var(--t-md);font-weight:600}
+.loop__note{display:block;font-size:var(--t-xs);color:var(--ink-3);line-height:1.35;margin-top:2px}
+.loop__arrow{align-self:center;color:var(--line-2);font-size:18px;flex:0 0 auto}
+
+/* ══ bars, drawings, the mastery grid ═══════════════════════════════════ */
+.bar{height:9px;background:var(--paper-3);border-radius:2px;overflow:hidden;display:flex}
+.bar i{display:block;height:100%}
+.rows{display:grid;gap:var(--s-3)}
+.row{display:grid;grid-template-columns:minmax(120px,1.4fr) 3fr minmax(84px,auto);
+  gap:var(--s-3);align-items:center;font-size:var(--t-md)}
+.row>span:last-child{text-align:right;font-family:var(--mono);color:var(--ink-3);font-size:var(--t-sm)}
+.row small{display:block;color:var(--ink-3);font-size:var(--t-xs)}
+
+.fig{margin:0 0 var(--s-4)}
+.fig svg{display:block;width:100%;height:auto;max-width:520px}
+.fig figcaption{color:var(--ink-3);font-size:var(--t-sm);margin-top:var(--s-2);max-width:64ch}
+
+.mx{border-collapse:separate;border-spacing:2px;font-size:var(--t-xs);min-width:520px}
+.mx th{padding:0 0 6px;font-size:10px;letter-spacing:.04em;color:var(--ink-3);font-weight:600}
+.mx th.c,.mx td.c{text-align:left;padding-right:var(--s-3);white-space:nowrap;color:var(--ink-2)}
+.mx td{padding:0;text-align:center}
+.mx button{width:26px;height:22px;border:1px solid var(--line);border-radius:4px;
+  background:var(--paper-3);cursor:pointer;padding:0;font:600 10px/1 var(--mono);color:transparent}
+.mx button:hover{border-color:var(--choc);color:var(--ink-3)}
+.mx button[data-l="1"]{background:var(--blue-100);border-color:#BBD9EC}
+.mx button[data-l="2"]{background:var(--blue);border-color:#7FC4E9;color:var(--choc)}
+.mx button[data-l="3"]{background:var(--choc);border-color:var(--choc);color:#fff}
+.mx button[data-l="2"],.mx button[data-l="3"]{color:inherit}
+
+.alarms{display:grid;gap:0}
+.alarm{display:flex;gap:var(--s-4);align-items:flex-start;padding:var(--s-3) 0;
+  border-bottom:1px solid var(--line)}
+.alarm:last-child{border-bottom:0}
+.alarm__k{flex:0 0 118px}
+.alarm__b{flex:1;min-width:0}
+.alarm__b p{margin:0;font-size:var(--t-md);font-weight:500}
+.alarm__b em{font-style:normal;display:block;color:var(--ink-3);font-size:var(--t-sm);margin-top:2px}
+.alarm__do{flex:0 0 auto}
+
+@media (max-width:900px){
+  .g-4,.g-5{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .g-3{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:620px){
+  body.con-riel,body.con-riel.riel-fijo{padding-left:0;padding-bottom:64px}
+  .riel{top:auto;right:0;bottom:0;width:100%!important;height:58px;flex-direction:row;
+    padding:6px 8px;gap:2px;overflow-x:auto;box-shadow:0 -2px 14px rgba(22,25,28,.12)}
+  .riel__marca,.riel__grupo,.riel__pie,.riel__fijar,.riel__badge{display:none}
+  .riel__nav{flex-direction:row;gap:2px;overflow-x:auto;overflow-y:hidden}
+  .riel__it{width:auto;flex-direction:column;gap:2px;height:46px;padding:0 10px;justify-content:center}
+  .riel__et{opacity:1!important;font-size:9.5px}
+  .wrap{padding:var(--s-4) var(--s-4) var(--s-7)}
+  .g-2,.g-3,.g-4,.g-5{grid-template-columns:1fr}
+  .row{grid-template-columns:1fr;gap:4px}
+  .row>span:last-child{text-align:left}
+  .alarm{flex-direction:column;gap:var(--s-2)}
+  .alarm__k{flex:none}
+  .loop__arrow{display:none}
+  .loop__s,.loop__s--out{flex:1 1 44%}
+}
+@media print{.riel,.topbar,.do{display:none}body.con-riel{padding-left:0}}
