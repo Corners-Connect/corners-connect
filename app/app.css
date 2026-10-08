@@ -1102,37 +1102,51 @@ body { letter-spacing: -.01em; }
 .land-banner .pcard__p { font-size: clamp(15px, 1.2vw, 18px); max-width: 56ch; }
 .land-banner .pcard__scrim { background: linear-gradient(100deg, rgba(15,23,42,.84) 10%, rgba(15,23,42,.45) 52%, rgba(15,23,42,.25)); }
 
-@media (min-width: 1100px) {
-  /* Multicol ignores the grid rules above it, including the short-window row
-     heights, so the only things to undo here are the scroll and height clamps. */
-  #v-start .bento { display: block; columns: 3; column-gap: 14px; min-height: 0; }
-  /* A rule from the old fixed-height landing dropped these two cards on any window
-     under 860px tall, the universities card among them. A masonry scrolls, so there
-     is nothing to save by hiding them. */
-  #v-start .landing-extra { display: block !important; }
-  #v-start .bento > * {
-    display: block; width: 100%; margin: 0 0 14px;
-    break-inside: avoid; -webkit-column-break-inside: avoid;
-    height: auto;
+/* A multi-column masonry ends each column wherever its last card happens to land,
+   which leaves the ragged bottom edge. A grid aligns its rows instead: every card in
+   a row shares a height, and the last row closes on one straight line. The variety
+   moves into the spans, and each row's spans add up to the full track, so the block
+   is flush left, right and along the bottom. */
+@media (min-width: 900px) {
+  #v-start .bento {
+    display: grid; grid-template-columns: repeat(6, minmax(0, 1fr));
+    /* `none` clears the fixed three rows the old short-window layout set, which
+       would otherwise squash these cards to 126px tall. */
+    grid-template-rows: none; grid-auto-rows: minmax(250px, auto);
+    gap: 14px; min-height: 0; align-content: start;
   }
+  #v-start .bento > * { grid-column: span 2; margin: 0; height: auto; min-height: 0; }
+  /* Banner on the left of the first two rows, two cards stacked to its right. The
+     seven after that fill three more rows: 2+2+2, then 2+4, then 2+4. Nothing is
+     left on its own at the bottom. */
+  #v-start .bento > .land-banner { grid-column: span 4; grid-row: span 2; }
+  #v-start .bento > *:nth-child(8),
+  #v-start .bento > *:nth-child(10) { grid-column: span 4; }
+
+  /* A rule from the old fixed-height landing dropped two cards on any window under
+     860px tall, the universities card among them. The landing scrolls, so there is
+     nothing to save by hiding them. */
+  #v-start .landing-extra { display: block !important; }
+
   /* A photo card fills its whole box with an image, so it has to clip to its own
      radius or the picture paints square corners over a rounded card. Only the text
      cards need the overflow released, to undo the short-window scroll rule. */
   #v-start .bento > .pcard { overflow: hidden; }
   #v-start .bento > .tcard { overflow: visible; }
-
-  /* A height ladder rather than whatever the text happens to need: four steps,
-     repeating, so the columns stagger instead of lining up. */
-  #v-start .bento > *:nth-child(4n+1) .pcard__in { min-height: 268px; }
-  #v-start .bento > *:nth-child(4n+2) .pcard__in { min-height: 198px; }
-  #v-start .bento > *:nth-child(4n+3) .pcard__in { min-height: 324px; }
-  #v-start .bento > *:nth-child(4n+4) .pcard__in { min-height: 232px; }
-  #v-start .bento .pcard { min-height: 0; }
-  #v-start .tcard { overflow: visible; min-height: 232px; }
+  #v-start .bento .pcard, #v-start .bento .pcard__in { min-height: 0; height: 100%; }
 }
-@media (min-width: 1500px) { #v-start .bento { columns: 4; } }
-@media (min-width: 1950px) { #v-start .bento { columns: 5; } }
-@media (min-width: 2400px) { #v-start .bento { columns: 6; } }
+
+/* Past 1600px the track is twelve wide: banner 7 with a 5 beside it on each of the
+   first two rows, then 3+3+3+3, then 4+4+4. Ten cells, four rows, every row adding
+   up to twelve, so the block is flush on all four sides. */
+@media (min-width: 1600px) {
+  #v-start .bento { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  #v-start .bento > .land-banner { grid-column: span 7; grid-row: span 2; }
+  #v-start .bento > *:nth-child(2),
+  #v-start .bento > *:nth-child(3) { grid-column: span 5; }
+  #v-start .bento > *:nth-child(n+4):nth-child(-n+7) { grid-column: span 3; }
+  #v-start .bento > *:nth-child(n+8) { grid-column: span 4; }
+}
 
 /* One chrome for every tile on the landing. */
 #v-start .pcard, #v-start .tcard {
