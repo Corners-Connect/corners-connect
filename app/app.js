@@ -170,7 +170,6 @@
     bilbao: "bilbao_guggenheim", sansebastian: "sansebastian", barcelona: "barcelona", madrid: "madrid",
     valencia: "valencia", granada: "granada", sevilla: "sevilla", salamanca: "salamanca", lisbon: "lisbon", porto: "porto"
   };
-  var GUIDE_PHOTO = { g1: "pintxos", g2: "bilbao_sopelana", g3: "bilbao_guggenheim", g4: "gaztelugatxe", g5: "cooking_class", g6: "la_rioja", g7: "kayak" };
 
   function hasPhoto(id) { return !!(window.CORNERS_PHOTOS && window.CORNERS_PHOTOS[id]); }
   function photoAlt(id) {
@@ -196,7 +195,6 @@
     valencia: "surf", granada: "mountains", sevilla: "plaza", salamanca: "oldtown",
     lisbon: "oldtown", porto: "bridge"
   };
-  var GUIDE_ART = { g1: "pintxos", g2: "surf", g3: "guggenheim", g4: "mountains", g5: "pintxos", g6: "mountains", g7: "bridge" };
 
   function artBox(scene, cls) {
     var d = document.createElement("div");
@@ -1467,47 +1465,395 @@
     { id: "climb", name: "Climbing", n: 67, c: "var(--h11)", next: "Tuesday 18:00 · the wall in Zorroza" },
     { id: "photo", name: "Photography walks", n: 83, c: "var(--h7)", next: "Sunday 11:00 · Casco Viejo" }
   ];
-  /* `days` uses getDay(): 0 Sunday to 6 Saturday. `times` are the slots an operator
-     runs that day, `max` the group size, so the booking step has something real to
-     offer instead of a button that only changes its own label. */
+  /* Real GetYourGuide listings in and around Bilbao, each read off its own product
+     page on 8 October 2026. `gyg` is the title as GetYourGuide shows it, `t` ours.
+     `price` is GYG's "from" price for one adult that day and `was` the struck-through
+     one when it was on sale; `per` means the price covers a private group of up to
+     that many. `stars` and `n` are GYG's rating and review count. GYG only shows
+     start times once you pick a date, so `times` is filled only where the page itself
+     printed one; otherwise the operator confirms the time. `max` is set only where the
+     page states a group limit. */
+  var GYG = "https://www.getyourguide.com/";
+  var GAZ_TIP = "Going on your own? On controlled days you need a free ticket from reservagaztelugatxe.bizkaia.eus — still ahead in 2026: 10–12, 17–18, 24–25 and 31 Oct, 1 Nov, 5–8 and 30 Dec. Other days are open access. It's 241 steps; skip it in an orange weather alert.";
   var GUIDES = [
-    { id: "g1", t: "Pintxo tour of Casco Viejo", cat: "Food", dur: "2.5 h", price: 25, a: "#F59C5E", b: "#6A63FF",
-      about: "Five bars, the right order at each one, with a student guide who lives here.",
-      meet: "Plaza Nueva, under the arches", langs: "Spanish, English", max: 10,
-      days: [4, 5, 6], times: ["19:30", "20:30"],
-      includes: ["Five pintxos, one at each bar", "A drink at every stop", "A guide who actually lives in the Casco"] },
-    { id: "g2", t: "Surf lesson in Sopelana", cat: "Sport", dur: "3 h", price: 30, a: "#2EC7DB", b: "#2F6BFF",
-      about: "Board, wetsuit and an instructor. Beginners welcome.",
-      meet: "Sopelana metro, the beach exit", langs: "Spanish, English", max: 8,
-      days: [3, 6, 0], times: ["10:00", "16:00"],
-      includes: ["Board and wetsuit", "Ninety minutes in the water", "An instructor who starts from nothing"] },
-    { id: "g3", t: "Guggenheim with a guide", cat: "Culture", dur: "2 h", price: 18, a: "#A6A8F7", b: "#1B2440",
-      about: "The building, the collection and what the city was before it.",
-      meet: "Museum entrance, under the spider", langs: "Spanish, English, French", max: 15,
-      days: [2, 3, 4, 5, 6], times: ["11:00", "17:00"],
-      includes: ["Entry ticket", "A two-hour route through the building", "Headset, so you can hear"] },
-    { id: "g4", t: "Gaztelugatxe and Bermeo", cat: "Day trip", dur: "6 h", price: 35, a: "#72CF8E", b: "#1F5F8A",
-      about: "The island steps in the morning, a fishing town for lunch.",
-      meet: "Termibus, bay 12", langs: "Spanish, English", max: 16,
-      days: [6, 0], times: ["08:30"],
-      includes: ["Return coach", "The 241 steps, at your own pace", "Two hours in Bermeo for lunch"] },
-    { id: "g5", t: "Basque cooking class", cat: "Food", dur: "3 h", price: 45, a: "#F090C8", b: "#4E2A8A",
-      about: "Cook four pintxos in a shared kitchen, then eat all of them.",
-      meet: "Mercado de la Ribera, main door", langs: "Spanish, English", max: 12,
-      days: [1, 3, 5], times: ["11:00", "18:00"],
-      includes: ["Every ingredient", "Four pintxos you make yourself", "Eating all four, sitting down"] },
-    { id: "g6", t: "A day in La Rioja", cat: "Day trip", dur: "9 h", price: 60, a: "#DDAE45", b: "#7A1F3D",
-      about: "Two wineries and a long village lunch, transport included.",
-      meet: "Termibus, bay 7", langs: "Spanish, English", max: 20,
-      days: [6], times: ["08:00"],
-      includes: ["Return coach", "Two winery visits with tastings", "A long lunch in a village"] },
-    { id: "g7", t: "Kayak on the Ría", cat: "Sport", dur: "2 h", price: 28, a: "#6FB8F5", b: "#0F3B4F",
-      about: "Paddle under the bridges and past the museum.",
-      meet: "Euskalduna bridge, the river steps", langs: "Spanish, English", max: 10,
-      days: [5, 6, 0], times: ["10:30", "16:30"],
-      includes: ["Kayak and paddle", "Buoyancy aid", "Two hours on the water"] }
+    /* ---- Food ---- */
+    { id: "f1", cat: "Food", t: "Basque food tour with wine", gyg: "Bilbao: Basque Food Tour and Wine Tasting with Guide",
+      op: "Delight Bilbao", dur: "3 h", price: 95, stars: 4.9, n: 1046, ph: "pintxos", art: "pintxos",
+      about: "A pintxo crawl across several neighbourhoods, nine tastings and five drinks. The most-reviewed food tour in Bilbao.",
+      meet: "Main stairs of the Diputación, Gran Vía 25 (not City Hall)", langs: "English, Spanish",
+      inc: ["A local guide", "Nine pintxos, a full meal", "Five drinks: wine, a cocktail, beer, a soft drink, water"],
+      url: GYG + "bilbao-l93/bilbao-basque-food-tour-and-wine-tasting-with-guide-t463114/" },
+    { id: "f2", cat: "Food", t: "The original Bilbao food tour", gyg: "The Original Bilbao Food Tour with Wine Pairings",
+      op: "The Best of Basque", dur: "3 h", price: 103, stars: 4.9, n: 232, ph: "bilbao_casco", art: "pintxos",
+      about: "Off-menu pintxos at five bars with paired wines, and how to order like a local.",
+      meet: "In front of KFC, Epaltzaren Alargunaren Kalea 1, by the Arenal", langs: "English",
+      inc: ["A Bilbao-born guide", "Eight or nine pintxos across five bars", "Five drinks: red, white, beer, cider, water"],
+      url: GYG + "bilbao-l93/the-original-bilbao-food-tour-with-wine-pairings-t522455/" },
+    { id: "f3", cat: "Food", t: "Pintxos and drinks with a local", gyg: "Bilbao Food Tour with Pintxos & Drinks with a Local",
+      op: "Do Eat Better Experience", dur: "3.5 h", price: 89, stars: 4.7, n: 60, ph: "pintxos", art: "pintxos", max: 12,
+      about: "A small group through the centre and the Casco Viejo: tortilla, anchovies, croquetas, cod and Basque cheese.",
+      meet: "San Nikolas church, San Nikolas Plazatxoa, by the Arenal", langs: "English, Spanish",
+      inc: ["Four or more stops, a full meal", "Pastel vasco for dessert", "Wine, vermouth or beer, and water"],
+      url: GYG + "bilbao-l93/bilbao-food-tour-with-pintxos-drinks-with-a-local-t613399/" },
+    { id: "f4", cat: "Food", t: "Pintxos with a cuadrilla of six", gyg: "Bilbao: Exclusive Food & Wine Tasting Tour with Local Guide",
+      op: "Tourné Bilbao", dur: "3 h", price: 96, stars: 4.9, n: 383, ph: "bilbao_casco", art: "pintxos", max: 6,
+      about: "Six people at most, famous bars mixed with the guide's own.",
+      meet: "Tourné Bilbao shop, Villarías Kalea 1", langs: "English",
+      inc: ["Six pintxos, a full meal", "Four drinks the guide picks", "A local guide, tip included"],
+      url: GYG + "bilbao-l93/bilbao-pinchos-and-wine-tasting-tour-with-local-guide-t417323/" },
+    { id: "f5", cat: "Food", t: "Nine Basque tastings", gyg: "Bilbao: Pintxos & Basque Flavours Food Tour with 9 Tastings",
+      op: "Secret Food Tours", dur: "3 h", price: 100, stars: 5.0, n: 3, ph: "pintxos", art: "pintxos",
+      about: "A set menu of nine regional dishes, with all three Basque drinks: txakoli, Rioja and cider.",
+      meet: "San Antón church, Erribera Kalea 24, next to the Ribera market", langs: "English",
+      inc: ["Idiazabal croquette, talo with txistorra, spider crab and more", "Txakoli, Rioja and natural cider", "A secret dish and a chocolate palmier"],
+      url: GYG + "bilbao-l93/bilbao-pintxos-basque-flavours-food-tour-with-12-tastings-t1170002/" },
+    { id: "f6", cat: "Food", t: "Ribera market, pintxos and wine", gyg: "Bilbao Food Tour: Market, Pintxos and Wine",
+      op: "TOPA Food Tours", dur: "3 h", price: 175, stars: 0, n: 0, ph: "ribera_market", art: "pintxos", max: 8,
+      about: "The only food tour here built around the Ribera market. Part of each booking supports the Koop SF 34 social incubator.",
+      meet: "Mercado de la Ribera, Erribera Kalea 20 bis; ends at Plaza Nueva", langs: "English",
+      inc: ["A walk through the Ribera market", "Six pintxos and a Bilbao pastry", "Txakoli, Rioja and a Bilbao aperitif"],
+      url: GYG + "bilbao-l93/bilbao-food-tour-market-pintxos-and-wine-t1346953/" },
+    { id: "f7", cat: "Food", t: "Poteo: cod and txakoli", gyg: "Bilbao: Historic Sightseeing Tour with Poteo, Cod, and Txakoli as the Stars",
+      op: "GTH Travel", dur: "2 h", price: 40, stars: 5.0, n: 5, ph: "bilbao_casco", art: "pintxos", max: 10,
+      about: "The cheapest food walk: a Casco Viejo poteo, bar to bar, with a guide who cooks.",
+      meet: "Far right end of the Ribera market, facing Carnicería Vieja. Look for the green umbrella", langs: "Spanish",
+      inc: ["Pintxos at three stops", "Three drinks: txakoli, wine, cider or beer", "A guide who is also a cook"],
+      tip: "In Spanish only, which makes it good practice if you're taking classes.",
+      url: GYG + "bilbao-l93/bilbao-historic-sightseeing-tour-with-poteo-cod-and-txakoli-as-the-stars-t1395891/" },
+    { id: "f8", cat: "Food", t: "Street food walk", gyg: "Bilbao: Best Street Food Tour With A Local Guide",
+      op: "Guydeez", dur: "3 h", price: 72, stars: 4.1, n: 9, ph: "pintxos", art: "pintxos",
+      about: "From street stalls to traditional restaurants. One reviewer found the food stops few.",
+      meet: "Plaza Moyúa 2", langs: "English, French, Italian, Spanish",
+      inc: ["Food and drink tastings", "A local guide", "Small group or private"],
+      url: GYG + "bilbao-l93/bilbao-best-street-food-tour-with-a-local-guide-t652722/" },
+    { id: "f9", cat: "Food", t: "Pintxos cooking class", gyg: "Bilbao: Traditional Basque Pintxos Cooking Class",
+      op: "Gastronomía Bilbao", dur: "2.5 h", price: 80, stars: 4.8, n: 70, ph: "cooking_class", art: "pintxos",
+      about: "Cook traditional and modern pintxos, then eat them with local wine and Idiazabal.",
+      meet: "Gastronomía Bilbao, Plaza de la Salve 6, opposite the Guggenheim", langs: "English",
+      inc: ["Make four pintxos and a dessert", "Three drinks, with cheese and charcuterie", "Recipes and an apron"],
+      url: GYG + "bilbao-l93/bilbao-basque-pintxos-and-tapas-cooking-class-t443060/" },
+    { id: "f10", cat: "Food", t: "Full Basque cooking class", gyg: "Bilbao: Immersive Basque Cooking Class",
+      op: "Gastronomía Bilbao", dur: "3.5 h", price: 140, stars: 4.9, n: 16, ph: "cooking_class", art: "pintxos",
+      about: "A whole Basque menu with a local chef, eaten with local wines in a private dining room.",
+      meet: "Gastronomía Bilbao, Plaza de la Salve 6, opposite the Guggenheim", langs: "English",
+      inc: ["Cook starters, a main and a dessert", "Eat it all, sitting down", "Three drinks, recipes and an apron"],
+      url: GYG + "bilbao-l93/bilbao-immersive-basque-cooking-class-t443038/" },
+    { id: "f11", cat: "Food", t: "Txakoli and Rioja with a sommelier", gyg: "Wine Tasting in Bilbao: Txakoli & Rioja with a Sommelier",
+      op: "Gastronomía Bilbao", dur: "75 min", price: 50, stars: 4.9, n: 57, ph: "la_rioja", art: "mountains",
+      about: "Five local wines with a professional sommelier, opposite the Guggenheim.",
+      meet: "Gastronomía Bilbao, Plaza de la Salve 6", langs: "English",
+      inc: ["A sommelier-led tasting", "Five wines, txakoli and Rioja", "Local cheese and charcuterie"],
+      url: GYG + "bilbao-l93/bilbao-immersive-spanish-wine-tasting-with-sommelier-t443073/" },
+    { id: "f12", cat: "Food", t: "Txakoli country, Bakio", gyg: "Txakoli wine tour from Bilbao",
+      op: "Local Experts Tours", dur: "4.5 h", price: 165, stars: 5.0, n: 2, ph: "la_rioja", art: "mountains", max: 8,
+      about: "Half a day in Bakio: the Txakoli Museum and a winery, from vine to bottle. Minimum two adults.",
+      meet: "Pickup from your address in Bilbao", langs: "Spanish, English",
+      inc: ["Pickup and a private vehicle", "The Txakoli Museum and a winery, five or more glasses", "A gilda with Cantabrian anchovies, and lunch"],
+      url: GYG + "bilbao-l93/txakoli-small-group-winery-tour-with-tastings-t350156/" },
+
+    /* ---- City ---- */
+    { id: "c1", cat: "City", t: "Old town with a local guide", gyg: "Walking tour in Bilbao with local guide",
+      op: "Local Experts Tours", dur: "2 h", price: 42, stars: 4.7, n: 453, ph: "bilbao_casco", art: "oldtown", max: 10,
+      about: "A small-group walk through the Casco Viejo and downtown, with a stop at the Ribera market.",
+      meet: "Arriaga Theatre, main entrance", langs: "English, Spanish",
+      inc: ["A local guide", "Old town and downtown, with the Ribera market", "Rain gear if it rains"],
+      url: GYG + "bilbao-l93/bilbao-historical-area-small-group-walking-tour-t349491/" },
+    { id: "c2", cat: "City", t: "Old town walk", gyg: "Bilbao old town walking tour",
+      op: "Guidlo", dur: "2 h", price: 30, stars: 4.6, n: 210, ph: "bilbao_casco", art: "oldtown", max: 8,
+      about: "Plaza Nueva, the Ribera, Santiago cathedral and the Bidebarrieta library, with pintxo tips.",
+      meet: "Jado Plaza 2, Abando", langs: "English",
+      inc: ["A professional local guide", "Plaza Nueva, the Ribera, the cathedral, the library", "Local taxes"],
+      url: GYG + "bilbao-l93/bilbao-old-town-walking-tour-t753059/" },
+    { id: "c3", cat: "City", t: "Free walking tour", gyg: "Free walking Tour Historical Bilbao with local guides",
+      op: "Nómada Gestión Cultural", dur: "2.5 h", price: 2.99, stars: 4.3, n: 48, ph: "bilbao_casco", art: "oldtown",
+      about: "A tip-based walk through the Siete Calles, from the Arriaga to the Ribera.",
+      meet: "Plaza Arriaga 1", langs: "English",
+      inc: ["A radio headset, so you can hear", "The Seven Streets, the cathedral, the Ribera", "Pintxo bar recommendations"],
+      tip: "The €2.99 is a booking fee. Guides live on tips; the listing says most people give €10–20.",
+      url: GYG + "bilbao-l93/free-walking-tour-historical-bilbao-with-local-guides-t1426022/" },
+    { id: "c4", cat: "City", t: "Must-see Bilbao", gyg: "Bilbao: Must-See Attractions Walking Tour",
+      op: "Guydeez", dur: "2 h", price: 33, stars: 3.7, n: 7, ph: "bilbao_zubizuri", art: "city",
+      about: "The main sights plus a few quieter corners, private-style.",
+      meet: "Arenal 2", langs: "French, Spanish, English",
+      inc: ["A walking tour", "A guide", "Local tips"],
+      url: GYG + "bilbao-l93/bilbao-city-highlights-walking-tour-t618516/" },
+    { id: "c5", cat: "City", t: "Guggenheim, skip the line", gyg: "Bilbao: Guggenheim Museum Guided Visit",
+      op: "Local Experts Tours", dur: "1.5 h", price: 115, stars: 4.8, n: 118, ph: "bilbao_guggenheim", art: "guggenheim",
+      about: "A guided tour of the modern and contemporary collection, straight past the queue. Minimum two adults.",
+      meet: "Community ticket desk inside the Guggenheim (the door marked 'Community')", langs: "English, Spanish",
+      inc: ["Skip-the-line entry ticket", "A professional guide", "A private option when you book"],
+      url: GYG + "bilbao-l93/bilbao-skip-the-line-guggenheim-museum-guided-tour-t380489/" },
+    { id: "c6", cat: "City", t: "Guggenheim in a group of eight", gyg: "Bilbao: Guggenheim VIP Experience. Small Group. Expert Guide",
+      op: "Explora-Norte", dur: "2–2.5 h", price: 95, stars: 4.5, n: 768, ph: "bilbao_guggenheim", art: "guggenheim", max: 8,
+      about: "Puppy, Maman, Gehry's building, and work by Serra, Kiefer and Holzer.",
+      meet: "Guggenheim Museum, Abandoibarra (exact spot depends on the option)", langs: "English, French, Italian, Arabic, Chinese and more",
+      inc: ["Skip-the-line entry", "An expert local guide", "A headset"],
+      url: GYG + "bilbao-l93/bilbao-guggenheim-guided-tour-with-skip-the-line-t309033/" },
+    { id: "c7", cat: "City", t: "Private Guggenheim tour", gyg: "Bilbao: Private & Exclusive Guggenheim Museum Guided Tour",
+      op: "Servicios Turísticos Integrales", dur: "1.5 h", price: 230, per: 6, stars: 4.8, n: 327, ph: "bilbao_guggenheim", art: "guggenheim",
+      about: "Your own guide through the galleries, the atrium and Serra's Matter of Time.",
+      meet: "Information desk inside the main entrance, Abandoibarra 2", langs: "English, French, German, Italian, Spanish",
+      inc: ["A private guide", "Museum entry (check when booking)", "The Serra gallery"],
+      tip: "The price is for the whole private group. We assume six; check the exact size on GetYourGuide.",
+      url: GYG + "bilbao-l93/bilbao-guggenheim-museum-private-guided-visit-t193964/" },
+    { id: "c8", cat: "City", t: "The Guggenheim effect and Artxanda", gyg: "Bilbao: The Guggenheim Effect, Artxanda Funicular and New City",
+      op: "Purple Basque Tours", dur: "3 h", price: 37, stars: 5.0, n: 8, ph: "bilbao_artxanda", art: "city", max: 8,
+      about: "How one museum changed the city, with the funicular up to the Artxanda viewpoint.",
+      meet: "Puppy, outside the Guggenheim (Mazarredo 66). The guide wears a purple beret. Ends at Azkuna Zentroa", langs: "English",
+      inc: ["A guided walk", "The Artxanda funicular", "Zubizuri, Gran Vía and the Diputación"],
+      url: GYG + "bilbao-l93/bilbao-the-guggenheim-effect-and-modern-architecture-t1397048/" },
+    { id: "c9", cat: "City", t: "Funicular and walk, in Spanish", gyg: "Bilbao Walking Tour and cable car in spanish",
+      op: "BilbaoGuia", dur: "2 h", price: 28, stars: 4.8, n: 14, ph: "bilbao_artxanda", art: "city",
+      about: "Up the funicular for the view, then on foot down into the city.",
+      meet: "Plaza del Funicular", langs: "Spanish",
+      inc: ["The Artxanda funicular, both ways", "A Spanish-speaking local guide", "The Artxanda viewpoint"],
+      tip: "The route depends on the day: the old town Saturday to Monday, across Zubizuri into the Ensanche Tuesday to Friday.",
+      url: GYG + "bilbao-l93/tour-a-piedi-di-bilbao-e-funivia-in-spagnolo-t316177/" },
+    { id: "c10", cat: "City", t: "E-bike highlights", gyg: "Bilbao: Guided E-Bike Tour Highlights Small Group or Private",
+      op: "Tourné Bilbao", dur: "3 h", price: 49, stars: 4.7, n: 797, ph: "bilbao_zubizuri", art: "bridge",
+      about: "The old town, Zubizuri, the Guggenheim and San Mamés by e-bike. Minimum height 140 cm.",
+      meet: "Tourné Bilbao, Villarías Kalea 1 (can vary by option)", langs: "English, Dutch",
+      inc: ["An e-bike", "A local guide", "A helmet"],
+      url: GYG + "bilbao-l93/bike-tour-tourne-viva-bilbao-t42278/" },
+    { id: "c11", cat: "City", t: "Ría boat trip", gyg: "1-Hour Bilbao city Boat Tour or 2-Hour cruise to Portugalete",
+      op: "Bilboats", dur: "1–2 h", price: 15, stars: 4.2, n: 3405, ph: "bilbao_ria", art: "bridge", max: 80,
+      about: "The city from the river, past the Guggenheim; the two-hour option goes down to Portugalete.",
+      meet: "Pier at Plaza Pío Baroja 1, by the City Hall bridge", langs: "Audio guide: Spanish, Basque, English, French, German, Italian",
+      inc: ["A one- or two-hour cruise", "An audio guide on your own phone", "The Guggenheim from the water"],
+      tip: "Bring mobile data and headphones: reviewers often struggle to connect to the audio guide.",
+      url: GYG + "bilbao-l93/bilbao-1-or-2-hour-sightseeing-boat-tour-t208590/" },
+    { id: "c12", cat: "City", t: "The estuary to the Abra", gyg: "Bilbao: Bilbao Estuary and Abra Bay Boat Tour",
+      op: "El Bote Tours", dur: "2 h 45", price: 19, stars: 4.1, n: 1093, ph: "bizkaia_bridge", art: "bridge",
+      about: "The whole estuary, under the Bizkaia Bridge and out to the open bay.",
+      meet: "Plaza Pío Baroja", langs: "Audio guide: Spanish, English, French, Basque",
+      inc: ["A boat ticket", "A QR-code audio guide", "Past the Bizkaia Bridge to the Abra"],
+      tip: "You can get off at the stops but you can't get back on.",
+      url: GYG + "bilbao-l93/bilbao-hop-on-hop-off-boat-trip-t201781/" },
+    { id: "c13", cat: "City", t: "San Mamés stadium and museum", gyg: "Bilbao: San Mamés Museum and Stadium Tour",
+      op: "Athletic Club Museoa", dur: "1.5–2 h", price: 16.5, stars: 4.8, n: 1712, ph: "bilbao_sanmames", art: "stadium",
+      about: "Athletic's 'Cathedral' at your own pace, and some 500 objects from over a century of the club. Not a match ticket.",
+      meet: "San Mamés, between gates 19 and 20 (metro San Mamés)", langs: "Audio guide: English, Spanish, Basque, French",
+      inc: ["Museum and stadium ticket", "The tunnel, pitch-side, dressing room and press room", "An audio guide on your phone (bring headphones)"],
+      hours: "Any time the museum is open: until 19:00 November to February, 20:00 March to October",
+      tip: "On match days the museum shuts two hours before kick-off and the stadium tour five hours before.",
+      url: GYG + "bilbao-l93/bilbao-stadiontour-im-san-mames-athletic-club-museoa-t244327/" },
+    { id: "c14", cat: "City", t: "Art district and craft beer", gyg: "Bilbao: Art District Walking Tour",
+      op: "Tourné Bilbao", dur: "3 h", price: 59, stars: 4.8, n: 35, ph: "bilbao_zubizuri", art: "city",
+      about: "Street art and cultural projects through the art district, finishing at the Guggenheim.",
+      meet: "Tourné Bilbao, Villarías Kalea 1; ends at the Guggenheim", langs: "English",
+      inc: ["An art-specialist guide", "The Guggenheim's outdoor sculptures", "A craft beer and a snack"],
+      url: GYG + "bilbao-l93/bilbao-street-art-walking-tour-with-local-craft-beer-t417326/" },
+    { id: "c15", cat: "City", t: "Fine Arts Museum, in Spanish", gyg: "Guided visit in Spanish to the Fine Arts Museum of Bilbao",
+      op: "BilbaoGuia", dur: "1.5 h", price: 49, stars: 0, n: 0, ph: "fine_arts", art: "city",
+      about: "Basque art from medieval to contemporary, in order. New this month.",
+      meet: "Outside the Bellas Artes entrance, between the two classical sculptures", langs: "Spanish",
+      inc: ["The museum and the city's history", "The building and its new wing, from outside", "Classic, contemporary and temporary rooms"],
+      tip: "Not every room is open while the expansion works finish.",
+      url: GYG + "bilbao-l93/guided-visit-in-spanish-to-the-fine-arts-museum-of-bilbao-t1292510/" },
+    { id: "c16", cat: "City", t: "Old town and a river cruise", gyg: "Bilbao: Old Town Tour, Guggenheim Museum & River Cruise",
+      op: "World Experience", dur: "3.5 h", price: 55, stars: 0, n: 0, ph: "bilbao_ria", art: "bridge",
+      about: "The Casco Viejo on foot, then an hour on the Nervión past Zubizuri and the Isozaki towers. Museum entry is extra.",
+      meet: "Arriaga Theatre, Plaza Arriaga 1", langs: "English, Spanish",
+      inc: ["The Seven Streets, Plaza Nueva, the Ribera", "A licensed local guide", "A one-hour shared boat trip"],
+      url: GYG + "bilbao-l93/bilbao-old-town-tour-guggenheim-museum-river-cruise-t1473792/" },
+
+    /* ---- Outdoors ---- */
+    { id: "o1", cat: "Outdoors", t: "Surf lesson in Sopelana", gyg: "Sopelana: Surfing Lesson for All Levels with Instructor",
+      op: "La Salbaje Surf Eskola", dur: "2 h", price: 40, stars: 4.8, n: 21, ph: "bilbao_sopelana", art: "surf",
+      about: "Warm-up, paddling and the pop-up, with an instructor who has surfed here for twenty years.",
+      meet: "Barinatxe (La Salvaje) beach. Metro L1 to Larrabasterra, then about 2 km", langs: "English, Spanish",
+      inc: ["A qualified instructor", "Board and wetsuit", "Insurance"],
+      url: GYG + "ugeraga-spain-l285651/sopelana-surfing-lesson-for-all-levels-with-instructor-t1239369/" },
+    { id: "o2", cat: "Outdoors", t: "Surf lesson in Mundaka", gyg: "Mundaka: Surf lesson in the Urdaibai Reserve",
+      op: "Mundaka Barra Surf", dur: "2 h", price: 40, stars: 4.8, n: 4, ph: "mundaka", art: "surf", max: 6,
+      about: "All levels, six to an instructor, at the home of Europe's famous left-hand wave.",
+      meet: "Santa Kataliña Plaza 4, Mundaka (Euskotren E4 to Mundaka)", langs: "English, Basque, Spanish, Catalan",
+      inc: ["Board, wetsuit and sunscreen", "Insurance", "Changing rooms, lockers and showers"],
+      url: GYG + "sukarrieta-l207985/mundaka-surf-lessons-t1205532/" },
+    { id: "o3", cat: "Outdoors", t: "First surf course, Mundaka", gyg: "Mundaka: Surfing Course Initiation",
+      op: "Gudari Caribe Surf & Yoga", dur: "2.5 h", price: 35, stars: 4.5, n: 14, ph: "surf_zarautz", art: "surf",
+      about: "For beginners: paddling, positioning, tides and currents, in small classes.",
+      meet: "Gudari Caribe surf school, Bañutegi Kalea 6, Mundaka", langs: "English, Spanish",
+      inc: ["A wetsuit", "A surfboard", "Sports insurance"],
+      url: GYG + "mundaka-l205108/mundaka-surfing-course-initiation-t690958/" },
+    { id: "o4", cat: "Outdoors", t: "Surf coaching, intermediate up", gyg: "Bizkaia: Surfing Intermediate and Advanced Course",
+      op: "Gudari Caribe Surf & Yoga", dur: "2.5 h", price: 50, stars: 5.0, n: 1, ph: "surf_sunset", art: "surf",
+      about: "For surfers who already stand up: frontside, backside and reading the wave. Seven days a week.",
+      meet: "Gudari Caribe surf school, Bañutegi Kalea 6, Mundaka", langs: "English, Spanish",
+      inc: ["A wetsuit", "A surfboard", "Sports insurance"],
+      url: GYG + "mundaka-l205108/bizkaia-surfing-intermediate-and-advanced-course-t692168/" },
+    { id: "o5", cat: "Outdoors", t: "Paddleboard hour, Mundaka", gyg: "Mundaka: Stand Up Paddle Experience",
+      op: "Gudari Caribe Surf & Yoga", dur: "1 h", price: 35, stars: 5.0, n: 1, ph: "mundaka", art: "surf", max: 6,
+      about: "Your first hour on a paddleboard, on calm water, from a briefing on the sand up.",
+      meet: "Gudari Caribe surf school, Bañutegi Kalea 6, Mundaka", langs: "English, Spanish",
+      inc: ["All the SUP kit", "An instructor", "Sports insurance"],
+      url: GYG + "biscay-l186175/mundaka-stand-up-paddle-experience-t691031/" },
+    { id: "o6", cat: "Outdoors", t: "Paddle across the estuary", gyg: "Mundaka: SUP Session & Coastal Crossing",
+      op: "Gudari Caribe Surf & Yoga", dur: "1.5 h", price: 45, stars: 0, n: 0, ph: "mundaka", art: "surf", max: 6,
+      about: "A guided crossing of the Mundaka estuary towards Pedernales, inside the Urdaibai reserve.",
+      meet: "Gudari Caribe surf school, Bañutegi Kalea 6, Mundaka", langs: "English, Spanish",
+      inc: ["All the kit", "An instructor", "Sports insurance"],
+      url: GYG + "mundaka-l205108/mundaka-sup-session-coastal-crossing-t691046/" },
+    { id: "o7", cat: "Outdoors", t: "Catamaran under the bridge", gyg: "Bilbao: Exclusive catamaran sailing experience",
+      op: "KataXperience", dur: "1.5 h", price: 60, stars: 5.0, n: 1, ph: "getxo", art: "surf", max: 10,
+      about: "Out under the Bizkaia Bridge and past the Galea cliffs.",
+      meet: "Getxo marina, pontoon H (metro Areeta or Neguri)", langs: "English, Spanish",
+      inc: ["A skipper", "Fuel", "Insurance and tax"],
+      url: GYG + "getxo-l2643/bilbao-exclusive-sailing-catamaran-excursion-t1420127/" },
+    { id: "o8", cat: "Outdoors", t: "Sailing the Abra, private", gyg: "Sailing experience on Bilbao's Abra Bay, embarking in Getxo",
+      op: "AVientó", dur: "2 h", price: 230, per: 3, stars: 5.0, n: 1, ph: "getxo", art: "surf", max: 3,
+      about: "A private sail across the bay towards the Getxo cliffs and Cabo Villano, if the sea allows.",
+      meet: "Getxo marina, Marqués de Arriluce e Ibarra 3, Algorta (metro Neguri)", langs: "English, French, Spanish",
+      inc: ["Boat, skipper and fuel", "Life jackets and wet-weather gear", "A drink and snacks"],
+      url: GYG + "getxo-l2643/sailing-experience-on-bilbao-s-abra-bay-embarking-in-getxo-t1161652/" },
+    { id: "o9", cat: "Outdoors", t: "Sail the Ría to the sea, private", gyg: "Bilbao-Getxo: Private sailboat tour of the estuary, from Bilbao to the sea",
+      op: "AVientó", dur: "2 h", price: 270, per: 2, stars: 5.0, n: 5, ph: "bilbao_ria", art: "bridge", max: 2,
+      about: "The whole Ría past the Guggenheim and the old shipyards, under the bridge and out to sea.",
+      meet: "Itsasmuseum, Ramón de la Sota Kaia 1 (metro San Mamés). Ends at Santurtzi or Getxo", langs: "English, French, Spanish",
+      inc: ["Skipper and fuel", "Insurance and taxes", "Drinks and snacks"],
+      url: GYG + "bilbao-l93/bilbao-sailboat-sightseeing-tour-of-the-estuary-from-bilbao-to-the-sea-t764222/" },
+    { id: "o10", cat: "Outdoors", t: "E-bike to the sea at Getxo", gyg: "Getxo Seaside E-bike Tour: From Industrial Bilbao to the Sea",
+      op: "Tourné Bilbao", dur: "4 h", price: 74, stars: 4.6, n: 21, ph: "bizkaia_bridge", art: "bridge", max: 12,
+      about: "Sixteen flat kilometres down the Ría, across the UNESCO bridge to Getxo. You keep the bike and ride back on your own.",
+      meet: "Tourné Bilbao, Villarías Kalea 1", langs: "English",
+      inc: ["E-bike, helmet and lock", "A local guide", "A Bizkaia Bridge crossing ticket"],
+      url: GYG + "bilbao-l93/getxo-and-bizcaya-bridge-unesco-site-bike-tour-from-bilbao-t195938/" },
+    { id: "o11", cat: "Outdoors", t: "Getxo coast by bike, with pintxos", gyg: "Getxo Coastal Bike & Pintxos Experience",
+      op: "Free Spirit Bilbao", dur: "2.5 h", price: 60, stars: 4.8, n: 46, ph: "getxo", art: "bridge", max: 6,
+      about: "The Getxo coast, the bridge, the old port and the cliffs above the bay, with a pintxo stop.",
+      meet: "Near Algorta metro station, Getxo", langs: "English",
+      inc: ["A bike and helmet", "A local guide", "One pintxo and one drink"],
+      url: GYG + "bilbao-l93/bilbao-seaside-off-the-beaten-path-cycling-tour-t267412/" },
+    { id: "o12", cat: "Outdoors", t: "Gaztelugatxe on foot", gyg: "Bilbao: San Juan de Gaztelugatxe and Walk along Basque Coast",
+      op: "Bilbao Green Tours", dur: "3.5 h", price: 70, stars: 4.9, n: 247, ph: "gaztelugatxe", art: "mountains", max: 8,
+      about: "A small-group coastal walk to the islet by a hidden viewpoint, about ninety minutes on foot. Not for under-12s.",
+      meet: "Plaza Ernesto Erkoreka 5A, by City Hall", langs: "English, Basque, German, Italian, Spanish",
+      inc: ["A guide", "Transport from Bilbao", "Gaztelugatxe entry"], tip: GAZ_TIP,
+      url: GYG + "bilbao-l93/bilbao-san-juan-de-gaztelugatxe-and-walk-along-basque-coast-t629250/" },
+    { id: "o13", cat: "Outdoors", t: "The flysch from the water", gyg: "Basque Coast: Flysch Boat Tour or Walking Tour",
+      op: "Kastore", dur: "1 h", price: 22, stars: 0, n: 0, ph: "zumaia", art: "mountains",
+      about: "The Geopark's layered cliffs at Zumaia by boat, or a guided walk if the sea is rough.",
+      meet: "Txomin Agirre Kalea 3, Zumaia. About an hour by car; the Euskotren takes longer", langs: "Spanish",
+      inc: ["A boat tour of the flysch", "A guided walk instead if the sea is rough", "A full refund if you'd rather not walk"],
+      tip: "Runs every day except December to February.",
+      url: GYG + "negurigane-l212198/basque-coast-flysch-boat-tour-or-walking-tour-t1500371/" },
+
+    /* ---- Day trips ---- */
+    { id: "d1", cat: "Day trip", t: "Gaztelugatxe, Bermeo, Mundaka, Gernika and txakoli", gyg: "Bilbao: Gaztelugatxe, Bermeo, Mundaka, Gernika, & Wine Tour",
+      op: "buendía", dur: "10 h", price: 45, was: 69, stars: 4.7, n: 3243, ph: "gaztelugatxe", art: "mountains",
+      about: "The whole Bizkaia coast in a day, ending with txakoli at Bodega Berroja. The stop order follows your Gaztelugatxe slot.",
+      meet: "Mazarredo 60, by the Guggenheim", langs: "Spanish, English",
+      inc: ["An official bilingual guide", "Gaztelugatxe access", "A txakoli tasting at Bodega Berroja"], tip: GAZ_TIP,
+      url: GYG + "bilbao-l93/bilbao-gaztelugatxe-bermeo-mundaka-gernika-wine-t414027/" },
+    { id: "d2", cat: "Day trip", t: "Gaztelugatxe, Mundaka and Gernika", gyg: "From Bilbao: Gaztelugatxe, Mundaka, and Guernica Tour",
+      op: "Local Experts Tours", dur: "6 h", price: 45, was: 89, stars: 4.7, n: 2436, ph: "gaztelugatxe", art: "mountains",
+      about: "The 241 steps to Dragonstone, the surf village of Mundaka, and the Tree of Gernika. Lunch is extra.",
+      meet: "Puppy, outside the Guggenheim", langs: "English, Spanish",
+      inc: ["Gaztelugatxe entry ticket", "Guided visits to Gaztelugatxe, Mundaka and Gernika", "Air-conditioned transport"], tip: GAZ_TIP,
+      url: GYG + "bilbao-l93/from-bilbao-gaztelugatxe-gernika-and-mundaka-t350146/" },
+    { id: "d3", cat: "Day trip", t: "Gaztelugatxe, Bermeo and Gernika", gyg: "From Bilbao: Gaztelugatxe, Bermeo and Gernika Day Trip",
+      op: "Destination Consultant", dur: "9 h", price: 70, stars: 4.8, n: 860, ph: "gaztelugatxe", art: "mountains",
+      about: "The walk to Gaztelugatxe, free time in Bermeo's fishing port, then a long visit to Gernika.",
+      meet: "Outside Meliá Bilbao, Lehendakari Leizaola 29, or outside Sercotel Coliseo", langs: "English, Spanish",
+      inc: ["A bilingual guide", "Minivan or coach", "Tickets and entry fees"], tip: GAZ_TIP,
+      url: GYG + "bermeo-l100812/from-bilbao-walking-gaztelugatxe-bermeo-gernika-t416717/" },
+    { id: "d4", cat: "Day trip", t: "Gaztelugatxe with two free hours", gyg: "From Bilbao: Gaztelugatxe with Access, Bermeo and Gernika",
+      op: "Servicios Turísticos Integrales", dur: "6 h", price: 60, was: 71, stars: 4.3, n: 611, ph: "gaztelugatxe", art: "mountains", times: ["09:00"],
+      about: "Two hours to climb Gaztelugatxe at your own pace, then short guided stops in Bermeo and Gernika.",
+      meet: "Bus stop at the tourist office by the Guggenheim, Mazarredo 65. Be there at 08:50", langs: "Spanish, English",
+      inc: ["Transport", "A guide", "The Gaztelugatxe ticket, when one is needed"], tip: GAZ_TIP,
+      url: GYG + "gernika-l7936/gaztelugatxe-with-access-bermeo-and-gernika-from-bilbao-t154125/" },
+    { id: "d5", cat: "Day trip", t: "Bizkaia Bridge, Gaztelugatxe and txakoli", gyg: "Biscay Bridge, Gaztelugatxe and Txakoli winery from Bilbao",
+      op: "Local Experts Tours", dur: "5–7 h", price: 75, stars: 4.7, n: 6, ph: "bizkaia_bridge", art: "bridge",
+      about: "The UNESCO transporter bridge, the Gaztelugatxe viewpoint with Bermeo and Mundaka, and a txakoli winery. Lunch is extra.",
+      meet: "Puppy, outside the Guggenheim", langs: "English, Spanish",
+      inc: ["A guided visit to the Bizkaia Bridge", "Gaztelugatxe viewpoint, Bermeo and Mundaka", "Air-conditioned transport"],
+      url: GYG + "bilbao-l93/bilbao-getxo-and-vizcaya-bridge-small-group-tour-t350176/" },
+    { id: "d6", cat: "Day trip", t: "Gaztelugatxe and San Sebastián", gyg: "Gaztelugatxe and San Sebastian day trip from Bilbao",
+      op: "Local Experts Tours", dur: "10 h", price: 95, stars: 5.0, n: 9, ph: "sansebastian", art: "surf", times: ["08:30"],
+      about: "Dragonstone in the morning, San Sebastián's bay and old town in the afternoon. Back around 18:30.",
+      meet: "The fountain under the Guggenheim's main gate", langs: "English, Spanish",
+      inc: ["An air-conditioned vehicle", "Gaztelugatxe ticket and a guided walk", "A San Sebastián walking tour"], tip: GAZ_TIP,
+      url: GYG + "bilbao-l93/from-bilbao-gaztelugatxe-and-san-sebastian-t447490/" },
+    { id: "d7", cat: "Day trip", t: "San Sebastián, Hondarribia and Hendaye", gyg: "From Bilbao: Excursion to San Sebastian, Hondarribia, Hendaye, and Getaria",
+      op: "buendía", dur: "10 h", price: 45, stars: 4.6, n: 1031, ph: "getaria", art: "oldtown",
+      about: "Into France at Hendaye, then Hondarribia, three hours in San Sebastián, and Getaria's harbour.",
+      meet: "Mazarredo 60, by the Guggenheim", langs: "English, Italian, Spanish",
+      inc: ["A bilingual guide and coach", "A guided stop in Hendaye, France", "Guided San Sebastián and Getaria"],
+      tip: "It crosses into France: students from outside the EU should bring their passport.",
+      url: GYG + "bilbao-l93/from-bilbao-excursion-to-san-sebastian-hondarribia-and-getaria-t874342/" },
+    { id: "d8", cat: "Day trip", t: "San Sebastián and the Gipuzkoa coast", gyg: "San Sebastian and the Basque coast from Bilbao",
+      op: "Local Experts Tours", dur: "8–9 h", price: 76, was: 95, stars: 4.7, n: 35, ph: "getaria", art: "oldtown",
+      about: "San Sebastián with your pick of Hondarribia, Zarautz or Getaria. Minimum two adults.",
+      meet: "Puppy, outside the Guggenheim (Mazarredo 63)", langs: "English, Spanish",
+      inc: ["A San Sebastián walk, plus Getaria, Hondarribia or Zarautz", "Four pintxos and two wines (small-group option)", "Pickup (small-group option)"],
+      url: GYG + "bilbao-l93/bilbao-san-sebastian-and-gipuzkoa-coast-tour-t211107/" },
+    { id: "d9", cat: "Day trip", t: "Loyola, Getaria and San Sebastián", gyg: "From Bilbao: Loyola, Getaria, Zarautz and San Sebastian Tour",
+      op: "Servicios Turísticos Integrales", dur: "9 h", price: 75, was: 88, stars: 4.7, n: 153, ph: "sansebastian", art: "surf", times: ["09:00"],
+      about: "The Loyola sanctuary, Getaria, a pass through Zarautz, two free hours in San Sebastián and the Igeldo view.",
+      meet: "Bus stop at the tourist office by the Guggenheim, Mazarredo 65. Be there at 08:50", langs: "English, Spanish",
+      inc: ["A guide and transport", "Loyola sanctuary entry", "Up Mount Igeldo by road"],
+      url: GYG + "bilbao-l93/from-bilbao-loyola-getaria-zarautz-and-san-sebastian-tour-t712/" },
+    { id: "d10", cat: "Day trip", t: "San Sebastián and the Zumaia flysch", gyg: "From Bilbao: San Sebastián & the Beautiful Basque Towns",
+      op: "Descubre la Costa Vasca", dur: "7 h", price: 152, was: 190, stars: 5.0, n: 1, ph: "zumaia", art: "mountains", max: 4,
+      about: "Three hours in San Sebastián, then Zarautz, Getaria and forty minutes at the Zumaia flysch. Four people at most.",
+      meet: "Pickup from your address in Bilbao", langs: "English, Spanish",
+      inc: ["Pickup and drop-off", "A live guide", "San Sebastián, Zarautz, Getaria and Zumaia"],
+      url: GYG + "san-sebastian-l94/from-bilbao-san-sebastian-the-beautiful-basque-towns-t1500792/" },
+    { id: "d11", cat: "Day trip", t: "Biarritz, Saint-Jean-de-Luz and San Sebastián", gyg: "From Bilbao: Biarritz, Saint Jean de Luz, San Sebastian Tour",
+      op: "Destination Consultant", dur: "10 h", price: 70, stars: 4.7, n: 902, ph: "biarritz", art: "surf", times: ["08:20", "08:30"],
+      about: "Free time in Biarritz, a guided stop in Saint-Jean-de-Luz, then San Sebastián and the Igeldo view.",
+      meet: "08:20 outside Meliá Bilbao, or 08:30 outside Sercotel Coliseo, Urkixo 13", langs: "Spanish, English",
+      inc: ["A guide and transport", "Mount Igeldo", "A Basque sweet tasting"],
+      tip: "It crosses into France: students from outside the EU should bring their passport.",
+      url: GYG + "biarritz-l1574/from-bilbao-biarritz-saint-jean-de-luz-san-sebastian-tour-t416722/" },
+    { id: "d12", cat: "Day trip", t: "Biarritz, Bayonne and Saint-Jean-de-Luz", gyg: "Excursion to the French Basque Country: Biarritz, Bayonne, and Saint Jean De Luz",
+      op: "buendía", dur: "9–11 h", price: 45, was: 65, stars: 4.7, n: 352, ph: "bayonne", art: "oldtown",
+      about: "Three French Basque towns: Biarritz's coast, Bayonne's cathedral and old town, and the harbour at Saint-Jean-de-Luz.",
+      meet: "Bilbao departure; the exact point shows when you pick the option", langs: "Spanish, English",
+      inc: ["A bilingual guide and coach", "Guided walks in Biarritz and Bayonne", "A guided walk in Saint-Jean-de-Luz"],
+      tip: "It crosses into France: students from outside the EU should bring their passport.",
+      url: GYG + "bilbao-l93/excursion-to-the-french-basque-country-biarritz-bayonne-and-saint-jean-de-luz-t1113544/" },
+    { id: "d13", cat: "Day trip", t: "Espelette, Ainhoa and Sare", gyg: "Excursion to the villages of the French Basque Pyrenees: Espelette, Ainhoa, and Sare",
+      op: "buendía", dur: "8.5–10.5 h", price: 65, stars: 4.6, n: 13, ph: "espelette", art: "mountains",
+      about: "Mountain villages of the French Basque Pyrenees, Espelette's pepper-hung houses among them.",
+      meet: "Bilbao departure; the exact point shows when you pick the option", langs: "English, Spanish",
+      inc: ["A bilingual guide and coach", "Guided walks in Sare and Ainhoa", "Espelette, with free time"],
+      tip: "It crosses into France: students from outside the EU should bring their passport.",
+      url: GYG + "bilbao-l93/excursion-to-the-villages-of-the-french-basque-pyrenees-espelette-ainhoa-and-sare-t1114108/" },
+    { id: "d14", cat: "Day trip", t: "Haro and Laguardia wineries", gyg: "From Bilbao: La Rioja Wineries Day Trip with Wine Tastings",
+      op: "Servicios Turísticos Integrales", dur: "9 h", price: 75, was: 88, stars: 4.4, n: 215, ph: "laguardia", art: "mountains",
+      about: "A century-old winery in Haro, then medieval Laguardia, a cellar and free time. Lunch is extra.",
+      meet: "Bus stop at the tourist office by the Guggenheim, Mazarredo 65", langs: "English, Spanish",
+      inc: ["Transport and a guide", "A winery tour and tasting in Haro", "A Laguardia cellar with two wines"],
+      url: GYG + "bilbao-l93/haro-laguardia-and-two-rioja-wineries-from-bilbao-t343561/" },
+    { id: "d15", cat: "Day trip", t: "Rioja and Vitoria-Gasteiz", gyg: "From Bilbao: Rioja Wine Region with Winery & Vitoria-Gasteiz",
+      op: "Destination Consultant", dur: "9 h", price: 70, stars: 4.7, n: 85, ph: "vitoria", art: "oldtown",
+      about: "Laguardia and a traditional cellar, then a guided walk through Vitoria's old town. Lunch is extra.",
+      meet: "Meliá Bilbao, Lehendakari Leizaola 29", langs: "English, Spanish",
+      inc: ["A local guide and transport", "A cellar visit with tasting", "Basque sweets"],
+      url: GYG + "bilbao-l93/from-bilbao-rioja-wine-region-with-winery-vitoria-gasteiz-t416454/" },
+    { id: "d16", cat: "Day trip", t: "Gehry's and Calatrava's wineries", gyg: "From Bilbao: Rioja Architecture and Wine Tour",
+      op: "Northern Spain Gastronomy", dur: "8 h", price: 245, stars: 4.9, n: 73, ph: "riscal", art: "mountains", max: 7,
+      about: "Marqués de Riscal and Ysios, two wineries built by famous architects, and lunch in Laguardia.",
+      meet: "Puppy, outside the Guggenheim (Mazarredo 66)", langs: "English",
+      inc: ["Marqués de Riscal and Ysios", "Tastings at both", "Lunch: three tapas with wine in Laguardia"],
+      tip: "If a winery is full on the day, it's swapped for a four-wine tasting at Javier San Pedro.",
+      url: GYG + "bilbao-l93/from-bilbao-rioja-architecture-and-wine-tour-t421070/" },
+    { id: "d17", cat: "Day trip", t: "Comillas, Santillana and Santander", gyg: "Bilbao: Comillas, Santillana del Mar & Santander Tour",
+      op: "Local Experts Tours", dur: "9 h", price: 120, stars: 4.7, n: 42, ph: "santillana", art: "oldtown",
+      about: "Cantabria in a day: Gaudí's Capricho in Comillas, medieval Santillana del Mar and Santander.",
+      meet: "Puppy, outside the Guggenheim (Mazarredo 63)", langs: "English, Spanish",
+      inc: ["A guide and private transport", "Gaudí's El Capricho, ticket and visit", "Walks in Comillas, Santillana and Santander"],
+      url: GYG + "comillas-l96721/bilbao-comillas-santillana-del-mar-santander-tour-t1281714/" }
   ];
-  var GUIDE_CATS = ["all", "Food", "Sport", "Culture", "Day trip"];
+  var GUIDE_CATS = ["all", "Food", "City", "Outdoors", "Day trip"];
+  /* Card colours by kind; the hover glow and the booking badge use them. */
+  var GUIDE_TINT = {
+    Food: ["#F59C5E", "#6A63FF"], City: ["#A6A8F7", "#1B2440"],
+    Outdoors: ["#2EC7DB", "#2F6BFF"], "Day trip": ["#72CF8E", "#1F5F8A"]
+  };
+  GUIDES.forEach(function (g) { g.a = GUIDE_TINT[g.cat][0]; g.b = GUIDE_TINT[g.cat][1]; });
   /* `photo` is the Commons image each trip shows; `note` is the one line worth
      knowing before you go. Costs are planning estimates, flagged as such in the view. */
   var TRIPS = [
@@ -1701,6 +2047,13 @@
       renderGuides();
     });
   });
+  $$("[data-gsort]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      $$("[data-gsort]").forEach(function (o) { o.classList.toggle("is-on", o === b); });
+      guideSort = b.dataset.gsort;
+      renderGuides();
+    });
+  });
   var refreshBtn = $("[data-refresh]");
   if (refreshBtn) {
     var FRESH = [
@@ -1875,7 +2228,29 @@
 
   /* ---------- guides ---------- */
   var guidesEl = $("[data-guides]");
-  var guideCat = "all";
+  var guideCat = "all", guideSort = "popular";
+
+  /** Euros without float noise (2.99 × 3 is 8.97, not 8.969999), and €16.50 rather than €16.5. */
+  var euros = function (n) {
+    var r = Math.round(n * 100) / 100, cents = r % 1 ? 2 : 0;
+    return "€" + r.toLocaleString("en-GB", { minimumFractionDigits: cents, maximumFractionDigits: cents });
+  };
+  var guideById = function (id) { return GUIDES.filter(function (x) { return x.id === id; })[0]; };
+  /** "★ 4.9 · 1,046 reviews", or that it is new and has none yet. */
+  function ratingText(g) {
+    if (!g.n) return "New on GetYourGuide";
+    return "★ " + g.stars.toFixed(1) + " · " + g.n.toLocaleString("en-GB") + (g.n === 1 ? " review" : " reviews");
+  }
+  /** A per-group price is paid once, however many of you go. */
+  var bookingTotal = function (g, people) { return g.per ? g.price : g.price * people; };
+  var whenText = function (b) { return prettyDate(b.date) + (b.time ? " at " + b.time : ""); };
+  var GUIDE_SORTS = {
+    popular: function (a, b) { return b.n - a.n; },
+    cheap: function (a, b) { return a.price - b.price || b.n - a.n; },
+    /* A 5.0 from one review shouldn't beat a 4.9 from a thousand, so listings with
+       fewer than twenty reviews sort after the rest. */
+    rated: function (a, b) { return (b.n >= 20) - (a.n >= 20) || b.stars - a.stars || b.n - a.n; }
+  };
 
   function renderBookings() {
     var list = $("[data-bookings]"), block = $("[data-bookings-block]");
@@ -1884,15 +2259,15 @@
     var rows = state.bookings.slice().sort(function (a, b) { return a.date < b.date ? -1 : 1; });
     block.hidden = rows.length === 0;
     rows.forEach(function (b) {
-      var g = GUIDES.filter(function (x) { return x.id === b.gid; })[0];
+      var g = guideById(b.gid);
       if (!g) return;
       var li = elem("li", "rec");
       var badge = elem("span", "rec__badge", "✓");
       badge.style.setProperty("--c", g.a);
       var body = elem("div", "rec__body");
       body.appendChild(elem("p", "rec__t", g.t));
-      body.appendChild(elem("p", "rec__m", prettyDate(b.date) + " at " + b.time + " · " +
-        b.people + (b.people === 1 ? " person" : " people") + " · €" + b.total + " · " + b.ref));
+      body.appendChild(elem("p", "rec__m", whenText(b) + " · " +
+        b.people + (b.people === 1 ? " person" : " people") + " · " + euros(b.total) + " · " + b.ref));
       body.style.cursor = "pointer";
       body.addEventListener("click", function () { openGuide(g); });
       li.appendChild(badge); li.appendChild(body);
@@ -1902,9 +2277,13 @@
 
   function renderGuides() {
     if (!guidesEl) return;
+    // Bookings of listings that no longer exist (the old example ones) are dropped.
+    var kept = state.bookings.filter(function (b) { return guideById(b.gid); });
+    if (kept.length !== state.bookings.length) { state.bookings = kept; save(); }
     renderBookings();
     guidesEl.textContent = "";
-    var shown = GUIDES.filter(function (g) { return guideCat === "all" || g.cat === guideCat; });
+    var shown = GUIDES.filter(function (g) { return guideCat === "all" || g.cat === guideCat; })
+      .sort(GUIDE_SORTS[guideSort] || GUIDE_SORTS.popular);
     var count = $("[data-guides-count]");
     if (count) {
       count.textContent = shown.length + (shown.length === 1 ? " experience" : " experiences") +
@@ -1915,7 +2294,7 @@
       li.style.setProperty("--a", g.a); li.style.setProperty("--b", g.b);
       li.tabIndex = 0; li.setAttribute("role", "button");
       var img = elem("div", "guide__img");
-      img.innerHTML = pic(GUIDE_PHOTO[g.id], GUIDE_ART[g.id] || "city");
+      img.innerHTML = pic(g.ph, g.art || "city");
       img.appendChild(elem("span", null, g.cat));
       img.appendChild(elem("span", null, g.dur));
       var mine = bookingFor(g.id);
@@ -1926,22 +2305,25 @@
       var body = elem("div", "guide__body");
       body.appendChild(elem("p", "guide__t", g.t));
       body.appendChild(elem("p", "guide__m", mine
-        ? prettyDate(mine.date) + " at " + mine.time + " · " + mine.ref
-        : g.about.split(".")[0] + "."));
-      var price = elem("p", "guide__p", mine ? "paid " : "from ");
-      price.appendChild(elem("b", null, "€" + (mine ? mine.total : g.price)));
+        ? whenText(mine) + " · " + mine.ref
+        : g.about.split(". ")[0].replace(/\.$/, "") + "."));
+      body.appendChild(elem("p", "guide__r" + (g.n ? "" : " guide__r--new"), ratingText(g) + " · " + g.op));
+      var price = elem("p", "guide__p", mine ? "paid " : (g.per ? "" : "from "));
+      price.appendChild(elem("b", null, euros(mine ? mine.total : g.price)));
+      if (!mine && g.per) price.appendChild(document.createTextNode(" per group of up to " + g.per));
+      if (!mine && g.was) price.appendChild(elem("s", "guide__was", euros(g.was)));
       body.appendChild(price);
       li.appendChild(img); li.appendChild(body);
       var open = function () { openGuide(g); };
       li.addEventListener("click", open);
       li.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
       guidesEl.appendChild(li);
-      if (!reduce) li.animate([{ opacity: 0, transform: "translateY(14px)" }, { opacity: 1, transform: "none" }], { duration: 430, delay: i * 45, easing: "cubic-bezier(.2,.8,.2,1)", fill: "backwards" });
+      if (!reduce) li.animate([{ opacity: 0, transform: "translateY(14px)" }, { opacity: 1, transform: "none" }], { duration: 430, delay: Math.min(i, 12) * 45, easing: "cubic-bezier(.2,.8,.2,1)", fill: "backwards" });
     });
   }
   /* ---- booking ----
      Three steps in one sheet: what it is, when you want it, and what you booked.
-     Dates only offer the weekdays the operator actually runs. */
+     The listings are real, the booking is not: the sheet links to the real page. */
   var DAY_NAME = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   var MONTH_NAME = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   var iso = function (d) { return d.toISOString().slice(0, 10); };
@@ -1949,14 +2331,12 @@
     var d = new Date(s + "T12:00:00");
     return DAY_NAME[d.getDay()] + " " + d.getDate() + " " + MONTH_NAME[d.getMonth()];
   }
-  /** The next 21 days this guide runs, capped at six choices. */
-  function nextDates(g) {
+  /** The next six days to offer. GetYourGuide doesn't publish which weekdays a tour
+      runs without a live availability check, so every day is offered. */
+  function nextDates() {
     var out = [], d = new Date();
     d.setHours(12, 0, 0, 0);
-    for (var i = 1; i <= 21 && out.length < 6; i++) {
-      var day = new Date(d.getTime() + i * 86400000);
-      if (g.days.indexOf(day.getDay()) > -1) out.push(iso(day));
-    }
+    for (var i = 1; i <= 6; i++) out.push(iso(new Date(d.getTime() + i * 86400000)));
     return out;
   }
   function bookingRef(g, date) {
@@ -1966,27 +2346,40 @@
   var bookingFor = function (gid) {
     return state.bookings.filter(function (b) { return b.gid === gid; })[0];
   };
+  var maxPeople = function (g) { return Math.min(6, g.max || 6); };
 
   function openGuide(g) {
     openSheet(function (box) { guideDetail(box, g); });
   }
 
+  function gygLink(g) {
+    var a = elem("a", "btn btn--ghost btn--wide gsheet__gyg", "See it on GetYourGuide ↗");
+    a.href = g.url; a.target = "_blank"; a.rel = "noopener";
+    return a;
+  }
+
   function guideDetail(box, g) {
     box.textContent = "";
     var shot = elem("div", "gsheet__shot");
-    shot.innerHTML = pic(GUIDE_PHOTO[g.id], GUIDE_ART[g.id] || "city");
+    shot.innerHTML = pic(g.ph, g.art || "city");
     box.appendChild(shot);
-    box.appendChild(elem("p", "micro", g.cat + " · " + g.dur + " · up to " + g.max + " people"));
+    box.appendChild(elem("p", "micro", g.cat + " · " + g.dur + (g.max ? " · up to " + g.max + " people" : "")));
     box.appendChild(elem("h2", null, g.t));
+    box.appendChild(elem("p", "gsheet__r", ratingText(g) + " · " + g.op));
     box.appendChild(elem("p", null, g.about));
 
     var ul = elem("ul", "gsheet__inc");
-    g.includes.forEach(function (t) { ul.appendChild(elem("li", null, t)); });
+    g.inc.forEach(function (t) { ul.appendChild(elem("li", null, t)); });
     box.appendChild(elem("p", "gsheet__k", "What's included"));
     box.appendChild(ul);
 
     var facts = elem("dl", "gsheet__facts");
-    [["Meeting point", g.meet], ["Languages", g.langs], ["Runs on", g.days.map(function (d) { return DAY_NAME[d]; }).join(", ")]]
+    [["Price", (g.per ? euros(g.price) + " per group of up to " + g.per : "from " + euros(g.price) + " per adult") +
+        (g.was ? " (was " + euros(g.was) + ")" : "")],
+     ["Meeting point", g.meet], ["Languages", g.langs],
+     ["Starts", g.hours || (g.times ? g.times.join(" or ") : "Set by the operator; shown when you pick a date")],
+     ["Cancellation", "Free up to 24 hours before"],
+     ["Listed as", "“" + g.gyg + "”"]]
       .forEach(function (f) {
         var row = elem("div");
         row.appendChild(elem("dt", null, f[0]));
@@ -1995,15 +2388,24 @@
       });
     box.appendChild(facts);
 
+    if (g.tip) {
+      var tip = elem("div", "gsheet__tip");
+      tip.appendChild(elem("b", null, "Good to know"));
+      tip.appendChild(elem("p", null, g.tip));
+      box.appendChild(tip);
+    }
+
     var have = bookingFor(g.id);
     if (have) {
       box.appendChild(bookedPanel(g, have, function () { guideDetail(box, g); }));
+      box.appendChild(gygLink(g));
       return;
     }
-    var go = elem("button", "btn btn--wide", "Check availability · from €" + g.price);
+    var go = elem("button", "btn btn--wide", "Check availability · " + (g.per ? "" : "from ") + euros(g.price));
     go.addEventListener("click", function () { guidePick(box, g); });
     box.appendChild(go);
-    box.appendChild(elem("p", "note", "Example listing. Prices are illustrative and no booking here is real."));
+    box.appendChild(gygLink(g));
+    box.appendChild(elem("p", "note", "A real listing, read from GetYourGuide on 8 Oct 2026; prices and ratings move. Booking inside Corners is a demo — book for real on GetYourGuide."));
   }
 
   function guidePick(box, g) {
@@ -2014,7 +2416,7 @@
     box.appendChild(elem("h2", null, "When suits you?"));
     box.appendChild(elem("p", "card__meta", g.t + " · " + g.dur));
 
-    var dates = nextDates(g), pickDate = dates[0], pickTime = g.times[0], people = 1;
+    var dates = nextDates(), pickDate = dates[0], pickTime = g.times ? g.times[0] : "", people = 1;
 
     box.appendChild(elem("p", "gsheet__k", "Date"));
     var dbox = elem("div", "chips chips--wrap");
@@ -2031,20 +2433,24 @@
     box.appendChild(dbox);
 
     box.appendChild(elem("p", "gsheet__k", "Time"));
-    var tbox = elem("div", "chips chips--wrap");
-    var tBtns = g.times.map(function (t) {
-      var b = elem("button", "chip" + (t === pickTime ? " is-on" : ""), t);
-      b.type = "button";
-      b.addEventListener("click", function () {
-        pickTime = t;
-        tBtns.forEach(function (x, i) { x.classList.toggle("is-on", g.times[i] === pickTime); });
+    if (g.times) {
+      var tbox = elem("div", "chips chips--wrap");
+      var tBtns = g.times.map(function (t) {
+        var b = elem("button", "chip" + (t === pickTime ? " is-on" : ""), t);
+        b.type = "button";
+        b.addEventListener("click", function () {
+          pickTime = t;
+          tBtns.forEach(function (x, i) { x.classList.toggle("is-on", g.times[i] === pickTime); });
+        });
+        tbox.appendChild(b);
+        return b;
       });
-      tbox.appendChild(b);
-      return b;
-    });
-    box.appendChild(tbox);
+      box.appendChild(tbox);
+    } else {
+      box.appendChild(elem("p", "card__meta", g.hours || "The operator sets the start time; GetYourGuide shows it once you pick a date."));
+    }
 
-    box.appendChild(elem("p", "gsheet__k", "How many of you"));
+    box.appendChild(elem("p", "gsheet__k", g.per ? "How many of you (up to " + g.per + ")" : "How many of you"));
     var step = elem("div", "stepper");
     var minus = elem("button", "stepper__b", "−");
     var count = elem("span", "stepper__n", "1");
@@ -2060,28 +2466,30 @@
     function paint() {
       count.textContent = String(people);
       minus.disabled = people <= 1;
-      plus.disabled = people >= Math.min(6, g.max);
+      plus.disabled = people >= maxPeople(g);
       total.textContent = "";
-      total.appendChild(elem("b", null, "€" + g.price * people));
-      total.appendChild(document.createTextNode(" · " + people + (people === 1 ? " person" : " people") + " × €" + g.price));
+      total.appendChild(elem("b", null, euros(bookingTotal(g, people))));
+      total.appendChild(document.createTextNode(g.per
+        ? " for the group · " + people + (people === 1 ? " person" : " people")
+        : " · " + people + (people === 1 ? " person" : " people") + " × " + euros(g.price)));
     }
     minus.addEventListener("click", function () { if (people > 1) { people--; paint(); } });
-    plus.addEventListener("click", function () { if (people < Math.min(6, g.max)) { people++; paint(); } });
+    plus.addEventListener("click", function () { if (people < maxPeople(g)) { people++; paint(); } });
     paint();
     box.appendChild(total);
 
     confirm.addEventListener("click", function () {
       var b = { ref: bookingRef(g, pickDate), gid: g.id, date: pickDate, time: pickTime,
-                people: people, total: g.price * people, made: iso(new Date()) };
+                people: people, total: bookingTotal(g, people), made: iso(new Date()) };
       state.bookings.push(b);
       save();
       renderGuides();
       renderMe();
       guideDetail(box, g);
-      toast("Booked " + prettyDate(b.date) + " at " + b.time + " — demo only");
+      toast("Booked " + whenText(b) + " — demo only");
     });
     box.appendChild(confirm);
-    box.appendChild(elem("p", "note", "Nothing is charged and no operator is contacted. This is a prototype."));
+    box.appendChild(elem("p", "note", "Nothing is charged and no operator is contacted. To book for real, use the GetYourGuide link."));
   }
 
   function bookedPanel(g, b, refresh) {
@@ -2092,9 +2500,9 @@
     head.appendChild(elem("span", "booked__ref", b.ref));
     wrap.appendChild(head);
     var dl = elem("dl", "gsheet__facts");
-    [["When", prettyDate(b.date) + " at " + b.time],
+    [["When", whenText(b) + (b.time ? "" : ", time from the operator")],
      ["Who", b.people + (b.people === 1 ? " person" : " people")],
-     ["Total", "€" + b.total],
+     ["Total", euros(b.total)],
      ["Meeting point", g.meet]].forEach(function (f) {
       var row = elem("div");
       row.appendChild(elem("dt", null, f[0]));
@@ -2310,7 +2718,7 @@
     ["bilbao_artxanda", "mountains", "Artxanda", "Funicular, the city below", "--h4", function () { setMode("there", false); go("trips"); }],
     ["bilbao_sopelana", "surf", "Sopelana", "Beach, 30 min on the metro", "--h6", function () { setMode("there", false); go("groups"); }],
     ["bilbao_guggenheim", "guggenheim", "Guggenheim", "Free with a student card", "--h9", function () { openCity("bilbao"); }],
-    ["bilbao_sanmames", "stadium", "San Mamés", "Athletic, standing tickets", "--h1", function () { setMode("there", false); go("guides"); }]
+    ["bilbao_sanmames", "stadium", "San Mamés", "Stadium tour, from €16.50", "--h1", function () { setMode("there", false); go("guides"); }]
   ];
 
   /* ---- slideshow ----

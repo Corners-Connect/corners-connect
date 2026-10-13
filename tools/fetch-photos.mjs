@@ -36,7 +36,19 @@ const WANTED = {
      Basque beaches: a surf school card for Sopelana illustrated with Morocco is a
      picture of somewhere else. */
   surf_lesson: { search: "surfing Zarautz", must: ["zarautz"] },
-  surf_wave: { search: "surfing Zarautz", must: ["zarautz"], nth: 1 }
+  surf_wave: { search: "surfing Zarautz", must: ["zarautz"], nth: 1 },
+  /* Places the GetYourGuide listings in Guides go to. */
+  bizkaia_bridge: { wiki: "Vizcaya Bridge", lang: "en", search: "Puente de Vizcaya Portugalete", must: ["vizcaya", "bizkaia", "colgante", "portugalete"] },
+  gernika: { wiki: "Gernika", lang: "en", search: "Gernika Casa de Juntas arbol", must: ["gernika", "guernica"] },
+  zumaia: { wiki: "Zumaia", lang: "en", search: "Zumaia flysch Itzurun", must: ["zumaia", "flysch", "itzurun"] },
+  laguardia: { wiki: "Laguardia, Álava", lang: "en", search: "Laguardia Alava vineyards", must: ["laguardia"] },
+  getaria: { wiki: "Getaria", lang: "en", search: "Getaria harbour", must: ["getaria"] },
+  bayonne: { wiki: "Bayonne", lang: "en", search: "Bayonne Nive quais", must: ["bayonne"] },
+  espelette: { wiki: "Espelette", lang: "en", search: "Espelette village piments", must: ["espelette", "ezpeleta"] },
+  santillana: { wiki: "Santillana del Mar", lang: "en", search: "Santillana del Mar calle", must: ["santillana"] },
+  fine_arts: { wiki: "Museo de Bellas Artes de Bilbao", lang: "es", search: "Museo de Bellas Artes de Bilbao", must: ["bellas", "fine arts", "arte"] },
+  riscal: { wiki: "Hotel Marqués de Riscal", lang: "en", search: "Marques de Riscal Elciego", must: ["riscal"] },
+  getxo: { wiki: "Getxo", lang: "en", search: "Getxo Puerto Viejo Algorta", must: ["getxo", "algorta", "arriluce", "neguri", "ereaga"] }
 };
 
 const FREE = /^(CC0|CC BY|CC BY-SA|Public domain|PDM)/i;
