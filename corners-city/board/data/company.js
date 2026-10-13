@@ -37,7 +37,7 @@ window.DIP.company = {
   "blockObjective": { "block": 1, "text": "—", "owner": "—" },
   "inheritedObjective": "Every member of this company demonstrates all 21 competences by 3 December.",
   "teams": [
-    { "id": "product",    "name": "Product",    "seats": 4, "question": "What we make, and whether it works" },
+    { "id": "product",    "name": "Product",    "seats": 5, "question": "What we make, and whether it works" },
     { "id": "audience",   "name": "Audience",   "seats": 3, "question": "Who it is for, and how they hear about it" },
     { "id": "operations", "name": "Operations", "seats": 4, "question": "How the company runs, and how it knows" }
   ],

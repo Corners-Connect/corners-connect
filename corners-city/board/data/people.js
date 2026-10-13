@@ -41,5 +41,10 @@ window.DIP.people = [
   { "id": "p08", "name": "—", "team": "operations", "hat": "record", "capacity": 4, "away": [], "mastery": [] },
   { "id": "p09", "name": "—", "team": "operations", "hat": null, "capacity": 4, "away": [], "mastery": [] },
   { "id": "p10", "name": "—", "team": "operations", "hat": null, "capacity": 4, "away": [], "mastery": [] },
-  { "id": "p11", "name": "—", "team": "operations", "hat": null, "capacity": 4, "away": [], "mastery": [] }
+  { "id": "p11", "name": "—", "team": "operations", "hat": null, "capacity": 4, "away": [], "mastery": [] },
+  /* Appended, not inserted: board.js gives each person a tone by array position
+     (HUES[i % 11]), so slotting p12 in beside the other Product rows silently
+     repainted everyone from p05 down. The twelfth person shares a tone with the
+     first whatever we do — eleven tones, twelve people. */
+  { "id": "p12", "name": "Finn", "team": "product",    "hat": null, "capacity": 4, "away": [], "mastery": [] }
 ];
