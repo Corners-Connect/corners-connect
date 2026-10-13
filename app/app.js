@@ -216,7 +216,17 @@
     var raw = localStorage.getItem(KEY);
     if (raw) state = Object.assign(state, JSON.parse(raw));
   } catch (e) {}
-  var save = function () { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
+  var save = function () {
+    try {
+      var stored = Object.assign({}, state);
+      if (window.CORNERS_SUPABASE && window.CORNERS_SUPABASE.url && window.CORNERS_SUPABASE.publishableKey) {
+        // Never mix account data into the shared demo state.
+        stored.profile = { name: "Guest", role: "Student" };
+        stored.saves = [];
+      }
+      localStorage.setItem(KEY, JSON.stringify(stored));
+    } catch (e) {}
+  };
 
   // Older saved answers (or none) get normalised to the survey's shape.
   (function () {
@@ -2088,6 +2098,7 @@
     };
     b.addEventListener("click", function (e) {
       e.stopPropagation();
+      if (window.CornersBackend) { window.CornersBackend.toggleSave(r.id); return; }
       var i = state.saves.indexOf(r.id);
       if (i > -1) { state.saves.splice(i, 1); toast("Removed from saved"); }
       else { state.saves.push(r.id); toast("Saved"); }
@@ -2134,7 +2145,8 @@
       var actions = elem("div", "sheet__actions");
       var s = elem("button", "btn", state.saves.indexOf(r.id) > -1 ? "Saved" : "Save this");
       s.addEventListener("click", function () {
-        var i = state.saves.indexOf(r.id);
+        if (window.CornersBackend) { window.CornersBackend.toggleSave(r.id); return; }
+      var i = state.saves.indexOf(r.id);
         if (i > -1) { state.saves.splice(i, 1); s.textContent = "Save this"; }
         else { state.saves.push(r.id); s.textContent = "Saved"; }
         save(); renderRecs(); renderMe();
@@ -3015,6 +3027,7 @@
   var editBtn = $("[data-edit-profile]");
   if (editBtn) {
     editBtn.addEventListener("click", function () {
+      if (window.CornersBackend) { window.CornersBackend.account(); return; }
       openSheet(function (box) {
         box.appendChild(elem("h2", null, "Your profile"));
         box.appendChild(elem("p", null, "Only your first name is ever shown, and never on Nearby."));
@@ -3047,6 +3060,18 @@
 
   window.addEventListener("scroll", function () { $(".top").classList.toggle("is-stuck", scrollY > 8); }, { passive: true });
 
+  // Supabase adapter: expose only the product operations it needs.
+  window.CornersApp = {
+    openSheet: openSheet,
+    toast: toast,
+    getUsername: function () { return state.profile.name; },
+    getSaved: function () { return state.saves.slice(); },
+    setPlaces: function (places) { RECS = places; renderRecs(); renderMe(); },
+    setAccount: function (name, saved) {
+      state.profile = { name: name, role: "Student" };
+      state.saves = saved.slice(); renderRecs(); renderMe();
+    }
+  };
   /* ================= boot ================= */
 
   renderLanding();
