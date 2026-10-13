@@ -25,6 +25,7 @@ function approveExtensions(rows) {
   if (typeof raw.blurb === 'string' && raw.blurb.trim().length <= 180) out.blurb = raw.blurb.trim();
   if (typeof raw.href === 'string' && HREF_SAFE.test(raw.href)) out.href = raw.href;
   if (Array.isArray(raw.acts)) out.acts = raw.acts.filter(a => /^A-\d{3}$/.test(a));
+  if (raw.view === 'plan') out.view = 'plan';
   if (Array.isArray(raw.stages)) out.stages = raw.stages.filter(t => t && typeof t.name === 'string' && typeof t.text === 'string').slice(0, 8).map(t => ({name:t.name.slice(0, 30), text:t.text.slice(0, 200), folder:/^[A-Za-z0-9_\/-]+\/$/.test(t.folder||'') ? t.folder : ''}));
   return out;
  });
@@ -106,12 +107,56 @@ function selectPlace(id){
  $('placeKind').textContent=info.tool?.kind || (info.team?'EXISTING DEPARTMENT':!info.type?'AVAILABLE TO YOUR TEAM':info.draft?'VISUAL CITY DRAFT':'SECTION IN BUILD');
  $('placeTitle').textContent=info.label;
  $('placeDescription').textContent=info.tool?.description || info.blurb || info.question || (info.type?'A building shell for your idea. This visual draft does not create tasks, assign people, or run an AI agent.':'An empty plot. Choose a shape and name for a visual draft, then build its real function with your agent.');
- renderStages(info);renderWork(info);const actions=$('placeActions');actions.replaceChildren();
+ renderPlan(info);renderStages(info);renderWork(info);const actions=$('placeActions');actions.replaceChildren();
  if(info.tool){const link=document.createElement('a');link.href=info.tool.href;link.textContent=info.tool.action;actions.append(link);}
  else if(info.team){const link=document.createElement('a');link.href=`index.html#${info.team}`;link.textContent='Open the existing department ↗';actions.append(link);}
  else if(!info.type){const button=document.createElement('button');button.textContent='Build on this plot ↗';button.onclick=()=>{$('plotName').textContent=info.label;$('buildError').textContent='';$('buildForm').reset();$('builder').showModal();$('buildingLabel').focus();};actions.append(button);}
  else{if(info.href){const open=document.createElement('a');open.href=info.href;open.target='_blank';open.rel='noopener';open.textContent=`Open ${info.label} in the app ↗`;actions.append(open);}const link=document.createElement('a');link.href='city-guide.html';link.className=info.href?'secondary':'';link.textContent='Build the real function ↗';actions.append(link);}
  $('inspector').hidden=false;
+}
+/* Action Plan Tracking: each department's actions for a month, split by week.
+   Read-only on purpose. The board (index.html, PDCA) is where an action is moved,
+   so this adds no second task system. */
+let planDept='product',planMonth=null;
+const MONTH_END=m=>{const [y,mo]=m.split('-').map(Number);return new Date(Date.UTC(y,mo,0)).getUTCDate();};
+function shiftMonth(m,n){const [y,mo]=m.split('-').map(Number),d=new Date(Date.UTC(y,mo-1+n,1));return d.toISOString().slice(0,7);}
+function weekStart(iso){const d=new Date(iso+'T00:00:00Z');d.setUTCDate(d.getUTCDate()-((d.getUTCDay()+6)%7));return d.toISOString().slice(0,10);}
+const dayLabel=iso=>new Date(iso+'T00:00:00Z').toLocaleDateString('en-GB',{day:'numeric',month:'short',timeZone:'UTC'});
+function renderPlan(info){
+ const box=$('placePlan');if(!box)return;box.replaceChildren();
+ if(info.view!=='plan')return;
+ const today=new Date().toISOString().slice(0,10);planMonth=planMonth||today.slice(0,7);
+ const all=(window.DIP?.actions||[]).filter(a=>a.state!=='dropped'&&a.due),teams=window.DIP?.company?.teams||[];
+ const inMonth=all.filter(a=>a.due.slice(0,7)===planMonth);
+ const el=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e;};
+ const head=el('div','plan-month'),prev=el('button','',' \u2039 '),next=el('button','',' \u203A ');prev.type=next.type='button';
+ prev.setAttribute('aria-label','Previous month');next.setAttribute('aria-label','Next month');
+ prev.onclick=()=>{planMonth=shiftMonth(planMonth,-1);renderPlan(info);};next.onclick=()=>{planMonth=shiftMonth(planMonth,1);renderPlan(info);};
+ head.append(prev,el('b','',new Date(planMonth+'-01T00:00:00Z').toLocaleDateString('en-GB',{month:'long',year:'numeric',timeZone:'UTC'})),next);
+ const tabs=el('div','plan-tabs');
+ for(const t of teams){const n=inMonth.filter(a=>a.team===t.id).length,b=el('button','',`${t.name} \u00b7 ${n}`);b.type='button';b.setAttribute('aria-pressed',String(t.id===planDept));b.onclick=()=>{planDept=t.id;renderPlan(info);};tabs.append(b);}
+ const mine=inMonth.filter(a=>a.team===planDept),done=mine.filter(a=>a.state==='done').length;
+ const bar=el('div','plan-bar'),fill=el('i');fill.style.width=mine.length?`${Math.round(done/mine.length*100)}%`:'0%';bar.append(fill);
+ const sum=el('p','plan-sum',mine.length?`${done} of ${mine.length} done`:'No actions due this month');
+ box.append(head,tabs,bar,sum);
+ const miles=(window.DIP?.company?.milestones||[]).filter(m=>m.date.slice(0,7)===planMonth);
+ for(const m of miles)box.append(el('p','plan-mile',`${dayLabel(m.date)} \u00b7 ${m.name}`));
+ const weeks=new Map();
+ for(const a of mine.sort((x,y)=>x.due.localeCompare(y.due))){const w=weekStart(a.due);if(!weeks.has(w))weeks.set(w,[]);weeks.get(w).push(a);}
+ for(const [w,list] of weeks){
+  box.append(el('p','work-h',`WEEK OF ${dayLabel(w).toUpperCase()}`));
+  const ul=el('ul','work');
+  for(const a of list){
+   const person=(window.DIP?.people||[]).find(p=>p.id===a.owner),who=person&&person.name&&person.name!=='\u2014'?person.name:a.owner;
+   const late=['planned','doing'].includes(a.state)&&a.due<today;
+   const li=el('li',(a.state==='done'?'is-done ':'')+(late?'is-late':''));
+   li.append(el('b','',a.what),el('small','',`${who} \u00b7 due ${dayLabel(a.due)} \u00b7 ${a.state}${late?' \u00b7 past due':''}`));
+   const fb=a.result||a.note;if(fb)li.append(el('em','plan-fb',fb));
+   ul.append(li);
+  }
+  box.append(ul);
+ }
+ const link=el('a','secondary','Update these in the board (PDCA) \u2197');link.href='index.html#pdca';box.append(link);
 }
 /* The steps a piece of work walks inside a building. Folders with files are counted
    by video-production/status.py, so the numbers are real files, not typed in. */

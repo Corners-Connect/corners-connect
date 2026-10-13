@@ -23,3 +23,16 @@
 .stages p{margin:4px 0 0}
 .stages code{display:inline-block;margin-top:6px;font-size:10px;letter-spacing:.04em;color:var(--blue);opacity:.8}
 .stages li:hover .stage-n{background:var(--blue);color:var(--chocolate)}
+
+.plan-month{display:flex;align-items:center;justify-content:space-between;margin-top:20px}
+.plan-month b{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:22px}
+.plan-month button{border:1px solid var(--blue);background:none;color:var(--blue);width:28px;height:28px;cursor:pointer}
+.plan-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:12px}
+.plan-tabs button{border:1px solid var(--blue);background:none;color:var(--blue);padding:8px 2px;font-size:10px;letter-spacing:.04em;cursor:pointer}
+.plan-tabs button[aria-pressed=true]{background:var(--blue);color:var(--chocolate)}
+.plan-bar{height:4px;margin-top:14px;background:rgba(168,221,251,.25)}
+.plan-bar i{display:block;height:100%;background:var(--vivid)}
+.inspector .plan-sum{margin:6px 0 0;opacity:.8}
+.inspector .plan-mile{margin:10px 0 0;font-size:10px;letter-spacing:.06em;color:var(--vivid)}
+.work li.is-late{border-left-style:dashed;border-left-color:#ffb38a}
+.plan-fb{display:block;margin-top:5px;font-size:11px;line-height:1.5;opacity:.85;font-style:italic}

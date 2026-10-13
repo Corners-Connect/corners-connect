@@ -56,8 +56,8 @@ export const EXTENSIONS = [
    {name:'Recording', folder:'video-production/recordings/', text:'Shot list, locations and gear for the day you film.'},
    {name:'Edit', folder:'video-production/edits/', text:'Captioned vertical clips for TikTok and Reels, in the Corners look.'},
    {name:'Post', folder:'video-production/posts/', text:'Caption, hashtags, posting time and where each clip goes live.'}]},
- {plotId:'plot-10', label:'Action Plan Tracking', type:'control',
-  blurb:'The month\'s deliverables, one owner each, and where every one stands. Tasks live in the board.',
+ {plotId:'plot-10', label:'Action Plan Tracking', type:'control', view:'plan',
+  blurb:'Each department\'s deliverables for the month, split by week, read live from the board.',
   stages:[
    {name:'Plan', text:'Turn each deliverable into an action: one sentence starting with a verb, an estimate and a due date.'},
    {name:'Assign', text:'One owner per action. A name, never a team.'},
