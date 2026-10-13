@@ -104,9 +104,11 @@ async function build() {
   await asset("website/photos.js", ".");
 
   // the app
-  await page("app/index.html", "app", "index.html", ["app/app.css", "app/app.js", "app/photos.js"]);
+  await page("app/index.html", "app", "index.html", ["app/app.css", "app/app.js", "app/photos.js", "app/supabase-config.js", "app/supabase-backend.js"]);
   await asset("app/app.css", "app");
   await asset("app/app.js", "app");
+  await asset("app/supabase-config.js", "app");
+  await asset("app/supabase-backend.js", "app");
   await asset("app/photos.js", "app");
 
   // onboarding and dashboard
