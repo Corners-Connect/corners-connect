@@ -68,7 +68,7 @@ export const EXTENSIONS = [
 // Functional entries are reviewed source code. Browser drafts cannot supply URLs.
 export const TOOLS = {
  'video-editor': {href:'http://localhost:3000', kind:'VIDEO PRODUCTION', action:'Open the video editor ↗',
-  description:'Captioned vertical clips for TikTok and Reels. Run npm run dev in video-tool/, then this opens the Studio on localhost.'},
+  description:'Captioned vertical clips for TikTok and Reels. Start the Studio first by double-clicking video-production/start-editor.bat, then open it here.'},
  'learning-lab': {href:'learning-lab.html', kind:'INSTRUCTOR CONTRIBUTION',
   action:'Enter Learning Lab ↗', description:'Prepare the four course deliveries and turn all 25 syllabus topics into useful pieces of your company. Your team keeps the decisions.'}
 };

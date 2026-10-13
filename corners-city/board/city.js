@@ -108,7 +108,7 @@ function selectPlace(id){
  $('placeTitle').textContent=info.label;
  $('placeDescription').textContent=info.tool?.description || info.blurb || info.question || (info.type?'A building shell for your idea. This visual draft does not create tasks, assign people, or run an AI agent.':'An empty plot. Choose a shape and name for a visual draft, then build its real function with your agent.');
  renderPlan(info);renderStages(info);renderWork(info);const actions=$('placeActions');actions.replaceChildren();
- if(info.tool){const link=document.createElement('a');link.href=info.tool.href;link.textContent=info.tool.action;actions.append(link);}
+ if(info.tool){const link=document.createElement('a');link.href=info.tool.href;if(/^https?:/.test(info.tool.href)){link.target='_blank';link.rel='noopener';}link.textContent=info.tool.action;actions.append(link);}
  else if(info.team){const link=document.createElement('a');link.href=`index.html#${info.team}`;link.textContent='Open the existing department ↗';actions.append(link);}
  else if(!info.type){const button=document.createElement('button');button.textContent='Build on this plot ↗';button.onclick=()=>{$('plotName').textContent=info.label;$('buildError').textContent='';$('buildForm').reset();$('builder').showModal();$('buildingLabel').focus();};actions.append(button);}
  else{if(info.href){const open=document.createElement('a');open.href=info.href;open.target='_blank';open.rel='noopener';open.textContent=`Open ${info.label} in the app ↗`;actions.append(open);}const link=document.createElement('a');link.href='city-guide.html';link.className=info.href?'secondary':'';link.textContent='Build the real function ↗';actions.append(link);}

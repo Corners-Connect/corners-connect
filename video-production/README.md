@@ -36,7 +36,7 @@ The files named `*-example-*` show what a finished video looks like across the f
 
 ## The editor
 
-Edit uses the Remotion Studio in `../video-tool/`. Run `npm run dev` there and open http://localhost:3000. See `../video-tool/README.md` for transcription and captions.
+Edit uses the Remotion Studio in `../video-tool/`. On Windows, double-click `start-editor.bat` here, keep the window open and use the "Open the video editor" link in Corners City (or open http://localhost:3000). Without the .bat: run `npm run dev` in `video-tool/`. See `../video-tool/README.md` for transcription and captions.
 
 ## Rules for whoever works here (people and agents)
 
