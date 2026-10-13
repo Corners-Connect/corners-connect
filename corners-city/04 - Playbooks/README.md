@@ -1,7 +1,7 @@
 # Playbooks
 
 One per live competence. **The owner writes it; the apprentice produces the
-deliverable from it.** That pairing is the whole mechanism by which eleven people
+deliverable from it.** That pairing is the whole mechanism by which twelve people
 end the term able to do 21 things, instead of three people ending it able to do
 everything.
 

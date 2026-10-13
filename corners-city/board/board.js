@@ -882,7 +882,7 @@ function scrCash(){
       bar([{v:r.tot,c:r.p._hue},{v:maxP-r.tot,c:"var(--paper-3)"}], maxP)+
       '<span>'+num(r.tot)+' · '+Math.round(share)+'%</span></div>';
   });
-  h += '</div><p class="card__src">In a company of eleven, anybody much above nine per cent is '+
+  h += '</div><p class="card__src">In a company of twelve, anybody much above eight per cent is '+
     'carrying somebody — and four of the five grade categories are individual, so that is not '+
     'generosity, it is a problem with arithmetic behind it.</p></div>';
 
@@ -1118,7 +1118,7 @@ function scrMastery(){
   var h = head("The people", "Mastery",
     'The instrument for the one objective this company did not set for itself. '+
     '<b>Click any square to claim a level</b> — the gaps below are then calculated, '+
-    'because nobody spots a pattern in 231 cells at 16:25 on a Thursday.');
+    'because nobody spots a pattern in 252 cells at 16:25 on a Thursday.');
 
   h += '<div class="grid g-3">';
   h += kpi("Nobody above level 1", g.untouched.length,

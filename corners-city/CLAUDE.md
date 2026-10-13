@@ -1,6 +1,6 @@
 # How to work in this repository
 
-> You are working inside the workspace of a company that eleven students run
+> You are working inside the workspace of a company that twelve students run
 > together for one term. Read this before touching anything.
 
 ## Open Corners City on localhost
@@ -13,7 +13,7 @@ full builder prompt or choosing a hackathon contribution.
 
 ## What this company is
 
-The whole class — eleven people — runs a single company. Every deliverable the
+The whole class — twelve people — runs a single company. Every deliverable the
 university requires is a piece of running it; nothing is bolted on top. The
 students write their own rules in `00 - Manual/`. The instructor sets the
 constraints and acts as the client. **He does not run the company, and neither do
@@ -29,7 +29,7 @@ Everything else it decides for itself.
 
 **You do not make this company's decisions.** Not what it builds, not who owns
 what, not what its objective is, not what its brand looks like. Those belong to
-the eleven people, and a decision quietly made by an agent is the failure this
+the twelve people, and a decision quietly made by an agent is the failure this
 whole course is designed to avoid.
 
 What you do instead: **draft, calculate, check, and lay out the options with the
@@ -71,7 +71,7 @@ Never write the `expect` after the fact; a prediction written afterwards is not
 a prediction.
 
 - **Mutate in place.** Add rows, edit rows. Never reorder, renumber or reformat a
-  file wholesale: the diff is how eleven people see what changed.
+  file wholesale: the diff is how twelve people see what changed.
 - **Ids are permanent.** `A-014` is `A-014` for the rest of the term, even if
   everything else about it changes.
 - **Always run `python3 board/check.py` after editing.** It fails on the things

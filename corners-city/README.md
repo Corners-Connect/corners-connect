@@ -184,7 +184,7 @@ Nothing is typed twice: every number is calculated from the four files in
 | **01 - Registry** | One record per session: what was committed, what arrived, what was decided and why. Plus handovers when somebody takes something over | Whoever keeps the record |
 | **02 - Mastery matrix** | Nothing. It is the Teams screen — see the README in there for why | The liaison |
 | **03 - Deliverables** | The four things USAC asks for, and the checklist for each | The team carrying that date |
-| **04 - Playbooks** | One per live competence. The owner writes it, the apprentice produces the deliverable from it. This is the folder that decides whether all eleven of you get there or only the three who were already good at it | Each owner |
+| **04 - Playbooks** | One per live competence. The owner writes it, the apprentice produces the deliverable from it. This is the folder that decides whether all twelve of you get there or only the three who were already good at it | Each owner |
 | **05 - Brand** | The brand book, the assets, and the rules for using them | Audience |
 
 ---

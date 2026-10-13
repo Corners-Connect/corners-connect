@@ -2,7 +2,7 @@
 
 It used to be a table in a file that somebody updated at the end of every
 session, and then read to spot the gaps. That last step is the part that never
-happens: a 21 × 11 grid has 231 cells, and nobody spots a pattern in 231 cells at
+happens: a 21 × 12 grid has 252 cells, and nobody spots a pattern in 252 cells at
 16:25 on a Thursday.
 
 **It is the Teams screen of the board.** Open the board, click any square, claim a
@@ -24,7 +24,7 @@ level. The gaps are then calculated rather than noticed:
 
 **Level 2 is what USAC requires. Level 3 is what this company requires of
 itself**, and that is not ambition for its own sake: the inherited objective is
-that *all eleven* demonstrate all 21 competences, and that is only reachable if
+that *all twelve* demonstrate all 21 competences, and that is only reachable if
 the people who can do a thing teach it. A company where three people are good at
 everything fails that objective by arithmetic.
 

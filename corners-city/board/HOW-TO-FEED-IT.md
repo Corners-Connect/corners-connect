@@ -134,7 +134,7 @@ never edit the same file in the same hour and lose each other's work.
 | File | What it holds | Owner | Touched |
 |---|---|---|---|
 | `company.js` | Name, purpose, the block objective, the three teams, the dates | Operations | Four times a term |
-| `people.js` | The eleven, their weekly capacity, their git handle, what each can do | Operations, with the liaison | Weekly, in the close |
+| `people.js` | The twelve, their weekly capacity, their git handle, what each can do | Operations, with the liaison | Weekly, in the close |
 | `actions.js` | Everything the company has said it would do, and where each sits in the loop | Whoever owns the action | Every session |
 | `activity.js` | What each person did. Partly written by git | Everybody, their own lines | The day you work |
 
@@ -231,7 +231,7 @@ It will, eventually, and here is how it shows:
   saying out loud that something slipped.
 - **Estimates match reality exactly.** Nobody estimates that well. Somebody is
   writing the estimate after doing the work.
-- **The hours are evenly spread across eleven people.** Check the activity against
+- **The hours are evenly spread across twelve people.** Check the activity against
   what you saw. Even, honest effort looks lumpy.
 
 None of these is a reason to stop using the board. They are the board doing its

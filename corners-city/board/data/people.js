@@ -1,4 +1,4 @@
-/* ═══ people.js · the eleven, what they can give, what they can do ═══════════
+/* ═══ people.js · the twelve, what they can give, what they can do ═══════════
    Owner: Operations, with the liaison keeping the mastery claims honest.
 
    ⚠ FIRST NAMES ONLY. No emails, no phone numbers, no student ids, no grades.
