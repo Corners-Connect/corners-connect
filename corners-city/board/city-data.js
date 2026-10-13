@@ -43,11 +43,16 @@ export const EXTENSIONS = [
  {plotId:'plot-07', type:'ayuntamiento', label:'Programme',
   blurb:'Key dates, the first-week checklist, and what everyone is asking about this week.',
   href:'https://corners-connect.github.io/corners-connect/app/#prog', acts:['A-014']},
- {plotId:'plot-08', label:'Learning Lab', type:'biblioteca', tool:'learning-lab'}
+ {plotId:'plot-08', label:'Learning Lab', type:'biblioteca', tool:'learning-lab'},
+ // Eat, do and weekends: restaurants, bars and clubs; adventure and group activities; trips.
+ // Drafted 13 October 2026 by Claude Code for the requesting student; team review pending.
+ {plotId:'plot-09', label:'Eat, do and weekends', type:'nave', tool:'eat-do-weekends'}
 ];
 
 // Functional entries are reviewed source code. Browser drafts cannot supply URLs.
 export const TOOLS = {
+ 'eat-do-weekends': {href:'eat-do-weekends.html', kind:'STUDENT CONTRIBUTION · DRAFT DATA',
+  action:'Open Eat, do and weekends ↗', description:'Bilbao restaurants, bars and clubs sorted by price, reviews or what you want; adventure and group activities with sign-up; trips near Bilbao. Prices and scores are estimates.'},
  'learning-lab': {href:'learning-lab.html', kind:'INSTRUCTOR CONTRIBUTION',
   action:'Enter Learning Lab ↗', description:'Prepare the four course deliveries and turn all 25 syllabus topics into useful pieces of your company. Your team keeps the decisions.'}
 };
