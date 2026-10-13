@@ -141,10 +141,19 @@ function renderPlan(info){
  box.append(head,tabs,bar,sum);
  const miles=(window.DIP?.company?.milestones||[]).filter(m=>m.date.slice(0,7)===planMonth);
  for(const m of miles)box.append(el('p','plan-mile',`${dayLabel(m.date)} \u00b7 ${m.name}`));
- const weeks=new Map();
- for(const a of mine.sort((x,y)=>x.due.localeCompare(y.due))){const w=weekStart(a.due);if(!weeks.has(w))weeks.set(w,[]);weeks.get(w).push(a);}
- for(const [w,list] of weeks){
-  box.append(el('p','work-h',`WEEK OF ${dayLabel(w).toUpperCase()}`));
+ const order=[...new Set(inMonth.map(a=>weekStart(a.due)))].sort();
+ const thisWeek=weekStart(today);
+ for(const w of order){
+  box.append(el('p','work-h',`WEEK OF ${dayLabel(w).toUpperCase()}${w===thisWeek?' \u00b7 THIS WEEK':''}`));
+  const bars=el('div','plan-weekbars');
+  for(const t of teams){
+   const rows=inMonth.filter(a=>a.team===t.id&&weekStart(a.due)===w),n=rows.length,dn=rows.filter(a=>a.state==='done').length,pct=n?Math.round(dn/n*100):null;
+   const row=el('div','plan-wk'+(t.id===planDept?' on':'')),bar=el('div','plan-bar'),f=el('i');f.style.width=`${pct||0}%`;bar.append(f);
+   row.append(el('span','',t.name),bar,el('em','',pct===null?'\u2013':`${pct}%`));row.title=pct===null?`${t.name}: nothing due this week`:`${t.name}: ${dn} of ${n} done`;bars.append(row);
+  }
+  box.append(bars);
+  const list=mine.filter(a=>weekStart(a.due)===w).sort((x,y)=>x.due.localeCompare(y.due));
+  if(!list.length){box.append(el('p','plan-sum','Nothing due for '+(teams.find(t=>t.id===planDept)?.name||'this department')));continue;}
   const ul=el('ul','work');
   for(const a of list){
    const person=(window.DIP?.people||[]).find(p=>p.id===a.owner),who=person&&person.name&&person.name!=='\u2014'?person.name:a.owner;
