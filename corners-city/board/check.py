@@ -317,8 +317,8 @@ def check_palette():
         if r < 4.5:
             fail("theme.css", f"--{name} on --{name}-bg reads at {r:.2f}, under 4.5")
 
-    # the eleven person tones carry text on this page, so they are measured too
-    for i in range(1, 12):
+    # the twelve person tones carry text on this page, so they are measured too
+    for i in range(1, 13):
         hexv = var(f"p{i}")
         if not hexv:
             continue

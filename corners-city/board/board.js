@@ -15,12 +15,15 @@ var D, CO, PEOPLE, ACTIONS, ACTIVITY;
 var TODAY, UNIT, SAMPLE, THIS_WEEK, SESSIONS, LAST_SESSION, MILESTONES, NEXT, BY_ID, SPENT;
 var STATES = ['planned','doing','check','done','dropped'];
 
-/* The eleven tones of Corner at L 0.42 — identical lightness, identical chroma,
-   32.7° apart, which is the brand's thesis measured. On paper they run 6.8 to
-   8.1 against the page, so unlike the dark version they can carry text as well
-   as dots and bars. */
+/* The twelve tones of Corner at L 0.42, one per person. On paper they run 6.8
+   to 8.1 against the page, so unlike the dark version they can carry text as
+   well as dots and bars. They share the hue circle as evenly as the four state
+   colours among them and sRGB's chroma limits allow — see theme.css.
+   ORDER IS IDENTITY: a person's tone is HUES[their index in people.js], so
+   inserting a tone here, or a row there, repaints everybody downstream.
+   Append, never insert. */
 var HUES = ["#802D35","#7C3600","#6A4500","#4B5400","#075D26","#006051",
-            "#005B73","#005088","#42438A","#623779","#772E5B"];
+            "#005B73","#005088","#42438A","#623779","#772E5B","#00595D"];
 
 /* ── 1 · small tools ─────────────────────────────────────────────────────── */
 

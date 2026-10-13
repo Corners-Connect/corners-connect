@@ -19,7 +19,7 @@
  *   ink 17.5 · ink-2 15.0 · ink-3 6.1 · ink-4 4.7 · chocolate 8.4
  *   ok 7.3 · warn 7.7 · bad 8.1 · info 7.6
  *   on the chocolate rail: white 9.3 · baby blue 6.4
- *   the eleven person tones on paper: 6.8 to 8.1, so they carry text too
+ *   the twelve person tones on paper: 6.8 to 8.1, so they carry text too
  * check.py recomputes all of it and fails if somebody changes a hex.
  */
 
@@ -54,11 +54,19 @@
   --bad:         #802D35;  --bad-bg:  #F6E2E2;
   --info:        #005088;  --info-bg: #DEEAF4;
 
-  /* ---- The eleven. Identical lightness, identical chroma, 32.7° apart.
-          One per person for the term, which is why the palette cannot make a
-          hierarchy: that is Corner's thesis, measured. ------------------- */
+  /* ---- The twelve. One tone per person for the term, which is why the
+          palette cannot make a hierarchy: that is Corner's thesis, measured.
+          All of them sit at L 0.42 and share the hue circle as evenly as two
+          things allow. First, four of them ARE the state colours (--bad=p1,
+          --warn=p3, --ok=p5, --info=p8) and cannot move. Second, sRGB has far
+          less chroma to give at this lightness in green and cyan than in red
+          and violet. So the spacing was never the clean 32.7° the old comment
+          claimed: measured, the eleven ran from 24.5° to 46.6° apart.
+          p12 was added for the twelfth student by splitting the widest gap,
+          p6->p7, which leaves the twelve 23.0° to 42.3° apart. ----------- */
   --p1:#802D35; --p2:#7C3600; --p3:#6A4500; --p4:#4B5400; --p5:#075D26; --p6:#006051;
   --p7:#005B73; --p8:#005088; --p9:#42438A; --p10:#623779; --p11:#772E5B;
+  --p12:#00595D;   /* h 200.1 · C 0.072 · 7.32 on paper */
 
   --serif: 'Instrument Serif', Georgia, serif;
   --sans:  'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
