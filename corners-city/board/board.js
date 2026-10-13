@@ -1317,7 +1317,7 @@ function flash(msg){
 
 /* The save state is never hidden and never lies about which mode it is in:
    somebody has to be able to tell at a glance whether what they just typed has
-   reached the files the other ten people can see. */
+   reached the files the other eleven people can see. */
 function paintSave(){
   var S = window.STORE, st = document.getElementById("saveState");
   var save = document.getElementById("saveBtn"), conn = document.getElementById("connectBtn");
@@ -1349,7 +1349,7 @@ async function boot(){
     try {
       var r = await window.STORE.save();
       flash(r.mode === "files"
-        ? "Written to data/ — " + r.written.join(", ") + ".js. Commit them so the other ten can see."
+        ? "Written to data/ — " + r.written.join(", ") + ".js. Commit them so the other eleven can see."
         : "Downloaded " + r.written.map(function(x){ return x + ".js"; }).join(", ") + ". Drop them into data/ and commit.");
     } catch (e){ flash("Not saved: " + e.message); }
     paintSave();

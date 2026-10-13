@@ -30,7 +30,7 @@ The state sits next to the tabs and never hides:
 Nothing is ever lost to a refresh: every change is mirrored into your browser
 immediately and offered back the next time you open it. **That mirror is private
 to your laptop and it is a safety net, never the truth.** The truth is the files,
-because the files are what the other ten people can see. Which is why the state
+because the files are what the other eleven people can see. Which is why the state
 says *unsaved* in orange until you have saved — an hour you logged and never
 saved is an hour nobody else knows about.
 

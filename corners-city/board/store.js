@@ -16,7 +16,7 @@
    Nothing is ever lost to a refresh: every change is mirrored into this
    browser immediately, and offered back to you the next time you open it.
    That mirror is per-browser and private — it is a safety net, never the
-   truth. The truth is the files, because the files are what the other ten
+   truth. The truth is the files, because the files are what the other eleven
    people can see.
    ─────────────────────────────────────────────────────────────────────────── */
 (function () {
