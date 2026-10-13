@@ -9,7 +9,9 @@ export const PLOTS = [
  {id:'plot-04', x:-12, z:12}, {id:'plot-05', x:0, z:12}, {id:'plot-06', x:12, z:12},
  // A fourth row, because the app has seven sections in build and the first three
  // rows hold six plots. Existing plot ids are untouched.
- {id:'plot-07', x:-12, z:24}, {id:'plot-08', x:0, z:24}, {id:'plot-09', x:12, z:24}
+ {id:'plot-07', x:-12, z:24}, {id:'plot-08', x:0, z:24}, {id:'plot-09', x:12, z:24},
+ // A fifth row for the Operations buildings. Existing plot ids are untouched.
+ {id:'plot-10', x:-12, z:36}, {id:'plot-11', x:0, z:36}, {id:'plot-12', x:12, z:36}
 ];
 // Approved visual additions live here as code after review. Local browser drafts
 // are separate and never become company decisions, tasks or evidence automatically.
@@ -43,11 +45,30 @@ export const EXTENSIONS = [
  {plotId:'plot-07', type:'ayuntamiento', label:'Programme',
   blurb:'Key dates, the first-week checklist, and what everyone is asking about this week.',
   href:'https://corners-connect.github.io/corners-connect/app/#prog', acts:['A-014']},
- {plotId:'plot-08', label:'Learning Lab', type:'biblioteca', tool:'learning-lab'}
+ {plotId:'plot-08', label:'Learning Lab', type:'biblioteca', tool:'learning-lab'},
+ // Operations buildings. Drafted 13 October 2026; team review and sign-off pending.
+ // `stages` are the steps a piece of work walks inside the building; `folder` is where its files live.
+ {plotId:'plot-09', label:'Video Production', type:'rascacielos', tool:'video-editor',
+  blurb:'From the first idea to the post: one video walks five stages, always in the same order.',
+  stages:[
+   {name:'Ideas', folder:'video-production/ideas/', text:'Hooks, topics and formats worth filming. Park every idea here before it becomes a script.'},
+   {name:'Script', folder:'video-production/scripts/', text:'Turn an idea into a short script: hook, body, call to action.'},
+   {name:'Recording', folder:'video-production/recordings/', text:'Shot list, locations and gear for the day you film.'},
+   {name:'Edit', folder:'video-production/edits/', text:'Captioned vertical clips for TikTok and Reels, in the Corners look.'},
+   {name:'Post', folder:'video-production/posts/', text:'Caption, hashtags, posting time and where each clip goes live.'}]},
+ {plotId:'plot-10', label:'Action Plan Tracking', type:'control',
+  blurb:'The month\'s deliverables, one owner each, and where every one stands. Tasks live in the board.',
+  stages:[
+   {name:'Plan', text:'Turn each deliverable into an action: one sentence starting with a verb, an estimate and a due date.'},
+   {name:'Assign', text:'One owner per action. A name, never a team.'},
+   {name:'Track', text:'Move it along: planned, doing, check, done. Anything untouched for two weeks shows on Today.'},
+   {name:'Check', text:'Before closing, write what actually happened and add the evidence.'}]}
 ];
 
 // Functional entries are reviewed source code. Browser drafts cannot supply URLs.
 export const TOOLS = {
+ 'video-editor': {href:'http://localhost:3000', kind:'VIDEO PRODUCTION', action:'Open the video editor ↗',
+  description:'Captioned vertical clips for TikTok and Reels. Run npm run dev in video-tool/, then this opens the Studio on localhost.'},
  'learning-lab': {href:'learning-lab.html', kind:'INSTRUCTOR CONTRIBUTION',
   action:'Enter Learning Lab ↗', description:'Prepare the four course deliveries and turn all 25 syllabus topics into useful pieces of your company. Your team keeps the decisions.'}
 };

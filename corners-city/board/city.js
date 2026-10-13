@@ -1,6 +1,7 @@
 import * as THREE from './city-assets/three.module.min.js';
 import {createBuilding, createRobot, COLORS, BUILDING_TYPES} from './city-models.js';
 import {PLOTS, EXTENSIONS, TOOLS} from './city-data.js';
+import {VIDEO_STATUS} from './video-status.js';
 const $ = id => document.getElementById(id);
 const KEY = 'corners-city-draft-v1';
 const LABEL_SAFE = /^[\p{L}\p{N} .,'’&!?()\-]{1,40}$/u;
@@ -24,6 +25,7 @@ function approveExtensions(rows) {
   if (typeof raw.blurb === 'string' && raw.blurb.trim().length <= 180) out.blurb = raw.blurb.trim();
   if (typeof raw.href === 'string' && HREF_SAFE.test(raw.href)) out.href = raw.href;
   if (Array.isArray(raw.acts)) out.acts = raw.acts.filter(a => /^A-\d{3}$/.test(a));
+  if (Array.isArray(raw.stages)) out.stages = raw.stages.filter(t => t && typeof t.name === 'string' && typeof t.text === 'string').slice(0, 8).map(t => ({name:t.name.slice(0, 30), text:t.text.slice(0, 200), folder:/^[A-Za-z0-9_\/-]+\/$/.test(t.folder||'') ? t.folder : ''}));
   return out;
  });
 }
@@ -104,12 +106,26 @@ function selectPlace(id){
  $('placeKind').textContent=info.tool?.kind || (info.team?'EXISTING DEPARTMENT':!info.type?'AVAILABLE TO YOUR TEAM':info.draft?'VISUAL CITY DRAFT':'SECTION IN BUILD');
  $('placeTitle').textContent=info.label;
  $('placeDescription').textContent=info.tool?.description || info.blurb || info.question || (info.type?'A building shell for your idea. This visual draft does not create tasks, assign people, or run an AI agent.':'An empty plot. Choose a shape and name for a visual draft, then build its real function with your agent.');
- renderWork(info);const actions=$('placeActions');actions.replaceChildren();
+ renderStages(info);renderWork(info);const actions=$('placeActions');actions.replaceChildren();
  if(info.tool){const link=document.createElement('a');link.href=info.tool.href;link.textContent=info.tool.action;actions.append(link);}
  else if(info.team){const link=document.createElement('a');link.href=`index.html#${info.team}`;link.textContent='Open the existing department ↗';actions.append(link);}
  else if(!info.type){const button=document.createElement('button');button.textContent='Build on this plot ↗';button.onclick=()=>{$('plotName').textContent=info.label;$('buildError').textContent='';$('buildForm').reset();$('builder').showModal();$('buildingLabel').focus();};actions.append(button);}
  else{if(info.href){const open=document.createElement('a');open.href=info.href;open.target='_blank';open.rel='noopener';open.textContent=`Open ${info.label} in the app ↗`;actions.append(open);}const link=document.createElement('a');link.href='city-guide.html';link.className=info.href?'secondary':'';link.textContent='Build the real function ↗';actions.append(link);}
  $('inspector').hidden=false;
+}
+/* The steps a piece of work walks inside a building. Folders with files are counted
+   by video-production/status.py, so the numbers are real files, not typed in. */
+function renderStages(info){
+ const box=$('placeStages');if(!box)return;box.replaceChildren();
+ if(!info.stages?.length)return;
+ const list=document.createElement('ol');list.className='stages';
+ info.stages.forEach((st,i)=>{
+  const li=document.createElement('li'),n=document.createElement('span'),body=document.createElement('div'),h=document.createElement('b'),q=document.createElement('p');
+  n.className='stage-n';n.textContent=i+1;h.textContent=st.name;q.textContent=st.text;body.append(h,q);
+  if(st.folder){const f=document.createElement('code'),c=VIDEO_STATUS[st.folder.split('/')[1]];f.textContent=st.folder+(c===undefined?'':` · ${c} ${c===1?'video':'videos'}`);body.append(f);}
+  li.append(n,body);list.append(li);
+ });
+ box.append(list);
 }
 /* What the board says is being built in this section. The board stays the record;
    the city only reads it, so there is no second task system. */

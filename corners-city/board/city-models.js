@@ -59,6 +59,34 @@ const EDIFICIOS = {
     caja(g, [1.4, 1.4, 1.4], [-1, 4.05, -1], M.muro);
     return 5.6;
   },
+  rascacielos(g) {
+    caja(g, [4.6, 0.6, 4.6], [0, 0, 0], M.navy);
+    caja(g, [3.8, 6.4, 3.8], [0, 0.6, 0], M.navyClaro);
+    ventanas(g, [3.8, 3.8], 0.8, 6, 1.0, 0, 0);
+    caja(g, [2.6, 0.1, 1.5], [0, 1.2, 1.95], M.celeste, false);
+    caja(g, [4.1, 0.3, 4.1], [0, 7.0, 0], M.navy);
+    caja(g, [2.9, 4.6, 2.9], [0, 7.3, 0], M.muro);
+    ventanas(g, [2.9, 2.9], 7.5, 4, 1.05, 0, 0);
+    caja(g, [3.2, 0.3, 3.2], [0, 11.9, 0], M.navy);
+    caja(g, [1.8, 3.0, 1.8], [0, 12.2, 0], M.navyClaro);
+    ventanas(g, [1.8, 1.8], 12.4, 3, 0.95, 0, 0);
+    caja(g, [2.1, 0.3, 2.1], [0, 15.2, 0], M.navy);
+    caja(g, [0.1, 2.6, 0.1], [0, 15.5, 0], M.navy);
+    caja(g, [0.6, 0.4, 0.6], [0, 18.0, 0], M.celeste, false);
+    return 18.6;
+  },
+  control(g) {
+    caja(g, [4.4, 0.5, 4.4], [0, 0, 0], M.navy);
+    caja(g, [1.7, 6.2, 1.7], [0, 0.5, 0], M.navyClaro);
+    ventanas(g, [1.7, 1.7], 0.8, 5, 1.2, 0, 0);
+    caja(g, [4.6, 0.3, 4.6], [0, 6.7, 0], M.navy);
+    caja(g, [4.0, 1.5, 4.0], [0, 7.0, 0], M.muro);
+    ventanas(g, [4.0, 4.0], 7.15, 1, 1.5, 0, 0, M.celeste);
+    caja(g, [4.4, 0.3, 4.4], [0, 8.5, 0], M.navy);
+    caja(g, [1.0, 0.6, 1.0], [-0.8, 8.8, -0.8], M.celesteSuave);
+    caja(g, [0.08, 1.8, 0.08], [1.2, 8.8, 1.2], M.navy);
+    return 10.8;
+  },
   nave(g) {
     caja(g, [5.6, 2.6, 4.2], [0, 0, 0], M.muro);
     for (let i = 0; i < 3; i++) {

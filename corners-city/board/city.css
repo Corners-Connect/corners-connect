@@ -13,3 +13,13 @@
 .inspector a.secondary{margin-top:10px;border-color:var(--line)}
 
 .inspector{max-height:calc(100svh - 140px);overflow-y:auto}
+
+.stages{list-style:none;margin:20px 0 0;padding:0;position:relative}
+.stages::before{content:'';position:absolute;left:13px;top:14px;bottom:14px;width:1px;background:var(--blue);opacity:.45}
+.stages li{display:flex;gap:14px;padding-bottom:18px;position:relative}
+.stages li:last-child{padding-bottom:0}
+.stage-n{flex:none;width:27px;height:27px;border-radius:50%;background:var(--chocolate);border:1px solid var(--blue);color:var(--blue);display:grid;place-items:center;font-size:11px;position:relative}
+.stages b{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:22px;line-height:1.1;display:block}
+.stages p{margin:4px 0 0}
+.stages code{display:inline-block;margin-top:6px;font-size:10px;letter-spacing:.04em;color:var(--blue);opacity:.8}
+.stages li:hover .stage-n{background:var(--blue);color:var(--chocolate)}
