@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Eat, do and weekends · Corners City</title>
+<link rel="icon" href="city-assets/mark.svg">
+<link rel="stylesheet" href="eat-do-weekends.css">
+</head>
+<body>
+<header class="masthead">
+ <a class="wordmark" href="city.html"><img src="city-assets/mark.svg" alt="" width="28" height="28">CORNERS.</a>
+ <nav aria-label="Workspace"><a href="city.html">← Back to Corners City</a><a href="index.html#today">Company board ↗</a></nav>
+</header>
+
+<main>
+ <section class="hero">
+  <p class="eyebrow">PLOT 03 · BILBAO</p>
+  <h1>Eat, do and weekends.</h1>
+  <p class="lede">Where to eat and drink, what to do with other people, and where to go when you have two days. Sorted by what you are actually looking for.</p>
+  <p class="notice" role="note"><b>Draft data.</b> The places are real; the price bands, scores and costs are <b>estimates</b> from the drafting agent, not student reviews. Check hours before you go. Student review and sign-off: pending.</p>
+ </section>
+
+ <div class="tabs" role="tablist" aria-label="Sections">
+  <button role="tab" id="tab-eat" aria-controls="panel-eat" aria-selected="true">Eat &amp; drink</button>
+  <button role="tab" id="tab-do" aria-controls="panel-do" aria-selected="false" tabindex="-1">Do</button>
+  <button role="tab" id="tab-trips" aria-controls="panel-trips" aria-selected="false" tabindex="-1">Weekends</button>
+ </div>
+
+ <!-- EAT -->
+ <section id="panel-eat" role="tabpanel" aria-labelledby="tab-eat">
+  <div class="need" role="group" aria-label="What are you looking for?">
+   <p class="label">What are you looking for?</p>
+   <div class="chips" id="needChips"></div>
+  </div>
+  <div class="controls">
+   <div><label for="q">Search</label><input id="q" type="search" placeholder="Name or area" autocomplete="off"></div>
+   <div><label for="kind">Type</label><select id="kind"></select></div>
+   <div><label for="area">Area</label><select id="area"></select></div>
+   <div><label for="sort">Sort by</label>
+    <select id="sort">
+     <option value="score">Best reviewed first</option>
+     <option value="priceAsc">Price: low to high</option>
+     <option value="priceDesc">Price: high to low</option>
+     <option value="name">Name A–Z</option>
+    </select></div>
+  </div>
+  <p id="eatCount" class="count" role="status"></p>
+  <ul id="eatList" class="cards"></ul>
+ </section>
+
+ <!-- DO -->
+ <section id="panel-do" role="tabpanel" aria-labelledby="tab-do" hidden>
+  <div class="subtabs" role="group" aria-label="Kind of activity">
+   <button id="g-adventure" aria-pressed="true">Adventure</button>
+   <button id="g-social" aria-pressed="false">Group activities</button>
+  </div>
+  <p id="doIntro" class="count"></p>
+  <ul id="doList" class="cards"></ul>
+ </section>
+
+ <!-- TRIPS -->
+ <section id="panel-trips" role="tabpanel" aria-labelledby="tab-trips" hidden>
+  <div class="controls">
+   <div><label for="budget">Your budget (€)</label><input id="budget" type="number" min="0" max="500" step="5" value="80" inputmode="numeric"></div>
+   <div><label for="tripKind">Length</label>
+    <select id="tripKind"><option value="">Any</option><option>Day trip</option><option>Weekend</option><option>Long weekend</option></select></div>
+   <div><label for="tripSort">Sort by</label>
+    <select id="tripSort"><option value="near">Nearest first</option><option value="cheap">Cheapest first</option></select></div>
+  </div>
+  <p id="tripCount" class="count" role="status"></p>
+  <ul id="tripList" class="cards"></ul>
+ </section>
+</main>
+
+<footer class="foot">
+ <p>Estimates for one student, in euros: travel, bed and food for the whole trip. Sign-ups are first names only and stay in this browser; nothing is sent anywhere and no place is booked. Tool attribution: Claude Code drafted this page; the student team reviews and signs.</p>
+</footer>
+
+<dialog id="signup" aria-labelledby="signupTitle">
+ <form id="signupForm" method="dialog">
+  <p class="eyebrow" id="signupWhen"></p>
+  <h2 id="signupTitle"></h2>
+  <label for="firstName">First name <small>First name only. No surname, email or phone.</small></label>
+  <input id="firstName" maxlength="24" required autocomplete="off">
+  <p id="signupError" role="alert"></p>
+  <p class="small">Saved only in this browser. This is a demonstration sign-up, not a booking.</p>
+  <div class="dialog-actions"><button type="button" id="signupCancel">Cancel</button><button class="primary" type="submit">Count me in</button></div>
+ </form>
+</dialog>
+<div class="toast" id="toast" hidden role="status"></div>
+<script type="module" src="eat-do-weekends.js"></script>
+</body>
+</html>

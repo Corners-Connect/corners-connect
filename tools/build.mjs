@@ -93,6 +93,20 @@ async function copyDir(src, destDir) {
   }
 }
 
+/** Copies a folder and its subfolders, web files only (no scripts or notes). */
+async function copyTree(src, destDir, keep = /\.(html|js|css|svg|ttf|txt|json)$|^LICENSE$/i) {
+  const from = join(ROOT, src);
+  if (!existsSync(from)) return 0;
+  await mkdir(join(OUT, destDir), { recursive: true });
+  let n = 0;
+  for (const entry of await readdir(from)) {
+    const s = join(from, entry);
+    if ((await stat(s)).isDirectory()) n += await copyTree(`${src}/${entry}`, `${destDir}/${entry}`, keep);
+    else if (keep.test(entry)) { await copyFile(s, join(OUT, destDir, entry)); n++; }
+  }
+  return n;
+}
+
 async function build() {
   await rm(OUT, { recursive: true, force: true });
   await mkdir(OUT, { recursive: true });
@@ -118,6 +132,10 @@ async function build() {
 
   // Find Your Corner (the single-file prototype at the repo root)
   await page("index.html", "find");
+
+  // Corners City (the 3D city and the board behind it), served as-is at /city/.
+  // Entry: /city/city.html
+  await copyTree("corners-city/board", "city");
 
   // originals, handy for swapping in real photos later
   await copyDir("app/photos", "photos");
