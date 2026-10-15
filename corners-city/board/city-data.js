@@ -15,13 +15,13 @@ export const PLOTS = [
 // are separate and never become company decisions, tasks or evidence automatically.
 // Example schema only: {plotId:'plot-01', label:'A student-approved label', type:'base'}
 //
-// One building per section of the app that is in build for Mini Project 1, named
-// exactly as the section is named in the product. Learning Lab uses plot-08;
-// Audience outreach uses plot-09.
-// Drafted 8 October 2026; student review and sign-off pending.
+// Product sections on plots 01–07 are named exactly as in the app. Learning Lab
+// uses plot-08; Audience outreach and its survey archive use plot-09.
+// Product entries drafted 8 October 2026; Audience outreach added 15 October 2026.
+// Student review and sign-off pending.
 // `blurb` is what the section is, `href` opens it in the live app, and `acts` are
 // the board action ids being built there, so a building is an entry rather than a
-// shell. Only this reviewed file may carry href and acts; browser drafts cannot.
+// shell. Only this reviewed file may carry links, actions and tool ids; browser drafts cannot.
 export const EXTENSIONS = [
  {plotId:'plot-01', type:'biblioteca', label:'Before you leave',
   blurb:'Choosing the city: six questions, then nine metrics side by side, then getting ready to go.',
