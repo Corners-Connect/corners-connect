@@ -16,7 +16,8 @@ export const PLOTS = [
 // Example schema only: {plotId:'plot-01', label:'A student-approved label', type:'base'}
 //
 // One building per section of the app that is in build for Mini Project 1, named
-// exactly as the section is named in the product. Learning Lab uses plot-08; plot-09 stays open.
+// exactly as the section is named in the product. Learning Lab uses plot-08;
+// Audience outreach uses plot-09.
 // Drafted 8 October 2026; student review and sign-off pending.
 // `blurb` is what the section is, `href` opens it in the live app, and `acts` are
 // the board action ids being built there, so a building is an entry rather than a
@@ -43,11 +44,16 @@ export const EXTENSIONS = [
  {plotId:'plot-07', type:'ayuntamiento', label:'Programme',
   blurb:'Key dates, the first-week checklist, and what everyone is asking about this week.',
   href:'https://corners-connect.github.io/corners-connect/app/#prog', acts:['A-014']},
- {plotId:'plot-08', label:'Learning Lab', type:'biblioteca', tool:'learning-lab'}
+ {plotId:'plot-08', label:'Learning Lab', type:'biblioteca', tool:'learning-lab'},
+ {plotId:'plot-09', type:'estudio', label:'Audience outreach',
+  blurb:'A place for aggregated survey findings and the next questions to check. No individual responses or contacts are stored here.',
+  tool:'audience-outreach'}
 ];
 
 // Functional entries are reviewed source code. Browser drafts cannot supply URLs.
 export const TOOLS = {
  'learning-lab': {href:'learning-lab.html', kind:'INSTRUCTOR CONTRIBUTION',
-  action:'Enter Learning Lab ↗', description:'Prepare the four course deliveries and turn all 25 syllabus topics into useful pieces of your company. Your team keeps the decisions.'}
+  action:'Enter Learning Lab ↗', description:'Prepare the four course deliveries and turn all 25 syllabus topics into useful pieces of your company. Your team keeps the decisions.'},
+ 'audience-outreach': {href:'audience-outreach.html', kind:'AUDIENCE RESEARCH',
+  action:'Open surveys and research ↗', description:'Read the aggregate snapshot of a completed student experience survey and the separate Bilbao research plan.'}
 };

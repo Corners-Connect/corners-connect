@@ -1,8 +1,9 @@
 # Corners City
 
 A local isometric city for the company your AI for Business class is building.
-Three buildings enter the existing Product, Audience and Operations screens;
-five robots are visual demonstrations; six plots are room for your team's ideas.
+Three buildings enter the existing Product, Audience and Operations screens.
+Plots 01–07 open product sections, plot-08 opens Learning Lab, and plot-09 opens
+Audience outreach. Five robots are visual demonstrations.
 The board's data is a **sample template**, not a record of current student work.
 
 ## Ask your local agent to open it
@@ -126,7 +127,7 @@ but because in December nobody will remember it the same way.
 
 ## Corners City
 
-The city is the visual entry to this workspace: three department buildings, seven product-section entries, the working Learning Lab, demonstration robots, and one open plot for student builds. Read `board/CORNERS-CITY-START.md`; for feature work, give your coding agent `board/CORNERS-CITY-BUILDER-PROMPT.md`. To open it, ask your local agent to follow `board/CORNERS-CITY-LOCALHOST.md`. Browser drafts stay on one browser/origin. Reviewed file changes are how your team shares the city. No live synchronization is implemented.
+The city is the visual entry to this workspace: three department buildings, seven product-section entries, the working Learning Lab on plot-08, Audience outreach on plot-09, and demonstration robots. Read `board/CORNERS-CITY-START.md`; for feature work, give your coding agent `board/CORNERS-CITY-BUILDER-PROMPT.md`. To open it, ask your local agent to follow `board/CORNERS-CITY-LOCALHOST.md`. Browser drafts stay on one browser/origin. Reviewed file changes are how your team shares the city. No live synchronization is implemented.
 
 ## Learning Lab
 
