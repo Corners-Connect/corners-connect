@@ -9,7 +9,7 @@ The app for students abroad: Erasmus, study abroad and first-years who moved cit
 ## Corners City · local company workspace
 
 [Corners City](corners-city/README.md) is the chocolate/blue builder base, with
-three department entries, seven product-section entries, demonstration robots, the working Learning Lab and one open plot. It runs
+three department entries, seven product-section entries, the working Learning Lab, Audience outreach on plot-09, and demonstration robots. It runs
 locally; browser drafts are private to that browser, while reviewed source files
 are the shared build. The existing product and website stay in their folders.
 
