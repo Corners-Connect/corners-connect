@@ -47,8 +47,10 @@ are visible…" (see "Mistakes the first tests showed" in the master prompt).
 - Free plan on Comfy Cloud: 5 runs. We used 4 of them to find the prompt.
 
 ## Tool and model licence
-Name these in the playbook before an image is approved. Search results say Z-Image-Turbo is
-Apache 2.0, but that has **not** been checked on the model page yet. Still to check, on the pages
-linked in the first note of the flow (`Hugging Face: Comfy-Org/z_image_turbo`): the licence of
-Z-Image-Turbo, of Qwen3-4B and of the `ae` VAE, and what Comfy Cloud's terms say about using the
-images.
+- **Model package:** the page `huggingface.co/Comfy-Org/z_image_turbo` (the package the flow loads)
+  lists **Apache 2.0**, checked by Federico on 19 Oct 2026. Apache 2.0 allows use, including
+  commercial, if the model and the licence are credited.
+- **Credit line for images:** "AI-generated with Z-Image-Turbo (Apache 2.0), via ComfyUI on Comfy Cloud."
+- **Not checked yet:** whether Qwen3-4B (`qwen_3_4b`) and the `ae` VAE carry their own licences, and
+  what Comfy Cloud's terms say about using the images commercially. Name both in the playbook before
+  an image is approved.
