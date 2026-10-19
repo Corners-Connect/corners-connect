@@ -1,56 +1,79 @@
 # C-06 · C-07 · Make an on-brand Corners image
 
-**Status: DRAFT skeleton.** Steps follow `05 - Brand/master-prompt.md`, which is itself a proposal.
-Nothing here has been run yet.
+**Status: DRAFT v1.** Run once by the author (18 Oct 2026). Not yet run by a second person, so the
+steps below are not proven. Steps follow `05 - Brand/master-prompt.md`, which is itself a proposal.
 
-**Owner:** Federico · **Apprentice:** (a classmate outside the pair, not chosen yet) · **Last used:** not yet
+**Owner:** Federico · **Apprentice:** (a classmate outside the pair, not chosen yet) · **Last used:** 18 Oct 2026
 
 ## What you get at the end
-One approved image, in the right size for its channel, labelled as AI-made, with its tool and
-prompt recorded in the gallery.
+One image of Bilbao student life, checked by a second person, labelled as AI-made with its tool and
+prompt written next to it, and recorded in `03 - Deliverables/mp1/images/`.
 
 ## Before you start
-- Access to the image tool the company chose: **not chosen yet** (tool and model licence to be
-  named here).
-- `05 - Brand/master-prompt.md` and the images in `05 - Brand/references/` (none exist yet).
-- A sourced fact for the image label: a place, a time and a price you can point to.
+- **A tool.** Either of these worked on 18 Oct 2026:
+  - **ChatGPT** (image generation, plan "Go"). Reads the whole template, including "do not include".
+  - **ComfyUI on Comfy Cloud** (comfy.org/cloud, sign in with Google, free plan: 5 runs). Open
+    `05 - Brand/comfyui/corners.json`. It uses Z-Image-Turbo, which **ignores "do not include"**.
+- `05 - Brand/master-prompt.md` (the template and its rules) and `05 - Brand/references/`.
+- The licence line for the tool you use. For Z-Image-Turbo: Apache 2.0, see `05 - Brand/comfyui/README.md`.
+  Check ChatGPT's terms for commercial use before an image is approved. **Not checked yet.**
 
 ## The steps
 1. Open `05 - Brand/master-prompt.md` and copy the template.
-2. Choose the channel and the persona (Chiara, Aiyana or Marta) the image is for.
-3. Fill the five blanks of the template (scene, place, time of day, people). Add a caption
-   only if the master prompt says captions are in use, and only from a sourced fact.
-4. Generate. For a new look, make three images and compare them.
-5. Compare the result with the reference images. If it drifts, add the closest reference as an
-   image input and generate again.
-6. Resize for the channel (Instagram, TikTok, website, partner pack).
+2. Decide the persona (Chiara, Aiyana or Marta) and the channel. Write them in the brief, **not** in the
+   prompt: the tool writes them into the image as text.
+3. Fill in Scene, Place, Time of day and People. Check that Scene and People agree on the number of
+   people, and that Scene and Place can happen in the same spot.
+4. Paste the prompt into the tool. In ComfyUI, paste it into the `prompt` box and press Run once.
+5. Look at the result against the references. If something is wrong, change **one line** and run again.
+   Runs are limited on the free plan.
+6. Save the file in `03 - Deliverables/mp1/images/` and add a row to the README there.
 7. Give it to a second person for the review below. Do not review your own image.
-8. Add the AI label and the credit line, then record the file, tool and prompt in the gallery.
+8. When approved, add the AI line with the tool and the prompt (credit line in `05 - Brand/comfyui/README.md`).
+   Resizing for each channel is in the formats section of the master prompt (owner: Jenna).
 
-## The prompt, if there is one
+## The prompt
 The prompt is the template in `05 - Brand/master-prompt.md`. Copy it from there so there is one
-version only.
+version only. The ComfyUI flow already holds the prompt of the first test.
 
 ## Review: the second person checks
-- Does it look like the references, not like a stock photo?
-- Is the label true and sourced?
-- Is the AI line there, with tool and prompt?
-- No recognisable real person, no third-party logo?
+- Is there readable text, a logo or a sign anywhere in the image? (It must not.)
+- Does the number of people match the brief?
+- Is the place believable as Bilbao?
+- Does it look like a documentary photo, not an illustration or an advert?
+- No recognisable real person?
+- Is the AI line there, with the tool and the prompt?
 
-If any answer is no, it goes back. Record who checked and when.
+If any answer is wrong, it goes back. Record who checked and when in `03 - Deliverables/mp1/images/README.md`.
 
 ## How you know it worked
-A good result looks like the references and carries a true label. A bad result drifts in colour or
-style, carries a label with no source, or lacks the AI line. *To be sharpened after the first real
-images exist.*
+**Good:** a photograph, natural colours and warm light, an ordinary moment, nothing readable, and the
+persons match the brief. **Bad:** a drawing or painting, writing anywhere in the image, a forced single
+colour in the clothes, people looking younger or older than the brief.
 
 ## What goes wrong
-*Not written yet, on purpose. This section records what actually went wrong the first time, and
-nothing has been run.*
+These happened in the first tests.
+1. **The tool writes your names into the image.** The prompt said "Corners", "Chiara, Erasmus" and "app";
+   ComfyUI drew a kiosk with a "Corners" screen and garbled names. Keep names and personas out of the
+   prompt.
+2. **"Do not include" is ignored by Z-Image-Turbo** (cfg 1, empty negative input in the flow). Say what is
+   visible instead: "only people and architecture, no signs, no writing".
+3. **The prompt contradicted itself.** "Waiting for the metro" and "narrow old-town street", and "three
+   students" next to "two students". The tool picks one and ignores the other. Read the prompt aloud
+   before running.
+4. **A scene with a price board makes the tool draw invented prices.** Keep boards out of the scene; put
+   prices in a sourced caption later.
+5. **A forced blue accent looked staged** (blue backpacks and jackets). The brand colour goes on top of
+   the image, not on the people.
+6. **Without a Style line, one image came out as an illustration.** The template says "realistic
+   documentary photograph".
+7. **Still open:** the people look 17–19 even when the prompt says "about 22 years old, adults".
 
 ## Who has done this
 | Person | When | What they made |
 |---|---|---|
+| Federico | 18 Oct 2026 | 3 ChatGPT test images, 1 Comfy Cloud test image (`comfy-test-01.png`) |
 
 ---
-*Skeleton drafted by Claude (AI) at Federico's request. Owner signs: ______*
+*Drafted by Claude (AI) at Federico's request; steps and failures come from Federico's own test runs.
+Owner signs: ______*
