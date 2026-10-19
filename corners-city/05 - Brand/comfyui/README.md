@@ -42,6 +42,9 @@ are visible…" (see "Mistakes the first tests showed" in the master prompt).
   holds the real one.
 
 ## Known limits
+- Tested with the positive wording on 19 Oct 2026: it gave three people instead of two and a bridge
+  that was not the Zubizuri. Counts and real landmarks are not reliable with this model. Use ChatGPT
+  when they matter (see the playbook).
 - The two students look about 17–19, not 22, even when the prompt says "about 22 years old, adults".
 - The bridge is the model's idea of a white arch bridge in Bilbao, not an exact Zubizuri.
 - Free plan on Comfy Cloud: 5 runs. We used 4 of them to find the prompt.

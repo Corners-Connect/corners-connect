@@ -10,10 +10,18 @@ One image of Bilbao student life, checked by a second person, labelled as AI-mad
 prompt written next to it, and recorded in `03 - Deliverables/mp1/images/`.
 
 ## Before you start
-- **A tool.** Either of these worked on 18 Oct 2026:
-  - **ChatGPT** (image generation, plan "Go"). Reads the whole template, including "do not include".
-  - **ComfyUI on Comfy Cloud** (comfy.org/cloud, sign in with Google, free plan: 5 runs). Open
-    `05 - Brand/comfyui/corners.json`. It uses Z-Image-Turbo, which **ignores "do not include"**.
+- **A tool.**
+  - **Main tool: ChatGPT** (image generation). Everything was tested on the paid plan "Go". A free
+    account allows only a few images a day (sources say 2–3 per 24 hours, not verified) and may use a
+    different image model, so **the free plan is not proven yet**: the first free-account run is the
+    playbook test by Jenna, to be recorded below. Free alternative, not tried: Microsoft Copilot /
+    Designer. Template v2.1 was tested here on 19 Oct 2026
+    (Bilbao, a night club, Lisbon, a young woman and a young man). It understands "no logos".
+  - **Saved flow: ComfyUI on Comfy Cloud** (comfy.org/cloud, sign in with Google, free plan: 5 runs).
+    Open `05 - Brand/comfyui/corners.json`. It uses Z-Image-Turbo, which **ignores "do not include"**,
+    so use the positive wording in the "ComfyUI variant" of the master prompt. Tested once on
+    19 Oct 2026: no readable text, but three people instead of two and a wrong bridge. Do not rely on it
+    for counts or real landmarks.
 - `05 - Brand/master-prompt.md` (the template and its rules) and `05 - Brand/references/`.
 - The licence line for the tool you use. For Z-Image-Turbo: Apache 2.0, see `05 - Brand/comfyui/README.md`.
   Check ChatGPT's terms for commercial use before an image is approved. **Not checked yet.**
@@ -67,7 +75,26 @@ These happened in the first tests.
    the image, not on the people.
 6. **Without a Style line, one image came out as an illustration.** The template says "realistic
    documentary photograph".
-7. **Still open:** the people look 17–19 even when the prompt says "about 22 years old, adults".
+7. **ComfyUI with Z-Image-Turbo got the number of people and a real landmark wrong** (three people for
+   "two", a generic bridge for the Zubizuri), even with the positive wording. Check count and place on
+   every image, and prefer ChatGPT when they matter.
+8. **Still open:** the people look 17–19 even when the prompt says "about 22 years old, adults".
+
+## Alternatives considered, and why they lost
+1. **Only ChatGPT, no ComfyUI flow.** Faster and understands "do not include". It lost as the *only*
+   path because a chat cannot be saved and rerun as a flow, and the mission asks for a saved ComfyUI
+   flow. It stays as the main tool for day-to-day images.
+2. **Only ComfyUI.** A saved flow anyone can reopen. It lost as the main tool because on the free plan
+   we have 5 runs and we used 4 to find a working prompt, and the model ignores negative wording.
+3. **A blue accent on the people** (backpacks, jackets) to make images recognisable. It lost because
+   it looked staged. The brand colour goes on top of the image (logo, caption, frame) instead.
+4. **A fixed city in the template.** It lost because the app covers other cities; Place is free text,
+   with a named real place when the image must read as one city.
+
+## Free-plan check (to fill in)
+| Who | Tool and plan | Images before the limit | Followed the template? Same look as the references? |
+|---|---|---|---|
+| | | | |
 
 ## Who has done this
 | Person | When | What they made |

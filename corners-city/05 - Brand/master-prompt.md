@@ -45,6 +45,17 @@ covers other cities (`PROJECT.md`), so nothing in the template is fixed to one c
 - A person who knows the city checks the image before it is approved: tools invent landmarks that
   look real.
 
+### ComfyUI variant (untested)
+Z-Image-Turbo ignores "do not include", so the last line is a positive statement. Replace the last
+line of the template with:
+
+```
+Only people and architecture are visible. Everyone wears plain clothes and plain shoes with no marks. Walls, doors and objects are plain and unwritten.
+```
+
+Tested once on 19 Oct 2026 (see the test log): no readable text, but the wrong number of people and a
+wrong bridge. Use ChatGPT when the count of people or a real landmark matters.
+
 ## Step 2 — Generate three test images
 Use the same template three times. Change only the **Scene** line each time.
 
@@ -109,3 +120,14 @@ people looked like teenagers, the place was not clearly Bilbao, and two blue bac
 - Bench by the river, Bilbao, with "no brand marks on clothes or shoes": plain sneakers, no logo, the
   Zubizuri bridge recognisable. Saved as `references/ref-02`. The club scene is `ref-03`.
 - Not yet tested: a second person following the playbook alone.
+
+## Test log (19 Oct 2026, Comfy Cloud, Z-Image-Turbo, ComfyUI variant)
+Same bench scene as `ref-02`, with the positive last line ("Everyone wears plain clothes and plain
+shoes with no marks…").
+- **Worked:** no readable text anywhere (books and sandwich wrapper plain), realistic photograph,
+  warm natural light, natural colours.
+- **Did not work:** three people instead of two, although the prompt said "two" twice. The bridge was
+  a generic cable-stayed bridge with a tall white pylon and a skyscraper behind, not the Zubizuri arch.
+  People look younger than 20.
+- **Conclusion:** the positive wording fixes the text problem. Z-Image-Turbo is less reliable than
+  ChatGPT on the number of people and on real landmarks. ChatGPT stays the main tool.
