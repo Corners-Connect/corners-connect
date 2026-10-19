@@ -16,49 +16,34 @@ that look like they come from the same company.
 A realistic documentary photograph of everyday student life in a new city.
 
 Scene: [what is happening, in one sentence]
-Place: Bilbao, [which street or area]
+Place: [describe the setting: city, area, what is around]
 Time of day: [morning / afternoon / evening]
-People: [how many, doing what]. Nobody recognisable.
-Mood: warm natural light, an ordinary moment, nobody posing for the camera.
+People: [how many] young people, about 20 years old, dressed for the situation, [doing what]. Nobody recognisable.
+Mood: [light that fits the setting, e.g. warm natural light / street lights at night / club lighting], an ordinary moment, nobody posing for the camera.
 Colour: natural colours, no dominant colour accent.
-Only people and architecture are visible: plain walls and clothes, no screens, no signs, no writing, no logos.
+Only people and architecture are visible: plain walls and clothes, no screens, no signs, no writing, no logos, no brand marks on clothes or shoes.
 ```
 
 The **persona** (Chiara, Aiyana or Marta) and the **channel** go in the brief, not in the prompt.
 
-Example, only to show the format:
+Example, only to show the format (tested 19 Oct 2026, ChatGPT, see the test log):
 
 ```
-Scene: two students looking at a map on a phone outside a bakery
-Place: Bilbao, a narrow street in the old town
-Time of day: morning
-People: two students in their twenties, one holding a phone
+Scene: two students sitting on a bench by a river, one reading a paperback, one eating a sandwich
+Place: Bilbao, a riverside promenade with the white Zubizuri pedestrian bridge visible in the distance
+Time of day: afternoon
+People: two university exchange students, about 20 years old, clean-shaven or light stubble, casual student clothes, one with a backpack. Nobody recognisable.
 ```
 
-### Mistakes the first tests showed
-- **Scene and People must agree.** If the Scene says three students, People says three students.
-- **Scene and Place must agree.** "Waiting for the metro" cannot be "in a narrow old-town street":
-  pick one, or the tool keeps one and drops the other.
-- **Do not put "Corners", persona names or "app" in the prompt.** The tool writes them into the image
-  as text (a kiosk with a "Corners" screen and garbled names). Keep them in the brief.
-- **Say what you want, not what you do not want.** Fast models (Z-Image-Turbo) ignore "do not
-  include". The last line of the template is written as a positive statement for that reason.
-- **No dominant colour in the photo.** A forced blue backpack or jacket looks staged. The brand colour
-  goes on top of the image (logo, caption, frame), not on the people. Colour is still a proposal
-  until the class settles it (see "Later").
-
-### Rules for the blanks (from `PROJECT.md` and `docs/kpi-tree.md`)
-- **A place, a time, a price.** The scene must be something a student could do in Bilbao at a real
-  time. If you cannot say where and when, it is a stock image: rewrite it.
-- **Never** the words "community" or "vibes", in the prompt or in any caption.
-- **70 / 25 / 5.** 70% the product showing itself, 25% the idea, 5% the twelve of us. Say which one
-  the image is in the brief. The "twelve of us" images use real photos with consent, not AI.
-- **Nobody here is local.** Show newcomers, not locals posing as students.
-
-### One image, several readings
-The same image has to work as an Instagram post, a TikTok cover and a website block. Keep the subject
-in the middle third of the frame and leave empty space at the top and bottom, so it can be cropped to
-4:5 and 9:16 without losing the point.
+**Place is free text.** Describe the setting in your own words. The pilot is Bilbao, but the app
+covers other cities (`PROJECT.md`), so nothing in the template is fixed to one city.
+- A **generic** arrival scene only needs a concrete setting ("a riverside promenade with trees and a
+  bridge in the distance").
+- If the image **must read as one city** (for example a city page), name a real place: the Guggenheim,
+  the Zubizuri bridge. With no named place, the tool makes a generic "Spanish city" (one test looked
+  like San Sebastián).
+- A person who knows the city checks the image before it is approved: tools invent landmarks that
+  look real.
 
 ## Step 2 — Generate three test images
 Use the same template three times. Change only the **Scene** line each time.
@@ -109,3 +94,18 @@ First run used the v1 template, with "Corners", "Chiara, Erasmus" and a "do not 
 line. It drew a kiosk with a "Corners" screen and garbled names. Second run, after the changes in
 "Mistakes the first tests showed", had no readable text and was a good photograph, but the three
 people looked like teenagers, the place was not clearly Bilbao, and two blue backpacks looked staged.
+
+## Test log (19 Oct 2026, ChatGPT Go, template v2.1)
+- Cafe scene and park scene with "in their twenties": photographs, natural colours, no readable text,
+  two people each. The people looked about 30. The park looked more like San Sebastián than Bilbao.
+- Riverside scene with "about 20 years old" and the Zubizuri bridge named in the Place line: the
+  people look about 20 and the bridge and river look like Bilbao. A sneaker shows a brand-like logo,
+  hence the "no brand marks" line. Both people were men; the personas in the brief are Chiara, Aiyana
+  and Marta, so the scene must say who is in it if the persona matters.
+- Night club scene: photograph, warm amber light, no dominant colour, no readable text. A crowd was
+  drawn around the three people because the Place line said "crowded".
+- Lisbon, a young woman and a young man on a steep street with a yellow tram: Lisbon is recognisable,
+  no number or writing on the tram. It looks more like a travel advert than a documentary photograph.
+- Bench by the river, Bilbao, with "no brand marks on clothes or shoes": plain sneakers, no logo, the
+  Zubizuri bridge recognisable. Saved as `references/ref-02`. The club scene is `ref-03`.
+- Not yet tested: a second person following the playbook alone.
