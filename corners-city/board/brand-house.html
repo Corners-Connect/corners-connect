@@ -1,1 +1,198 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brand House | Corners</title>
+  <style>
+    body {
+      margin: 0;
+      background: #513c2c;
+      color: #e8f4ff;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+    header, main, footer {
+      max-width: 950px;
+      margin: auto;
+      padding: 28px;
+    }
+    h1, h2 { color: #9bd8ff; }
+    h1 { font-size: 44px; }
+    .card {
+      background: #654b38;
+      border: 1px solid #9bd8ff;
+      border-radius: 12px;
+      padding: 22px;
+      margin: 20px 0;
+    }
+    a { color: #aee1ff; }
+    button {
+      padding: 12px 18px;
+      background: #9bd8ff;
+      border: 0;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    textarea {
+      box-sizing: border-box;
+      width: 100%;
+      min-height: 160px;
+      padding: 12px;
+      border-radius: 8px;
+    }
+    .small { font-size: 14px; }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="city.html">← Back to Corners City</a>
+    <h1>Brand House</h1>
+    <p>One company. One consistent visual identity.</p>
+    <p>Mini Project 1 · Brand Imagery</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>What is Brand House?</h2>
+      <p>
+        Brand House is the team's guide for creating,
+        reviewing, and using AI-generated images for Corners.
+        Its purpose is to help different people produce
+        images that feel like one consistent brand.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>1. Create an image</h2>
+      <p>
+        Start with the team's master prompt. Describe
+        the scene, people, location, lighting, and mood.
+        Keep images realistic and avoid logos, writing,
+        and recognizable people.
+      </p>
+      <p>
+        <a href="../05%20-%20Brand/master-prompt.md">
+          Read the master prompt
+        </a>
+      </p>
+      <p class="small">
+        The master prompt is maintained in the GitHub
+        project. Use the repository copy for the latest version.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>2. Review before using</h2>
+      <p>Check every generated image for:</p>
+      <ul>
+        <li>Realistic people, hands, and faces</li>
+        <li>Accurate architecture and location</li>
+        <li>No accidental text, logos, or watermarks</li>
+        <li>Consistency with the Corners visual style</li>
+        <li>Appropriate usage rights and AI disclosure</li>
+      </ul>
+      <p>
+        Images are not approved automatically.
+        A second person must review them first.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>3. Choose the right format</h2>
+      <ul>
+        <li>Instagram feed: 1080 × 1350 (4:5)</li>
+        <li>Stories, Reels, TikTok: 1080 × 1920 (9:16)</li>
+        <li>Website landscape: 16:9 when appropriate</li>
+      </ul>
+      <p>
+        Keep the original image. Crop without stretching,
+        preserve important subjects, and check quality
+        after resizing or upscaling.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>4. Image review checklist</h2>
+      <p>
+        Use this checklist before handing an image to
+        the team. It is a preparation aid, not an
+        official approval record.
+      </p>
+      <label><input type="checkbox"> Matches the prompt</label><br>
+      <label><input type="checkbox"> Looks realistic</label><br>
+      <label><input type="checkbox"> No unwanted text or logos</label><br>
+      <label><input type="checkbox"> Correct image dimensions</label><br>
+      <label><input type="checkbox"> Rights and disclosure checked</label><br>
+      <label><input type="checkbox"> Second-person review completed</label>
+    </section>
+
+    <section class="card">
+      <h2>5. Prepare a review handoff</h2>
+      <p>
+        Fill in the details and copy them into the
+        team's image review log.
+      </p>
+      <textarea id="handoff" aria-label="Image review notes">Image filename:
+AI tool used:
+Prompt version:
+Intended channel:
+Dimensions:
+Reviewer:
+Review findings:
+Status: Test, not approved
+</textarea>
+      <p>
+        <button type="button" onclick="copyHandoff()">
+          Copy review notes
+        </button>
+      </p>
+      <p id="copy-status" aria-live="polite"></p>
+      <p class="small">
+        Copying notes does not save them to GitHub or
+        approve the image.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>6. Team workflow</h2>
+      <p>
+        Generate → Review → Correct → Approve →
+        Resize → Document → Publish.
+      </p>
+      <p>
+        The team's master prompt, playbook, image log,
+        and concept map remain the official project files.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      Corners · Brand House · Student project prototype
+    </p>
+    <p>
+      AI-generated images must be identified and
+      reviewed before publication.
+    </p>
+  </footer>
+
+  <script>
+    async function copyHandoff() {
+      const notes = document.getElementById("handoff");
+      const status = document.getElementById("copy-status");
+      try {
+        await navigator.clipboard.writeText(notes.value);
+        status.textContent = "Review notes copied.";
+      } catch (error) {
+        notes.select();
+        status.textContent =
+          "Select and copy the notes manually.";
+      }
+    }
+  </script>
+</body>
+</html>
+
