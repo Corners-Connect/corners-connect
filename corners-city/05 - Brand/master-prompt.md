@@ -80,7 +80,17 @@ prompt next to it. It must be marked as AI-made.
   baby blue `#A8DDFB` (`corners-city/board/theme.css`). The photos carry no colour accent, so
   nothing here depends on the vote. The class still has to settle the brand colour that goes on top
   of the image (logo, caption, frame).
-- **Formats and upscale**: sizes per channel (Instagram, TikTok, website, partner pack). Owner: Jenna.
+- **Formats and upscale (Owner: Jenna):**
+  - Instagram feed: 1080 × 1350 pixels (4:5 ratio).
+  - Instagram Stories and Reels: 1080 × 1920 pixels (9:16 ratio).
+  - TikTok: 1080 × 1920 pixels (9:16 ratio).
+  - Website: use a landscape 16:9 image where appropriate; final dimensions depend on the website layout.
+  - Partner pack: use the dimensions requested by the partner.
+  - Keep the original AI-generated image saved before resizing.
+  - Crop images to fit each format without stretching or distorting people or landmarks.
+  - Keep the main subjects visible and avoid cutting off faces.
+  - If a larger image is needed, upscale while preserving the original appearance. Review the result for distortions.
+  - Record the final image dimensions and intended channel before publishing.
 - **Tool and model licence**: name both in the playbook before the first approved image.
 
 ## Rights and disclosure
