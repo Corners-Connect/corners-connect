@@ -28,7 +28,7 @@ things it depends on, so a stranger can explain it from this page alone.
 | Master prompt | The template with blanks and the rules for filling them | `05 - Brand/master-prompt.md` | Federico |
 | ComfyUI flow | The saved recipe to rerun the template | `05 - Brand/comfyui/` | Federico |
 | References | Images a new image has to resemble | `05 - Brand/references/` | Federico |
-| Formats | Sizes per channel, and how to resize | `05 - Brand/master-prompt.md` (to write) | Jenna |
+| Formats | Image sizes for Instagram, TikTok, website and partner packs, including cropping and upscaling guidelines | `05 - Brand/master-prompt.md` (Formats and upscale section) | Jenna |
 | Brand | The rules page in the city (Brand House) | `board/brand-house.html` | Jenna |
 
 ## How it runs (links to the other pages)
