@@ -95,6 +95,7 @@ These happened in the first tests.
 | Who | Tool and plan | Images before the limit | Followed the template? Same look as the references? |
 |---|---|---|---|
 | | | | |
+| Jenna | ChatGPT Plus | 1 generated; limit not reached | Mostly followed the template. Realistic Bilbao scene with two students, natural lighting and recognizable Zubizuri bridge. Book has text-like marks. Reference comparison pending. Not a free-plan test. |
 
 ## Who has done this
 | Person | When | What they made |
