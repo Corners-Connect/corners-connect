@@ -53,14 +53,21 @@ export const EXTENSIONS = [
   tool:'audience-outreach'},
  // Mini Project 1, pair 1 (Federico + Jenna). Entries only; the pages come with their own commits.
  // Student review and sign-off pending.
- {plotId:'plot-13', type:'estudio', label:'Brand House',
-  blurb:'The visual and verbal rules, the master prompt and the ComfyUI flow that make every Corners image look like one company.'},
+
+{plotId:'plot-13', type:'estudio', label:'Brand House',
+  blurb:'The visual and verbal rules, the master prompt and the ComfyUI flow that make every Corners image look like one company.',
+  tool:'brand-house'},
+
  {plotId:'plot-14', type:'biblioteca', label:'Asset Gallery',
   blurb:'Every approved image with its source file, prompt and tool, so posts and app sections only use approved images.'}
 ];
 
 // Functional entries are reviewed source code. Browser drafts cannot supply URLs.
 export const TOOLS = {
+ 
+ 'brand-house': {href:'brand-house.html', kind:'BRAND IMAGERY',
+  action:'Enter Brand House ↗', description:'Explore the Corners image guidelines, review checklist, and team workflow.'},
+
  'learning-lab': {href:'learning-lab.html', kind:'INSTRUCTOR CONTRIBUTION',
   action:'Enter Learning Lab ↗', description:'Prepare the four course deliveries and turn all 25 syllabus topics into useful pieces of your company. Your team keeps the decisions.'},
  'audience-outreach': {href:'audience-outreach.html', kind:'AUDIENCE RESEARCH',
