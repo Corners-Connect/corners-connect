@@ -96,6 +96,16 @@ prompt next to it. It must be marked as AI-made.
   - Keep the main subjects visible and avoid cutting off faces.
   - If a larger image is needed, upscale while preserving the original appearance. Review the result for distortions.
   - Record the final image dimensions and intended channel before publishing.
+  - **Source check, 24 Oct 2026 (Federico):** the sizes above (Instagram feed 1080 × 1350, 4:5; Stories,
+    Reels and TikTok 1080 × 1920, 9:16) match several third-party size guides, for example
+    socialbee.com/blog/instagram-image-sizes-and-aspect-ratio and
+    contenta-converter.com/blog/social-media-image-sizes-2026.php. No official Instagram or TikTok page
+    was read, and one guide notes TikTok photo posts may also use other ratios: check the platform's own
+    help page on the day you publish.
+  - **Upscale (not tested by the team):** ChatGPT gives about 1536 × 1024, so a 1080 × 1350 portrait
+    crop (4:5) from a 3:2 image keeps a height of 1024 px, below 1350: it needs a 1.3x upscale. Options to
+    try, one at a time: an upscale step in ComfyUI, or a free open-source upscaling app. Record the tool,
+    the original and the result in the log before using the image.
 - **Tool and model licence**: name both in the playbook before the first approved image.
 
 ## Rights and disclosure
