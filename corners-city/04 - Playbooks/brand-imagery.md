@@ -44,6 +44,36 @@ prompt written next to it, and recorded in `03 - Deliverables/mp1/images/`.
 The prompt is the template in `05 - Brand/master-prompt.md`. Copy it from there so there is one
 version only. The ComfyUI flow already holds the prompt of the first test.
 
+## How it runs every week
+**Draft by Federico, 24 Oct 2026. Pair to confirm.**
+- **Who makes the images:** whoever needs one, from any of the twelve, following this playbook. Nobody
+  waits for the pair. Images are made when they are needed.
+- **Who reviews:** any teammate who did not make the image, with the review list below. They write their
+  name and the date in the log. The pair is not the only reviewer, so the process does not stop when
+  the pair is busy.
+- **What the pair does (Federico and Jenna, owners of the process), every Tuesday and Thursday, in the
+  last five minutes of the class** (the slot where `docs/kpi-tree.md` says the numbers are read). The same
+  three short jobs each time:
+  1. **Nothing is waiting:** every image in the log has a reviewer. If one has none, find a teammate.
+  2. **Spot check:** take two or three images at random and check them again with the review list and
+     against the references. Did the review work? Does the look still match?
+  3. **Keep it up to date:** if the spot check shows a problem, change the template, the references or the
+     review list, and move approved images to the gallery.
+- **Where it shows:** the log in `03 - Deliverables/mp1/images/README.md` (one row per image: maker,
+  reviewer, date, status) and the Asset Gallery building in the city (approved images only, once built).
+- **What we count:** images made by someone outside the pair, and minutes it took each of them. Counts,
+  not percentages (under 30 people, as in `docs/kpi-tree.md`).
+
+## Who needs it, and how we know it works
+**Draft by Federico, 24 Oct 2026. To confirm with the people named.**
+- **Named users outside the pair:** the content calendar pair (Rylan and Jose, who need approved images
+  for four weeks of posts) and the video pair (Federica and Haru, who need stills for the launch video).
+  To confirm with them.
+- **What it saves:** a teammate can make and check an image without asking the pair. We note the minutes
+  each image took, so after a few weeks we have a real figure, not a guess.
+- **Proof by 27 Oct:** at least one teammate outside the pair has followed the playbook alone and the
+  result is in the log with their notes.
+
 ## Review: the second person checks
 - Is there readable text, a logo or a sign anywhere in the image? (It must not.)
 - Does the number of people match the brief?
