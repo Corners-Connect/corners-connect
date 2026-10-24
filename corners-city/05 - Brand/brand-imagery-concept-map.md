@@ -34,8 +34,44 @@ things it depends on, so a stranger can explain it from this page alone.
 ## How it runs (links to the other pages)
 - **Make:** `04 - Playbooks/brand-imagery.md`
 - **Check:** the review list in the same playbook; the checker is not the maker.
-- **Weekly use:** to write with Jenna (owner, day, where it shows).
-- **Where the files are:** the paths above, on `main` after the pull request.
+- **Weekly use:** section "How it runs every week" in the same playbook (who, Tuesday and Thursday, where it shows).
+- **Where the files are:** the file structure below, on `main` after the pull request.
+
+## File structure
+```
+corners-city/
+  03 - Deliverables/mp1/images/
+      README.md                      log of every image: maker, reviewer, date, status
+      comfy-test-01.png              test image made with the ComfyUI flow
+      chatgptPIC.png                 test image made by Jenna
+  04 - Playbooks/
+      brand-imagery.md               how to make, review and keep images (the manual)
+  05 - Brand/
+      master-prompt.md               the template, its rules, the test log, rights and disclosure
+      brand-imagery-concept-map.md   this page
+      comfyui/corners.json           the saved ComfyUI flow
+      comfyui/README.md              nodes, models, licence, known limits
+      references/                    ref-01 (superseded), ref-02, ref-03 and their log
+  board/
+      brand-house.html               Brand House page (plot-13)
+      asset-gallery.html             Asset Gallery page (plot-14), with asset-gallery.css
+      city-assets/gallery-ref-0*.webp   images shown in the gallery
+      city-data.js                   the two plots and their entries
+```
+
+## Handover
+**Written 24 Oct 2026. Pair to confirm.**
+- **Federico built:** master prompt and its test log, the references, the ComfyUI flow and its README,
+  the playbook (steps, review list, weekly routine, failures, alternatives), this map, the two plots,
+  the Asset Gallery, the rights draft and the Midjourney/DALL·E basics.
+- **Jenna built:** the review of `comfy-test-01.png`, the formats and upscale guidelines, the Brand House
+  page (and its link to the city), and a test image with ChatGPT Plus (`chatgptPIC.png`).
+- **Still open on 24 Oct:** the test by a teammate outside the pair, the review of `ref-02` and
+  `ref-03`, reading the OpenAI and Comfy terms of use, the signatures, a source for the format sizes,
+  and the unmerged pull request (#16). After the merge, change the links in `brand-house.html` from the
+  branch `mp1/brand-imagery` to `main`.
+- **If one of the two is away:** the other can run everything with the playbook. The master prompt and
+  the references are the only files that need a brand decision; leave them as they are until both agree.
 
 ## Test of this page
 Give it to someone outside the pair: can they explain the piece from this page alone?
