@@ -45,7 +45,7 @@ covers other cities (`PROJECT.md`), so nothing in the template is fixed to one c
 - A person who knows the city checks the image before it is approved: tools invent landmarks that
   look real.
 
-### ComfyUI variant (untested)
+### ComfyUI variant (tested once, partly worked)
 Z-Image-Turbo ignores "do not include", so the last line is a positive statement. Replace the last
 line of the template with:
 
@@ -55,6 +55,11 @@ Only people and architecture are visible. Everyone wears plain clothes and plain
 
 Tested once on 19 Oct 2026 (see the test log): no readable text, but the wrong number of people and a
 wrong bridge. Use ChatGPT when the count of people or a real landmark matters.
+
+Ideas to try next on ComfyUI, **untested** (one change at a time): start the prompt with the count
+("Exactly two people.") and keep the whole prompt shorter, because this model reads a short, plain
+description better than a long list of rules; and describe the bridge by its shape ("one single
+white arch with thin vertical cables") instead of its name.
 
 ## Step 2 — Generate three test images
 Use the same template three times. Change only the **Scene** line each time.
@@ -94,8 +99,33 @@ prompt next to it. It must be marked as AI-made.
 - **Tool and model licence**: name both in the playbook before the first approved image.
 
 ## Rights and disclosure
-Every image carries a line saying it is AI-generated, with tool and prompt cited. No recognisable
-real person and no third-party logos.
+**Status: DRAFT written 24 Oct 2026 by Federico (with Claude). Not legal advice. Jenna to check and sign.**
+
+**The line on every image** (caption, post text or file record):
+`AI-generated with [tool and plan], [date]. Prompt: [version of the master prompt and the scene].`
+Example: `AI-generated with ChatGPT (Go), 19 Oct 2026. Prompt: master prompt v2.1, bench by the river in Bilbao.`
+The line stays with the file in `03 - Deliverables/mp1/images/README.md`, and appears on the image
+when it is published.
+
+**Rules for every image**
+- Nobody recognisable, and no real person's likeness. People are shown as adults (about 20 years old).
+- No third-party logos or brand marks, and no readable text, on clothes, shoes, objects or signs.
+- No invented prices, sign boards or claims in the image. A price or fact goes in a caption, from a
+  sourced figure with a date.
+- A real place is named only if the image really looks like it. Check landmarks: tools invent them.
+- An image is published only after a second person has checked it (see the playbook).
+
+**What the terms of use say about commercial use (checked 24 Oct 2026, secondary sources only)**
+- **ChatGPT.** Several summaries of OpenAI's terms say the user owns the output, including images and
+  including on free plans, subject to the terms and the law. Ownership is a contract term, not a
+  guarantee of copyright, and similar images can be given to other users. These summaries were not
+  OpenAI's own page: **read the current OpenAI Terms of Use before the first post is published.**
+- **Comfy Cloud.** Comfy's cloud page says the models on it are cleared for commercial use, which is
+  marketing copy. The terms of service at comfy.org/terms-of-service were not read in full: **their
+  output clause is still unchecked.**
+- **Model licence.** Z-Image-Turbo (Comfy-Org/z_image_turbo package): Apache 2.0, checked on the model
+  page on 19 Oct 2026. Qwen3-4B and the `ae` VAE: not checked.
+- **Free-account images** may differ from paid ones in watermarks or terms: check on the day.
 
 ---
 *Drafted by Claude (AI) at Federico's request. Colour and style are proposals, not decisions made

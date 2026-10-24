@@ -80,6 +80,20 @@ These happened in the first tests.
    every image, and prefer ChatGPT when they matter.
 8. **Still open:** the people look 17–19 even when the prompt says "about 22 years old, adults".
 
+## Images for the app sections and the website: Midjourney and DALL·E basics
+The app sections (Nearby, Recs, Groups, Guides, Weekends, Programme, Before you leave) and the website
+use the **same template**; only Scene, Place, Time and People change. Draft by Federico, 24 Oct 2026.
+- **DALL·E** is the image model behind ChatGPT's image tool (and Microsoft Copilot / Designer). You
+  paste the filled template as plain text. It understands "no logos". Ask for the size in words
+  ("wide, 3:2" or "portrait, 4:5"); you cannot be sure of the exact pixels, so crop afterwards.
+- **Midjourney** is a paid tool you use in its own website or Discord. You paste the same text, then
+  add parameters at the end: `--ar 4:5` for the shape, `--no text, logos` for what to leave out.
+  Check the current plan and its commercial terms before using it: not tried by the team.
+- **One section, one image:** write the Scene in one sentence from what the section does (Nearby:
+  two students asking a question on a street; Weekends: friends at a station with a small bag).
+  Do not draw the app interface: screens produce invented text.
+- Keep the check from the review list on every image, whichever tool made it.
+
 ## Alternatives considered, and why they lost
 1. **Only ChatGPT, no ComfyUI flow.** Faster and understands "do not include". It lost as the *only*
    path because a chat cannot be saved and rerun as a flow, and the mission asks for a saved ComfyUI
