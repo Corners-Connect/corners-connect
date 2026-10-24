@@ -65,10 +65,11 @@ version only. The ComfyUI flow already holds the prompt of the first test.
   not percentages (under 30 people, as in `docs/kpi-tree.md`).
 
 ## Who needs it, and how we know it works
-**Draft by Federico, 24 Oct 2026. To confirm with the people named.**
-- **Named users outside the pair:** the content calendar pair (Rylan and Jose, who need approved images
-  for four weeks of posts) and the video pair (Federica and Haru, who need stills for the launch video).
-  To confirm with them.
+**Draft by Federico, 24 Oct 2026.**
+- **Named users:** Chiara, the incoming Erasmus student described in `PROJECT.md`, who sees the images in
+  posts, the website and partner packs and should always recognise Corners; and, as a daily task, any
+  teammate outside the pair who needs an image for a post or an app section and makes it with this
+  playbook.
 - **What it saves:** a teammate can make and check an image without asking the pair. We note the minutes
   each image took, so after a few weeks we have a real figure, not a guess.
 - **Proof by 27 Oct:** at least one teammate outside the pair has followed the playbook alone and the
