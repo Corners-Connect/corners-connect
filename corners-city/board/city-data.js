@@ -59,12 +59,15 @@ export const EXTENSIONS = [
   tool:'brand-house'},
 
  {plotId:'plot-14', type:'biblioteca', label:'Asset Gallery',
-  blurb:'Every approved image with its source file, prompt and tool, so posts and app sections only use approved images.'}
+  blurb:'Every approved image with its source file, prompt and tool, so posts and app sections only use approved images.',
+  tool:'asset-gallery'}
 ];
 
 // Functional entries are reviewed source code. Browser drafts cannot supply URLs.
 export const TOOLS = {
  
+ 'asset-gallery': {href:'asset-gallery.html', kind:'BRAND IMAGERY',
+  action:'Enter Asset Gallery ↗', description:'Every approved Corners image with its source file, prompt and tool. Images waiting for review are listed separately.'},
  'brand-house': {href:'brand-house.html', kind:'BRAND IMAGERY',
   action:'Enter Brand House ↗', description:'Explore the Corners image guidelines, review checklist, and team workflow.'},
 
