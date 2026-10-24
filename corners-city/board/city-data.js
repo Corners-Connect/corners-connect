@@ -9,7 +9,10 @@ export const PLOTS = [
  {id:'plot-04', x:-12, z:12}, {id:'plot-05', x:0, z:12}, {id:'plot-06', x:12, z:12},
  // A fourth row, because the app has seven sections in build and the first three
  // rows hold six plots. Existing plot ids are untouched.
- {id:'plot-07', x:-12, z:24}, {id:'plot-08', x:0, z:24}, {id:'plot-09', x:12, z:24}
+ {id:'plot-07', x:-12, z:24}, {id:'plot-08', x:0, z:24}, {id:'plot-09', x:12, z:24},
+ // Mini Project 1, pair 1 (brand imagery): plot-13 and plot-14, a sixth row. plot-10 to plot-12 are
+ // already used on the branch operations/video-production-and-action-plan, so they are left alone.
+ {id:'plot-13', x:-12, z:48}, {id:'plot-14', x:0, z:48}
 ];
 // Approved visual additions live here as code after review. Local browser drafts
 // are separate and never become company decisions, tasks or evidence automatically.
@@ -47,11 +50,27 @@ export const EXTENSIONS = [
  {plotId:'plot-08', label:'Learning Lab', type:'biblioteca', tool:'learning-lab'},
  {plotId:'plot-09', type:'estudio', label:'Audience outreach',
   blurb:'A place for aggregated survey findings and the next questions to check. No individual responses or contacts are stored here.',
-  tool:'audience-outreach'}
+  tool:'audience-outreach'},
+ // Mini Project 1, pair 1 (Federico + Jenna). Entries only; the pages come with their own commits.
+ // Student review and sign-off pending.
+
+{plotId:'plot-13', type:'estudio', label:'Brand House',
+  blurb:'The visual and verbal rules, the master prompt and the ComfyUI flow that make every Corners image look like one company.',
+  tool:'brand-house'},
+
+ {plotId:'plot-14', type:'biblioteca', label:'Asset Gallery',
+  blurb:'Every approved image with its source file, prompt and tool, so posts and app sections only use approved images.',
+  tool:'asset-gallery'}
 ];
 
 // Functional entries are reviewed source code. Browser drafts cannot supply URLs.
 export const TOOLS = {
+ 
+ 'asset-gallery': {href:'asset-gallery.html', kind:'BRAND IMAGERY',
+  action:'Enter Asset Gallery ↗', description:'Every approved Corners image with its source file, prompt and tool. Images waiting for review are listed separately.'},
+ 'brand-house': {href:'brand-house.html', kind:'BRAND IMAGERY',
+  action:'Enter Brand House ↗', description:'Explore the Corners image guidelines, review checklist, and team workflow.'},
+
  'learning-lab': {href:'learning-lab.html', kind:'INSTRUCTOR CONTRIBUTION',
   action:'Enter Learning Lab ↗', description:'Prepare the four course deliveries and turn all 25 syllabus topics into useful pieces of your company. Your team keeps the decisions.'},
  'audience-outreach': {href:'audience-outreach.html', kind:'AUDIENCE RESEARCH',
