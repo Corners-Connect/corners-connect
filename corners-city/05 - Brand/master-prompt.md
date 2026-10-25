@@ -85,7 +85,7 @@ prompt next to it. It must be marked as AI-made.
   baby blue `#A8DDFB` (`corners-city/board/theme.css`). The photos carry no colour accent, so
   nothing here depends on the vote. The class still has to settle the brand colour that goes on top
   of the image (logo, caption, frame).
-- **Formats and upscale (Owner: Jenna):**
+- **Formats and upscale (Owner: Jenna Meenaghan; signed 25 Oct 2026):**
   - Instagram feed: 1080 × 1350 pixels (4:5 ratio).
   - Instagram Stories and Reels: 1080 × 1920 pixels (9:16 ratio).
   - TikTok: 1080 × 1920 pixels (9:16 ratio).
@@ -125,21 +125,16 @@ when it is published.
 - A real place is named only if the image really looks like it. Check landmarks: tools invent them.
 - An image is published only after a second person has checked it (see the playbook).
 
-**What the terms of use say about commercial use (checked 24 Oct 2026, secondary sources only)**
-- **ChatGPT.** Several summaries of OpenAI's terms say the user owns the output, including images and
-  including on free plans, subject to the terms and the law. Ownership is a contract term, not a
-  guarantee of copyright, and similar images can be given to other users. These summaries were not
-  OpenAI's own page: **read the current OpenAI Terms of Use before the first post is published.**
-- **Comfy Cloud.** Comfy's cloud page says the models on it are cleared for commercial use, which is
-  marketing copy. The terms of service at comfy.org/terms-of-service were not read in full: **their
-  output clause is still unchecked.**
-- **Model licence.** Z-Image-Turbo (Comfy-Org/z_image_turbo package): Apache 2.0, checked on the model
-  page on 19 Oct 2026. Qwen3-4B and the `ae` VAE: not checked.
-- **Free-account images** may differ from paid ones in watermarks or terms: check on the day.
+**Commercial-use terms: checked against official sources, 25 Oct 2026 (Jenna, assisted by ChatGPT)**
+
+- **OpenAI ChatGPT images:** OpenAI's current individual Terms of Use (effective January 2026; EEA/Swiss version updated 16 Jan 2026) state that, as between the user and OpenAI and to the extent permitted by law, the user owns Output, and OpenAI assigns any rights it has in that Output to the user. There is no separate ban on commercial publication of ordinary generated images in the cited output-ownership clause. The user remains responsible for avoiding infringement and checking accuracy and appropriateness; outputs may be similar to those of other users. The terms also prohibit presenting AI output as human-generated. Ownership under the contract is **not** a guarantee that an image qualifies for copyright protection or is free of third-party rights. Sources: https://openai.com/policies/row-terms-of-use/ and https://openai.com/en-GB/policies/eu-terms-of-use/ (read 25 Oct 2026).
+- **Comfy Cloud:** The official Comfy Terms of Service (effective 13 May 2026), section 2, *Customer Data*, says the customer retains all right, title and interest in their Input and the visual Output generated through processing it, as between Comfy and the customer. The terms permit use of Comfy Products for internal business purposes under the selected plan and require compliance with the service's terms, applicable law, and any third-party model/provider conditions. This supports customer ownership of output but does **not** itself guarantee clearance for every commercial advertising use. Source: https://comfy.org/terms-of-service (sections 2–3; read 25 Oct 2026).
+- **Model licences:** The saved Z-Image-Turbo flow references an Apache-2.0 model package, as documented by Federico, but commercial publication must still check the licences and conditions of all used model components (including Qwen3-4B and the `ae` VAE) and any Partner Node provider. Do not mark a Comfy image commercially cleared solely from the Cloud ownership clause.
+- **Publication rule:** Keep the tool/plan/date/prompt-version AI credit, check for recognisable people and third-party marks, verify factual claims and landmarks, and obtain independent second-person review. Any uncertainty about rights remains an open approval issue; do not publish until resolved.
 
 ---
 *Drafted by Claude (AI) at Federico's request. Colour and style are proposals, not decisions made
-by an agent. Signed by: ______ (Federico) · Reviewed by: ______*
+by an agent. Signed by: ______ (Federico) · Reviewed by: Jenna Meenaghan, 25 Oct 2026 (terms research assisted by ChatGPT)*
 
 ## Test log (18 Oct 2026, ChatGPT Go, image generation)
 Same template, only the Scene line changed. Findings:
