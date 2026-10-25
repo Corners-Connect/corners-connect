@@ -85,7 +85,7 @@ prompt next to it. It must be marked as AI-made.
   baby blue `#A8DDFB` (`corners-city/board/theme.css`). The photos carry no colour accent, so
   nothing here depends on the vote. The class still has to settle the brand colour that goes on top
   of the image (logo, caption, frame).
-- **Formats and upscale (Owner: Jenna Meenaghan; signed 25 Oct 2026):**
+- **Formats and upscale (Owner: Jenna; signed 25 Oct 2026):**
   - Instagram feed: 1080 × 1350 pixels (4:5 ratio).
   - Instagram Stories and Reels: 1080 × 1920 pixels (9:16 ratio).
   - TikTok: 1080 × 1920 pixels (9:16 ratio).
@@ -134,7 +134,7 @@ when it is published.
 
 ---
 *Drafted by Claude (AI) at Federico's request. Colour and style are proposals, not decisions made
-by an agent. Signed by: ______ (Federico) · Reviewed by: Jenna Meenaghan, 25 Oct 2026 (terms research assisted by ChatGPT)*
+by an agent. Signed by: ______ (Federico) · Reviewed by: Jenna, 25 Oct 2026 (terms research assisted by ChatGPT)*
 
 ## Test log (18 Oct 2026, ChatGPT Go, image generation)
 Same template, only the Scene line changed. Findings:
