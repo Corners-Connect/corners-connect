@@ -6,7 +6,7 @@ A file is **approved** only after a second person has checked it (see `04 - Play
 | File | Tool | Prompt | Date | Made by | Reviewed by | Status |
 |---|---|---|---|---|---|---|
 | `comfy-test-01.png` | Comfy Cloud, Z-Image-Turbo text-to-image | Master prompt template v2, flow in `05 - Brand/comfyui/corners.json` | 18 Oct 2026 | Federico | Jenna, 23 Oct 2026 | test, not approved |
-| chatgptPIC.png | ChatGPT Plus, AI image generation | Master prompt v2.1, Bilbao riverside bench scene with two students and Zubizuri bridge | 23 Oct 2026 | Jenna | not yet | test, not approved |
+| `chatgptPIC.png` | ChatGPT Plus, AI image generation | Master prompt v2.1, Bilbao riverside bench scene with two students and Zubizuri bridge | 23 Oct 2026 | Jenna | Federico, 25 Oct 2026 | approved as a brand image |
 | `05 - Brand/references/ref-02-bilbao-bench-zubizuri.webp` | ChatGPT (Go), image generation | Master prompt v2.1, bench by the river in Bilbao | 19 Oct 2026 | Federico | Jenna, 25 Oct 2026 | approved as a brand reference |
 | `05 - Brand/references/ref-03-club-dance-floor.webp` | ChatGPT (Go), image generation | Master prompt v2.1, friends on a club dance floor | 19 Oct 2026 | Federico | Jenna, 25 Oct 2026 | approved as a brand reference |
 
@@ -21,3 +21,7 @@ Two students are shown with a paper map and phone. The image has natural colours
 ## Review of ref-03-club-dance-floor.webp — Jenna, 25 Oct 2026
 
 **Result: approved as a brand reference** (not a blanket approval for every commercial publication). Three prominent young adults dance in a crowded indoor venue. The warm low light, natural clothing colours and spontaneous expressions resemble a candid photograph rather than an advertisement. The background crowd is appropriate to the club scene; no obvious readable text, logos or watermarks. The location is generic rather than identifiably Bilbao, which is acceptable for a general nightlife reference. Check rights and disclosure for each published use.
+
+## Review of chatgptPIC.png — Federico, 25 Oct 2026
+
+**Result: approved** (not a blanket approval for every commercial publication). Two young people sit on a bench by the Bilbao river, one reading a paperback and one eating a sandwich, with a white arched bridge that looks like the Zubizuri behind them. No readable text, logos or signs; the book pages show no legible words. Natural afternoon light and natural colours; a candid, documentary look. Both people are seen from behind or in profile, so nobody is recognisable, and the image shows little about their age. Made by Jenna with ChatGPT Plus, so it is not a free-plan result. Check rights and disclosure for each published use.
