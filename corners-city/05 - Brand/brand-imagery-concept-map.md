@@ -42,8 +42,8 @@ things it depends on, so a stranger can explain it from this page alone.
 corners-city/
   03 - Deliverables/mp1/images/
       README.md                      log of every image: maker, reviewer, date, status
-      comfy-test-01.png              test image made with the ComfyUI flow
-      chatgptPIC.png                 test image made by Jenna
+      comfy-test-01.png              test image made with the ComfyUI flow (not approved)
+      chatgptPIC.png                 approved image made by Jenna
   04 - Playbooks/
       brand-imagery.md               how to make, review and keep images (the manual)
   05 - Brand/
@@ -60,16 +60,18 @@ corners-city/
 ```
 
 ## Handover
-**Written 24 Oct 2026. Pair to confirm.**
+**Updated 25 Oct 2026. Pair to confirm.**
 - **Federico built:** master prompt and its test log, the references, the ComfyUI flow and its README,
   the playbook (steps, review list, weekly routine, failures, alternatives), this map, the two plots,
   the Asset Gallery, the rights draft and the Midjourney/DALL·E basics.
-- **Jenna built:** the review of `comfy-test-01.png`, the formats and upscale guidelines, the Brand House
+- **Jenna built:** the review of `comfy-test-01.png`, the second-person reviews of `ref-02` and `ref-03`,
+  the formats and upscale guidelines, the research on the OpenAI and Comfy terms of use, the Brand House
   page (and its link to the city), and a test image with ChatGPT Plus (`chatgptPIC.png`).
-- **Still open on 24 Oct:** the test by a teammate outside the pair, the review of `ref-02` and
-  `ref-03`, reading the OpenAI and Comfy terms of use, the signatures, a source for the format sizes,
-  and the unmerged pull request (#16). After the merge, change the links in `brand-house.html` from the
-  branch `mp1/brand-imagery` to `main`.
+- **Done by 25 Oct:** three approved images in the log and the gallery (`ref-02`, `ref-03`,
+  `chatgptPIC.png`); playbook and master prompt signed by both.
+- **Still open on 25 Oct:** the test by a teammate outside the pair (free ChatGPT account); the
+  signatures on this map; the merge of the pull request (#16) into `main`. After the merge, change the
+  links in `brand-house.html` from the branch `mp1/brand-imagery` to `main`.
 - **If one of the two is away:** the other can run everything with the playbook. The master prompt and
   the references are the only files that need a brand decision; leave them as they are until both agree.
 
