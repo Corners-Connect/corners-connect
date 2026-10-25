@@ -79,4 +79,4 @@ corners-city/
 Give it to someone outside the pair: can they explain the piece from this page alone?
 
 ---
-*Drafted by Claude (AI) at Federico's request. Signed by: ______ (Federico) · Jenna, 25 Oct 2026*
+*Drafted by Claude (AI) at Federico's request. Signed by: Federico, 26 Oct 2026 · Jenna, 25 Oct 2026*
