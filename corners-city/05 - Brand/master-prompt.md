@@ -134,7 +134,7 @@ when it is published.
 
 ---
 *Drafted by Claude (AI) at Federico's request. Colour and style are proposals, not decisions made
-by an agent. Signed by: ______ (Federico) · Reviewed by: Jenna, 25 Oct 2026 (terms research assisted by ChatGPT)*
+by an agent. Signed by: Federico, 25 Oct 2026 · Reviewed by: Jenna, 25 Oct 2026 (terms research assisted by ChatGPT)*
 
 ## Test log (18 Oct 2026, ChatGPT Go, image generation)
 Same template, only the Scene line changed. Findings:

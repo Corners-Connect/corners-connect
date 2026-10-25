@@ -149,4 +149,4 @@ use the **same template**; only Scene, Place, Time and People change. Draft by F
 
 ---
 *Drafted by Claude (AI) at Federico's request; steps and failures come from Federico's own test runs.
-Owner signs: Federico — pending · Jenna — 25 Oct 2026 (test image, second-person image reviews, format guidance, Brand House, rights/disclosure research; not a Free-plan test)*
+Owner signs: Federico — 25 Oct 2026 (master prompt, references, ComfyUI flow, playbook, weekly routine, gallery, city plots) · Jenna — 25 Oct 2026 (test image, second-person image reviews, format guidance, Brand House, rights/disclosure research; not a Free-plan test)*
