@@ -15,3 +15,6 @@ the exact prompt, date, who made it, and "AI-generated".
 | `ref-03-club-dance-floor.webp` | ChatGPT Go, image generation | Template v2.1. Scene: three friends dancing together on a club dance floor. Place: small nightclub in a Spanish city, low ceiling, crowded dance floor. Time: night. Mood: club lighting. | 19 Oct 2026 | Federico |
 
 All images are AI-generated. The full prompt text is the template in `../master-prompt.md` with the blanks above. ref-02 and ref-03 are chosen by Federico and wait for Jenna's review; refs are a brand decision, so the pair can replace them.
+| `ref-04-bilbao-bench-unbranded.webp` | ChatGPT (Go), image generation | Template v2.1 with the "unbranded block" (see the master prompt). Scene: two students on a bench by a river, one reading, one eating. Place: Bilbao riverside, one white arched bridge described by its shape. Afternoon. | 26 Oct 2026 | Federico |
+
+ref-04: **candidate, waiting for a second-person review.** Checked by Federico at full size: no logos, no writing, plain shoes, blank wrapper and book. The bridge is a generic arch, **not the Zubizuri**.

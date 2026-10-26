@@ -8,6 +8,7 @@ A file is **approved** only after a second person has checked it (see `04 - Play
 | `comfy-test-01.png` | Comfy Cloud, Z-Image-Turbo text-to-image | Master prompt template v2, flow in `05 - Brand/comfyui/corners.json` | 18 Oct 2026 | Federico | Jenna, 23 Oct 2026 | test, not approved |
 | `chatgptPIC.png` | ChatGPT Plus, AI image generation | Master prompt v2.1, Bilbao riverside bench scene with two students and Zubizuri bridge | 23 Oct 2026 | Jenna | Federico, 25 Oct 2026 | approved as a brand image |
 | `05 - Brand/references/ref-02-bilbao-bench-zubizuri.webp` | ChatGPT (Go), image generation | Master prompt v2.1, bench by the river in Bilbao | 19 Oct 2026 | Federico | Jenna, 25 Oct 2026 | approved as a brand reference; small logo-like mark on the sandwich wrapper found 26 Oct, do not publish as is |
+| `05 - Brand/references/ref-04-bilbao-bench-unbranded.webp` | ChatGPT (Go), image generation | Template v2.1 + unbranded block, bench by the river in Bilbao | 26 Oct 2026 | Federico | not yet | candidate, waiting for review |
 | `05 - Brand/references/ref-03-club-dance-floor.webp` | ChatGPT (Go), image generation | Master prompt v2.1, friends on a club dance floor | 19 Oct 2026 | Federico | Jenna, 25 Oct 2026 | approved as a brand reference |
 
 ## Review of comfy-test-01.png — Jenna, 23 Oct 2026

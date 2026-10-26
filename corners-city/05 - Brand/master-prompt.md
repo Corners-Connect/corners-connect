@@ -197,3 +197,11 @@ Place: [describe the setting: city, area, what is around. If the image must read
 ...
 Everything in the image is plain and unbranded: sweatshirts, jackets and t-shirts in solid colours with no embroidery or prints, plain trousers, plain sneakers in a single solid colour with no side stripes or emblems, plain bags and backpacks with no patches or labels. Lamp posts, railings, walls, benches and street furniture are bare, with nothing attached to them. Any book, cup, wrapper or object is blank. Nothing in the image has writing on it.
 ```
+
+## Test log (26 Oct 2026, ChatGPT Go, unbranded block, Federico)
+Same bench scene as `ref-02`, with the unbranded block. Result (`references/ref-04`): two people, a documentary
+photograph, natural light. Checked at full size: no logos, no writing, plain white sneakers, a blank
+wrapper and book, a plain black bag, bare lamp post and railings. **The block removed the marks.** But the
+bridge described only by its shape came out as a generic arch, not the Zubizuri, so a local would notice.
+Next test: name the landmark and add its shape ("the Zubizuri pedestrian bridge in Bilbao") and keep "no
+other landmarks".
