@@ -1,4 +1,4 @@
-# Master prompt — the Corners look (version 1, ready for first tests)
+# Master prompt — the Corners look (version 2.1)
 
 **Status: DRAFT. Not a decision.** Federico and Jenna accept, change or reject everything here.
 Until they sign it, this is not the brand.
@@ -17,7 +17,7 @@ A realistic documentary photograph of everyday student life in a new city.
 
 Scene: [what is happening, in one sentence]
 Place: [describe the setting: city, area, what is around]
-Time of day: [morning / afternoon / evening]
+Time of day: [morning / afternoon / evening / night]
 People: [how many] young people, about 20 years old, dressed for the situation, [doing what]. Nobody recognisable.
 Mood: [light that fits the setting, e.g. warm natural light / street lights at night / club lighting], an ordinary moment, nobody posing for the camera.
 Colour: natural colours, no dominant colour accent.
@@ -60,6 +60,10 @@ Ideas to try next on ComfyUI, **untested** (one change at a time): start the pro
 ("Exactly two people.") and keep the whole prompt shorter, because this model reads a short, plain
 description better than a long list of rules; and describe the bridge by its shape ("one single
 white arch with thin vertical cables") instead of its name.
+
+## Steps 2 to 5: only when you create or change the look
+These steps are for building or changing the look of the brand (new template, new references). To make
+**one everyday image**, do not follow them: use the playbook `04 - Playbooks/brand-imagery.md`.
 
 ## Step 2 — Generate three test images
 Use the same template three times. Change only the **Scene** line each time.

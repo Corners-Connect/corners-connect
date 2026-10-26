@@ -1,7 +1,8 @@
 # C-06 · C-07 · Make an on-brand Corners image
 
-**Status: DRAFT v1.** Run once by the author (18 Oct 2026). Not yet run by a second person, so the
-steps below are not proven. Steps follow `05 - Brand/master-prompt.md`, which is itself a proposal.
+**Status: DRAFT v1.** Run once by the author (18 Oct 2026). Read by an AI reader on 26 Oct 2026, which
+found the unclear points fixed below; **not yet run by a human outside the pair**, so the steps are not
+proven. Steps follow `05 - Brand/master-prompt.md`, which is itself a proposal.
 
 **Owner:** Federico · **Apprentice:** (a classmate outside the pair, not chosen yet) · **Last used:** 18 Oct 2026
 
@@ -13,8 +14,9 @@ prompt written next to it, and recorded in `03 - Deliverables/mp1/images/`.
 - **A tool.**
   - **Main tool: ChatGPT** (image generation). Everything was tested on the paid plan "Go". A free
     account allows only a few images a day (sources say 2–3 per 24 hours, not verified) and may use a
-    different image model, so **the free plan is not proven yet**: the first free-account run is the
-    playbook test by Jenna, to be recorded below. Free alternative, not tried: Microsoft Copilot /
+    different image model, so **the free plan is not proven yet**: the first free-account run by a
+    human outside the pair is recorded in the table "Free-plan check" below (Jenna's run used the paid
+    plan Plus, so it does not count). Free alternative, not tried: Microsoft Copilot /
     Designer. Template v2.1 was tested here on 19 Oct 2026
     (Bilbao, a night club, Lisbon, a young woman and a young man). It understands "no logos".
   - **Saved flow: ComfyUI on Comfy Cloud** (comfy.org/cloud, sign in with Google, free plan: 5 runs).
@@ -28,16 +30,21 @@ prompt written next to it, and recorded in `03 - Deliverables/mp1/images/`.
 
 ## The steps
 1. Open `05 - Brand/master-prompt.md` and copy the template.
-2. Decide the persona (Chiara, Aiyana or Marta) and the channel. Write them in the brief, **not** in the
-   prompt: the tool writes them into the image as text.
-3. Fill in Scene, Place, Time of day and People. Check that Scene and People agree on the number of
-   people, and that Scene and Place can happen in the same spot.
+2. Write a two-line **brief** (a note for yourself, not for the tool): who the image is for and where it
+   goes. Persona: Chiara (19, Erasmus), Aiyana (20, US study abroad) or Marta (18, first-year), from
+   `PROJECT.md`. Channel: Instagram, TikTok, the website or a partner pack. Do **not** put the persona
+   or the channel in the prompt: the tool writes them into the image as text.
+3. Fill in the five blanks of the template: Scene, Place, Time of day, People and the light in Mood
+   (replace the whole bracket, including the brackets). Check that Scene and People agree on the number
+   of people, and that Scene and Place can happen in the same spot. Add the shape at the end of the
+   prompt: "Portrait, 4:5" for Instagram, "Vertical, 9:16" for TikTok, "Wide, 3:2" for the website.
 4. Paste the prompt into the tool. In ComfyUI, paste it into the `prompt` box and press Run once.
-5. Look at the result against the references. If something is wrong, change **one line** and run again.
+5. Look at the result against the references `ref-02` and `ref-03` (`ref-01` is superseded, do not use it). If something is wrong, change **one line** and run again.
    Runs are limited on the free plan.
 6. Save the file in `03 - Deliverables/mp1/images/` and add a row to the README there.
 7. Give it to a second person for the review below. Do not review your own image.
-8. When approved, add the AI line with the tool and the prompt (credit line in `05 - Brand/comfyui/README.md`).
+8. When approved, add the AI line with the tool and the prompt. The line for ChatGPT is in "Rights and
+   disclosure" in `05 - Brand/master-prompt.md`; the line for Z-Image-Turbo is in `05 - Brand/comfyui/README.md`.
    Resizing for each channel is in the formats section of the master prompt (owner: Jenna).
 
 ## The prompt
@@ -81,6 +88,7 @@ version only. The ComfyUI flow already holds the prompt of the first test.
 - Is the place believable as Bilbao?
 - Does it look like a documentary photo, not an illustration or an advert?
 - No recognisable real person?
+- Any small printed mark, even unreadable, on packaging, wrappers, bags, shoes or clothes? (It must not.)
 - Is the AI line there, with the tool and the prompt?
 
 If any answer is wrong, it goes back. Record who checked and when in `03 - Deliverables/mp1/images/README.md`.
@@ -104,12 +112,14 @@ These happened in the first tests.
    prices in a sourced caption later.
 5. **A forced blue accent looked staged** (blue backpacks and jackets). The brand colour goes on top of
    the image, not on the people.
-6. **Without a Style line, one image came out as an illustration.** The template says "realistic
+6. **Without "realistic documentary photograph", one image came out as an illustration.** The first line of the template says "realistic
    documentary photograph".
 7. **ComfyUI with Z-Image-Turbo got the number of people and a real landmark wrong** (three people for
    "two", a generic bridge for the Zubizuri), even with the positive wording. Check count and place on
    every image, and prefer ChatGPT when they matter.
-8. **Still open:** the people look 17–19 even when the prompt says "about 22 years old, adults".
+8. **A small logo-like mark on a sandwich wrapper in `ref-02` passed two human reviews** and was found by an
+   AI reader on 26 Oct 2026. Look at packaging and objects at full size, not only at people and signs.
+9. **Still open:** the people look 17–19 even when the prompt says "about 22 years old, adults".
 
 ## Images for the app sections and the website: Midjourney and DALL·E basics
 The app sections (Nearby, Recs, Groups, Guides, Weekends, Programme, Before you leave) and the website
@@ -139,6 +149,7 @@ use the **same template**; only Scene, Place, Time and People change. Draft by F
 ## Free-plan check (to fill in)
 | Who | Tool and plan | Images before the limit | Followed the template? Same look as the references? |
 |---|---|---|---|
+| Two AI readers (Claude and a logged-out ChatGPT), forwarded by a teammate, 26 Oct 2026 | Not a human test: no ChatGPT account | 0, no image generated | Could not generate. Claude read the playbook and master prompt and listed 9 unclear points, all fixed on 26 Oct. It also found the logo-like mark on the wrapper in `ref-02`. Does **not** count as the human test. |
 | | | | |
 | Jenna | ChatGPT Plus | 1 generated; limit not reached | Mostly followed the template. Realistic Bilbao scene with two students, natural lighting and recognizable Zubizuri bridge. Book has text-like marks. Reference comparison pending. Not a free-plan test. |
 
