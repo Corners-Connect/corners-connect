@@ -186,11 +186,11 @@ shoes with no marks…").
 - **Conclusion:** the positive wording fixes the text problem. Z-Image-Turbo is less reliable than
   ChatGPT on the number of people and on real landmarks. ChatGPT stays the main tool.
 
-## Test log (26 Oct 2026, ChatGPT free plan, Daniele, with Claude's help)
-A teammate outside the pair followed the playbook on the free plan (about 2-3 images before the limit).
+## Test log (26 Oct 2026, ChatGPT free plan, Daniele)
+A teammate outside the pair followed the playbook himself on the free plan (about 2-3 images before the limit).
 The first image had brand marks (North Face logos, Vans shoes, an embroidered word, a readable book
 title, banners with writing) and extra landmarks (Guggenheim, Iberdrola Tower). The review list catches
-all of these. He then rewrote the prompt in a more explicit form and the second image was clean. A
+all of these. He then used Claude (AI) to judge the image and rewrite the prompt in a more explicit form, and the second image was clean. A
 second person still has to review that image.
 
 ### Unbranded block (proposal, tested once, not yet in the template)
