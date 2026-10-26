@@ -28,7 +28,7 @@ Two students are shown with a paper map and phone. The image has natural colours
 **Result: approved** (not a blanket approval for every commercial publication). Two young people sit on a bench by the Bilbao river, one reading a paperback and one eating a sandwich, with a white arched bridge that looks like the Zubizuri behind them. No readable text, logos or signs; the book pages show no legible words. Natural afternoon light and natural colours; a candid, documentary look. Both people are seen from behind or in profile, so nobody is recognisable, and the image shows little about their age. Made by Jenna with ChatGPT Plus, so it is not a free-plan result. Check rights and disclosure for each published use.
 
 ## Test by a teammate outside the pair — Daniele, 26 Oct 2026
-Free ChatGPT plan, about 2-3 images before the limit, with help from Claude (AI) for reading the repo and rewriting the prompt. First image: brand marks and writing (see the playbook, "Free-plan check"). Second image, made with a rewritten unbranded prompt: reported clean by Daniele; **waiting for a second-person review** and the file is not in the repo yet.
+Free ChatGPT plan, about 2-3 images before the limit. Daniele followed the playbook and made the first image himself (confirmed by Daniele on 26 Oct 2026); afterwards he used Claude (AI) to judge the image and rewrite the prompt, and to write his report. First image: brand marks and writing (see the playbook, "Free-plan check"). Second image, made with a rewritten unbranded prompt: reported clean by Daniele; **waiting for a second-person review** and the file is not in the repo yet.
 
 ## Review of ref-04-bilbao-bench-unbranded.webp — Jenna, 26 Oct 2026
 
