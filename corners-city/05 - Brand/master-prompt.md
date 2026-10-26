@@ -205,3 +205,11 @@ wrapper and book, a plain black bag, bare lamp post and railings. **The block re
 bridge described only by its shape came out as a generic arch, not the Zubizuri, so a local would notice.
 Next test: name the landmark and add its shape ("the Zubizuri pedestrian bridge in Bilbao") and keep "no
 other landmarks".
+
+## Test log (26 Oct 2026, ChatGPT Go, unbranded block + landmark by name and shape, Federico)
+Second run of the bench scene. The block again removed the marks: at full size the shoes are plain
+(only tiny heel tabs, nothing readable), the wrapper is plain white tissue, no writing on the lamp post
+or railings. **But describing the bridge by name and shape gave a generic arch bridge with vertical
+hangers again, not the Zubizuri.** Runs that gave only the name ("Zubizuri bridge") came closer
+(`ref-02`, `chatgptPIC.png`). **Rule for the Place line: name the landmark, do not describe its
+shape,** and add "No other landmarks". Untested combination: unbranded block + name only.
