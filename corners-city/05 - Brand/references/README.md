@@ -15,6 +15,6 @@ the exact prompt, date, who made it, and "AI-generated".
 | `ref-03-club-dance-floor.webp` | ChatGPT Go, image generation | Template v2.1. Scene: three friends dancing together on a club dance floor. Place: small nightclub in a Spanish city, low ceiling, crowded dance floor. Time: night. Mood: club lighting. | 19 Oct 2026 | Federico |
 
 All images are AI-generated. The full prompt text is the template in `../master-prompt.md` with the blanks above. ref-02 and ref-03 are chosen by Federico and wait for Jenna's review; refs are a brand decision, so the pair can replace them.
-| `ref-04-bilbao-bench-unbranded.webp` | ChatGPT (Go), image generation | Template v2.1 with the "unbranded block" (see the master prompt). Scene: two students on a bench by a river, one reading, one eating. Place: Bilbao riverside, one white arched bridge described by its shape. Afternoon. | 26 Oct 2026 | Federico |
+| `ref-04-bilbao-bench-unbranded.webp` | ChatGPT (Go), image generation | Master prompt v2.2 in a new chat. Scene: two students on a bench by a river, one reading, one eating. Place: Bilbao riverside, the Zubizuri pedestrian bridge by name, no other landmarks. Afternoon. | 26 Oct 2026 | Federico |
 
 ref-04: **approved by Jenna on 26 Oct 2026** (second-person review in `03 - Deliverables/mp1/images/README.md`). Checked at full size by Federico and Jenna: no logos, no writing, plain shoes, blank wrapper and book. Replaced on 26 Oct 2026 by a run made in a new chat (v2.2, landmark by name): the bridge is close to the Zubizuri, no marks at full size.
