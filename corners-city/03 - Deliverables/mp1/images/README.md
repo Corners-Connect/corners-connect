@@ -8,7 +8,7 @@ A file is **approved** only after a second person has checked it (see `04 - Play
 | `comfy-test-01.png` | Comfy Cloud, Z-Image-Turbo text-to-image | Master prompt template v2, flow in `05 - Brand/comfyui/corners.json` | 18 Oct 2026 | Federico | Jenna, 23 Oct 2026 | test, not approved |
 | `chatgptPIC.png` | ChatGPT Plus, AI image generation | Master prompt v2.1, Bilbao riverside bench scene with two students and Zubizuri bridge | 23 Oct 2026 | Jenna | Federico, 25 Oct 2026 | approved as a brand image |
 | `05 - Brand/references/ref-02-bilbao-bench-zubizuri.webp` | ChatGPT (Go), image generation | Master prompt v2.1, bench by the river in Bilbao | 19 Oct 2026 | Federico | Jenna, 25 Oct 2026 | approved as a brand reference; small logo-like mark on the sandwich wrapper found 26 Oct, do not publish as is |
-| `05 - Brand/references/ref-04-bilbao-bench-unbranded.webp` | ChatGPT (Go), image generation | Template v2.1 + unbranded block, bench by the river in Bilbao | 26 Oct 2026 | Federico | not yet | candidate, waiting for review |
+| `05 - Brand/references/ref-04-bilbao-bench-unbranded.webp` | ChatGPT (Go), image generation | Master prompt v2.2, new chat, bench by the river in Bilbao | 26 Oct 2026 | Federico | Jenna, 26 Oct 2026 | OK as a brand reference; rights checks required before publication |
 | `05 - Brand/references/ref-03-club-dance-floor.webp` | ChatGPT (Go), image generation | Master prompt v2.1, friends on a club dance floor | 19 Oct 2026 | Federico | Jenna, 25 Oct 2026 | approved as a brand reference |
 
 ## Review of comfy-test-01.png — Jenna, 23 Oct 2026
@@ -29,3 +29,7 @@ Two students are shown with a paper map and phone. The image has natural colours
 
 ## Test by a teammate outside the pair — Daniele, 26 Oct 2026
 Free ChatGPT plan, about 2-3 images before the limit, with help from Claude (AI) for reading the repo and rewriting the prompt. First image: brand marks and writing (see the playbook, "Free-plan check"). Second image, made with a rewritten unbranded prompt: reported clean by Daniele; **waiting for a second-person review** and the file is not in the repo yet.
+
+## Review of ref-04-bilbao-bench-unbranded.webp — Jenna, 26 Oct 2026
+
+**Result: OK as a brand reference, subject to publication rights checks.** Reviewed the full-size image using the playbook checklist. Two students sit on a riverside bench, one reading a blank-looking paperback and the other eating a sandwich wrapped in plain brown paper. Both white sneakers appear unbranded, as do the dark bags/backpacks and plain clothes. No visible brand marks, legible text or attached banners on the book, wrapper, shoes, bags, railings or lamp posts; no obvious watermarks. The Zubizuri-style white arched bridge and river make the scene recognisably Bilbao, though the generated architecture should not be treated as an exact documentary record. Natural afternoon light and unstaged behaviour match the Corners look. No clearly recognisable real person. This visual review does not by itself establish commercial-use rights or verify the separate AI disclosure caption; keep the tool/prompt/date credit in the log and caption before publication.
