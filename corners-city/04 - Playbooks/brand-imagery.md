@@ -119,7 +119,11 @@ These happened in the first tests.
    every image, and prefer ChatGPT when they matter.
 8. **A small logo-like mark on a sandwich wrapper in `ref-02` passed two human reviews** and was found by an
    AI reader on 26 Oct 2026. Look at packaging and objects at full size, not only at people and signs.
-9. **Still open:** the people look 17–19 even when the prompt says "about 22 years old, adults".
+9. **On the free ChatGPT plan, "no logos" was not enough** (Daniele, 26 Oct 2026): the image had North Face
+   logos, Vans shoes, an embroidered word, a book title and banners with writing. A prompt that says what is
+   plain ("sweatshirts in solid colours with no embroidery, bare lamp posts, blank books") worked better:
+   see "Unbranded block" in the master prompt (tested once).
+10. **Still open:** the people look 17–19 even when the prompt says "about 22 years old, adults".
 
 ## Images for the app sections and the website: Midjourney and DALL·E basics
 The app sections (Nearby, Recs, Groups, Guides, Weekends, Programme, Before you leave) and the website
@@ -151,6 +155,7 @@ use the **same template**; only Scene, Place, Time and People change. Draft by F
 |---|---|---|---|
 | Two AI readers (Claude and a logged-out ChatGPT), forwarded by a teammate, 26 Oct 2026 | Not a human test: no ChatGPT account | 0, no image generated | Could not generate. Claude read the playbook and master prompt and listed 9 unclear points, all fixed on 26 Oct. It also found the logo-like mark on the wrapper in `ref-02`. Does **not** count as the human test. |
 | | | | |
+| Daniele (teammate outside the pair), 26 Oct 2026 | ChatGPT free (base) plan, with help from Claude (AI) to read the repo, judge the image and rewrite the prompt: **not fully alone** | About 2-3 images before the limit | Followed the template with no steps unclear. The first image looked like `ref-02` but had brand marks (North Face logos on backpacks, Vans shoes, a small embroidered word on a sweatshirt, a readable book title, banners with writing on a lamp post) and extra landmarks (Guggenheim, Iberdrola Tower). The review list would have sent it back. A second image, made with a rewritten "unbranded" prompt, came out clean; a second person still has to review it. |
 | Jenna | ChatGPT Plus | 1 generated; limit not reached | Mostly followed the template. Realistic Bilbao scene with two students, natural lighting and recognizable Zubizuri bridge. Book has text-like marks. Reference comparison pending. Not a free-plan test. |
 
 ## Who has done this

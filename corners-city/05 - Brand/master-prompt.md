@@ -180,3 +180,20 @@ shoes with no marks…").
   People look younger than 20.
 - **Conclusion:** the positive wording fixes the text problem. Z-Image-Turbo is less reliable than
   ChatGPT on the number of people and on real landmarks. ChatGPT stays the main tool.
+
+## Test log (26 Oct 2026, ChatGPT free plan, Daniele, with Claude's help)
+A teammate outside the pair followed the playbook on the free plan (about 2-3 images before the limit).
+The first image had brand marks (North Face logos, Vans shoes, an embroidered word, a readable book
+title, banners with writing) and extra landmarks (Guggenheim, Iberdrola Tower). The review list catches
+all of these. He then rewrote the prompt in a more explicit form and the second image was clean. A
+second person still has to review that image.
+
+### Unbranded block (proposal, tested once, not yet in the template)
+Replace the last line of the template and the Place line with these. Tested once on the free plan; run
+it again on another scene before it becomes the template (v2.2).
+
+```
+Place: [describe the setting: city, area, what is around. If the image must read as a specific city, name one real landmark, described by its shape. Otherwise keep the background to ordinary buildings and nature. No other landmarks.]
+...
+Everything in the image is plain and unbranded: sweatshirts, jackets and t-shirts in solid colours with no embroidery or prints, plain trousers, plain sneakers in a single solid colour with no side stripes or emblems, plain bags and backpacks with no patches or labels. Lamp posts, railings, walls, benches and street furniture are bare, with nothing attached to them. Any book, cup, wrapper or object is blank. Nothing in the image has writing on it.
+```
