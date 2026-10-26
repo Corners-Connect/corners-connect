@@ -1,4 +1,4 @@
-# Master prompt — the Corners look (version 2.1)
+# Master prompt — the Corners look (version 2.2)
 
 **Status: DRAFT. Not a decision.** Federico and Jenna accept, change or reject everything here.
 Until they sign it, this is not the brand.
@@ -16,13 +16,18 @@ that look like they come from the same company.
 A realistic documentary photograph of everyday student life in a new city.
 
 Scene: [what is happening, in one sentence]
-Place: [describe the setting: city, area, what is around]
+Place: [describe the setting: city, area, what is around. If the image must read as a specific city, name one real landmark by its name. Otherwise keep the background to ordinary buildings and nature. No other landmarks.]
 Time of day: [morning / afternoon / evening / night]
-People: [how many] young people, about 20 years old, dressed for the situation, [doing what]. Nobody recognisable.
+People: [how many] young people, about 20 years old, in casual clothes suited to the situation, [doing what]. Nobody recognisable.
 Mood: [light that fits the setting, e.g. warm natural light / street lights at night / club lighting], an ordinary moment, nobody posing for the camera.
 Colour: natural colours, no dominant colour accent.
-Only people and architecture are visible: plain walls and clothes, no screens, no signs, no writing, no logos, no brand marks on clothes or shoes.
+Everything in the image is plain and unbranded: sweatshirts, jackets and t-shirts in solid colours with no embroidery or prints, plain trousers, plain sneakers in a single solid colour with no side stripes or emblems, plain bags and backpacks with no patches or labels. Lamp posts, railings, walls, benches and street furniture are bare, with nothing attached to them. Any book, cup, wrapper or object is blank. Nothing in the image has writing on it.
 ```
+
+**v2.2 (26 Oct 2026):** the last paragraph (the "unbranded block", written by Daniele with Claude's help) replaces the old
+last line "Only people and architecture are visible…", and the Place line now names a landmark by name. Tested three times
+on ChatGPT (free plan by Daniele; Go by Federico): marks gone, bridge close to the Zubizuri. **Open a NEW chat for every image**:
+in a chat already used, ChatGPT carries over the earlier text and the result changes.
 
 The **persona** (Chiara, Aiyana or Marta) and the **channel** go in the brief, not in the prompt.
 
@@ -30,7 +35,7 @@ Example, only to show the format (tested 19 Oct 2026, ChatGPT, see the test log)
 
 ```
 Scene: two students sitting on a bench by a river, one reading a paperback, one eating a sandwich
-Place: Bilbao, a riverside promenade with the white Zubizuri pedestrian bridge visible in the distance
+Place: Bilbao, a riverside promenade. One real landmark in the distance: the Zubizuri pedestrian bridge in Bilbao. No other landmarks.
 Time of day: afternoon
 People: two university exchange students, about 20 years old, clean-shaven or light stubble, casual student clothes, one with a backpack. Nobody recognisable.
 ```
@@ -209,7 +214,14 @@ other landmarks".
 ## Test log (26 Oct 2026, ChatGPT Go, unbranded block + landmark by name and shape, Federico)
 Second run of the bench scene. The block again removed the marks: at full size the shoes are plain
 (only tiny heel tabs, nothing readable), the wrapper is plain white tissue, no writing on the lamp post
-or railings. **But describing the bridge by name and shape gave a generic arch bridge with vertical
-hangers again, not the Zubizuri.** Runs that gave only the name ("Zubizuri bridge") came closer
-(`ref-02`, `chatgptPIC.png`). **Rule for the Place line: name the landmark, do not describe its
-shape,** and add "No other landmarks". Untested combination: unbranded block + name only.
+or railings. **The bridge came out as a generic arch with vertical hangers, not the Zubizuri.** This run
+and the one before were made in a chat that had already been used, so they are not clean tests. Runs that gave only the name ("Zubizuri bridge") came closer
+(`ref-02`, `chatgptPIC.png`). The earlier conclusion that describing the shape causes a generic bridge was **withdrawn**: it came from a
+contaminated chat. See the next entry.
+
+## Test log (26 Oct 2026, ChatGPT Go, v2.2 in a NEW chat, Federico)
+Bench scene, Place by name only ("the Zubizuri pedestrian bridge in Bilbao. No other landmarks."), unbranded block, in a
+new chat. Result (`references/ref-04`): the bridge is close to the Zubizuri (an inclined arch with a fan of cables and a
+curved deck), no other landmark, two people, natural light. Checked at full size: plain white sneakers, plain brown paper
+around the sandwich, a plain black bag, a blank book, no writing anywhere. **v2.2 works.** Lesson: use a new chat for every
+image.

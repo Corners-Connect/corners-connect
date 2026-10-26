@@ -38,7 +38,8 @@ prompt written next to it, and recorded in `03 - Deliverables/mp1/images/`.
    (replace the whole bracket, including the brackets). Check that Scene and People agree on the number
    of people, and that Scene and Place can happen in the same spot. Add the shape at the end of the
    prompt: "Portrait, 4:5" for Instagram, "Vertical, 9:16" for TikTok, "Wide, 3:2" for the website.
-4. Paste the prompt into the tool. In ComfyUI, paste it into the `prompt` box and press Run once.
+4. Paste the prompt into the tool, in a **new chat for every image** (in a chat already used, ChatGPT carries
+   over the earlier text and the result changes). In ComfyUI, paste it into the `prompt` box and press Run once.
 5. Look at the result against the references `ref-02` and `ref-03` (`ref-01` is superseded, do not use it). If something is wrong, change **one line** and run again.
    Runs are limited on the free plan.
 6. Save the file in `03 - Deliverables/mp1/images/` and add a row to the README there.
@@ -123,7 +124,10 @@ These happened in the first tests.
    logos, Vans shoes, an embroidered word, a book title and banners with writing. A prompt that says what is
    plain ("sweatshirts in solid colours with no embroidery, bare lamp posts, blank books") worked better:
    see "Unbranded block" in the master prompt (tested once).
-10. **Still open:** the people look 17–19 even when the prompt says "about 22 years old, adults".
+10. **The same prompt gave a different bridge in a chat that had already been used** (Federico, 26 Oct 2026):
+    the first two runs of the unbranded prompt gave a generic arch bridge; the third, in a new chat, gave one close to
+    the Zubizuri. Always open a new chat for each image.
+11. **Still open:** the people look 17–19 even when the prompt says "about 22 years old, adults".
 
 ## Images for the app sections and the website: Midjourney and DALL·E basics
 The app sections (Nearby, Recs, Groups, Guides, Weekends, Programme, Before you leave) and the website
