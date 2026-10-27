@@ -1,0 +1,4 @@
+faster-whisper==1.2.1
+# faster-whisper 1.2.1 breaks with PyAV 16+ ("unexpected keyword argument 'metadata_errors'")
+av<16
+truststore
