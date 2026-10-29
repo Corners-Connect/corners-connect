@@ -1,6 +1,6 @@
 # Build the notify scenario in n8n, step by step
 
-**Status: DRAFT v1 (29 Oct 2026).** Not run. The tool is n8n (Finn's choice, 29 Oct 2026). Node and setting names can differ in your version: check each
+**Status: DRAFT v1 (29 Oct 2026).** Not run. The tool is n8n (Finn and Daniele, 29 Oct 2026). Finn and Daniele build and test it together. Node and setting names can differ in your version: check each
 one in n8n before you rely on it. The rules come from `routing.md`; the pass marks from `notify.json`.
 
 ## Before you start

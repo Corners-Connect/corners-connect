@@ -3,7 +3,7 @@
 **Status: DRAFT v1.** Written from the plan, **before any run**. The steps below are not proven. **Not yet run
 by a second person.**
 
-**Owner:** Finn (proposal) · **Apprentice:** (a classmate outside the pair, not chosen yet) · **Last used:** never
+**Owner:** Finn and Daniele together (Finn leads, proposal) · **Apprentice:** (a classmate outside the pair, not chosen yet) · **Last used:** never
 
 ## What you get at the end
 A tested notify step: ten invented sign-ups answered, three invented partner leads routed to their owner, one

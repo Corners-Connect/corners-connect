@@ -99,7 +99,7 @@ how it was recovered. We do not write a failure we have not seen.
 
 ## 8. Files, owners and the handover
 
-| File | What | Owner (proposal) |
+| File | What | Leads (answers for it) |
 |---|---|---|
 | `automation/notify.json` | The scenario spec | Finn |
 | `automation/routing.md` | Routing rules, owners, welcome email | Daniele |
@@ -109,7 +109,7 @@ how it was recovered. We do not write a failure we have not seen.
 | `board/coordination-hall.html` | The two buildings in Corners City | Daniele |
 | `board/coordination-hall.js`, `board/coordination-hall.css` | Three small tools inside the building: a routing check for one lead, a reply desk with drafts for the owner, and an incident-row builder. They store and send nothing | Daniele |
 
-The split above is a proposal from the draft. Finn and Daniele change it and sign. Each name owns a named part.
+**Finn and Daniele work on every file together.** Both write, build, test and review; neither one only watches. The name in the third column is who answers for that part in the end, because the course asks that each name owns a named part. The split is a proposal from the draft: Finn and Daniele change it and sign.
 The handover (`01 - Registry/HANDOVER-TEMPLATE.md`) is written after the first full run.
 
 ## 9. Open items
