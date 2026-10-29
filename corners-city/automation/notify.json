@@ -1,0 +1,73 @@
+{
+  "_what": "The notify step of the Corners machine (Mini Project 2, pair 5, C-18): spec for the Make or n8n scenario. It is a written spec, NOT an export of a running scenario. Replace it with the real export once the scenario exists, and keep this file as the one the company can read.",
+  "_status": "DRAFT v1, written 29 Oct 2026. Not built, not run, not reviewed by a second person.",
+  "_signed": "Finn and Daniele (unsigned). Drafted with Claude (AI).",
+  "_data_rule": "Invented test data only. Test addresses use example.com, which is reserved and delivers nowhere. No real student, partner or staff address, name or id appears in this repo.",
+
+  "tool": "undecided: Make or n8n (both are allowed by the syllabus). Decision for the pair, with the cost and log notes from the one-page readme (pair 6).",
+  "trigger": {
+    "when": "A new row appears in the lead table",
+    "table_owner": "Store pair (C-17). Field names below are placeholders until that table is fixed.",
+    "fields_read": ["lead_id", "kind", "cohort_code", "ring", "persona", "university", "wave", "created_at"],
+    "fields_never_copied_into_an_alert": ["email", "name", "free text"]
+  },
+
+  "steps": [
+    {
+      "id": "N1",
+      "name": "Welcome email to the student",
+      "runs_when": "kind = student AND consent = yes",
+      "does": "Sends the welcome email with the personal first-week checklist link from the lead magnet (pair 1)",
+      "text": "Voice rule (PROJECT.md): short sentences, no 'community' or 'vibes'. Draft in routing.md section 4.",
+      "within": "5 minutes of the row being created"
+    },
+    {
+      "id": "N2",
+      "name": "Alert to the owner",
+      "runs_when": "kind = partner",
+      "does": "Sends one alert to one named owner (rule R2 in routing.md)",
+      "carries": ["lead_id", "kind", "ring", "university", "created_at", "reply_due_at"],
+      "within": "5 minutes of the row being created"
+    },
+    {
+      "id": "N3",
+      "name": "Day-limit reminder",
+      "runs_when": "kind = partner AND no reply logged 24 hours after created_at",
+      "does": "Reminds the owner once; if still no reply logged 48 hours after created_at, tells Operations",
+      "reason": "The promise is 'the right person follows up within a day'. A promise nobody checks is a hope."
+    },
+    {
+      "id": "N4",
+      "name": "Unrouted lead",
+      "runs_when": "no rule matches (unknown kind, empty cohort code, enrich flagged the row as wrong)",
+      "does": "Writes the lead_id to the weekly review list. Sends nothing to anyone outside the twelve."
+    }
+  ],
+
+  "error_route": {
+    "applies_to": "N1, N2, N3 (any step that calls an outside service)",
+    "retry": "2 retries, 5 minutes apart",
+    "then": "Alert to Operations with: scenario name, step id, run id, error text, lead_id. No address, name or free text.",
+    "and_then": "The lead stays in the lead table marked 'notify failed' so the weekly review finds it",
+    "owner": "Operations (company.js: Operations owns the pilot, moderation and data)"
+  },
+
+  "test_plan": {
+    "data": "Ten invented sign-ups (test-01 to test-10 at example.com), three invented partner leads, one forced failure",
+    "pass_marks_set_before_the_run": {
+      "welcome_emails": "10 of 10 sent within 5 minutes",
+      "partner_alerts": "3 of 3 reach the right owner within 5 minutes",
+      "forced_failure": "1 of 1 reported to Operations within 15 minutes, with a run id",
+      "personal_data_in_alerts": "0 addresses, names or free text in any alert"
+    },
+    "counts_not_percentages": "Under 30 records, so every result is written as a count",
+    "run_by": "A person outside the pair, from 04 - Playbooks/incidents.md alone"
+  },
+
+  "files": {
+    "routing_rules": "automation/routing.md",
+    "deliverable": "03 - Deliverables/mp2/notify.md",
+    "playbook": "04 - Playbooks/incidents.md",
+    "building": "board/coordination-hall.html"
+  }
+}

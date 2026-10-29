@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Coordination Hall · Corners City</title>
+<link rel="icon" href="city-assets/mark.svg">
+<link rel="stylesheet" href="city.css">
+<link rel="stylesheet" href="audience-outreach.css">
+</head>
+<body>
+<a class="skip" href="#routing">Skip to the routing rules</a>
+<header class="masthead">
+ <a class="wordmark" href="city.html"><img src="city-assets/mark.svg" alt="" width="32" height="32">CORNERS.</a>
+ <nav aria-label="Workspace"><a href="city.html">Back to city ↗</a><a href="index.html#today">Company board ↗</a><a href="#incident-clinic">Incident Clinic ↓</a></nav>
+</header>
+<main class="outreach" id="routing">
+ <section class="outreach-hero" aria-labelledby="hallTitle">
+  <div>
+   <p class="eyebrow">COORDINATION HALL · MINI PROJECT 2 · NOTIFY</p>
+   <h1 id="hallTitle">Who is told what, and what they do next.</h1>
+   <p class="outreach-lead">The right person follows up within a day. A student who signs up gets a first step at once. A partner who writes reaches one named owner. When a step breaks, Operations is told.</p>
+  </div>
+  <aside class="snapshot-stamp" aria-label="Status of this piece">
+   <span class="eyebrow">STATUS</span>
+   <strong>Draft</strong>
+   <span>written 29 Oct 2026 · not built, not run</span>
+  </aside>
+ </section>
+
+ <section class="survey-entry" aria-labelledby="rulesTitle">
+  <div class="section-kicker"><span>01 · ROUTING RULES</span><span>SOURCE: AUTOMATION/ROUTING.MD</span></div>
+  <h2 id="rulesTitle">Six rules, written once</h2>
+  <p class="survey-intro">One owner, one name: an alert never goes to two people or to a team. Alerts carry a lead id and a kind, never an address or a name.</p>
+
+  <div class="finding-grid three" style="margin-top:22px">
+   <article class="finding-card"><strong class="finding-value">R1</strong><span class="finding-percent">5 min</span><p><b>Welcome email.</b> A student signs up and agreed to be emailed, and gets their first-week checklist. Owner of the rule: Audience.</p></article>
+   <article class="finding-card"><strong class="finding-value">R2</strong><span class="finding-percent">5 min</span><p><b>Partner alert.</b> A partner writes (international office, provider, ESN section, residence). One named person is told. Owner of the rule: Audience.</p></article>
+   <article class="finding-card"><strong class="finding-value">R3 · R4</strong><span class="finding-percent">24 · 48 h</span><p><b>The day limit.</b> No reply logged after 24 hours: the owner is reminded. After 48 hours: Operations is told.</p></article>
+  </div>
+  <ul class="ranked-findings" style="margin-top:22px">
+   <li><span>R5 · No rule matches, or the AI enrich step marked the row wrong. It goes on the weekly review list. Nobody outside the twelve is contacted.</span><strong>Weekly</strong></li>
+   <li><span>R6 · Any step fails twice after retrying. Operations gets the scenario, step, run id and error text.</span><strong>15 min</strong></li>
+  </ul>
+  <p class="small-note">Who the owners are is the company's decision and is not filled in yet (routing.md section 2).</p>
+ </section>
+
+ <section class="survey-entry" id="incident-clinic" aria-labelledby="clinicTitle">
+  <div class="section-kicker"><span>02 · INCIDENT CLINIC</span><span>FAILURE, IMPACT, RECOVERY, LESSON</span></div>
+  <h2 id="clinicTitle">When it breaks, nobody who signed up is left waiting</h2>
+  <p class="survey-intro">The error route retries twice, five minutes apart, then alerts Operations. The failed lead stays in the table, marked, so the weekly review finds it. Failures are logged in the playbook, one row each.</p>
+
+  <ul class="ranked-findings">
+   <li><span>Forced failure, tested in test mode only: the email step is switched off and one invented sign-up is added.</span><strong>Not run</strong></li>
+   <li><span>Pass mark, set before the run: 1 of 1 forced failure reported to Operations within 15 minutes, with a run id.</span><strong>Not run</strong></li>
+   <li><span>Incident log: no incidents yet. A failure is written here after it happens, never before.</span><strong>Empty</strong></li>
+  </ul>
+  <p class="caution">Nothing on this page has been run. The numbers above are pass marks, not results. Every figure on the finished page will be a count, with its source and date, because the lists are under 30 records.</p>
+ </section>
+
+ <section class="research-plan" aria-labelledby="sourcesTitle">
+  <div class="section-kicker"><span>03 · WHERE THIS COMES FROM</span><span>THE FILES BEHIND THE BUILDINGS</span></div>
+  <h2 id="sourcesTitle">Read the rules, the playbook and the write-up</h2>
+  <p>The routing rules, the scenario spec, the incident playbook and the Mini Project 2 write-up are in the repository. They open on GitHub once the pull request is merged.</p>
+  <a href="https://github.com/Corners-Connect/corners-connect/blob/main/corners-city/03%20-%20Deliverables/mp2/notify.md" target="_blank" rel="noopener noreferrer">Read the notify write-up ↗</a>
+ </section>
+
+ <footer class="outreach-footer">
+  <a href="city.html">← Back to Corners City</a>
+  <span>Draft rules, no personal data · drafted with Claude (AI), signed by the pair</span>
+ </footer>
+</main>
+</body>
+</html>

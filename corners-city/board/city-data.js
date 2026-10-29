@@ -12,7 +12,10 @@ export const PLOTS = [
  {id:'plot-07', x:-12, z:24}, {id:'plot-08', x:0, z:24}, {id:'plot-09', x:12, z:24},
  // Mini Project 1, pair 1 (brand imagery): plot-13 and plot-14, a sixth row. plot-10 to plot-12 are
  // already used on the branch operations/video-production-and-action-plan, so they are left alone.
- {id:'plot-13', x:-12, z:48}, {id:'plot-14', x:0, z:48}
+ {id:'plot-13', x:-12, z:48}, {id:'plot-14', x:0, z:48},
+ // Mini Project 2, pair 5 (Notify): plot-17 and plot-18, a seventh row. plot-15 and plot-16 are left for
+ // Mini Project 1 pair 5 (market research), which is not merged yet.
+ {id:'plot-17', x:0, z:60}, {id:'plot-18', x:12, z:60}
 ];
 // Approved visual additions live here as code after review. Local browser drafts
 // are separate and never become company decisions, tasks or evidence automatically.
@@ -60,7 +63,16 @@ export const EXTENSIONS = [
 
  {plotId:'plot-14', type:'biblioteca', label:'Asset Gallery',
   blurb:'Every approved image with its source file, prompt and tool, so posts and app sections only use approved images.',
-  tool:'asset-gallery'}
+  tool:'asset-gallery'},
+
+ // Mini Project 2, pair 5 (Finn + Daniele, Notify). Catalog buildings O01 and O16. Both open board/coordination-hall.html.
+ // Student review and sign-off pending.
+ {plotId:'plot-17', type:'oficina', label:'Coordination Hall',
+  blurb:'Who is told what, and what they do next: the routing rules, one owner per lead, and the day limit.',
+  tool:'coordination-hall'},
+ {plotId:'plot-18', type:'estudio', label:'Incident Clinic',
+  blurb:'When it breaks, nobody who signed up is left waiting: the error route, the forced-failure test and the incident log.',
+  tool:'incident-clinic'}
 ];
 
 // Functional entries are reviewed source code. Browser drafts cannot supply URLs.
@@ -68,6 +80,10 @@ export const TOOLS = {
  
  'asset-gallery': {href:'asset-gallery.html', kind:'BRAND IMAGERY',
   action:'Enter Asset Gallery ↗', description:'Every approved Corners image with its source file, prompt and tool. Images waiting for review are listed separately.'},
+ 'coordination-hall': {href:'coordination-hall.html', kind:'OPERATIONS',
+  action:'Open the Coordination Hall ↗', description:'Six routing rules: who is told what within a day, with one named owner per lead. Draft, not run yet.'},
+ 'incident-clinic': {href:'coordination-hall.html#incident-clinic', kind:'OPERATIONS',
+  action:'Open the Incident Clinic ↗', description:'The error route, the forced-failure test and the incident log. Nothing has been run yet.'},
  'brand-house': {href:'brand-house.html', kind:'BRAND IMAGERY',
   action:'Enter Brand House ↗', description:'Explore the Corners image guidelines, review checklist, and team workflow.'},
 
