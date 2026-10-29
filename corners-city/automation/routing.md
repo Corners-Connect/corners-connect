@@ -12,7 +12,7 @@ who owns what is the company's decision, not ours (`CLAUDE.md`, "The line you do
 | Id | When | Who is told | What they get | Within | Owner of the rule |
 |---|---|---|---|---|---|
 | **R1** | A student signs up and agreed to be emailed | The student | The welcome email with their first-week checklist (section 4) | 5 minutes | Audience |
-| **R2** | A partner writes (international office, provider, ESN section, residence) | **One** named person in Audience | An alert with the lead id, the kind of partner and the reply-due time | 5 minutes | Audience |
+| **R2** | A partner writes (international office, provider, ESN section, residence) | **One** named owner for that kind of lead (section 2) | An alert with the lead id, the kind of partner and the reply-due time | 5 minutes | Audience |
 | **R3** | A partner lead has no reply logged after 24 hours | The same owner | One reminder | 24 hours | Audience |
 | **R4** | Still no reply after 48 hours | Operations | The lead id and the owner | 48 hours | Operations |
 | **R5** | No rule matches, or the AI enrich step marked the row wrong | Nobody outside the twelve | The lead id goes on the weekly review list | Weekly | Operations |

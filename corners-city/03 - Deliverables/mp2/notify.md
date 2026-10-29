@@ -106,6 +106,7 @@ how it was recovered. We do not write a failure we have not seen.
 | `03 - Deliverables/mp2/notify.md` | This page | Daniele |
 | `04 - Playbooks/incidents.md` | How to run, break and recover | Finn |
 | `board/coordination-hall.html` | The two buildings in Corners City | Daniele |
+| `board/coordination-hall.js`, `board/coordination-hall.css` | Three small tools inside the building: a routing check for one lead, a reply desk with drafts for the owner, and an incident-row builder. They store and send nothing | Daniele |
 
 The split above is a proposal from the draft. Finn and Daniele change it and sign. Each name owns a named part.
 The handover (`01 - Registry/HANDOVER-TEMPLATE.md`) is written after the first full run.

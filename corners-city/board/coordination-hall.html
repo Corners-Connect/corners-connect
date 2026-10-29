@@ -7,12 +7,13 @@
 <link rel="icon" href="city-assets/mark.svg">
 <link rel="stylesheet" href="city.css">
 <link rel="stylesheet" href="audience-outreach.css">
+<link rel="stylesheet" href="coordination-hall.css">
 </head>
 <body>
 <a class="skip" href="#routing">Skip to the routing rules</a>
 <header class="masthead">
  <a class="wordmark" href="city.html"><img src="city-assets/mark.svg" alt="" width="32" height="32">CORNERS.</a>
- <nav aria-label="Workspace"><a href="city.html">Back to city ↗</a><a href="index.html#today">Company board ↗</a><a href="#incident-clinic">Incident Clinic ↓</a></nav>
+ <nav aria-label="Workspace"><a href="city.html">Back to city ↗</a><a href="index.html#today">Company board ↗</a><a href="#reply-desk">Reply desk ↓</a><a href="#incident-clinic">Incident Clinic ↓</a></nav>
 </header>
 <main class="outreach" id="routing">
  <section class="outreach-hero" aria-labelledby="hallTitle">
@@ -45,8 +46,38 @@
   <p class="small-note">Who the owners are is the company's decision and is not filled in yet (routing.md section 2).</p>
  </section>
 
+
+ <section class="survey-entry" id="route-check" aria-labelledby="checkTitle">
+  <div class="section-kicker"><span>02 · ROUTING CHECK</span><span>WHO IS TOLD WHAT, FOR ONE LEAD</span></div>
+  <h2 id="checkTitle">Check one lead</h2>
+  <p class="survey-intro">Pick who wrote and how long ago. The page says which rule fires, who is told, and whether the day limit is met. It stores nothing and sends nothing.</p>
+  <div class="tool-box">
+   <div class="tool-row">
+    <label>WHO WROTE<select id="rk"></select></label>
+    <label>HOURS SINCE IT ARRIVED<select id="rh"><option value="0">0</option><option value="6">6</option><option value="24">24</option><option value="30">30</option><option value="48">48</option><option value="60">60</option></select></label>
+    <label class="check"><input type="checkbox" id="rr"> A reply is logged</label>
+    <label class="check"><input type="checkbox" id="rf"> A step failed twice</label>
+   </div>
+   <ul class="ranked-findings" id="route-out" aria-live="polite"></ul>
+   <p class="tool-status" id="route-status" aria-live="polite"></p>
+  </div>
+  <p class="small-note">The rules in this script copy automation/routing.md. If one changes, change both in the same pull request.</p>
+ </section>
+
+ <section class="survey-entry" id="reply-desk" aria-labelledby="replyTitle">
+  <div class="section-kicker"><span>03 · REPLY DESK</span><span>DRAFTS FOR THE OWNER, IN THE CORNERS VOICE</span></div>
+  <h2 id="replyTitle">Answer within the day</h2>
+  <p class="survey-intro">Short sentences, a place, a time. The owner fills the {braces}, edits, and sends from the company inbox. Nothing is sent from this page. Never paste a real address or name here.</p>
+  <div class="tool-box">
+   <label class="tool-row" style="display:grid;font-size:10px;letter-spacing:.1em">WHO IS WRITING<select id="reply-kind"></select></label>
+   <textarea id="reply-text" aria-label="Reply draft"></textarea>
+   <button type="button" id="reply-copy">Copy</button>
+  </div>
+  <p class="small-note">Drafts by Claude (AI). The first reply to a partner asks for one favour, the cohort code. A partner pitch is a promise: check each line with Audience before sending.</p>
+ </section>
+
  <section class="survey-entry" id="incident-clinic" aria-labelledby="clinicTitle">
-  <div class="section-kicker"><span>02 · INCIDENT CLINIC</span><span>FAILURE, IMPACT, RECOVERY, LESSON</span></div>
+  <div class="section-kicker"><span>04 · INCIDENT CLINIC</span><span>FAILURE, IMPACT, RECOVERY, LESSON</span></div>
   <h2 id="clinicTitle">When it breaks, nobody who signed up is left waiting</h2>
   <p class="survey-intro">The error route retries twice, five minutes apart, then alerts Operations. The failed lead stays in the table, marked, so the weekly review finds it. Failures are logged in the playbook, one row each.</p>
 
@@ -55,11 +86,28 @@
    <li><span>Pass mark, set before the run: 1 of 1 forced failure reported to Operations within 15 minutes, with a run id.</span><strong>Not run</strong></li>
    <li><span>Incident log: no incidents yet. A failure is written here after it happens, never before.</span><strong>Empty</strong></li>
   </ul>
+
+  <div class="tool-box">
+   <p class="survey-intro" style="margin:0"><b>Write the incident row.</b> Fill the fields. The page builds one row for the incident log. It refuses anything that looks like an address or a phone number: use the lead id, never the person.</p>
+   <div class="tool-grid">
+    <label class="tool-row" style="display:grid;font-size:10px">DATE<input type="text" id="i-date" placeholder="2026-11-03"></label>
+    <label class="tool-row" style="display:grid;font-size:10px">STEP<select id="i-step"><option>N1 welcome email</option><option>N2 alert to the owner</option><option>N3 day-limit reminder</option><option>N4 unrouted lead</option><option>Other</option></select></label>
+    <label class="tool-row" style="display:grid;font-size:10px">WHAT FAILED<input type="text" id="i-what" placeholder="The email step returned an error"></label>
+    <label class="tool-row" style="display:grid;font-size:10px">IMPACT: WHO WAS WAITING, HOW LONG<input type="text" id="i-impact" placeholder="1 test sign-up, 20 minutes"></label>
+    <label class="tool-row" style="display:grid;font-size:10px">RECOVERY<input type="text" id="i-recovery" placeholder="Step switched back on, lead re-run"></label>
+    <label class="tool-row" style="display:grid;font-size:10px">LESSON<input type="text" id="i-lesson" placeholder="One sentence"></label>
+    <label class="tool-row" style="display:grid;font-size:10px">WRITTEN BY<input type="text" id="i-who" placeholder="First name"></label>
+   </div>
+   <button type="button" id="incident-build">Build the row</button>
+   <p class="tool-status" id="incident-msg" aria-live="polite">The row appears below.</p>
+   <textarea id="incident-out" readonly aria-label="Incident row" style="min-height:90px"></textarea>
+  </div>
+  <p class="small-note">Recovery order, from the playbook: switch the step back on, re-run the failed lead, check the email or alert now arrives, then write the row.</p>
   <p class="caution">Nothing on this page has been run. The numbers above are pass marks, not results. Every figure on the finished page will be a count, with its source and date, because the lists are under 30 records.</p>
  </section>
 
  <section class="research-plan" aria-labelledby="sourcesTitle">
-  <div class="section-kicker"><span>03 · WHERE THIS COMES FROM</span><span>THE FILES BEHIND THE BUILDINGS</span></div>
+  <div class="section-kicker"><span>05 · WHERE THIS COMES FROM</span><span>THE FILES BEHIND THE BUILDINGS</span></div>
   <h2 id="sourcesTitle">Read the rules, the playbook and the write-up</h2>
   <p>The routing rules, the scenario spec, the incident playbook and the Mini Project 2 write-up are in the repository. They open on GitHub once the pull request is merged.</p>
   <a href="https://github.com/Corners-Connect/corners-connect/blob/main/corners-city/03%20-%20Deliverables/mp2/notify.md" target="_blank" rel="noopener noreferrer">Read the notify write-up ↗</a>
@@ -70,5 +118,6 @@
   <span>Draft rules, no personal data · drafted with Claude (AI), signed by the pair</span>
  </footer>
 </main>
+<script src="coordination-hall.js"></script>
 </body>
 </html>

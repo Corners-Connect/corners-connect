@@ -68,10 +68,10 @@ export const EXTENSIONS = [
  // Mini Project 2, pair 5 (Finn + Daniele, Notify). Catalog buildings O01 and O16. Both open board/coordination-hall.html.
  // Student review and sign-off pending.
  {plotId:'plot-17', type:'oficina', label:'Coordination Hall',
-  blurb:'Who is told what, and what they do next: the routing rules, one owner per lead, and the day limit.',
+  blurb:'Who is told what, and what they do next: the routing rules, a check for one lead, and reply drafts so the owner answers within the day.',
   tool:'coordination-hall'},
  {plotId:'plot-18', type:'estudio', label:'Incident Clinic',
-  blurb:'When it breaks, nobody who signed up is left waiting: the error route, the forced-failure test and the incident log.',
+  blurb:'When it breaks, nobody who signed up is left waiting: the error route, the forced-failure test and a builder for the incident log row.',
   tool:'incident-clinic'}
 ];
 

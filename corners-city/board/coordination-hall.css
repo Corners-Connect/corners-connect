@@ -1,0 +1,12 @@
+.tool-box{margin-top:22px;border:1px solid var(--line);padding:18px;display:grid;gap:14px}
+.tool-row{display:flex;gap:14px;flex-wrap:wrap;align-items:end}
+.tool-row label{display:grid;gap:5px;font-size:10px;letter-spacing:.1em;flex:1 1 220px}
+.tool-row label.check{display:flex;gap:8px;align-items:center;flex:0 0 auto;font-size:12px;letter-spacing:0}
+.tool-box select,.tool-box input[type=text],.tool-box textarea{font:13px/1.5 'Space Grotesk',sans-serif;color:inherit;background:transparent;border:1px solid var(--line);padding:9px 10px;width:100%;box-sizing:border-box}
+.tool-box select option{color:#111}
+.tool-box textarea{min-height:150px;resize:vertical}
+.tool-box button{font:12px 'Space Grotesk',sans-serif;color:inherit;background:transparent;border:1px solid var(--blue);padding:11px 16px;cursor:pointer;justify-self:start}
+.tool-box button:hover,.tool-box button:focus-visible{background:var(--blue);color:var(--choc)}
+.tool-status{font-size:13px;line-height:1.6;margin:0;padding-left:14px;border-left:2px solid var(--vivid)}
+.tool-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:760px){.tool-grid{grid-template-columns:1fr}}
