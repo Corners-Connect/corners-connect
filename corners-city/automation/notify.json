@@ -66,6 +66,7 @@
 
   "files": {
     "routing_rules": "automation/routing.md",
+    "build_guide": "automation/build-notify.md",
     "deliverable": "03 - Deliverables/mp2/notify.md",
     "playbook": "04 - Playbooks/incidents.md",
     "building": "board/coordination-hall.html (with coordination-hall.js and coordination-hall.css: routing check, reply desk, incident-row builder)"

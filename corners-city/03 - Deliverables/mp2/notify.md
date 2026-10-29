@@ -103,6 +103,7 @@ how it was recovered. We do not write a failure we have not seen.
 |---|---|---|
 | `automation/notify.json` | The scenario spec | Finn |
 | `automation/routing.md` | Routing rules, owners, welcome email | Daniele |
+| `automation/build-notify.md` | Step-by-step guide to build the scenario in Make or n8n | Finn |
 | `03 - Deliverables/mp2/notify.md` | This page | Daniele |
 | `04 - Playbooks/incidents.md` | How to run, break and recover | Finn |
 | `board/coordination-hall.html` | The two buildings in Corners City | Daniele |
