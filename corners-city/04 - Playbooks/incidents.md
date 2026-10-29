@@ -10,7 +10,7 @@ A tested notify step: ten invented sign-ups answered, three invented partner lea
 forced failure reported to Operations, and a filled row in the incident log below.
 
 ## Before you start
-- **Access:** to the Make or n8n account that holds the scenario, to the lead table, and to the repo.
+- **Access:** to the n8n account that holds the scenario, to the lead table, and to the repo.
 - **The scenario in test mode.** Never force a failure in the live scenario. Test mode only.
 - **The rules:** read `automation/routing.md` (rules R1 to R6) and `automation/notify.json` (pass marks).
 - **Invented data only:** addresses at `example.com`, names like "Test One". Never a real student, partner or

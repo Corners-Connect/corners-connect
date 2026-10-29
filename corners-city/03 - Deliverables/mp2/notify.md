@@ -35,7 +35,7 @@ Welcome email → Owners → Routing → Errors → Within a day → Review → 
 
 ## 3. How it runs, day to day
 
-**Generate.** A new row in the lead table starts the scenario (Make or n8n, not decided). Routing rules R1 to R6
+**Generate.** A new row in the lead table starts the scenario (n8n). Routing rules R1 to R6
 decide who is told what. Claude (AI) drafted the rules and the welcome email text; the pair edits them.
 
 **Review.** A person outside the pair runs the scenario with invented test data and the playbook alone
@@ -103,7 +103,7 @@ how it was recovered. We do not write a failure we have not seen.
 |---|---|---|
 | `automation/notify.json` | The scenario spec | Finn |
 | `automation/routing.md` | Routing rules, owners, welcome email | Daniele |
-| `automation/build-notify.md` | Step-by-step guide to build the scenario in Make or n8n | Finn |
+| `automation/build-notify.md` | Step-by-step guide to build the scenario in n8n | Finn |
 | `03 - Deliverables/mp2/notify.md` | This page | Daniele |
 | `04 - Playbooks/incidents.md` | How to run, break and recover | Finn |
 | `board/coordination-hall.html` | The two buildings in Corners City | Daniele |
@@ -116,7 +116,7 @@ The handover (`01 - Registry/HANDOVER-TEMPLATE.md`) is written after the first f
 
 | What | By when | Who is waiting on it |
 |---|---|---|
-| Make or n8n: which one, and what it costs to run | Before building | The whole scenario |
+| n8n: what it costs to run (read it from the real account page) | Before building | The one-page readme (pair 6) |
 | The lead table's real field names (Store pair, C-17) | Before building | `notify.json`, `routing.md` |
 | Names of the owners in `routing.md` §2 | Before the first run | R2, R3, R4 |
 | The checklist link from the lead magnet (pair 1) | Before the welcome email works | R1 |

@@ -1,10 +1,10 @@
 {
-  "_what": "The notify step of the Corners machine (Mini Project 2, pair 5, C-18): spec for the Make or n8n scenario. It is a written spec, NOT an export of a running scenario. Replace it with the real export once the scenario exists, and keep this file as the one the company can read.",
+  "_what": "The notify step of the Corners machine (Mini Project 2, pair 5, C-18): spec for the n8n scenario. It is a written spec, NOT an export of a running scenario. Replace it with the real export once the scenario exists, and keep this file as the one the company can read.",
   "_status": "DRAFT v1, written 29 Oct 2026. Not built, not run, not reviewed by a second person.",
   "_signed": "Finn and Daniele (unsigned). Drafted with Claude (AI).",
   "_data_rule": "Invented test data only. Test addresses use example.com, which is reserved and delivers nowhere. No real student, partner or staff address, name or id appears in this repo.",
 
-  "tool": "undecided: Make or n8n (both are allowed by the syllabus). Decision for the pair, with the cost and log notes from the one-page readme (pair 6).",
+  "tool": "n8n (chosen by Finn, 29 Oct 2026, reported by Daniele; to be confirmed in the PR). Cost and log notes go to the one-page readme (pair 6).",
   "trigger": {
     "when": "A new row appears in the lead table",
     "table_owner": "Store pair (C-17). Field names below are placeholders until that table is fixed.",

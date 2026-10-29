@@ -1,7 +1,7 @@
 # Routing rules: who is told what
 
 **Status: DRAFT v1 (29 Oct 2026), for Finn and Daniele to correct and sign.** Mini Project 2, pair 5 (Notify,
-C-18). Written once, in one place: the Make or n8n scenario reads these rules, and nobody edits a rule inside
+C-18). Written once, in one place: the n8n scenario reads these rules, and nobody edits a rule inside
 the scenario without changing this page by pull request.
 
 Nothing here is built or run yet. Names of owners are not decided: they are left blank on purpose, because
