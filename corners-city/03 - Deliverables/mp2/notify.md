@@ -1,8 +1,9 @@
 # MP2 · Notify: the right person follows up within a day
 
 **Status: DRAFT v1 for Finn and Daniele to correct and sign.** Mini Project 2, pair 5 (Notify, C-18). Written
-29 Oct 2026. Presentation: Tuesday 10 November 2026 (session 18). **Nothing on this page has been built or run
-yet.** Where a result is needed, the page says "not run" instead of writing one.
+29 Oct 2026, rewritten 12 Nov 2026 for the brief that asks for code, not Make or n8n. Presentation: Tuesday 17 November 2026.
+**The code runs as a dry run (14 tests pass). It has not been run against a live Slack or email service.** Where a result
+is needed, the page says "not run" instead of writing one.
 
 ---
 
@@ -30,33 +31,33 @@ Welcome email → Owners → Routing → Errors → Within a day → Review → 
 | Routing | Who is told what, written once | `automation/routing.md` §1 |
 | Errors | Retry twice, then alert Operations | `automation/notify.json`, `04 - Playbooks/incidents.md` |
 | Within a day | The reminder at 24 hours and the escalation at 48 | `automation/routing.md` §3 |
-| Review | A person outside the pair runs the whole scenario | `04 - Playbooks/incidents.md` |
+| Review | A person outside the pair runs the whole flow | `04 - Playbooks/incidents.md` |
 | Follow-up | The owner's reply, logged in the lead table | Store pair's table (C-17) |
 
 ## 3. How it runs, day to day
 
-**Generate.** A new row in the lead table starts the scenario (n8n). Routing rules R1 to R6
+**Generate.** A new row in the lead table starts the notify code (`automation/notify/`). Routing rules R1 to R6
 decide who is told what. Claude (AI) drafted the rules and the welcome email text; the pair edits them.
 
-**Review.** A person outside the pair runs the scenario with invented test data and the playbook alone
+**Review.** A person outside the pair runs the flow with invented test data and the playbook alone
 (`04 - Playbooks/incidents.md`). A review checks: right person, within the day limit, no personal data in any
 alert, a forced failure reported.
 
 **Implement, every week.** The owner answers within a day and logs the reply. Errors go to Operations. A weekly
 review reads the list of unrouted leads and the failed runs. A change to a rule goes by pull request, so the rule
-file and the scenario never disagree.
+file and the code never disagree (`notify.test.mjs` checks the rules).
 
 ## 4. What it saves or creates, in numbers we can count
 
-Counts, not percentages (fewer than 30 records). All of them are read from the lead table and the scenario log.
+Counts, not percentages (fewer than 30 records). All of them are read from the lead table and the notify log.
 Nothing is measured yet.
 
 | Number | Why it matters | Source (to read, when run) |
 |---|---|---|
-| Welcome emails sent within 5 minutes, of those due | The first step reaches the student at once | Scenario log |
+| Welcome emails sent within 5 minutes, of those due | The first step reaches the student at once | Notify log |
 | Partner leads that got a logged reply within 24 hours, of those received | The day promise, checked | Lead table |
 | Partner leads that needed the 48-hour escalation | Where the owner is overloaded | Lead table |
-| Failed runs, and how many were recovered | Whether the error route works | Scenario log |
+| Failed runs, and how many were recovered | Whether the error route works | Notify log |
 | Hours the owners spend on notifying by hand, before and after | The hours it saves | Hours log (`board/data`) |
 
 These feed `docs/kpi-tree.md` §3: *sign-ups by source* and *partner conversations booked*. Visibility is
@@ -101,9 +102,9 @@ how it was recovered. We do not write a failure we have not seen.
 
 | File | What | Leads (answers for it) |
 |---|---|---|
-| `automation/notify.json` | The scenario spec | Finn |
+| `automation/notify.json` | The contract and the pass marks | Finn |
+| `automation/notify/` | The code: gate, routing, retry, adapters, tests, server, command line | Finn and Daniele |
 | `automation/routing.md` | Routing rules, owners, welcome email | Daniele |
-| `automation/build-notify.md` | Step-by-step guide to build the scenario in n8n | Finn |
 | `03 - Deliverables/mp2/notify.md` | This page | Daniele |
 | `04 - Playbooks/incidents.md` | How to run, break and recover | Finn |
 | `board/coordination-hall.html` | The two buildings in Corners City | Daniele |
@@ -116,12 +117,12 @@ The handover (`01 - Registry/HANDOVER-TEMPLATE.md`) is written after the first f
 
 | What | By when | Who is waiting on it |
 |---|---|---|
-| n8n: what it costs to run (read it from the real account page) | Before building | The one-page readme (pair 6) |
+| A class-approved Slack or email test destination, and who sets the secrets | Before the live test | The live proof on 17 Nov |
 | The lead table's real field names (Store pair, C-17) | Before building | `notify.json`, `routing.md` |
 | Names of the owners in `routing.md` §2 | Before the first run | R2, R3, R4 |
 | The checklist link from the lead magnet (pair 1) | Before the welcome email works | R1 |
 | A reviewer outside the pair, not chosen yet | Before the pull request is ready | The whole piece |
-| The forced-failure test | By 10 Nov | §6 of this page |
+| The forced-failure test on the live adapters | By 17 Nov | §6 of this page |
 
 ---
 *Drafted by Claude (AI) at Daniele's request from `PROJECT.md`, `docs/kpi-tree.md`, `CLAUDE.md` and the Mission 2

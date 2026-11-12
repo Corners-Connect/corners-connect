@@ -25,7 +25,7 @@
   <aside class="snapshot-stamp" aria-label="Status of this piece">
    <span class="eyebrow">STATUS</span>
    <strong>Draft</strong>
-   <span>written 29 Oct 2026 · not built, not run</span>
+   <span>code runs as a dry run · not live yet</span>
   </aside>
  </section>
 
@@ -82,9 +82,9 @@
   <p class="survey-intro">The error route retries twice, five minutes apart, then alerts Operations. The failed lead stays in the table, marked, so the weekly review finds it. Failures are logged in the playbook, one row each.</p>
 
   <ul class="ranked-findings">
-   <li><span>Forced failure, tested in test mode only: the email step is switched off and one invented sign-up is added.</span><strong>Not run</strong></li>
-   <li><span>Pass mark, set before the run: 1 of 1 forced failure reported to Operations within 15 minutes, with a run id.</span><strong>Not run</strong></li>
-   <li><span>Incident log: no incidents yet. A failure is written here after it happens, never before.</span><strong>Empty</strong></li>
+   <li><span>Forced failure, dry run on an invented lead: three temporary errors in a row end in an incident for Operations, and the replay sends exactly one message.</span><strong>Dry run: done</strong></li>
+   <li><span>Live Slack or email destination: not tested yet. It needs a class-approved test destination first.</span><strong>Not run</strong></li>
+   <li><span>Incident log: one forced incident, from the dry run on 12 Nov. A failure is written here after it happens, never before.</span><strong>1 row</strong></li>
   </ul>
 
   <div class="tool-box">
@@ -103,13 +103,13 @@
    <textarea id="incident-out" readonly aria-label="Incident row" style="min-height:90px"></textarea>
   </div>
   <p class="small-note">Recovery order, from the playbook: switch the step back on, re-run the failed lead, check the email or alert now arrives, then write the row.</p>
-  <p class="caution">Nothing on this page has been run. The numbers above are pass marks, not results. Every figure on the finished page will be a count, with its source and date, because the lists are under 30 records.</p>
+  <p class="caution">The dry run used invented leads and a local outbox. A live Slack or email destination has not been tested. Every figure on the finished page will be a count, with its source and date, because the lists are under 30 records.</p>
  </section>
 
  <section class="research-plan" aria-labelledby="sourcesTitle">
   <div class="section-kicker"><span>05 · WHERE THIS COMES FROM</span><span>THE FILES BEHIND THE BUILDINGS</span></div>
   <h2 id="sourcesTitle">Read the rules, the playbook and the write-up</h2>
-  <p>The routing rules, the scenario spec, the incident playbook and the Mini Project 2 write-up are in the repository. They open on GitHub once the pull request is merged.</p>
+  <p>The routing rules, the notify code, the incident playbook and the Mini Project 2 write-up are in the repository. They open on GitHub once the pull request is merged.</p>
   <a href="https://github.com/Corners-Connect/corners-connect/blob/main/corners-city/03%20-%20Deliverables/mp2/notify.md" target="_blank" rel="noopener noreferrer">Read the notify write-up ↗</a>
  </section>
 

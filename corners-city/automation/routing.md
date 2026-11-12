@@ -1,8 +1,8 @@
 # Routing rules: who is told what
 
 **Status: DRAFT v1 (29 Oct 2026), for Finn and Daniele to correct and sign together.** Mini Project 2, pair 5 (Notify,
-C-18). Written once, in one place: the n8n scenario reads these rules, and nobody edits a rule inside
-the scenario without changing this page by pull request.
+C-18). Written once, in one place: the code in `automation/notify/` implements these rules, and nobody edits a rule in the code
+without changing this page by pull request.
 
 Nothing here is built or run yet. Names of owners are not decided: they are left blank on purpose, because
 who owns what is the company's decision, not ours (`CLAUDE.md`, "The line you do not cross").

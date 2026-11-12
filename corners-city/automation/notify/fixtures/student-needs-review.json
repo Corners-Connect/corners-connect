@@ -1,0 +1,11 @@
+{
+  "lead_id": "mp2-demo-003",
+  "kind": "student",
+  "submitted_at": "2026-11-17T14:10:00Z",
+  "source": "arrival-guide",
+  "contact_email": "review@example.invalid",
+  "language": "en",
+  "checklist": ["Check arrival events"],
+  "enrichment": { "status": "needs_review", "segment": null, "persona": null, "university": null, "arrival_wave": null, "language": "en", "intent": null, "reason": "unclear arrival window", "prompt_version": "demo-0" },
+  "stored_at": "2026-11-17T14:10:20Z"
+}
