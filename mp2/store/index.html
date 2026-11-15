@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Corners · Lead archive</title>
+<style>
+  :root { color-scheme: light; font-family: "DM Sans", system-ui, sans-serif; color: #172c28; background: #f6f7f0; }
+  body { margin: 0; }
+  header { background: #133830; color: #fff; padding: 1.35rem max(1.5rem, calc((100% - 68rem) / 2)); font-weight: 700; }
+  main { width: min(68rem, calc(100% - 3rem)); margin: 3rem auto; }
+  h1 { font-family: "Instrument Serif", Georgia, serif; font-size: clamp(2.7rem, 6vw, 4.25rem); font-weight: 400; margin: 0; }
+  h2 { margin: 0 0 1rem; }
+  section { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid #d9e1d4; border-radius: 1rem; background: #fff; }
+  p { line-height: 1.55; }
+  button { cursor: pointer; background: #16604d; color: white; border: 0; border-radius: .45rem; padding: .65rem 1rem; font: inherit; }
+  button + button { margin-left: .4rem; }
+  .table { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; text-align: left; font-size: .9rem; }
+  th, td { border-bottom: 1px solid #e6ede3; padding: .7rem .65rem; vertical-align: top; }
+  th { background: #edf4ec; white-space: nowrap; }
+  input { font: inherit; padding: .45rem; margin-bottom: .3rem; max-width: 9rem; }
+  #result { min-height: 1.5em; margin-bottom: 0; overflow-wrap: anywhere; }
+</style>
+<header>Corners · Mini Project 2</header>
+<main>
+  <h1>Lead archive</h1>
+  <p>Fictional submissions with simulated enrichment. This demo shows the Store handoff.</p>
+  <form id="fixtures">
+    <button name="kind" value="student">Submit or replay student</button>
+    <button name="kind" value="partner">Submit partner for review</button>
+  </form>
+  <p id="result" role="status"></p>
+  <div id="views"></div>
+</main>
+<script type="module">
+  const result = document.querySelector('#result')
+  const views = document.querySelector('#views')
+  const columns = {
+    audience: {
+      lead_id: 'Lead', source: 'Source', campaign_id: 'Campaign', variant_id: 'Variant',
+      cohort_code: 'Cohort', submitted_at: 'Submitted',
+    },
+    product: { lead_id: 'Lead', arrival_window: 'Arrival', needs: 'Student needs' },
+    operations: {
+      lead_id: 'Lead', kind: 'Kind', organization: 'Organization', needs: 'Partner needs',
+      status: 'Status', route: 'Route', reason: 'Reason', stored_at: 'Stored', review: 'Review',
+    },
+  }
+
+  function element(tag, parent, value) {
+    const node = document.createElement(tag)
+    if (value !== undefined) node.textContent = value
+    parent.append(node)
+    return node
+  }
+
+  async function request(path, params) {
+    const response = await fetch(params ? path + '?' + new URLSearchParams(params) : path,
+      { method: params ? 'POST' : 'GET' })
+    const body = await response.json()
+    if (!response.ok) throw new Error(body.error)
+    return body
+  }
+
+  async function change(path, params) {
+    try {
+      const { created, approved, handoff } = await request(path, params)
+      const action = created ? 'Stored.' : approved ? 'Approved.' : 'Already recorded.'
+      result.textContent = handoff
+        ? `${action} Ready for Notify · ${handoff.lead_id} · ${handoff.stored_at}`
+        : `${action} Waiting for human review.`
+      await render()
+    } catch (error) {
+      result.textContent = error.message
+    }
+  }
+
+  function reviewForm(cell, leadId) {
+    const form = element('form', cell)
+    const reviewer = element('input', form)
+    reviewer.required = true
+    reviewer.placeholder = 'Reviewer name'
+    reviewer.setAttribute('aria-label', 'Reviewer name')
+    element('button', form, 'Approve')
+    form.addEventListener('submit', event => {
+      event.preventDefault()
+      change('/approve', { id: leadId, reviewer: reviewer.value })
+    })
+  }
+
+  async function render() {
+    const data = await request('/views')
+    views.replaceChildren()
+    for (const [team, fields] of Object.entries(columns)) {
+      const section = element('section', views)
+      element('h2', section, team[0].toUpperCase() + team.slice(1))
+      if (team === 'audience' && data.audience.some(row =>
+        row.source === 'arrival-guide' && row.campaign_id === 'bilbao-welcome' && row.variant_id === 'checklist-a')) {
+        element('p', section, 'arrival-guide / bilbao-welcome / checklist-a → Bilbao arrival checklist (demo creative reference)')
+      }
+      if (!data[team].length) {
+        element('p', section, 'No records yet.')
+        continue
+      }
+      const wrap = element('div', section)
+      wrap.className = 'table'
+      const table = element('table', wrap)
+      const header = element('tr', element('thead', table))
+      for (const label of Object.values(fields)) element('th', header, label).scope = 'col'
+      const body = element('tbody', table)
+      for (const lead of data[team]) {
+        const row = element('tr', body)
+        for (const key of Object.keys(fields)) {
+          const value = lead[key]
+          if (key === 'review' && lead.status === 'needs_review') {
+            reviewForm(element('td', row), lead.lead_id)
+          } else if (key === 'review' && value) {
+            element('td', row, `Approved by ${value.reviewer} · ${value.decided_at}`)
+          } else {
+            element('td', row, Array.isArray(value) ? value.join(', ') || '—' : value ?? '—')
+          }
+        }
+      }
+    }
+  }
+
+  document.querySelector('#fixtures').addEventListener('submit', event => {
+    event.preventDefault()
+    change('/fixtures', { kind: event.submitter.value })
+  })
+  render().catch(error => { result.textContent = error.message })
+</script>
+</html>
