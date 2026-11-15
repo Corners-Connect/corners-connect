@@ -137,16 +137,37 @@ export function buildLead(input, checklist, content, submittedAt) {
 }
 
 // ── Capture hand-off, with retry under the same lead id ──────────────────────────────────────────────────────────
+// What counts as Capture acknowledging THIS lead. Flexible on purpose, because pair 2 has not fixed its reply yet
+// (their brief only says a replay gets "the same acknowledgement"). It counts when the reply
+//   - echoes our lead_id, or says accepted/duplicate, or carries a status word: received | accepted | duplicate | replayed.
+// It never counts when the reply names another lead_id, says accepted:false, carries an error, or has an unknown status word.
+// Returns { duplicate } for an acknowledgement, null otherwise.
+const FRESH_WORDS = ['received', 'accepted'];
+const REPLAY_WORDS = ['duplicate', 'replayed'];
+export function readAck(reply, lead) {
+  if (!reply || typeof reply !== 'object') return null;
+  if (reply.lead_id !== undefined && reply.lead_id !== lead.lead_id) return null;
+  if (reply.accepted === false || reply.error) return null;
+  const word = typeof reply.status === 'string' ? reply.status.toLowerCase() : null;
+  if (word !== null && !FRESH_WORDS.includes(word) && !REPLAY_WORDS.includes(word)) return null;
+  const replay = reply.duplicate === true || (word !== null && REPLAY_WORDS.includes(word));
+  const fresh = reply.accepted === true || (word !== null && FRESH_WORDS.includes(word));
+  const echoed = reply.lead_id === lead.lead_id;
+  if (!replay && !fresh && !echoed) return null;
+  return { duplicate: replay };
+}
+
 export async function handOff(lead, ctx, runId) {
   const { capture, policy, sleep, log } = ctx;
   let wait = policy.captureWaitMs;
   let last = null;
   for (let attempt = 1; attempt <= policy.captureAttempts; attempt++) {
     try {
-      const ack = await capture.submit(lead);
-      if (!ack || ack.lead_id !== lead.lead_id || !(ack.accepted || ack.duplicate)) throw new Error('capture did not acknowledge this lead');
+      const reply = await capture.submit(lead);
+      const ack = readAck(reply, lead);
+      if (!ack) throw new Error('capture did not acknowledge this lead');
       log.write({ run_id: runId, lead_id: lead.lead_id, step: 'capture', status: ack.duplicate ? 'duplicate_ack' : 'acknowledged', attempt });
-      return { acknowledged: true, attempt, duplicate: !!ack.duplicate };
+      return { acknowledged: true, attempt, duplicate: ack.duplicate };
     } catch (e) {
       last = e.message;
       log.write({ run_id: runId, lead_id: lead.lead_id, step: 'capture', status: 'failed', attempt, error: last });

@@ -2,7 +2,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { processSubmission, createContext, validate, leadIdFor, loadContent, checkItems, POLICY } from './welcome.mjs';
+import { processSubmission, createContext, validate, leadIdFor, loadContent, checkItems, readAck, POLICY } from './welcome.mjs';
 import { createMockModel, createLocalCapture } from './adapters.mjs';
 import { capacity, ASSUMPTIONS } from './capacity.mjs';
 
@@ -95,6 +95,40 @@ test('Capture answering "duplicate" counts as acknowledged', async () => {
   assert.equal(out.status, 'confirmed');
   assert.equal(out.capture.duplicate, true);
   assert.equal(capture.rows().length, 1);
+});
+
+test('readAck: the reply shapes Capture may use are acknowledged', () => {
+  const lead = { lead_id: 'lead-1' };
+  assert.deepEqual(readAck({ lead_id: 'lead-1', accepted: true }, lead), { duplicate: false });
+  assert.deepEqual(readAck({ lead_id: 'lead-1', duplicate: true }, lead), { duplicate: true });
+  assert.deepEqual(readAck({ lead_id: 'lead-1' }, lead), { duplicate: false });                        // echo only
+  assert.deepEqual(readAck({ lead_id: 'lead-1', status: 'received' }, lead), { duplicate: false });
+  assert.deepEqual(readAck({ status: 'Accepted' }, lead), { duplicate: false });                        // status word only
+  assert.deepEqual(readAck({ lead_id: 'lead-1', status: 'replayed' }, lead), { duplicate: true });
+});
+
+test('readAck: a reply about another lead, a refusal or an unknown status is NOT an acknowledgement', () => {
+  const lead = { lead_id: 'lead-1' };
+  assert.equal(readAck({ lead_id: 'lead-2', accepted: true }, lead), null);
+  assert.equal(readAck({ lead_id: 'lead-1', accepted: false }, lead), null);
+  assert.equal(readAck({ lead_id: 'lead-1', status: 'rejected' }, lead), null);
+  assert.equal(readAck({ lead_id: 'lead-1', error: 'bad field' }, lead), null);
+  assert.equal(readAck({ ok: true }, lead), null);
+  assert.equal(readAck({}, lead), null);
+  assert.equal(readAck(null, lead), null);
+  assert.equal(readAck('accepted', lead), null);
+});
+
+test('a Capture that answers with status "received" is acknowledged, and a refusal leaves no confirmation', async () => {
+  const lenient = createLocalCapture(); const submit = lenient.submit;
+  lenient.submit = async (lead) => { const r = await submit(lead); return { lead_id: r.lead_id, status: r.duplicate ? 'replayed' : 'received' }; };
+  const out = await processSubmission(fixture('chiara'), ctxWith({ capture: lenient }));
+  assert.equal(out.status, 'confirmed');
+  assert.equal(lenient.rows().length, 1);
+
+  const refusing = { name: 'refusing', rows: () => [], submit: async (lead) => ({ lead_id: lead.lead_id, status: 'rejected' }) };
+  const failed = await processSubmission(fixture('marta'), ctxWith({ capture: refusing }));
+  assert.notEqual(failed.status, 'confirmed');
 });
 
 test('bad input is refused with reasons and nothing is sent', async () => {

@@ -24,7 +24,7 @@ problem (finding your people) with one next action: Find Your Corner. Prompt: `p
 ## Run it (Node 20 or newer, no install)
 ```bash
 cd corners-city/automation/welcome
-node --test                                                     # 12 tests
+node --test                                                     # 15 tests
 node server.mjs                                                 # http://127.0.0.1:8786
 # tagged link for the demo:
 # http://127.0.0.1:8786/?source=arrival-guide&campaign_id=bilbao-welcome&variant_id=checklist-a&cohort_code=DEMO-JAN
@@ -50,13 +50,16 @@ The shared class fixture fields, unchanged: `lead_id`, `kind` (`student`), `subm
 Added by us: `consent`, `checklist_sources` (fact id per item, or null), `checklist_mode` (`ai` or `fallback`),
 `checklist_prompt_version`, `content_version`.
 
-**Assumed Capture contract, to confirm with pair 2:** `POST` JSON lead, header `idempotency-key: <lead_id>`, reply
-`2xx {"lead_id", "accepted": true}` or `{"lead_id", "duplicate": true}`. Both count as acknowledged.
+**Assumed Capture contract, to confirm with pair 2:** `POST` JSON lead, header `idempotency-key: <lead_id>`, a `2xx`
+reply. The reply counts as an acknowledgement (`readAck()` in `welcome.mjs`) when it echoes our `lead_id`, says
+`accepted` or `duplicate`, or carries a status word (`received`, `accepted`, `duplicate`, `replayed`). It never counts
+when it names another `lead_id`, says `accepted: false`, carries an `error`, or has an unknown status word. Changed on
+15 Nov 2026 by Federico (with Claude) because the Capture brief asks for "the same acknowledgement" on a replay.
 
 ## Evidence from the dry run (13 Nov 2026, fictional data)
 | Check | Result |
 |---|---|
-| `node --test` | 12 pass, 0 fail |
+| `node --test` | 12 pass, 0 fail on 13 Nov; 15 pass, 0 fail on 15 Nov (3 new, for the acknowledgement check) |
 | Capture forced down 3 times | `pending`, no confirmation, 3 failed attempts logged under one `lead_id` |
 | Replay | `confirmed` on attempt 1, same `lead_id`, 1 row at Capture, model called once |
 | Second replay | `already_acknowledged`, still 1 row |
