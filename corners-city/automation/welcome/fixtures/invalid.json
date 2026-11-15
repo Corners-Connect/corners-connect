@@ -1,0 +1,8 @@
+{
+  "submission_id": "fixture-invalid-0001",
+  "arrival_window": "March",
+  "language": "fr",
+  "needs": ["nightlife"],
+  "contact_email": "not-an-email",
+  "consent": false
+}

@@ -1,0 +1,11 @@
+{
+  "submission_id": "fixture-marta-0001",
+  "arrival_window": "September",
+  "language": "es",
+  "needs": ["people", "budget"],
+  "contact_email": "marta@example.invalid",
+  "consent": true,
+  "source": "instagram",
+  "campaign_id": "bilbao-welcome",
+  "variant_id": "checklist-b"
+}

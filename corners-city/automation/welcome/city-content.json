@@ -1,0 +1,91 @@
+{
+  "version": "bilbao-2026-11-13",
+  "city": "Bilbao",
+  "note": "Approved snapshot for the Welcome micro-app. The model may only use these facts. Every fact keeps its source and the date it was checked. Re-check transport prices before 17 Nov: Bizkaia raised fares about 3% for 2026.",
+  "facts": [
+    {
+      "id": "rent-room",
+      "need": "housing",
+      "text": "A room in a shared flat in Bilbao costs about €450 a month.",
+      "source": "idealista room-price series, Q2–Q3 2026, as used in the Corners app (app/app.js, CITIES, Bilbao)",
+      "checked": "2026-11-13"
+    },
+    {
+      "id": "housing-sept",
+      "need": "housing",
+      "text": "September is the hardest month to find a room in Bilbao: about 30% of student rooms are free then, against about 73% in January.",
+      "source": "Erasmus Play, Bilbao student housing report, data of 26 Jul 2026",
+      "checked": "2026-10-26"
+    },
+    {
+      "id": "empadronamiento",
+      "need": "paperwork",
+      "text": "Register your address (empadronamiento) at Bilbao town hall. Bring your passport and your rental contract or the owner's written authorization.",
+      "source": "UPV/EHU International Welcome Centre, Empadronamiento page",
+      "checked": "2026-11-13"
+    },
+    {
+      "id": "tie",
+      "need": "paperwork",
+      "text": "Students from outside the EU apply for the TIE residence card at the Oficina de Extranjeros or police station where they live. The initial card fee (tasa 790, code 012) is €16.08.",
+      "source": "Policía Nacional, TIE for students; fee from TaxDown, Tasa 790 012 (confirm on the Policía site before paying)",
+      "checked": "2026-11-13"
+    },
+    {
+      "id": "eu-certificate",
+      "need": "paperwork",
+      "text": "EU students staying more than three months apply for the EU registration certificate within three months of arriving. The fee is €12.00.",
+      "source": "Policía Nacional, Certificado de registro de ciudadano UE; fee from TaxDown, Tasa 790 012",
+      "checked": "2026-11-13"
+    },
+    {
+      "id": "barik",
+      "need": "transport",
+      "text": "Get a Barik card for €3 at a metro station. A Bilbobus ride costs €1.35, or €0.66 with Barik. A zone 1 metro ride is €1.70.",
+      "source": "Euskoguide, How to get around Bilbao (re-check: 2026 fares rose about 3%)",
+      "checked": "2026-10-26"
+    },
+    {
+      "id": "gazte-pass",
+      "need": "transport",
+      "text": "Under 26 and registered in Bizkaia, the Gazte Oro youth pass costs about €21.40 a month. Youth passes in Bizkaia are 50% off until 31 December 2026.",
+      "source": "Corners app (app/app.js, CITIES, Bilbao, from the operators); discount from Orain.eus, 5 Feb 2026",
+      "checked": "2026-11-13"
+    },
+    {
+      "id": "campus-leioa",
+      "need": "study",
+      "text": "UPV/EHU's main Bizkaia campus is in Leioa, about 10 km from the centre. Deusto is in the city itself.",
+      "source": "Corners app (app/app.js, CITIES, Bilbao, universities)",
+      "checked": "2026-11-13"
+    },
+    {
+      "id": "spring-start",
+      "need": "study",
+      "text": "UPV/EHU spring classes started on 26 January in 2026. Other faculties vary by about a week.",
+      "source": "UPV/EHU Faculty of Science and Technology calendar, as recorded in PROJECT.md (Arrival waves)",
+      "checked": "2026-11-13"
+    },
+    {
+      "id": "meal",
+      "need": "budget",
+      "text": "A meal out in Bilbao costs about €18.",
+      "source": "Numbeo, as used in the Corners app (app/app.js, CITIES, Bilbao)",
+      "checked": "2026-11-13"
+    },
+    {
+      "id": "esn",
+      "need": "people",
+      "text": "ESN Bilbao runs trips, events and a WhatsApp group for international students. The ESNcard gives discounts on its activities.",
+      "source": "UPV/EHU, Erasmus Student Network page",
+      "checked": "2026-11-13"
+    },
+    {
+      "id": "sopela",
+      "need": "people",
+      "text": "Metro line 1 reaches the surf beaches at Sopela in about 30 minutes from the centre.",
+      "source": "Corners app (app/app.js, CITIES, Bilbao)",
+      "checked": "2026-11-13"
+    }
+  ]
+}

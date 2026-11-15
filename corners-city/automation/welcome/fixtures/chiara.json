@@ -1,0 +1,12 @@
+{
+  "submission_id": "fixture-chiara-0001",
+  "arrival_window": "January",
+  "language": "en",
+  "needs": ["housing", "paperwork"],
+  "contact_email": "chiara@example.invalid",
+  "consent": true,
+  "cohort_code": "DEMO-JAN",
+  "source": "arrival-guide",
+  "campaign_id": "bilbao-welcome",
+  "variant_id": "checklist-a"
+}
