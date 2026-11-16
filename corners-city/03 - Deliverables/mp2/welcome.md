@@ -23,11 +23,26 @@ The brief asks each of us to own and explain a named part. Two ways to split it:
 | B (follows the split already agreed on 13 Nov) | Prompt, city facts, review of the build, test failures | Running the app, agreeing fields with Capture, README links, PR to main |
 
 Claude would pick **A**, because it maps each person to the prototype the brief says they carry forward, so each can
-explain a decision and a test in their own words. Not decided until both sign.
+explain a decision and a test in their own words. **Option A was agreed by message between Austin and Federico on
+16 Nov 2026; the signatures below are still blank.**
+
+## Arrival goal and sign-up measure
+The brief asks to link one arrival goal to a sign-up measure and to carry the campaign and source tags to the lead.
+- **Goal:** sign-ups from the January wave before spring classes start (`PROJECT.md`, arrival waves).
+- **Measure:** sign-ups per week by source (`arrival-guide`, `partner-email`, `instagram`), counted from the run log.
+  The expected numbers are **assumptions, not measured**, dated 13 Nov 2026, in `automation/welcome/capacity.mjs`.
+  Actual counts by source come from the leads Capture received in the run (fictional data in the demo).
+- **Tags:** `source`, `campaign_id`, `variant_id` and `cohort_code` travel from the link to the lead; a test checks it
+  (`campaign, variant, source and cohort tags reach Capture unchanged`).
+- We did not use either partner's Meta Ads prototype file: the brief makes them optional ("if the pair supplies them").
 
 ## One failure we rehearse
 Capture is down for three tries. The student still sees the checklist, sees no confirmation, and a replay recovers
 with the same `lead_id` and one row. Commands in the README.
+
+## One failure we caught (16 Nov 2026)
+Austin found that a Capture reply that refuses the lead but still echoes our `lead_id` was counted as signed up.
+Federico fixed it with Claude (`isRefusal()` in `welcome.mjs`); three tests cover it. Details in the README.
 
 ---
 *Drafted by Claude (AI) at Austin's request. Federico and Austin sign: ______ (Federico) · ______ (Austin)*
