@@ -38,6 +38,10 @@ node cli.mjs run fixtures/invalid.json                                  # refuse
 node cli.mjs capacity                                                   # capacity check (assumptions)
 ```
 
+Live failure scene (browser): start the server with the local Capture set to fail its first 3 calls, submit the form (the plan
+shows, no confirmation, a "Try again" button), press "Try again": same `lead_id`, confirmed, one row at Capture.  
+PowerShell: `$env:WELCOME_FAIL_CAPTURE = "3"; node server.mjs`  (added 16 Nov 2026 by Federico with Claude; checked with a run: pending, then confirmed on the retry, one row).
+
 Live mode, once the class agrees the destination:
 ```bash
 WELCOME_LIVE_MODEL=1 ANTHROPIC_API_KEY=... CAPTURE_URL=https://.../capture node server.mjs
