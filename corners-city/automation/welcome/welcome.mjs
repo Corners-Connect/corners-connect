@@ -144,10 +144,18 @@ export function buildLead(input, checklist, content, submittedAt) {
 // Returns { duplicate } for an acknowledgement, null otherwise.
 const FRESH_WORDS = ['received', 'accepted'];
 const REPLAY_WORDS = ['duplicate', 'replayed'];
+// A reply that REFUSES the lead can still echo our lead_id (found by Austin, 16 Nov). Any of these marks it refused:
+// accepted / ok / success = false, rejected = true, or a non-empty `error` / `errors`.
+const filled = (v) => Array.isArray(v) ? v.length > 0 : v && typeof v === 'object' ? Object.keys(v).length > 0 : Boolean(v);
+export function isRefusal(reply) {
+  return reply.accepted === false || reply.ok === false || reply.success === false || reply.rejected === true ||
+    filled(reply.error) || filled(reply.errors);
+}
+
 export function readAck(reply, lead) {
   if (!reply || typeof reply !== 'object') return null;
   if (reply.lead_id !== undefined && reply.lead_id !== lead.lead_id) return null;
-  if (reply.accepted === false || reply.error) return null;
+  if (isRefusal(reply)) return null;
   const word = typeof reply.status === 'string' ? reply.status.toLowerCase() : null;
   if (word !== null && !FRESH_WORDS.includes(word) && !REPLAY_WORDS.includes(word)) return null;
   const replay = reply.duplicate === true || (word !== null && REPLAY_WORDS.includes(word));

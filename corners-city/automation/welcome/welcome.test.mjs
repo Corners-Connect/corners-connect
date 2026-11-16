@@ -119,6 +119,39 @@ test('readAck: a reply about another lead, a refusal or an unknown status is NOT
   assert.equal(readAck('accepted', lead), null);
 });
 
+test('readAck: a refusal that still echoes our lead_id is NOT an acknowledgement (the failure we caught)', () => {
+  const lead = { lead_id: 'lead-1' };
+  const refusals = [
+    { lead_id: 'lead-1', ok: false },
+    { lead_id: 'lead-1', ok: false, errors: ['contact_email is invalid'] },
+    { lead_id: 'lead-1', errors: [{ field: 'needs', message: 'required' }] },
+    { lead_id: 'lead-1', error: 'invalid payload' },
+    { lead_id: 'lead-1', success: false },
+    { lead_id: 'lead-1', rejected: true },
+    { lead_id: 'lead-1', accepted: false, errors: ['no consent'] },
+    { lead_id: 'lead-1', status: 'received', ok: false }       // a "good" word does not outvote a refusal
+  ];
+  for (const reply of refusals) assert.equal(readAck(reply, lead), null, JSON.stringify(reply));
+});
+
+test('readAck: empty error fields do not block a real acknowledgement', () => {
+  const lead = { lead_id: 'lead-1' };
+  assert.deepEqual(readAck({ lead_id: 'lead-1', ok: true, errors: [] }, lead), { duplicate: false });
+  assert.deepEqual(readAck({ lead_id: 'lead-1', accepted: true, error: null }, lead), { duplicate: false });
+  assert.deepEqual(readAck({ lead_id: 'lead-1', duplicate: true, errors: [] }, lead), { duplicate: true });
+});
+
+test('a Capture that rejects the lead but echoes its id leaves the student with NO confirmation and no lost lead', async () => {
+  let calls = 0;
+  const rejecting = { name: 'rejecting', rows: () => [], submit: async (lead) => { calls++; return { lead_id: lead.lead_id, ok: false, errors: ['contact_email is invalid'] }; } };
+  const ctx = ctxWith({ capture: rejecting });
+  const out = await processSubmission(fixture('chiara'), ctx);
+  assert.notEqual(out.status, 'confirmed');
+  assert.equal(calls, POLICY.captureAttempts, 'it tried the allowed number of times and stopped');
+  assert.ok(ctx.log.rows.some((r) => r.step === 'capture' && r.status === 'failed'));
+  assert.ok(!ctx.log.rows.some((r) => r.status === 'acknowledged'));
+});
+
 test('a Capture that answers with status "received" is acknowledged, and a refusal leaves no confirmation', async () => {
   const lenient = createLocalCapture(); const submit = lenient.submit;
   lenient.submit = async (lead) => { const r = await submit(lead); return { lead_id: r.lead_id, status: r.duplicate ? 'replayed' : 'received' }; };
