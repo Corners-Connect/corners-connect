@@ -1,0 +1,13 @@
+Enrich server smoke test · 2026-11-15 · stub model · synthetic data
+Command: ENRICH_FAULT="mp2-eval-018=timeout_always" python server.py --port 8098
+
+GET  /health                         -> {"ok": true, "model": "stub-rules-v1", "prompt_version": "enrich-v1"}
+POST /enrich  demo-lead.json         -> 200  mp2-demo-001 ready core study  (no _model_raw in handoff)
+POST /enrich  {"kind":"student"}     -> 400  bad_input: missing required field(s): lead_id, submitted_at, source
+POST /enrich  lead_id=mp2-eval-018   -> 503  model_unavailable, retryable: true
+
+Server log:
+[enrich] mp2-demo-001 -> ready
+[enrich] mp2-eval-018 attempt 1/3 failed: simulated timeout (test fault)
+[enrich] mp2-eval-018 attempt 2/3 failed: simulated timeout (test fault)
+[enrich] mp2-eval-018 attempt 3/3 failed: simulated timeout (test fault)

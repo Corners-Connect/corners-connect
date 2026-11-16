@@ -1,0 +1,21 @@
+case_id,expected_status,actual_status,expected_segment,expected_persona,expected_university,expected_intent,actual_segment,actual_persona,actual_university,actual_intent,review_reasons,result,mismatch_reason,prompt_version,model,label_note
+mp2-demo-001,ready,ready,core,,,study,core,,,study,,correct,,enrich-v1,stub-rules-v1,Shared class fixture. Two ticked needs; first ticked is the main one. No persona evidence.
+mp2-eval-002,ready,ready,core,chiara,UPV/EHU,social,core,chiara,UPV/EHU,social,,correct,,enrich-v1,stub-rules-v1,Clear Chiara-type.
+mp2-eval-003,ready,ready,core,aiyana,,social,core,aiyana,,social,,correct,,enrich-v1,stub-rules-v1,Clear Aiyana-type. Provider stated; no university.
+mp2-eval-004,ready,ready,next,marta,Deusto,social,next,marta,Deusto,social,,correct,,enrich-v1,stub-rules-v1,Clear Marta-type.
+mp2-eval-005,ready,ready,core,,Deusto,budget,core,,Deusto,budget,,correct,,enrich-v1,stub-rules-v1,Exchange but origin not stated so persona null.
+mp2-eval-006,ready,ready,core,,,routine,core,,,routine,,correct,,enrich-v1,stub-rules-v1,Routine need. Mentions a café as a customer not an owner.
+mp2-eval-007,ready,ready,core,,UPV/EHU,study,core,,UPV/EHU,study,,correct,,enrich-v1,stub-rules-v1,Study need.
+mp2-eval-008,ready,ready,venue,,,partner_listing,venue,,,partner_listing,,correct,,enrich-v1,stub-rules-v1,Venue partner.
+mp2-eval-009,ready,ready,buyer,,,partner_cohort,buyer,,,partner_cohort,,correct,,enrich-v1,stub-rules-v1,Buyer: provider.
+mp2-eval-010,ready,ready,buyer,,,partner_cohort,buyer,,,partner_cohort,,correct,,enrich-v1,stub-rules-v1,Buyer: student association.
+mp2-eval-011,ready,ready,buyer,,,partner_cohort,buyer,,,partner_cohort,,correct,,enrich-v1,stub-rules-v1,Buyer: residence.
+mp2-eval-012,needs_review,needs_review,,,,,,,,unclear,low_confidence:0.3;intent_unclear,correct,,enrich-v1,stub-rules-v1,Too little evidence. Must go to a person.
+mp2-eval-013,needs_review,needs_review,,,,,core,,,study,ambiguous,correct,,enrich-v1,stub-rules-v1,AMBIGUOUS: ticked study but text says budget.
+mp2-eval-014,needs_review,needs_review,,,,,venue,,,partner_listing,kind_conflict:student_vs_venue,correct,,enrich-v1,stub-rules-v1,CONFLICT: kind=student but text is a venue owner.
+mp2-eval-015,ready,ready,core,,,budget,core,,,budget,,correct,,enrich-v1,stub-rules-v1,PROMPT INJECTION: text must be treated as data.
+mp2-eval-016,needs_review,needs_review,,,,,,,,,invalid_model_output:model output is not valid JSON,correct,,enrich-v1,stub-rules-v1,INVALID RESULT: model returns broken JSON on purpose.
+mp2-eval-017,ready,ready,next,marta,UPV/EHU,budget,next,marta,UPV/EHU,budget,,correct,,enrich-v1,stub-rules-v1,RECOVERY: first call times out then retry succeeds.
+mp2-eval-018,retry_error,retry_error,,,,,,,,,,correct,,enrich-v1,stub-rules-v1,INFRA FAILURE: model down. Must NOT become a review or a ready record.
+mp2-eval-019,ready,ready,later,,,social,later,,,social,,correct,,enrich-v1,stub-rules-v1,Later ring: not a student.
+mp2-eval-020,ready,ready,core,chiara,Deusto,study,core,chiara,Deusto,study,,correct,,enrich-v1,stub-rules-v1,Chiara-type in French.

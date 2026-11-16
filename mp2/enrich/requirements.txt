@@ -1,0 +1,2 @@
+# Only needed for ENRICH_MODEL=claude. The stub, tests and server use the standard library.
+anthropic>=2.8.0

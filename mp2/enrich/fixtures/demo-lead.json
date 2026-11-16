@@ -1,0 +1,14 @@
+{
+  "lead_id": "mp2-demo-001",
+  "kind": "student",
+  "submitted_at": "2026-11-17T14:00:00Z",
+  "source": "arrival-guide",
+  "campaign_id": "bilbao-welcome",
+  "variant_id": "checklist-a",
+  "cohort_code": "DEMO-JAN",
+  "contact_email": "arrivals@example.invalid",
+  "language": "en",
+  "arrival_window": "January",
+  "needs": ["study", "budget"],
+  "checklist": ["Find a quiet study spot", "Check arrival events"]
+}
