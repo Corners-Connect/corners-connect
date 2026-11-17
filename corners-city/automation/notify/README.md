@@ -98,4 +98,4 @@ One line per run in `.data/notify-log.jsonl`: `run_id`, `lead_id`, `notification
 ---
 *Drafted by Claude (AI) at Daniele's request from the Mission 2 brief, `routing.md` and the fixture in the brief.
 The SMTP/Ethereal adapter and its three tests were ported by Claude (AI) at Finn's request from Finn's own Notify draft.
-Finn and Daniele sign: ______ (Finn) · ______ (Daniele)*
+Finn and Daniele sign: ______ (Finn) · Daniele (Daniele)*
