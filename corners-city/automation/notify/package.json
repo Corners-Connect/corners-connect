@@ -4,7 +4,10 @@
   "description": "Corners Mini Project 2, pair 5 Notify. Dry run needs no install; npm install only for the SMTP/Ethereal adapter.",
   "scripts": {
     "test": "node --test",
-    "ethereal": "node notify-cli.mjs reset && NOTIFY_TRANSPORT=ethereal NOTIFY_FAST=1 node notify-cli.mjs run fixtures/student.json && NOTIFY_TRANSPORT=ethereal NOTIFY_FAST=1 node notify-cli.mjs run fixtures/partner.json && NOTIFY_TRANSPORT=ethereal NOTIFY_FAST=1 node notify-cli.mjs replay fixtures/student.json"
+    "ethereal": "node notify-cli.mjs reset && NOTIFY_TRANSPORT=ethereal NOTIFY_FAST=1 node notify-cli.mjs run fixtures/student.json && NOTIFY_TRANSPORT=ethereal NOTIFY_FAST=1 node notify-cli.mjs run fixtures/partner.json && NOTIFY_TRANSPORT=ethereal NOTIFY_FAST=1 node notify-cli.mjs replay fixtures/student.json",
+    "store-demo": "node store-demo.mjs",
+    "store-demo:fail": "node store-demo.mjs --force-fail=temporary:3",
+    "store-demo:live": "NOTIFY_TRANSPORT=ethereal node store-demo.mjs"
   },
   "optionalDependencies": {
     "nodemailer": "^10.6.0"
