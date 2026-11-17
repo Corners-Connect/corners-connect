@@ -1,0 +1,91 @@
+{
+  "_what": "Spec and pass marks for the notify step of the Corners machine (Mini Project 2, pair 5, C-18). The step is written in code: see automation/notify/. This file is the readable contract.",
+  "_status": "DRAFT v2, 12 Nov 2026. Code written and tested as a dry run (14 tests). Not tested against a live Slack or email service.",
+  "_signed": "Finn and Daniele (unsigned). Drafted with Claude (AI).",
+  "_how_we_work": "Finn and Daniele work on every file together: both build, test and review. Neither one only watches.",
+  "_data_rule": "Invented test data only. Test addresses use example.com, which is reserved and delivers nowhere. No real student, partner or staff address, name or id appears in this repo.",
+  "tool": "code: Node, no dependencies, automation/notify/ (Mission 2 brief: no Make, no n8n)",
+  "trigger": {
+    "when": "A new row appears in the lead table",
+    "table_owner": "Store pair (C-17). Field names below are placeholders until that table is fixed.",
+    "fields_read": [
+      "lead_id",
+      "kind",
+      "cohort_code",
+      "ring",
+      "persona",
+      "university",
+      "wave",
+      "created_at"
+    ],
+    "fields_never_copied_into_an_alert": [
+      "email",
+      "name",
+      "free text"
+    ]
+  },
+  "steps": [
+    {
+      "id": "N1",
+      "name": "Welcome email to the student",
+      "runs_when": "kind = student AND consent = yes",
+      "does": "Sends the welcome email with the personal first-week checklist link from the lead magnet (pair 1)",
+      "text": "Voice rule (PROJECT.md): short sentences, no 'community' or 'vibes'. Draft in routing.md section 4.",
+      "within": "5 minutes of the row being created"
+    },
+    {
+      "id": "N2",
+      "name": "Alert to the owner",
+      "runs_when": "kind = partner",
+      "does": "Sends one alert to one named owner (rule R2 in routing.md)",
+      "carries": [
+        "lead_id",
+        "kind",
+        "ring",
+        "university",
+        "created_at",
+        "reply_due_at"
+      ],
+      "within": "5 minutes of the row being created"
+    },
+    {
+      "id": "N3",
+      "name": "Day-limit reminder",
+      "runs_when": "kind = partner AND no reply logged 24 hours after created_at",
+      "does": "Run sweep on a schedule: remind the owner at 24 hours; tell Operations at 48 hours; each once",
+      "reason": "The promise is 'the right person follows up within a day'. A promise nobody checks is a hope."
+    },
+    {
+      "id": "N4",
+      "name": "Unrouted lead",
+      "runs_when": "no rule matches (unknown kind, empty cohort code, enrich flagged the row as wrong)",
+      "does": "Writes the lead_id to the weekly review list. Sends nothing to anyone outside the twelve."
+    }
+  ],
+  "error_route": {
+    "applies_to": "N1, N2, N3 (any step that calls an outside service)",
+    "retry": "Up to 3 tries in all (2 retries), 5 minutes apart: automation/notify/policy.mjs",
+    "then": "Alert to Operations with: scenario name, step id, run id, error text, lead_id. No address, name or free text.",
+    "and_then": "The lead stays in the lead table marked 'notify failed' so the weekly review finds it",
+    "owner": "Operations (company.js: Operations owns the pilot, moderation and data)"
+  },
+  "test_plan": {
+    "data": "The three fixtures in automation/notify/fixtures, the 14 tests, one forced failure with replay",
+    "counts_not_percentages": "Under 30 records, so every result is written as a count",
+    "run_by": "A person outside the pair, from 04 - Playbooks/incidents.md alone",
+    "pass_marks": {
+      "welcome_email": "fixture student: 1 sent, 0 duplicates after 2 replays",
+      "partner_alert": "fixture partner: 1 alert to the assigned owner, reply due in 24 hours",
+      "forced_failure": "3 temporary errors: incident to Operations with run id, step, owner and recovery action; the replay then sends exactly 1 message",
+      "personal_data": "0 addresses, names or free text in the handoff log and in any alert"
+    },
+    "_note": "Written on 12 Nov, after the code was first drafted. The code was not tuned to fit them: they restate rules R1 to R6."
+  },
+  "files": {
+    "routing_rules": "automation/routing.md",
+    "code": "automation/notify/ (README.md, notify.mjs, adapters.mjs, policy.mjs, server.mjs, notify-cli.mjs, tests)",
+    "deliverable": "03 - Deliverables/mp2/notify.md",
+    "playbook": "04 - Playbooks/incidents.md",
+    "building": "board/coordination-hall.html (with coordination-hall.js and coordination-hall.css)"
+  }
+}

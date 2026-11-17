@@ -1,0 +1,11 @@
+{
+  "lead_id": "mp2-demo-002",
+  "kind": "partner",
+  "submitted_at": "2026-11-17T14:05:00Z",
+  "source": "partner-form",
+  "organization": "Demo International Office",
+  "organization_type": "international-office",
+  "language": "en",
+  "enrichment": { "status": "ready", "segment": "partner", "persona": null, "university": "UPV/EHU", "arrival_wave": null, "language": "en", "intent": "cohort-code", "reason": "fixture", "prompt_version": "demo-0" },
+  "stored_at": "2026-11-17T14:05:20Z"
+}
