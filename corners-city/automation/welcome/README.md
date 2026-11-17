@@ -24,7 +24,7 @@ problem (finding your people) with one next action: Find Your Corner. Prompt: `p
 ## Run it (Node 20 or newer, no install)
 ```bash
 cd corners-city/automation/welcome
-node --test                                                     # 18 tests
+node --test                                                     # 21 tests
 node server.mjs                                                 # http://127.0.0.1:8786
 # tagged link for the demo:
 # http://127.0.0.1:8786/?source=arrival-guide&campaign_id=bilbao-welcome&variant_id=checklist-a&cohort_code=DEMO-JAN
@@ -54,7 +54,17 @@ The shared class fixture fields, unchanged: `lead_id`, `kind` (`student`), `subm
 Added by us: `consent`, `checklist_sources` (fact id per item, or null), `checklist_mode` (`ai` or `fallback`),
 `checklist_prompt_version`, `content_version`.
 
-**Assumed Capture contract, to confirm with pair 2:** `POST` JSON lead, header `idempotency-key: <lead_id>`, a `2xx`
+**Capture's real answers (Carter, 17 Nov 2026), now followed by `createHttpCapture`:** `POST /api/leads`, JSON. `201` accepted
+(new record), `200` replayed (same id, identical data, no new record), `400` invalid fields (not retried), `409` same id with
+changed data (not retried), `503` temporary (retried with the same payload and id). Student records need `lead_id`,
+`kind: "student"`, `source`, `contact_email`, `arrival_window`. Their local server runs at `http://127.0.0.1:4319`, only on the
+computer that runs it; to use it: `$env:CAPTURE_URL = "http://127.0.0.1:4319/api/leads"` then `node server.mjs`.
+**Not yet checked against their real server** (we have only their description, tested with a stand-in that follows it):
+whether it accepts our extra fields (`consent`, `checklist_sources`, `checklist_mode`, `checklist_prompt_version`,
+`content_version`) and an `example.invalid` address.
+
+Earlier assumption, before Carter answered, kept because the code still reads these shapes:
+**Assumed contract (earlier):** `POST` JSON lead, header `idempotency-key: <lead_id>`, a `2xx`
 reply. The reply counts as an acknowledgement (`readAck()` in `welcome.mjs`) when it echoes our `lead_id`, says
 `accepted` or `duplicate`, or carries a status word (`received`, `accepted`, `duplicate`, `replayed`). It never counts
 when it names another `lead_id`, says `accepted`, `ok` or `success` is `false`, says `rejected: true`, carries a non-empty `error` or `errors`, or has an unknown status word. Changed on
@@ -63,7 +73,7 @@ when it names another `lead_id`, says `accepted`, `ok` or `success` is `false`, 
 ## Evidence from the dry run (13 Nov 2026, fictional data)
 | Check | Result |
 |---|---|
-| `node --test` | 12 pass on 13 Nov; 15 pass on 15 Nov (acknowledgement check); 18 pass on 16 Nov (refusal check) |
+| `node --test` | 12 pass on 13 Nov; 15 pass on 15 Nov (acknowledgement check); 18 pass on 16 Nov (refusal check); 21 pass on 17 Nov (Capture answers from Carter) |
 | Capture forced down 3 times | `pending`, no confirmation, 3 failed attempts logged under one `lead_id` |
 | Replay | `confirmed` on attempt 1, same `lead_id`, 1 row at Capture, model called once |
 | Second replay | `already_acknowledged`, still 1 row |

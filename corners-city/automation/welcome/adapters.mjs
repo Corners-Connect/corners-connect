@@ -69,8 +69,20 @@ export function createHttpCapture({ url = process.env.CAPTURE_URL, token = proce
           headers: { 'content-type': 'application/json', 'idempotency-key': lead.lead_id, ...(token ? { authorization: 'Bearer ' + token } : {}) },
           body: JSON.stringify(lead)
         });
-        if (!res.ok) throw new Error('capture HTTP ' + res.status);
-        return await res.json();
+        // Capture's contract (Carter, 17 Nov 2026): 201 accepted (new), 200 replayed (same id, identical data, no new
+        // record), 400 invalid fields, 409 same id with changed data, 503 temporary (retry with the same id).
+        if (!res.ok) {
+          const err = new Error('capture HTTP ' + res.status);
+          // 4xx other than 408/429 will not change on a retry (invalid fields, id reused with other data).
+          err.permanent = res.status >= 400 && res.status < 500 && res.status !== 408 && res.status !== 429;
+          throw err;
+        }
+        let body = {};
+        try { const j = await res.json(); if (j && typeof j === 'object') body = j; } catch { /* an empty body is fine */ }
+        // The HTTP status is the acknowledgement: 201 = accepted, 200 = replayed. readAck still refuses a body that
+        // names another lead_id or carries errors / ok:false.
+        const word = res.status === 201 ? 'accepted' : res.status === 200 ? 'replayed' : body.status;
+        return { ...body, status: word };
       } finally { clearTimeout(timer); }
     }
   };

@@ -169,7 +169,9 @@ export async function handOff(lead, ctx, runId) {
   const { capture, policy, sleep, log } = ctx;
   let wait = policy.captureWaitMs;
   let last = null;
+  let tried = 0;
   for (let attempt = 1; attempt <= policy.captureAttempts; attempt++) {
+    tried = attempt;
     try {
       const reply = await capture.submit(lead);
       const ack = readAck(reply, lead);
@@ -179,10 +181,11 @@ export async function handOff(lead, ctx, runId) {
     } catch (e) {
       last = e.message;
       log.write({ run_id: runId, lead_id: lead.lead_id, step: 'capture', status: 'failed', attempt, error: last });
+      if (e.permanent) break;   // a refusal that a retry cannot change (invalid fields, id reused with other data)
       if (attempt < policy.captureAttempts) { await sleep(wait); wait *= 2; }
     }
   }
-  return { acknowledged: false, attempt: policy.captureAttempts, error: last };
+  return { acknowledged: false, attempt: tried, error: last };
 }
 
 // ── One submission, end to end ───────────────────────────────────────────────────────────────────────────────────
