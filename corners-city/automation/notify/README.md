@@ -36,7 +36,8 @@ node server.mjs                                          # POST /notify, /sweep,
 ### Live email to a test inbox (SMTP / Ethereal, added by Finn)
 ```bash
 npm install                                              # once: nodemailer, only needed for this adapter
-npm run ethereal                                         # student welcome to a throwaway Ethereal inbox, prints the receipt URL
+npm run ethereal                                         # fresh state, then welcome + partner alert to a throwaway Ethereal inbox
+                                                         # (receipt URLs printed), then a replay that answers already_sent
 NOTIFY_TRANSPORT=ethereal node server.mjs                # same for POST /notify; welcome and owner alert both arrive by email
 NOTIFY_TRANSPORT=smtp SMTP_HOST=… SMTP_PORT=587 SMTP_USER=… SMTP_PASS=… NOTIFY_TEST_TO=<class test inbox> node server.mjs
 ```
