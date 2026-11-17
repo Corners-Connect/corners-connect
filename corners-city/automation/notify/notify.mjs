@@ -128,7 +128,7 @@ async function deliver(ctx, runId, lead, kind, message, adapter, meta = {}) {
       const r = await adapter.send(message);
       rec.status = 'sent'; rec.ack = r.ack; rec.last_error = null;
       ctx.store.put(rec);
-      return done('sent');
+      return done('sent', { ack: r.ack });          // shown to the caller; the redacted log row stays six fields
     } catch (e) {
       rec.last_error = e.message;
       if (e.uncertain) {

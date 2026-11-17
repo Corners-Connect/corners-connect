@@ -161,3 +161,43 @@ test('delivered but no acknowledgement: history shows it, so the replay does not
   const rows = readFileSync(file, 'utf8').split(String.fromCharCode(10)).filter(Boolean);
   assert.equal(rows.length, 1, 'one copy in the outbox');
 });
+
+// ── SMTP / Ethereal adapter (Finn). A fake transport stands in for the mail server. ────────────────────────────────
+import { createSmtpEmail } from './adapters.mjs';
+function smtpSetup(errors = []) {
+  const mails = [];
+  const transport = { async sendMail(m) { const e = errors.shift(); if (e) throw Object.assign(new Error(e.message || 'smtp error'), e); mails.push(m); return { messageId: m.messageId }; } };
+  const mail = createSmtpEmail({ transport, testTo: 'class-test@corners.test', log: () => {} });
+  const ctx = createContext({ adapters: { email: mail, owner: mail }, store: createStore(), log: createLog(), policy: fast,
+    now: () => new Date('2026-11-17T14:06:00Z'), sleep: async () => {}, runId: (() => { let n = 0; return () => 'run-s' + ++n; })() });
+  return { ctx, mails };
+}
+
+test('SMTP: welcome goes to the class test inbox, never to the fixture address, and replays once', async () => {
+  const { ctx, mails } = smtpSetup();
+  const r = await processLead(load('student.json'), ctx);
+  assert.equal(r.status, 'sent');
+  assert.equal(mails[0].to, 'class-test@corners.test');
+  assert.doesNotMatch(JSON.stringify(mails[0]), /example\.invalid/);
+  assert.match(mails[0].text, /Find a quiet study spot/);
+  assert.match(r.ack, /^smtp:<mp2-demo-001.student_welcome@corners-notify\.test>$/);
+  assert.equal((await processLead(load('student.json'), ctx)).status, 'already_sent');
+  assert.equal(mails.length, 1);
+});
+
+test('SMTP: a 421 is temporary and retried; a 550 is permanent and goes to Operations at once', async () => {
+  let s = smtpSetup([{ responseCode: 421, message: 'try later' }]);
+  let r = await processLead(load('student.json'), s.ctx);
+  assert.equal(r.status, 'sent'); assert.equal(r.attempt_count, 2);
+  s = smtpSetup([{ responseCode: 550, message: 'mailbox unknown' }]);
+  r = await processLead(load('student.json'), s.ctx);
+  assert.equal(r.status, 'incident'); assert.equal(r.attempt_count, 1); assert.equal(s.mails.length, 0);
+});
+
+test('SMTP: a timeout after DATA is uncertain and goes to a person instead of a resend', async () => {
+  const { ctx, mails } = smtpSetup([{ code: 'ETIMEDOUT', command: 'DATA', message: 'timeout' }]);
+  const r = await processLead(load('student.json'), ctx);
+  assert.equal(r.status, 'incident');
+  assert.match(r.incident.reason, /no history/);
+  assert.equal(mails.length, 0);
+});

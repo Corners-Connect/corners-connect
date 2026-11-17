@@ -10,7 +10,7 @@ const readBody = (req) => new Promise((ok, no) => { let b = ''; req.on('data', (
 
 createServer(async (req, res) => {
   try {
-    if (req.method === 'GET' && req.url === '/health') return send(res, 200, { ok: true, dry_run: process.env.NOTIFY_LIVE !== '1' });
+    if (req.method === 'GET' && req.url === '/health') return send(res, 200, { ok: true, dry_run: process.env.NOTIFY_LIVE !== '1' && !['ethereal', 'smtp'].includes(process.env.NOTIFY_TRANSPORT) });
     if (req.method === 'POST' && req.url === '/notify') return send(res, 200, await processLead(JSON.parse(await readBody(req)), ctx));
     if (req.method === 'POST' && req.url === '/sweep') return send(res, 200, await sweep(ctx));
     if (req.method === 'POST' && req.url === '/reply') { const { lead_id } = JSON.parse(await readBody(req)); logReply(ctx, lead_id); return send(res, 200, { ok: true }); }

@@ -1,0 +1,13 @@
+{
+  "name": "corners-notify",
+  "private": true,
+  "description": "Corners Mini Project 2, pair 5 Notify. Dry run needs no install; npm install only for the SMTP/Ethereal adapter.",
+  "scripts": {
+    "test": "node --test",
+    "ethereal": "NOTIFY_TRANSPORT=ethereal NOTIFY_FAST=1 node notify-cli.mjs run fixtures/student.json"
+  },
+  "optionalDependencies": {
+    "nodemailer": "^6.9.16"
+  },
+  "engines": { "node": ">=20" }
+}
